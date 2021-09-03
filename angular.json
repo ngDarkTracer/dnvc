@@ -50,7 +50,7 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/styles/wfb-style.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -114,7 +114,7 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "src/styles/wfb-style.css",
               "src/styles.scss"
             ],
             "scripts": []
