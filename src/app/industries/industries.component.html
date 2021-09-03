@@ -1,10 +1,60 @@
-<div class="main">
-  <div class="filter-container">
-    <div class="filter">
-
+<section class="background-grid-short-white">
+  <div class="container pv120-90" id="index-content-section">
+    <div class="row"><div class="col-lg-3 col-md-12 col-sm-12">
+      <div class="filter-wrapper filter-sticky">
+        <div class="filter-clear">
+          <div class="label bold">262 Resultats</div>
+          <button class="link-style-button">Clear Filters</button>
+        </div>
+        <div class="az-container mb30">
+          <div class="az-box">
+            <div class="az-filter__header fs-small pb30">
+              <div>
+                <span class="label">Filtre</span>
+                <div class="az-filter_mobile_display bold">Tout</div>
+              </div>
+              <div class="az-filter__mobile">
+                <button tabindex="0" class="az-filter__mobile-button ">
+                  <svg class="icon icon-red" aria-labelledby="point-down-icon" role="img" viewBox="0 0 30 30">
+                    <title id="point-down-icon">Point Down Icon</title>
+                    <polygon fill-rule="nonzero" points="23.354 12.075 15.499 19.929 7.646 12.075 8.353 11.368 15.498 18.514 22.646 11.367 23.354 12.075"></polygon>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="">
+            </div>
+            <div class="row no-gutters az-filter__mobile_list">
+              <div class="col-3 letter-container" *ngFor="let letter of alphabet">
+                <button class="az-button " aria-label="Show Letter - A" data-testid="letter">
+                  <h6 class="mb0">{{ letter }}</h6>
+                </button>
+              </div>
+              <div class="col-6">
+                <button class="az-button all-button checked-active" aria-label="Show All - Letters" data-testid="all-letters">
+                  <h6 class="mb0">TOUT</h6>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="col-lg-9 col-md-12 col-sm-12">
+        <div class="row mt45">
+          <div class="col-lg-9" *ngFor="let i of industries"> <!-- ngFor -->
+            <div class="border pb30">
+              <div class="pb30">
+                <h2 class="mb0">
+                  <a class="inline-link" href="/the-world-factbook/countries/afghanistan/">
+                    <span>{{ i }}</span>
+                  </a>
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="main-container">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam beatae consequatur culpa cum doloremque ducimus earum, exercitationem harum illum ipsa itaque maiores necessitatibus numquam officia perspiciatis quae quo sint soluta.
-  </div>
-</div>
+</section>
