@@ -1,29 +1,36 @@
-<div class="container-header" style="border: 1px solid black">
-  <header class="d-flex container-fluid">
-    <div class="p-2 flex-grow-1">
-      <span class="nav-link">Watcher</span>
-    </div>
-    <div class="p-2">
-      <div class="nav">
-        <li class="nav-item">
-          <a routerLink="/industries" class="nav-link">Industries</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/sectors" class="nav-link">Sectors</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/markets" class="nav-link">markets</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/notes" class="nav-link">Notes</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/ressources" class="nav-link">Resources</a>
-        </li>
-        <li class="nav-item">
-          <a routerLink="/about" class="nav-link">About</a>
-        </li>
+<div class="subsite-header">
+  <div class="fade-in-section disable-fade-in is-visible fade-in-header">
+    <header>
+      <div class="header-logo">
+        <a aria-current="page" class="logo-marque" routerLink="/home">
+          <span class="text-logo-title-full" style="font-weight: bolder; font-size: 30px">watcher</span>
+        </a>
       </div>
-    </div>
-  </header>
+      <button class="hamburger hamburger--emphatic " type="button" aria-label="Menu" aria-controls="navigation" aria-expanded="false">
+        <span class="hamburger-box"><span class="hamburger-inner"></span>
+        </span>
+      </button>
+      <div class="navigation-wrapper background-split-black">
+        <nav aria-label="Primary Navigation" class="header-nav">
+          <ul class="navigation-menu">
+            <li class="navigation-menu-item subsite-nav">
+              <a routerLink="/industries">Filières</a>
+            </li>
+            <li class="navigation-menu-item subsite-nav">
+              <a routerLink="/sectors">Secteurs</a>
+            </li>
+            <li class="navigation-menu-item subsite-nav">
+              <a routerLink="/markets">Marchés</a>
+            </li>
+            <li class="navigation-menu-item subsite-nav">
+              <a routerLink="/notes">notes</a>
+            </li>
+            <li class="navigation-menu-item subsite-nav">
+              <a routerLink="/about">A propos</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  </div>
 </div>
