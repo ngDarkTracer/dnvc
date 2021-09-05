@@ -1,10 +1,12 @@
 <div class="fade-in-section disable-fade-in is-visible fade-in-hero">
-  <section class="hero-main-landing">
+
+
+  <section class="hero-main-landing" *ngIf="activeRoute === 'home'">
     <section class="background-margin background-threads careers-threads">
       <div class="container">
         <div class="row">
           <div class="col-12 col-md-6 hero-overflow">
-            <h1 class="h0 hero-title pt150-90 pb30">Watcher</h1>
+            <h1 class="h0 hero-title pt150-90 pb30" style="font-size: 35px;">Watcher</h1>
             <div class="mt0 mb0 hero-summary">
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa dolorem dolorum et iste laudantium nihil voluptatum? Cum laborum provident quis! Doloremque fugit ipsam molestias tenetur.</p>
             </div>
@@ -17,7 +19,7 @@
         </div>
       </div>
     </section>
-    <div class="background-grid-white background-border-none inset">
+    <div class="background-grid-white background-border-none inset" *ngIf="activeRoute === 'home'">
       <div class="container hero-main-landing-splash">
         <div class="row d-flex align-items-end">
           <div class="col-12 col-md-6 offset-md-1 order-1 order-md-2">
@@ -38,6 +40,24 @@
               <label class="header-subsection-date">Edition: 3 Septembre 2021</label>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="background-threads careers-threads" *ngIf="activeRoute === 'industries'">
+    <div class="fade-in-section disable-fade-in is-visible fade-in-hero disable-transform">
+      <div class="container hero-splash-container">
+        <div class="row pv90-60">
+          <div class="col-sm-12 col-md-8 hero-splash" style="font-size: 25px;">
+            <a class="hero-parent-title crown-link" routerLink="/home">
+              <h3 class="h1 small mb0 d-inline">Watcher</h3>
+            </a>
+            <h1 class="hero-title">Toutes les filieres</h1>
+          </div>
+          <div class="col-12"></div>
+          <div class="col-sm-12 col-md-5"></div>
         </div>
       </div>
     </div>

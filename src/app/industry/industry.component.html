@@ -1,1 +1,94 @@
-<p>industry works!</p>
+<section class="background-threads careers-threads">
+  <div class="fade-in-section disable-fade-in is-visible fade-in-hero disable-transform">
+    <div class="container hero-splash-container">
+      <div class="row pv90-60">
+        <div class="col-sm-12 col-md-8 hero-splash" style="font-size: 25px;">
+          <a class="hero-parent-title crown-link" routerLink="/industries">
+            <h3 class="h1 small mb0 d-inline">Toutes les filieres</h3>
+          </a>
+          <h1 class="hero-title">{{ currentIndustriy }}</h1>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-sm-12 col-md-5"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="background-grid-white"><div class="container teaser-container"><div class="header-subsection-date-section d-flex">
+  <label class="header-subsection-date">Derniere mise a jour: {{ actualDate }}</label>
+</div>
+  <div class="row align-items-center justify-content-between"><div class="col-sm-12 col-md-5 teaser-context pv120-90">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores, consequuntur culpa eius eligendi enim eos esse excepturi, fugit id itaque laboriosam molestiae nam nesciunt nisi nobis nostrum obcaecati optio pariatur provident, quasi quibusdam rem sint vero voluptate! Asperiores atque dignissimos dolore illo impedit perferendis quia quod reiciendis rerum sit.
+  </div>
+    <div class="col-sm-12 col-md-5 order-first teaser-image pv120-90"><div class="fade-in-section disable-fade-in is-visible">
+      <div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden; max-width: 533px; max-height: 400px;">
+        <div aria-hidden="true" style="width: 100%; padding-bottom: 75.188%;"></div>
+  <img aria-hidden="true" src="" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition-delay: 500ms;">
+        <picture>
+          <source srcset="../../assets/spices.jpeg 133w,
+../../assets/spices.jpeg 267w,
+../../assets/spices.jpeg 533w,
+../../assets/spices.jpeg 600w" sizes="(max-width: 533px) 100vw, 533px"><img sizes="(max-width: 533px) 100vw, 533px" srcset="../../assets/spices.jpeg 133w,
+../../assets/spices.jpeg 267w,
+../../assets/spices.jpeg 533w,
+../../assets/spices.jpeg 600w" src="../../assets/spices.jpeg" alt="Clothing, jewelry, sculptures, and handicrafts on display at a bazaar in Kabul." loading="lazy" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 500ms ease 0s;">
+        </picture>
+        <noscript>
+          <picture>
+            <source srcset="../../assets/spices.jpeg 133w,
+../../assets/spices.jpeg 267w,
+../../assets/spices.jpeg 533w,
+../../assets/spices.jpeg 600w" sizes="(max-width: 533px) 100vw, 533px" />
+      <img loading="lazy" sizes="(max-width: 533px) 100vw, 533px" srcset="../../assets/spices.jpeg 133w,
+../../assets/spices.jpeg 267w,
+../../assets/spices.jpeg 533w,
+../../assets/spices.jpeg 600w" src="../../assets/spices.jpeg" alt="Clothing, jewelry, sculptures, and handicrafts on display at a bazaar in Kabul." style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/>
+          </picture>
+        </noscript>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<div class="border-top-black">
+  <section class="content-section-mobile background-white">
+    <div class="container content_nav-container">
+      <div class="row">
+        <div class="col-lg-4 col-md-12 col-sm-12 d-none d-md-block pt120 mb45">
+          <div class="jump-nav">
+          <div class="fade-in-section disable-fade-in is-visible">
+            <div class="jump-nav__container">
+              <div class="jump-nav__header">
+                <div>
+                  <div class="label">Contenu</div>
+                </div>
+              </div>
+              <ul class="jump-nav__items">
+                <h6 class="mb0 pt15 jump-nav__item-wrapper" *ngFor="let item of content">
+                  <div>
+                    <a title="Introduction" class="jump-nav__item bold" style="cursor: pointer" (click)="scrollTo(item)">{{ item }}</a>
+                  </div>
+                </h6>
+              </ul>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 border-left-black pb120-90 pt120-45 content-area-content">
+          <div class="free-form-content__content wysiwyg-wrapper" [id]="item" *ngFor="let item of content">
+            <h2>{{ item }}</h2>
+            <div>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. At consectetur cupiditate dolores dolorum ex exercitationem hic ipsum iste itaque laborum magnam natus nisi provident quidem, repellat rerum suscipit? Ad adipisci amet animi corporis dolor ea, excepturi facere fugiat fugit impedit in ipsam ipsum laboriosam magnam natus nostrum officiis possimus qui quod ratione rerum saepe sed totam ullam veniam voluptate voluptatum! Adipisci dolores eaque facilis minus, repudiandae vero. Fugiat mollitia quam ullam. At cupiditate eius error est eveniet harum ipsa, minus nostrum nulla, quaerat, quod vero! Ad adipisci alias amet aut autem commodi consectetur consequatur cumque debitis dolorem, eaque eius eos esse exercitationem facere fugiat, hic id inventore ipsa minima minus nihil omnis porro quis quos ratione rem repellat repudiandae saepe similique totam voluptatem voluptates voluptatum! Adipisci aliquid autem eius iusto laboriosam odit quasi sed. Blanditiis fuga praesentium quam repellendus unde ut. Necessitatibus, similique, veritatis? Dolorum nam temporibus vel! Atque consequuntur delectus dolorem eius ipsa maiores nesciunt obcaecati quam quis repellat! Accusantium assumenda eos hic laborum mollitia reprehenderit ut? Assumenda at blanditiis consectetur eligendi fugit laboriosam laudantium magni omnis sint totam? Adipisci consequuntur deserunt dicta doloribus ex fugiat harum id iusto nobis obcaecati placeat quia quos repellat reprehenderit similique, sint tempore ut vero voluptate voluptatem. Dignissimos ducimus impedit nemo nisi quam, quis ratione? Accusamus aliquid cumque deleniti doloremque ea eaque, eius est ex excepturi exercitationem expedita facere facilis fugit ipsum labore maiores minima mollitia nemo neque nesciunt perferendis quo ratione recusandae similique suscipit temporibus ullam. A aut autem beatae dolorem, dolores ea earum eius et eveniet exercitationem explicabo harum inventore labore molestias nemo odio, odit quo similique temporibus tenetur. Adipisci beatae consectetur cupiditate dolore eaque excepturi harum ipsa, iste labore numquam perspiciatis quo repellendus sequi vel velit veritatis vero voluptatem. Accusamus commodi debitis iste possimus quia ratione reiciendis, tempore. Alias delectus excepturi id, laboriosam natus officia omnis quo reiciendis reprehenderit, sint sunt vitae voluptatem! Cumque delectus deleniti deserunt dignissimos eos error eveniet fugiat harum maiores nobis odio, placeat possimus, praesentium rem sed similique sint tempora tempore veritatis vero. Aut delectus eaque est fuga illum ipsam ipsum magni molestiae nam, odit perspiciatis qui quisquam ratione rem ut vero voluptas voluptatem voluptatibus. A ab accusamus aspernatur, assumenda dolorem earum eos explicabo, hic illo maiores nihil non perspiciatis provident quia sit vel veniam? Alias architecto commodi delectus doloribus ducimus eos, eveniet inventore maiores modi mollitia natus nihil optio quam quas, qui sapiente sequi tenetur. Ad aliquid aperiam aspernatur at atque, blanditiis commodi corporis culpa cupiditate dignissimos dolor dolorem enim eos esse est eum exercitationem id ipsam itaque libero nam nulla numquam optio provident, quas quasi qui quod recusandae reiciendis saepe sapiente, sint soluta tempore temporibus tenetur unde ut? Ab amet atque commodi cum dolores earum est eum excepturi exercitationem explicabo facere ipsum iste labore libero magni modi molestias mollitia nam, natus nisi nostrum obcaecati, odio odit optio perspiciatis placeat porro quidem quod ratione reiciendis, rem reprehenderit sapiente totam ullam veniam veritatis voluptatum! Alias amet cum explicabo iure magnam nihil quia quo vel. Deleniti, ex.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

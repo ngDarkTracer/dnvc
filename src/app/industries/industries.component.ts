@@ -8,11 +8,28 @@ import { Component, OnInit } from '@angular/core';
 export class IndustriesComponent implements OnInit {
 
   alphabet: any[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-  industries: any[] = ['Filière 1', 'Filière 2', 'Filière 3', 'Filière 4', 'Filière 5', 'Filière 6', 'Filière 7', 'Filière 8', 'Filière 9', 'Filière 10'];
+  industries: any[] = ['Arachides', 'Banane', 'Banane-plantain', 'Cacao', 'Cafe', 'Pisciculture'];
+
+  beginLetter = 'ALL';
+  numberOfElement;
 
   constructor() { }
 
-  ngOnInit(): void {
+  filter(letter: string): void {
+    this.numberOfElement = 0;
+    this.beginLetter = letter;
+    if (letter === 'ALL') {
+      this.numberOfElement = this.industries.length;
+    } else {
+      this.industries.forEach((element) => {
+        if (element.startsWith(letter)) {
+          this.numberOfElement += 1;
+        }
+      });
+    }
   }
 
+  ngOnInit(): void {
+    this.filter(this.beginLetter);
+  }
 }
