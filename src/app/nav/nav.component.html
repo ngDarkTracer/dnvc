@@ -1,32 +1,38 @@
-<div class="subsite-header">
+<div class="subsite-header" [ngClass]="{'subsite-open':subsiteOpened === true}">
   <div class="fade-in-section disable-fade-in is-visible fade-in-header">
     <header>
       <div class="header-logo">
         <a aria-current="page" class="logo-marque" routerLink="/home">
           <span class="text-logo-title-full" style="font-weight: bolder; font-size: 30px">watcher</span>
+          <span class="text-logo-title-short" style="font-weight: bolder; font-size: 25px">watcher</span>
         </a>
       </div>
-      <button class="hamburger hamburger--emphatic " type="button" aria-label="Menu" aria-controls="navigation" aria-expanded="false">
+      <button (click)="open()"
+              [ngClass]="{'is-active':subsiteOpened === true}"
+              class="hamburger hamburger--emphatic"
+              type="button" aria-label="Menu"
+              aria-controls="navigation"
+              aria-expanded="false">
         <span class="hamburger-box"><span class="hamburger-inner"></span>
         </span>
       </button>
-      <div class="navigation-wrapper background-split-black">
+      <div class="navigation-wrapper background-split-black" [ngClass]="{'menu-open':subsiteOpened === true}">
         <nav aria-label="Primary Navigation" class="header-nav">
           <ul class="navigation-menu">
             <li class="navigation-menu-item subsite-nav">
-              <a routerLink="/industries">Filières</a>
+              <a routerLink="/industries" (click)="close()">Filières</a>
             </li>
             <li class="navigation-menu-item subsite-nav">
-              <a routerLink="/sectors">Secteurs</a>
+              <a routerLink="/sectors" (click)="close()">Secteurs</a>
             </li>
             <li class="navigation-menu-item subsite-nav">
-              <a routerLink="/markets">Marchés</a>
+              <a routerLink="/markets" (click)="close()">Marchés</a>
             </li>
             <li class="navigation-menu-item subsite-nav">
-              <a routerLink="/notes">notes</a>
+              <a routerLink="/notes" (click)="close()">notes</a>
             </li>
             <li class="navigation-menu-item subsite-nav">
-              <a routerLink="/about">A propos</a>
+              <a routerLink="/about" (click)="close()">A propos</a>
             </li>
           </ul>
         </nav>

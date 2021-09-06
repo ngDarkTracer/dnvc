@@ -7,14 +7,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  toggled = false;
+  subsiteOpened = false;
 
   constructor() { }
 
   ngOnInit(): void {
+    document.body.removeAttribute('style');
   }
 
-  toggleMenu(): void {
-    this.toggled = !this.toggled;
+  close(): void {
+    if (this.subsiteOpened) {
+      this.subsiteOpened = false;
+      document.body.removeAttribute('style');
+    }
+  }
+
+  open(): void {
+    if (this.subsiteOpened) {
+      this.subsiteOpened = !this.subsiteOpened;
+      document.body.removeAttribute('style');
+    } else {
+      this.subsiteOpened = !this.subsiteOpened;
+      document.body.style.position = 'fixed';
+      document.body.style.top = '-9px';
+    }
   }
 }

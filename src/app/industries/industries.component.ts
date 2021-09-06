@@ -12,6 +12,7 @@ export class IndustriesComponent implements OnInit {
 
   beginLetter = 'ALL';
   numberOfElement;
+  openedList = false;
 
   constructor() { }
 
@@ -29,7 +30,12 @@ export class IndustriesComponent implements OnInit {
     }
   }
 
+  open(): void {
+    this.openedList = !this.openedList;
+  }
+
   ngOnInit(): void {
     this.filter(this.beginLetter);
   }
+
 }

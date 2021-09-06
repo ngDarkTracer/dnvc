@@ -11,10 +11,11 @@
             <div class="az-filter__header fs-small pb30">
               <div>
                 <span class="label">Filtre</span>
-                <div class="az-filter_mobile_display bold">Tout</div>
+                <div class="az-filter_mobile_display bold">{{ beginLetter }}</div>
               </div>
               <div class="az-filter__mobile">
-                <button tabindex="0" class="az-filter__mobile-button ">
+                <button tabindex="0" class="az-filter__mobile-button"
+                        (click)="open()">
                   <svg class="icon icon-red" aria-labelledby="point-down-icon" role="img" viewBox="0 0 30 30">
                     <title id="point-down-icon">Point Down Icon</title>
                     <polygon fill-rule="nonzero" points="23.354 12.075 15.499 19.929 7.646 12.075 8.353 11.368 15.498 18.514 22.646 11.367 23.354 12.075"></polygon>
@@ -22,9 +23,9 @@
                 </button>
               </div>
             </div>
-            <div class="">
+            <div class="" [ngClass]="{'az-list':openedList === true}">
             </div>
-            <div class="row no-gutters az-filter__mobile_list">
+            <div class="row no-gutters" [ngClass]="{'az-filter__mobile_list':openedList === false}">
               <div class="col-3 letter-container" *ngFor="let letter of alphabet">
                 <button class="az-button"
                         [ngClass]="{'checked-active':letter === beginLetter}"
