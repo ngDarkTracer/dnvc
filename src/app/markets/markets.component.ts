@@ -100,7 +100,6 @@ export class MarketsComponent implements OnInit {
         }
       }
     }
-    console.log(this.filteredMarkets);
   }
 
   open(): void {
