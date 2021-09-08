@@ -1,1 +1,112 @@
-<p>markets works!</p>
+<section class="background-threads is-visible careers-threads">
+  <div class="fade-in-section disable-fade-in is-visible fade-in-hero disable-transform">
+    <div class="container hero-splash-container">
+      <div class="row pv90-60">
+        <div class="col-sm-12 col-md-8 hero-splash">
+          <a class="hero-parent-title crown-link" routerLink="/home">
+            <h3 class="h1 small mb0 d-inline">Watcher</h3>
+          </a>
+          <h1 class="hero-title" style="color: white">Tout les marchés</h1>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-sm-12 col-md-5"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="background-grid-short-white">
+  <div class="container pv120-90" id="index-content-section">
+    <div class="row">
+      <div class="col-lg-3 col-md-12 col-sm-12">
+        <div class="filter-wrapper filter-sticky">
+          <div class="filter-clear">
+            <div class="label bold">{{ numberOfElement }} Resultats</div>
+            <button class="link-style-button" (click)="filter('ALL', 'ALL')">Vider le filtre</button>
+          </div>
+          <div class="az-container mb30">
+            <div class="az-box">
+              <div class="az-filter__header fs-small pb30">
+                <div>
+                  <span class="label">Filtre</span>
+                  <div class="az-filter_mobile_display bold">{{ beginLetter }}</div>
+                </div>
+                <div class="az-filter__mobile">
+                  <button tabindex="0" class="az-filter__mobile-button"
+                          (click)="open()">
+                    <svg class="icon icon-red" aria-labelledby="point-down-icon" role="img" viewBox="0 0 30 30">
+                      <title id="point-down-icon">Point Down Icon</title>
+                      <polygon fill-rule="nonzero" points="23.354 12.075 15.499 19.929 7.646 12.075 8.353 11.368 15.498 18.514 22.646 11.367 23.354 12.075"></polygon>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="" [ngClass]="{'az-list':openedList === true}">
+              </div>
+              <div class="row no-gutters" [ngClass]="{'az-filter__mobile_list':openedList === false}">
+                <div class="col-3 letter-container" *ngFor="let market of markets">
+                  <button class="az-button"
+                          [disabled]="market.zone.length === 0"
+                          [ngClass]="{'checked-active':market.letter === beginLetter}"
+                          (click)="filter(market.letter, market.zone)"
+                          aria-label="Show Letter - A"
+                          data-testid="letter">
+                    <h6 class="mb0">{{ market.letter }}</h6>
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button class="az-button all-button"
+                          [ngClass]="{'checked-active': beginLetter === 'ALL'}"
+                          (click)="filter('ALL', 'ALL')"
+                          aria-label="Show All - Letters" data-testid="all-letters">
+                    <h6 class="mb0">TOUT</h6>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-12 col-sm-12">
+        <div class="row mt45">
+          <div class="col-lg-9" *ngFor="let market of markets">
+            <div class="border" *ngFor="let zone of market.zone">
+              <div class="pb60" *ngIf="market.letter === beginLetter">
+                <h2 class="mb0">
+                  <a class="inline-link" [routerLink]="['/markets', zone]">
+                    <span>{{ zone }}</span>
+                  </a>
+                </h2>
+              </div>
+              <div class="pb60" *ngIf="beginLetter === 'ALL'">
+                <h2 class="mb0">
+                  <a class="inline-link" [routerLink]="['/industries', zone]">
+                    <span>{{ zone }}</span>
+                  </a>
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="row no-gutters" style="margin-left: 20px;">
+            <div class="pagination-controls col-lg-6">
+              <div class="card-media__controls-wrapper">
+                <span tabindex="0" role="button" class="pagination__arrow-left disabled" data-testid="left-arrow" aria-label="Previous Page disabled">
+                  <svg class="icon icon-red icon-arrow-wide" aria-label="Backwards" aria-labelledby="previous-page" role="img" viewBox="0 0 30 30">
+                    <title id="previous-page">Precedent</title>
+                    <polygon fill="#161618" fill-rule="nonzero" points="12.414 14.853 19.56 22 18.853 22.707 11 14.853 18.854 7 19.561 7.707"></polygon>
+                  </svg>
+                </span>
+                <span class="label" data-testid="page-label">Page&nbsp;<strong>01</strong>&nbsp;of 03</span>
+                <span tabindex="0" role="button" class="pagination__arrow-right" data-testid="right-arrow" aria-label="Next Page">
+                  <svg class="icon icon-red icon-arrow-wide" aria-label="Forwards" aria-labelledby="next-page" role="img" viewBox="0 0 30 30">
+                    <title id="next-page">Suivant</title><polygon fill="#161618" fill-rule="nonzero" points="19.561 14.854 11.707 22.708 11 22.001 18.146 14.855 11 7.707 11.707 7"></polygon>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -13,7 +13,7 @@ export class IndustryComponent implements OnInit {
 
   currentIndustriy: string;
   actualDate = new Date().toLocaleDateString();
-  content: any[] = ['Resume', 'Introduction', 'Prix', 'Changements', 'Ressources'];
+  content: any[] = ['Resume'];
 
   scrollTo(anchor: any): void {
     document.getElementById(anchor).scrollIntoView({
