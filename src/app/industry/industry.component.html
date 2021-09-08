@@ -69,7 +69,7 @@
               </div>
               <ul class="jump-nav__items">
                 <h6 class="mb0 pt15 jump-nav__item-wrapper" *ngFor="let item of content">
-                  <div *ngIf="item != 'Ressources'">
+                  <div>
                     <a class="jump-nav__item bold" style="cursor: pointer" (click)="scrollTo(item)">{{ item }}</a>
                   </div>
                 </h6>
@@ -80,14 +80,11 @@
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12 border-left-black pb120-90 pt120-45 content-area-content">
           <div class="free-form-content__content wysiwyg-wrapper" [id]="item" *ngFor="let item of content">
-            <h2 *ngIf="item != 'Resume'">Alerte[{{ item }}]</h2>
+            <h2 *ngIf="item === 'Introduction'">{{ item }}</h2>
+            <h2 *ngIf="item !== 'Introduction'">Alerte[{{ item }}]</h2>
             <div>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti error esse facere, incidunt maiores numquam voluptates. Exercitationem id molestiae quo?
-              </p>
-
-              <div class="main-resouces ml-1" *ngIf="item === 'Ressources'">
-                <div *ngIf="item === 'Ressources'" style="margin-bottom: 70px;">
+              <div>
+                <div *ngIf="item !== 'Introduction'" style="margin-bottom: 70px;">
                   <div class="wfb-card-wrapper">
                     <div class="row no-gutters">
 <!--                      <div class="col-md-3 align-self-center">-->
@@ -104,21 +101,21 @@
 <!--                      </div>-->
                       <div class="col-md-12">
                         <div class="wfb-card__body-container">
-                          <div class="wfb-card__body-container">
-                            <h5 class="mb0 p15">
-                              <span class="col-4" style="background-color: green; border-radius: 50%; padding: 10px 20px; width: 100px; margin-right: 8px;"></span>
+                          <div class="wfb-card__link-container">
+                            <h5>
+                              <span class="col-4" style="background-color: green; padding: 10px 20px; width: 100px; margin-right: 8px;"></span>
                               <span class="col-8">Les USA s'ouvrent a la banane</span>
                             </h5>
                           </div>
                           <div class="thee-link-container">
                             <div>
                               <div class="wfb-card__link-container">
-                                <div class="wfb-card__text col-md-4"><p>12 février 2021</p></div>
-                                <div class="wfb-card__text col-md-8"><p>Partagé par: Ministère du tourisme</p></div>
+                                <div class="wfb-card__text col-md-4"><p style="color: darkgray; font-size: 14px">12 février 2021</p></div>
+                                <div class="wfb-card__text col-md-8"><p style="color: darkgray; font-size: 14px">Partagé par: Ministère du tourisme</p></div>
                               </div>
                             </div>
                           </div>
-                          <h6 class="ml-3" style="font-weight: bold;">
+                          <h6 style="font-weight: normal; margin-bottom: 0">
                             <p>
                               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?
                             </p>
@@ -127,7 +124,7 @@
                             <div>
                               <div class="wfb-card__link-container">
                                 <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6"><p>Marchés: CEMAC, CEDEAO</p></div>
-                                <div class="wfb-card__text col-xl-4 col-lg-4 col-md-4"><p>Source: </p></div>
+                                <div class="wfb-card__text col-xl-4 col-lg-4 col-md-4"><p style="position: absolute; right: 0; top: 0">Source: </p></div>
                                 <button class="wfb-card__icon pdf col-xl-2 col-lg-2 col-md-2" style="margin: 0; border: none" href="#" target="_blank">
                                   <svg class="icon" role="img" aria-labelledby="file-icon" viewBox="0 0 30 30">
                                     <title>file-icon</title>
@@ -143,7 +140,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
