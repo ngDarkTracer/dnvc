@@ -79,9 +79,9 @@
           </div>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12 border-left-black pb120-90 pt120-45 content-area-content">
+          <h2 class="mb-5">Toutes les alertes</h2>
           <div class="free-form-content__content wysiwyg-wrapper" [id]="item" *ngFor="let item of content">
-            <h2 *ngIf="item === 'Introduction'">{{ item }}</h2>
-            <h2 *ngIf="item !== 'Introduction'">Alerte[{{ item }}]</h2>
+            <h2 *ngIf="item !== 'Introduction'">Alerte [{{ item }}]</h2>
             <div>
               <div>
                 <div *ngIf="item !== 'Introduction'" style="margin-bottom: 70px;">
