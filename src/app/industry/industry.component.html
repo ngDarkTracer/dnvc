@@ -84,63 +84,11 @@
           </div>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12 border-left-black pb120-90 pt120-45 content-area-content">
-          <div class="free-form-content__content wysiwyg-wrapper" *ngIf="filterValue !== 'ALL'">
-            <div *ngFor="let item of content">
-              <h2 *ngIf="filterValue === item.alerte" class="pb100">Alertes [{{ item.alerte }}]</h2>
-              <div *ngFor="let con of item.content  | paginate: { itemsPerPage: 1, currentPage: page, totalItems: totalItems}">
-                <div *ngIf="filterValue === item.alerte">
-                  <div>
-                    <div class="wfb-card-wrapper pb60">
-                      <div class="row no-gutters">
-                        <div class="col-md-12">
-                          <div class="wfb-card__body-container">
-                            <div class="wfb-card__link-container">
-                              <h5>
-                                <span class="col-4" [ngStyle]="{'background-color':con.color}" style="padding: 2px 12px; width: 100px; margin-right: 8px;"></span>
-                                <span class="col-8">{{ con.title }}</span>
-                              </h5>
-                            </div>
-                            <div class="thee-link-container">
-                              <div>
-                                <div class="wfb-card__link-container">
-                                  <div class="wfb-card__text col-md-4"><p style="color: darkgray; font-size: 14px">{{ con.date }}</p></div>
-                                  <div class="wfb-card__text col-md-8"><p style="color: darkgray; font-size: 14px">Partagé par: {{ con.author }}</p></div>
-                                </div>
-                              </div>
-                            </div>
-                            <h6 style="font-weight: normal; margin-bottom: 0">
-                              <p>
-                                {{ con.text }}
-                              </p>
-                            </h6>
-                            <div class="thee-link-container">
-                              <div>
-                                <div class="wfb-card__link-container">
-                                  <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6"><p style="color: darkgray; font-size: 14px">Marchés: CEMAC, CEDEAO</p></div>
-                                  <div class="wfb-card__text col-xl-4 col-lg-4 col-md-4"><p style="position: absolute; right: 0; top: -12px;color: darkgray; font-size: 14px">Source: </p></div>
-                                  <button class="wfb-card__icon pdf col-xl-2 col-lg-2 col-md-2" style="margin: 0; border: none" href="#" target="_blank">
-                                    <svg class="icon" role="img" aria-labelledby="file-icon" viewBox="0 0 30 30">
-                                      <title>file-icon</title>
-                                      <path d="M16.667,7 L9,7 L9,24 L22,24 L22,12.308 L16.667,7 Z M17,8.742 L20.273,12 L17,12 L17,8.742 Z M10,23 L10,8 L16,8 L16,13 L21,13 L21,23 L10,23 Z" fill="#161618" fill-rule="nonzero"></path>
-                                    </svg>
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <pagination-controls previousLabel="Précédent" nextLabel="Suivant" responsive="true" (pageChange)="page = $event" *ngIf="filterValue !== 'ALL'"></pagination-controls>
-          </div>
-          <div class="free-form-content__content wysiwyg-wrapper" *ngIf="filterValue === 'ALL'">
+          <div class="free-form-content__content wysiwyg-wrapper">
             <div>
-              <h2 class="pb100">Alertes [Toutes les alertes]</h2>
               <div *ngFor="let con of filteredAlert  | paginate: { itemsPerPage: 1, currentPage: page, totalItems: totalItems}">
+                <h2 class="pb100" *ngIf="filterValue === 'ALL'">Alertes [Toutes les alertes]</h2>
+                <h2 class="pb100" *ngIf="filterValue !== 'ALL'">Alertes [{{ filterValue }}]</h2>
                 <div>
                   <div>
                     <div class="wfb-card-wrapper pb60">
@@ -188,7 +136,7 @@
                 </div>
               </div>
             </div>
-            <pagination-controls previousLabel="Précédent" nextLabel="Suivant" responsive="true" (pageChange)="page = $event" *ngIf="filterValue === 'ALL'"></pagination-controls>
+            <pagination-controls previousLabel="Précédent" nextLabel="Suivant" responsive="true" (pageChange)="page = $event"></pagination-controls>
           </div>
         </div>
       </div>

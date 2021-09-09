@@ -96,6 +96,9 @@ export class IndustryComponent implements OnInit {
     } else {
       this.content.forEach((element) => {
         if (element.alerte === item) {
+          element.content.forEach((alert) => {
+            this.filteredAlert.push(alert);
+          });
           this.totalItems = element.content.length;
         }
       });
