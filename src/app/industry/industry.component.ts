@@ -25,10 +25,18 @@ export class IndustryComponent implements OnInit {
         title: 'Hausse des prix de la banane',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
         markets: ['CEMAC', 'ZLECAF']
+        },
+        {
+        color: 'red',
+        date: new Date().toLocaleDateString(),
+        author: 'Ministère du commerce',
+        title: 'Hausse des prix de la banane',
+        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
+        markets: ['CEMAC', 'ZLECAF']
         }]
       },
     {
-      alerte: 'Procedure douanière',
+      alerte: 'Procédures douanières',
       content: [{
         color: 'green',
         date: new Date().toLocaleDateString(),
@@ -39,7 +47,7 @@ export class IndustryComponent implements OnInit {
         }]
       },
     {
-      alerte: 'Règlementation',
+      alerte: 'Règlementations',
       content: [{
         color: 'red',
         date: new Date().toLocaleDateString(),

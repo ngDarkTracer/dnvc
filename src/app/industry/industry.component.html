@@ -68,6 +68,11 @@
                 </div>
               </div>
               <ul class="jump-nav__items">
+                <h6 class="mb0 pt15 jump-nav__item-wrapper">
+                  <div>
+                    <a class="jump-nav__item bold" style="cursor: pointer" (click)="filter('ALL')">Toutes les alertes</a>
+                  </div>
+                </h6>
                 <h6 class="mb0 pt15 jump-nav__item-wrapper" *ngFor="let item of content">
                   <div>
                     <a class="jump-nav__item bold" style="cursor: pointer" (click)="filter(item.alerte)">{{ item.alerte }}</a>
@@ -79,13 +84,14 @@
           </div>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12 border-left-black pb120-90 pt120-45 content-area-content">
+          <h2 class="pb100" *ngIf="filterValue === 'ALL'">Alertes [Toutes les alertes]</h2>
           <div class="free-form-content__content wysiwyg-wrapper">
             <div *ngFor="let item of content">
               <h2 *ngIf="filterValue === item.alerte" class="pb100">Alertes [{{ item.alerte }}]</h2>
               <div *ngFor="let con of item.content">
                 <div *ngIf="filterValue === item.alerte">
                   <div>
-                    <div class="wfb-card-wrapper">
+                    <div class="wfb-card-wrapper pb60">
                       <div class="row no-gutters">
                         <div class="col-md-12">
                           <div class="wfb-card__body-container">
@@ -129,9 +135,8 @@
                   </div>
                 </div>
                 <div *ngIf="filterValue === 'ALL'">
-                  <h2 class="pb100">Alertes [Toutes les alertes]</h2>
                   <div>
-                    <div class="wfb-card-wrapper">
+                    <div class="wfb-card-wrapper pb60">
                       <div class="row no-gutters">
                         <div class="col-md-12">
                           <div class="wfb-card__body-container">
