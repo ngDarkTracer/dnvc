@@ -88,7 +88,7 @@
           <div class="free-form-content__content wysiwyg-wrapper">
             <div *ngFor="let item of content">
               <h2 *ngIf="filterValue === item.alerte" class="pb100">Alertes [{{ item.alerte }}]</h2>
-              <div *ngFor="let con of item.content">
+              <div *ngFor="let con of item.content  | paginate: { itemsPerPage: 2, currentPage: page, totalItems: totalItems}">
                 <div *ngIf="filterValue === item.alerte">
                   <div>
                     <div class="wfb-card-wrapper pb60">
@@ -181,6 +181,7 @@
                 </div>
               </div>
             </div>
+            <pagination-controls previousLabel="Précédent" nextLabel="Suivant" responsive="true" (pageChange)="page = $event"></pagination-controls>
             </div>
         </div>
       </div>
