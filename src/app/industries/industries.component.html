@@ -5,7 +5,7 @@
       <div class="filter-wrapper filter-sticky">
         <div class="filter-clear">
           <div class="label bold">{{ numberOfElement }} Resultats</div>
-          <button class="link-style-button" (click)="filter('ALL')">Vider le filtre</button>
+          <button class="link-style-button" (click)="filter('ALL', 'ALL')">Vider le filtre</button>
         </div>
         <div class="az-container mb30">
           <div class="az-box">
@@ -27,19 +27,20 @@
             <div class="" [ngClass]="{'az-list':openedList === true}">
             </div>
             <div class="row no-gutters" [ngClass]="{'az-filter__mobile_list':openedList === false}">
-              <div class="col-3 letter-container" *ngFor="let letter of alphabet">
+              <div class="col-3 letter-container" *ngFor="let industry of industries">
                 <button class="az-button"
-                        [ngClass]="{'checked-active':letter === beginLetter}"
-                        (click)="filter(letter)"
+                        [disabled]="industry.industry.length === 0"
+                        [ngClass]="{'checked-active':industry.letter === beginLetter}"
+                        (click)="filter(industry.letter, industry.industry)"
                         aria-label="Show Letter - A"
                         data-testid="letter">
-                  <h6 class="mb0">{{ letter }}</h6>
+                  <h6 class="mb0">{{ industry.letter }}</h6>
                 </button>
               </div>
               <div class="col-6">
                 <button class="az-button all-button"
                         [ngClass]="{'checked-active': beginLetter === 'ALL'}"
-                        (click)="filter('ALL')"
+                        (click)="filter('ALL', 'ALL')"
                         aria-label="Show All - Letters" data-testid="all-letters">
                   <h6 class="mb0">TOUT</h6>
                 </button>
@@ -52,22 +53,22 @@
       <div class="col-lg-9 col-md-12 col-sm-12">
         <div class="row mt45">
           <div class="col-lg-9" *ngFor="let i of industries;">
-            <div class="border pb30" *ngIf="i.startsWith(beginLetter)">
-              <div class="pb30">
+            <div class="border" *ngFor="let industry of i.industry">
+              <div class="pb60" *ngIf="i.letter === beginLetter">
                 <h2 class="mb0">
-                  <a class="inline-link" [routerLink]="['/industries', i]">
-                    <span>{{ i }}</span>
+                  <a class="inline-link" [routerLink]="['/industries', industry]">
+                    <span>{{ industry }}</span>
                   </a>
                 </h2>
               </div>
-            </div>
-            <div class="border pb30" *ngIf="beginLetter === 'ALL'">
-              <div class="pb30">
-                <h2 class="mb0">
-                  <a class="inline-link" [routerLink]="['/industries', i]">
-                    <span>{{ i }}</span>
-                  </a>
-                </h2>
+              <div class="border pb30" *ngIf="beginLetter === 'ALL'">
+                <div class="pb30">
+                  <h2 class="mb0">
+                    <a class="inline-link" [routerLink]="['/industries', industry]">
+                      <span>{{ industry }}</span>
+                    </a>
+                  </h2>
+                </div>
               </div>
             </div>
           </div>
@@ -80,7 +81,7 @@
                     <polygon fill="#161618" fill-rule="nonzero" points="12.414 14.853 19.56 22 18.853 22.707 11 14.853 18.854 7 19.561 7.707"></polygon>
                   </svg>
                 </span>
-                <span class="label" data-testid="page-label">Page&nbsp;<strong>01</strong>&nbsp;of 03</span>
+                <span class="label" data-testid="page-label">Page&nbsp;<strong>01</strong>&nbsp;sur {{ numberOfPage }}</span>
                 <span tabindex="0" role="button" class="pagination__arrow-right" data-testid="right-arrow" aria-label="Next Page">
                   <svg class="icon icon-red icon-arrow-wide" aria-label="Forwards" aria-labelledby="next-page" role="img" viewBox="0 0 30 30">
                     <title id="next-page">Suivant</title><polygon fill="#161618" fill-rule="nonzero" points="19.561 14.854 11.707 22.708 11 22.001 18.146 14.855 11 7.707 11.707 7"></polygon>

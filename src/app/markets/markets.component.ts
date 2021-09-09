@@ -39,6 +39,7 @@ export class MarketsComponent implements OnInit {
 
   filteredMarkets: any[] = [];
 
+  numberOfPage;
   beginLetter = 'ALL';
   numberOfElement;
   openedList = false;
@@ -69,6 +70,7 @@ export class MarketsComponent implements OnInit {
   }
 
   pagination(letter: string): void {
+    this.numberOfPage = 0;
     let page: any[] = [];
     this.filteredMarkets = [];
     const lastZone = this.markets[this.markets.length - 1];
@@ -78,9 +80,11 @@ export class MarketsComponent implements OnInit {
           page.push(zone);
           if (page.length === 5) {
             this.filteredMarkets.push({pageNumber: this.filteredMarkets.length + 1, pageItem: page});
+            this.numberOfPage++;
             page = [];
           } else if (page.length < 5 && page[page.length - 1] === market.zone[market.zone.length - 1]) {
             this.filteredMarkets.push({pageNumber: this.filteredMarkets.length + 1, pageItem: page});
+            this.numberOfPage++;
             page = [];
             break;
           }
@@ -90,10 +94,12 @@ export class MarketsComponent implements OnInit {
           page.push(zone);
           if (page.length === 5) {
             this.filteredMarkets.push({pageNumber: this.filteredMarkets.length + 1, pageItem: page});
+            this.numberOfPage++;
             page = [];
           } else if (page.length < 5 && (lastZone.zone[lastZone.zone.length - 1] === page[page.length - 1]
             || lastZone === market)) {
             this.filteredMarkets.push({pageNumber: this.filteredMarkets.length + 1, pageItem: page});
+            this.numberOfPage++;
             page = [];
             break;
           }

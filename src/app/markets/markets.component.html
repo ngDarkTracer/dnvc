@@ -80,7 +80,7 @@
               </div>
               <div class="pb60" *ngIf="beginLetter === 'ALL'">
                 <h2 class="mb0">
-                  <a class="inline-link" [routerLink]="['/industries', zone]">
+                  <a class="inline-link" [routerLink]="['/markets', zone]">
                     <span>{{ zone }}</span>
                   </a>
                 </h2>
@@ -96,7 +96,7 @@
                     <polygon fill="#161618" fill-rule="nonzero" points="12.414 14.853 19.56 22 18.853 22.707 11 14.853 18.854 7 19.561 7.707"></polygon>
                   </svg>
                 </span>
-                <span class="label" data-testid="page-label">Page&nbsp;<strong>01</strong>&nbsp;of 03</span>
+                <span class="label" data-testid="page-label">Page&nbsp;<strong>01</strong>&nbsp;of {{numberOfPage}}</span>
                 <span tabindex="0" role="button" class="pagination__arrow-right" data-testid="right-arrow" aria-label="Next Page">
                   <svg class="icon icon-red icon-arrow-wide" aria-label="Forwards" aria-labelledby="next-page" role="img" viewBox="0 0 30 30">
                     <title id="next-page">Suivant</title><polygon fill="#161618" fill-rule="nonzero" points="19.561 14.854 11.707 22.708 11 22.001 18.146 14.855 11 7.707 11.707 7"></polygon>
