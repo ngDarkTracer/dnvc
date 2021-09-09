@@ -16,6 +16,7 @@ export class IndustryComponent implements OnInit {
   actualDate = new Date().toLocaleDateString();
   totalItems = 0;
 
+  filteredAlert: any[] = [];
   content: any[] = [
     {
       alerte: 'Prix',
@@ -83,8 +84,13 @@ export class IndustryComponent implements OnInit {
   filter(item: any): void {
     this.filterValue = item.toString();
     this.totalItems = 0;
+    this.filteredAlert = [];
+    this.page = 1;
     if (item === 'ALL') {
       this.content.forEach((element) => {
+        element.content.forEach((alert) => {
+          this.filteredAlert.push(alert);
+        });
         this.totalItems += element.content.length;
       });
     } else {
@@ -99,9 +105,7 @@ export class IndustryComponent implements OnInit {
   ngOnInit(): void {
     const url = this.activatedRoute.snapshot.paramMap.get('industry');
     this.currentIndustriy = url;
-    this.content.forEach((element) => {
-      this.totalItems += element.content.length;
-    });
+    this.filter('ALL');
   }
 
 }
