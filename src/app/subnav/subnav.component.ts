@@ -18,15 +18,4 @@ export class SubnavComponent implements OnInit {
       this.activeRoute = routeName[routeName.length - 1];
     });
   }
-
-  // @HostListener('window:scroll', ['$event'])
-  // onScroll(event): void {
-  //   const elts = document.getElementsByClassName('fade-in-section');
-  //   for (const elt in elts) {
-  //     if (window.scrollY >= (elts[elt].getBoundingClientRect().x)) {
-  //       elts[elt].classList.add('is-visible');
-  //     }
-  //   }
-  // }
-
 }

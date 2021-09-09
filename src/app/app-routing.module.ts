@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'resources', loadChildren: () => import('./ressources/ressources.module').then(m => m.RessourcesModule) },
   { path: 'about', loadChildren: () => import('./about/about.module').then(m => m.AboutModule) },
   { path: 'industries/:industry', loadChildren: () => import('./industry/industry.module').then(m => m.IndustryModule) },
+  { path: 'markets/:market', loadChildren: () => import('./market/market.module').then(m => m.MarketModule) },
   { path: '**', loadChildren: () => import('./four-zero-four/four-zero-four.module').then(m => m.FourZeroFourModule) }];
 
 @NgModule({

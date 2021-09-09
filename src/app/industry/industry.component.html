@@ -81,10 +81,10 @@
         <div class="col-lg-6 col-md-12 col-sm-12 border-left-black pb120-90 pt120-45 content-area-content">
           <h2 class="mb-5">Toutes les alertes</h2>
           <div class="free-form-content__content wysiwyg-wrapper" [id]="item" *ngFor="let item of content">
-            <h2 *ngIf="item !== 'Introduction'">Alerte [{{ item }}]</h2>
+            <h2>Alerte [{{ item }}]</h2>
             <div>
               <div>
-                <div *ngIf="item !== 'Introduction'" style="margin-bottom: 70px;">
+                <div style="margin-bottom: 70px;">
                   <div class="wfb-card-wrapper">
                     <div class="row no-gutters">
 <!--                      <div class="col-md-3 align-self-center">-->
@@ -124,7 +124,7 @@
                             <div>
                               <div class="wfb-card__link-container">
                                 <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6"><p style="color: darkgray; font-size: 14px">Marchés: CEMAC, CEDEAO</p></div>
-                                <div class="wfb-card__text col-xl-4 col-lg-4 col-md-4"><p style="position: absolute; right: 0; top: -8px;color: darkgray; font-size: 14px">Source: </p></div>
+                                <div class="wfb-card__text col-xl-4 col-lg-4 col-md-4"><p style="position: absolute; right: 0; top: -12px;color: darkgray; font-size: 14px">Source: </p></div>
                                 <button class="wfb-card__icon pdf col-xl-2 col-lg-2 col-md-2" style="margin: 0; border: none" href="#" target="_blank">
                                   <svg class="icon" role="img" aria-labelledby="file-icon" viewBox="0 0 30 30">
                                     <title>file-icon</title>
