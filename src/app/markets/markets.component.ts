@@ -28,7 +28,7 @@ export class MarketsComponent implements OnInit {
     {letter: 'Q', zone: []},
     {letter: 'R', zone: []},
     {letter: 'S', zone: []},
-    {letter: 'T', zone: ['Test', 'Test2', 'Test3', 'Test4', 'Test5', 'Test6', 'Test7', 'Test8', 'Test9', 'Test10', 'Test11']},
+    {letter: 'T', zone: []},
     {letter: 'U', zone: ['UE', 'UMEOA']},
     {letter: 'V', zone: []},
     {letter: 'W', zone: []},
@@ -39,72 +39,40 @@ export class MarketsComponent implements OnInit {
 
   filteredMarkets: any[] = [];
 
-  numberOfPage;
   beginLetter = 'ALL';
   numberOfElement;
+  totalItems = 0;
   openedList = false;
+  page = 1;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.filter('ALL', 'ALL');
+    this.filter('ALL');
   }
 
-  filter(letter: string, zone: any): void {
+  filter(letter: any): void {
     this.numberOfElement = 0;
+    this.totalItems = 0;
+    this.page = 1;
     this.filteredMarkets = [];
     this.beginLetter = letter;
     if (letter === 'ALL') {
-      for (const market of this.markets) {
-        this.numberOfElement += market.zone.length;
-        this.pagination(letter);
-      }
+      this.markets.forEach((element) => {
+        element.zone.forEach((zone) => {
+          this.filteredMarkets.push(zone);
+        });
+        this.totalItems += element.zone.length;
+      });
     } else {
       this.markets.forEach((element) => {
         if (element.letter === letter) {
-          this.numberOfElement = element.zone.length;
-          this.pagination(letter);
+          element.zone.forEach((zone) => {
+            this.filteredMarkets.push(zone);
+          });
+          this.totalItems = element.industry.length;
         }
       });
-    }
-  }
-
-  pagination(letter: string): void {
-    this.numberOfPage = 0;
-    let page: any[] = [];
-    this.filteredMarkets = [];
-    const lastZone = this.markets[this.markets.length - 1];
-    for (const market of this.markets) {
-      if (letter === market.letter) {
-        for (const zone of market.zone) {
-          page.push(zone);
-          if (page.length === 5) {
-            this.filteredMarkets.push({pageNumber: this.filteredMarkets.length + 1, pageItem: page});
-            this.numberOfPage++;
-            page = [];
-          } else if (page.length < 5 && page[page.length - 1] === market.zone[market.zone.length - 1]) {
-            this.filteredMarkets.push({pageNumber: this.filteredMarkets.length + 1, pageItem: page});
-            this.numberOfPage++;
-            page = [];
-            break;
-          }
-        }
-      } else if (letter === 'ALL') {
-        for (const zone of market.zone) {
-          page.push(zone);
-          if (page.length === 5) {
-            this.filteredMarkets.push({pageNumber: this.filteredMarkets.length + 1, pageItem: page});
-            this.numberOfPage++;
-            page = [];
-          } else if (page.length < 5 && (lastZone.zone[lastZone.zone.length - 1] === page[page.length - 1]
-            || lastZone === market)) {
-            this.filteredMarkets.push({pageNumber: this.filteredMarkets.length + 1, pageItem: page});
-            this.numberOfPage++;
-            page = [];
-            break;
-          }
-        }
-      }
     }
   }
 

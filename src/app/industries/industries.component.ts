@@ -9,7 +9,7 @@ import {last} from 'rxjs/operators';
 export class IndustriesComponent implements OnInit {
 
   industries: any[] = [
-    {letter: 'A', industry: ['Arachides', 'Arachides2', 'Arachides3', 'Arachides4', 'Arachides5', 'Arachides6', 'Arachides7']},
+    {letter: 'A', industry: ['Arachides']},
     {letter: 'B', industry: ['Banane', 'Banane-plantain']},
     {letter: 'C', industry: ['Cacao', 'Cafe']},
     {letter: 'D', industry: []},
@@ -28,7 +28,7 @@ export class IndustriesComponent implements OnInit {
     {letter: 'Q', industry: []},
     {letter: 'R', industry: []},
     {letter: 'S', industry: []},
-    {letter: 'T', industry: ['Test1', 'Test2']},
+    {letter: 'T', industry: []},
     {letter: 'U', industry: []},
     {letter: 'V', industry: []},
     {letter: 'W', industry: []},
@@ -38,73 +38,41 @@ export class IndustriesComponent implements OnInit {
   ];
 
   filteredIndustries: any[] = [];
-  numberOfPage;
 
   beginLetter = 'ALL';
   numberOfElement;
+  totalItems = 0;
   openedList = false;
+  page = 1;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.filter('ALL', 'ALL');
+    this.filter('ALL');
   }
 
-  filter(letter: string, industry: any): void {
+  filter(letter: any): void {
     this.numberOfElement = 0;
+    this.totalItems = 0;
+    this.page = 1;
     this.filteredIndustries = [];
     this.beginLetter = letter;
     if (letter === 'ALL') {
-      for (const indust of this.industries) {
-        this.numberOfElement += indust.industry.length;
-        this.pagination(letter);
-      }
+      this.industries.forEach((element) => {
+        element.industry.forEach((industry) => {
+          this.filteredIndustries.push(industry);
+        });
+        this.totalItems += element.industry.length;
+      });
     } else {
       this.industries.forEach((element) => {
         if (element.letter === letter) {
-          this.numberOfElement = element.industry.length;
-          this.pagination(letter);
+          element.industry.forEach((industry) => {
+            this.filteredIndustries.push(industry);
+          });
+          this.totalItems = element.industry.length;
         }
       });
-    }
-  }
-
-  pagination(letter: string): void {
-    this.numberOfPage = 0;
-    let page: any[] = [];
-    this.filteredIndustries = [];
-    const lastIndustry = this.industries[this.industries.length - 1];
-    for (const industry of this.industries) {
-      if (letter === industry.letter) {
-        for (const i of industry.industry) {
-          page.push(i);
-          if (page.length === 5) {
-            this.filteredIndustries.push({pageNumber: this.filteredIndustries.length + 1, pageItem: page});
-            this.numberOfPage++;
-            page = [];
-          } else if (page.length < 5 && page[page.length - 1] === industry.industry[industry.industry.length - 1]) {
-            this.filteredIndustries.push({pageNumber: this.filteredIndustries.length + 1, pageItem: page});
-            this.numberOfPage++;
-            page = [];
-            break;
-          }
-        }
-      } else if (letter === 'ALL') {
-        for (const i of industry.industry) {
-          page.push(i);
-          if (page.length === 5) {
-            this.filteredIndustries.push({pageNumber: this.filteredIndustries.length + 1, pageItem: page});
-            this.numberOfPage++;
-            page = [];
-          } else if (page.length < 5 && lastIndustry === industry) {
-            console.log('Yes');
-            this.filteredIndustries.push({pageNumber: this.filteredIndustries.length + 1, pageItem: page});
-            this.numberOfPage++;
-            page = [];
-            break;
-          }
-        }
-      }
     }
   }
 
