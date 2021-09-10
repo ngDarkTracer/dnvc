@@ -21,7 +21,7 @@
       <div class="col-lg-3 col-md-12 col-sm-12">
         <div class="filter-wrapper filter-sticky">
           <div class="filter-clear">
-            <div class="label bold">{{ numberOfElement }} Resultats</div>
+            <div class="label bold">{{ filteredMarkets.length }} Resultats</div>
             <button class="link-style-button" (click)="filter('ALL')">Vider le filtre</button>
           </div>
           <div class="az-container mb30">
@@ -29,10 +29,12 @@
               <div class="az-filter__header fs-small pb30">
                 <div>
                   <span class="label">Filtre</span>
-                  <div class="az-filter_mobile_display bold">{{ beginLetter }}</div>
+                  <div class="az-filter_mobile_display bold" *ngIf="beginLetter === 'ALL'">Tout</div>
+                  <div class="az-filter_mobile_display bold" *ngIf="beginLetter !== 'ALL'">{{ beginLetter }}</div>
                 </div>
                 <div class="az-filter__mobile">
                   <button tabindex="0" class="az-filter__mobile-button"
+                          [ngClass]="{'button-up':openedList === true}"
                           (click)="open()">
                     <svg class="icon icon-red" aria-labelledby="point-down-icon" role="img" viewBox="0 0 30 30">
                       <title id="point-down-icon">Point Down Icon</title>

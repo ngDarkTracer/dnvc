@@ -12,7 +12,8 @@
             <div class="az-filter__header fs-small pb30">
               <div>
                 <span class="label">Filtre</span>
-                <div class="az-filter_mobile_display bold">{{ beginLetter }}</div>
+                <div class="az-filter_mobile_display bold" *ngIf="beginLetter === 'ALL'">Tout</div>
+                <div class="az-filter_mobile_display bold" *ngIf="beginLetter !== 'ALL'">{{ beginLetter }}</div>
               </div>
               <div class="az-filter__mobile">
                 <button tabindex="0" class="az-filter__mobile-button"

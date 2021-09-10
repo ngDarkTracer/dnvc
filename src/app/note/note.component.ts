@@ -1,20 +1,20 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ViewportScroller} from '@angular/common';
 import {BreakpointObserver} from '@angular/cdk/layout';
 
 @Component({
-  selector: 'app-industry',
-  templateUrl: './industry.component.html',
-  styleUrls: ['./industry.component.scss']
+  selector: 'app-note',
+  templateUrl: './note.component.html',
+  styleUrls: ['./note.component.scss']
 })
-export class IndustryComponent implements OnInit {
+export class NoteComponent implements OnInit {
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
               private scroller: ViewportScroller,
               private breakPointObserver: BreakpointObserver) { }
 
-  currentIndustriy: string;
+  currentNote: string;
   filterValue = 'ALL';
   actualDate = new Date().toLocaleDateString();
   totalItems = 0;
@@ -22,10 +22,10 @@ export class IndustryComponent implements OnInit {
   openedMenu = false;
   isSmallScreen = false;
 
-  filteredAlert: any[] = [];
+  filteredNotes: any[] = [];
   content: any[] = [
     {
-      alerte: 'Prix',
+      note: 'Prix',
       content: [{
         color: 'red',
         date: new Date().toLocaleDateString(),
@@ -33,18 +33,18 @@ export class IndustryComponent implements OnInit {
         title: 'Hausse des prix de la banane',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
         markets: ['CEMAC', 'ZLECAF']
-        },
-        {
-        color: 'red',
-        date: new Date().toLocaleDateString(),
-        author: 'Ministère de l\'agriculture',
-        title: 'Mauvaises recoltes dans le secteur de la banane',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
-        markets: ['CEMAC', 'ZLECAF']
-        }]
       },
+        {
+          color: 'red',
+          date: new Date().toLocaleDateString(),
+          author: 'Ministère de l\'agriculture',
+          title: 'Mauvaises recoltes dans le secteur de la banane',
+          text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
+          markets: ['CEMAC', 'ZLECAF']
+        }]
+    },
     {
-      alerte: 'Procédures douanières',
+      note: 'Procédures douanières',
       content: [{
         color: 'green',
         date: new Date().toLocaleDateString(),
@@ -52,10 +52,10 @@ export class IndustryComponent implements OnInit {
         title: 'Baisse des taxes sur l\'importation',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
         markets: ['CEMAC', 'UE']
-        }]
-      },
+      }]
+    },
     {
-      alerte: 'Règlementations',
+      note: 'Règlementations',
       content: [{
         color: 'red',
         date: new Date().toLocaleDateString(),
@@ -63,10 +63,10 @@ export class IndustryComponent implements OnInit {
         title: 'Nouvelles règles concernant l\'importation de la banane',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
         markets: ['CEMAC', 'ZLECAF']
-        }]
-      },
+      }]
+    },
     {
-      alerte: 'Débouchés',
+      note: 'Débouchés',
       content: [{
         color: 'green',
         date: new Date().toLocaleDateString(),
@@ -74,29 +74,28 @@ export class IndustryComponent implements OnInit {
         title: 'Le marché de la banane de plus en plus rentable',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
         markets: ['CEMAC', 'CEDEAO']
-        }]
-      }
+      }]
+    }
   ];
-
 
 
   filter(item: any): void {
     this.filterValue = item.toString();
     this.totalItems = 0;
-    this.filteredAlert = [];
+    this.filteredNotes = [];
     this.page = 1;
     if (item === 'ALL') {
       this.content.forEach((element) => {
         element.content.forEach((alert) => {
-          this.filteredAlert.push(alert);
+          this.filteredNotes.push(alert);
         });
         this.totalItems += element.content.length;
       });
     } else {
       this.content.forEach((element) => {
-        if (element.alerte === item) {
-          element.content.forEach((alert) => {
-            this.filteredAlert.push(alert);
+        if (element.note === item) {
+          element.content.forEach((note) => {
+            this.filteredNotes.push(note);
           });
           this.totalItems = element.content.length;
         }
@@ -105,8 +104,8 @@ export class IndustryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const url = this.activatedRoute.snapshot.paramMap.get('industry');
-    this.currentIndustriy = url;
+    const url = this.activatedRoute.snapshot.paramMap.get('note');
+    this.currentNote = url;
     this.filter('ALL');
 
     this.breakPointObserver.observe(['(max-width: 765px)']).subscribe(result => {
@@ -121,4 +120,5 @@ export class IndustryComponent implements OnInit {
   open(): void {
     this.openedMenu = !this.openedMenu;
   }
+
 }

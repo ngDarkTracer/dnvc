@@ -1,1 +1,89 @@
-<p>notes works!</p>
+<section class="background-threads careers-threads">
+  <div class="fade-in-section disable-fade-in is-visible fade-in-hero disable-transform">
+    <div class="container hero-splash-container">
+      <div class="row pv90-60">
+        <div class="col-sm-12 col-md-8 hero-splash">
+          <a class="hero-parent-title crown-link" routerLink="/home">
+            <h3 class="h1 small mb0 d-inline">Watcher</h3>
+          </a>
+          <h1 class="hero-title" style="color: white">Toutes les notes de veille</h1>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-sm-12 col-md-5"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="background-grid-short-white">
+  <div class="container pv120-90" id="index-content-section">
+    <div class="row">
+      <div class="col-lg-3 col-md-12 col-sm-12">
+        <div class="filter-wrapper filter-sticky">
+          <div class="filter-clear">
+            <div class="label bold">{{ this.filteredNotes.length }} Resultats</div>
+            <button class="link-style-button" (click)="filter('ALL')">Vider le filtre</button>
+          </div>
+          <div class="az-container mb30">
+            <div class="az-box">
+              <div class="az-filter__header fs-small pb30">
+                <div>
+                  <span class="label">Filtre</span>
+                  <div class="az-filter_mobile_display bold" *ngIf="beginLetter === 'ALL'">Tout</div>
+                  <div class="az-filter_mobile_display bold" *ngIf="beginLetter !== 'ALL'">{{ beginLetter }}</div>
+                </div>
+                <div class="az-filter__mobile">
+                  <button tabindex="0" class="az-filter__mobile-button"
+                          (click)="open()" [ngClass]="{'button-up':openedList === true}">
+                    <svg class="icon icon-red" aria-labelledby="point-down-icon" role="img" viewBox="0 0 30 30">
+                      <title id="point-down-icon">Point Down Icon</title>
+                      <polygon fill-rule="nonzero" points="23.354 12.075 15.499 19.929 7.646 12.075 8.353 11.368 15.498 18.514 22.646 11.367 23.354 12.075"></polygon>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="" [ngClass]="{'az-list':openedList === true}">
+              </div>
+              <div class="row no-gutters" [ngClass]="{'az-filter__mobile_list':openedList === false}">
+                <div class="col-3 letter-container" *ngFor="let note of notes">
+                  <button class="az-button"
+                          [disabled]="note.notes.length === 0"
+                          [ngClass]="{'checked-active':note.letter === beginLetter}"
+                          (click)="filter(note.letter)"
+                          aria-label="Show Letter - A"
+                          data-testid="letter">
+                    <h6 class="mb0">{{ note.letter }}</h6>
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button class="az-button all-button"
+                          [ngClass]="{'checked-active': beginLetter === 'ALL'}"
+                          (click)="filter('ALL')"
+                          aria-label="Show All - Letters" data-testid="all-letters">
+                    <h6 class="mb0">TOUT</h6>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-12 col-sm-12">
+        <div class="row mt45">
+          <div class="col-lg-9" *ngFor="let note of filteredNotes | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalItems}">
+            <div class="border">
+              <div class="pb60">
+                <h2 class="mb0">
+                  <a class="inline-link" [routerLink]="['/notes', note]">
+                    <span>{{ note }}</span>
+                  </a>
+                </h2>
+              </div>
+            </div>
+          </div>
+          <pagination-controls style="position: absolute; bottom: 0;" previousLabel="Précédent" nextLabel="Suivant" responsive="true" (pageChange)="page=$event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

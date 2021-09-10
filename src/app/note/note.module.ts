@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MarketRoutingModule } from './market-routing.module';
-import { MarketComponent } from './market.component';
+import { NoteRoutingModule } from './note-routing.module';
+import { NoteComponent } from './note.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
   declarations: [
-    MarketComponent
+    NoteComponent
   ],
     imports: [
         CommonModule,
-        MarketRoutingModule,
+        NoteRoutingModule,
         NgxPaginationModule
     ]
 })
-export class MarketModule { }
+export class NoteModule { }
