@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ViewportScroller} from '@angular/common';
 
@@ -8,6 +8,10 @@ import {ViewportScroller} from '@angular/common';
   styleUrls: ['./industry.component.scss']
 })
 export class IndustryComponent implements OnInit {
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(event): void {
+  }
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private scroller: ViewportScroller) { }
 
