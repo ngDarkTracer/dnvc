@@ -1,6 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ViewportScroller} from '@angular/common';
+import {BreakpointObserver} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-industry',
@@ -9,16 +10,17 @@ import {ViewportScroller} from '@angular/common';
 })
 export class IndustryComponent implements OnInit {
 
-  @HostListener('window:scroll', ['$event'])
-  onScroll(event): void {
-  }
-
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private scroller: ViewportScroller) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,
+              private scroller: ViewportScroller,
+              private breakPointObserver: BreakpointObserver) { }
 
   currentIndustriy: string;
   filterValue = 'ALL';
   actualDate = new Date().toLocaleDateString();
   totalItems = 0;
+  page = 1;
+  openedMenu = false;
+  isSmallScreen = false;
 
   filteredAlert: any[] = [];
   content: any[] = [
@@ -83,7 +85,8 @@ export class IndustryComponent implements OnInit {
   //     inline: 'nearest'
   //   });
   // }
-  page = 1;
+
+
 
   filter(item: any): void {
     this.filterValue = item.toString();
@@ -113,6 +116,17 @@ export class IndustryComponent implements OnInit {
     const url = this.activatedRoute.snapshot.paramMap.get('industry');
     this.currentIndustriy = url;
     this.filter('ALL');
+
+    this.breakPointObserver.observe(['(max-width: 765px)']).subscribe(result => {
+      if (result.matches) {
+        this.isSmallScreen = true;
+      } else {
+        this.isSmallScreen = false;
+      }
+    });
   }
 
+  open(): void {
+    this.openedMenu = !this.openedMenu;
+  }
 }

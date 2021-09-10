@@ -8,6 +8,7 @@ import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {LayoutModule} from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    LayoutModule,
     NgxPaginationModule
   ],
   providers: [],

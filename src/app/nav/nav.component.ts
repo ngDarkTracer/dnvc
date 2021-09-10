@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
+import {log} from 'util';
 
 @Component({
   selector: 'app-nav',
@@ -8,11 +9,24 @@ import { Component, OnInit } from '@angular/core';
 export class NavComponent implements OnInit {
 
   subsiteOpened = false;
+  display = false;
+  lastScrollValue = 0;
 
   constructor() { }
 
   ngOnInit(): void {
     document.body.removeAttribute('style');
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll($event): void {
+    if (window.pageYOffset > this.lastScrollValue) {
+      this.display = true;
+      this.lastScrollValue = window.pageYOffset;
+    } else {
+      this.display = false;
+      this.lastScrollValue = window.pageYOffset;
+    }
   }
 
   close(): void {

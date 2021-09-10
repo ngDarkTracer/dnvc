@@ -16,7 +16,7 @@
               </div>
               <div class="az-filter__mobile">
                 <button tabindex="0" class="az-filter__mobile-button"
-                        (click)="open()">
+                        (click)="open()" [ngClass]="{'button-up':openedList === true}">
                   <svg class="icon icon-red" aria-labelledby="point-down-icon" role="img" viewBox="0 0 30 30">
                     <title id="point-down-icon">Point Down Icon</title>
                     <polygon fill-rule="nonzero" points="23.354 12.075 15.499 19.929 7.646 12.075 8.353 11.368 15.498 18.514 22.646 11.367 23.354 12.075"></polygon>
