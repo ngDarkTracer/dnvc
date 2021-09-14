@@ -148,6 +148,130 @@
           }
         }
       }
+    },
+    "adminApp": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/admin-app",
+      "sourceRoot": "projects/admin-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/adminApp",
+            "index": "projects/admin-app/src/index.html",
+            "main": "projects/admin-app/src/main.ts",
+            "polyfills": "projects/admin-app/src/polyfills.ts",
+            "tsConfig": "projects/admin-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/admin-app/src/favicon.ico",
+              "projects/admin-app/src/assets"
+            ],
+            "styles": [
+              "projects/admin-app/src/styles/wfb-style.css",
+              "projects/admin-app/src/styles/typography.css",
+              "projects/admin-app/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/admin-app/src/environments/environment.ts",
+                  "with": "projects/admin-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "adminApp:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "adminApp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "adminApp:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/admin-app/src/test.ts",
+            "polyfills": "projects/admin-app/src/polyfills.ts",
+            "tsConfig": "projects/admin-app/tsconfig.spec.json",
+            "karmaConfig": "projects/admin-app/karma.conf.js",
+            "assets": [
+              "projects/admin-app/src/favicon.ico",
+              "projects/admin-app/src/assets"
+            ],
+            "styles": [
+              "projects/admin-app/src/styles/wfb-style.css",
+              "projects/admin-app/src/styles/typography.css",
+              "projects/admin-app/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/admin-app/tsconfig.app.json",
+              "projects/admin-app/tsconfig.spec.json",
+              "projects/admin-app/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/admin-app/e2e/protractor.conf.js",
+            "devServerTarget": "adminApp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "adminApp:serve:production"
+            }
+          }
+        }
+      }
     }
   },
   "defaultProject": "dnvc"

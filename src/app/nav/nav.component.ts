@@ -46,4 +46,8 @@ export class NavComponent implements OnInit {
       document.body.style.top = '-9px';
     }
   }
+
+  openAdminApp(): void {
+    window.open('//localhost:4300', '_blank');
+  }
 }
