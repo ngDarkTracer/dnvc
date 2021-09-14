@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'markets/:zone', loadChildren: () => import('./market/market.module').then(m => m.MarketModule) },
   { path: 'notes/:note', loadChildren: () => import('./note/note.module').then(m => m.NoteModule) },
   { path: 'home/:detail', loadChildren: () => import('./footer-details/footer-details.module').then(m => m.FooterDetailsModule) },
+  { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },
   { path: '**', loadChildren: () => import('./four-zero-four/four-zero-four.module').then(m => m.FourZeroFourModule) }];
 
 @NgModule({
