@@ -1,11 +1,19 @@
 .main-container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  border: 1px solid #FEFEFE;
+  flex-direction: column;
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -50%); width: 700px; height: 300px;
+  transform: translate(-50%, -50%);
+  width: 700px; height: 300px;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #FEFEFE;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
 }
 
 .image-container {
@@ -33,6 +41,16 @@
 
 .form-container {
   width: 60%;
+  border-bottom: none;
+}
+
+.second-title {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  right: 0;
+  position: absolute;
+  bottom: -15px
 }
 
 input[type=email], input[type=password] {
@@ -42,7 +60,8 @@ input[type=email], input[type=password] {
   margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
-  background: transparent !important;
+  background-color: transparent;
+  color: #ffffff;
   box-sizing: border-box;
 }
 
@@ -55,10 +74,9 @@ button[type=submit] {
   width: 20%;
   font-weight: normal;
   background-color: #ffffff;
+  padding: 5px 12px;
   color: black;
   text-align: center;
-  padding: 14px 20px;
-  margin: 8px 0;
   border: none;
   cursor: pointer;
 }
@@ -70,9 +88,14 @@ button[type=submit] {
     border: 1px solid #FEFEFE;
     position: absolute;
     top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    width: 100vw;
-    height: 80vh;
+    width: 85vw;
+    height: 90vh;
+  }
+
+  .content {
+    border: none;
   }
 
   .image-container {
@@ -81,10 +104,56 @@ button[type=submit] {
     height: 40%;
     position: relative;
     bottom: 0;
-    background: #FEFEFE
+    background: #FEFEFE;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .image-container img {
+    position: relative;
+    width: 45%;
+  }
+
+  .image-container p {
+    color: #161618;
+    font-size: 12px;
+    bottom: 0;
+    width: 80%;
+    text-align: center;
+    left: 50%;
+    top: 80%;
+    margin-top: 10px;
+    position: absolute;
+    transform: translate(-50%, -50%);
   }
 
   .form-container {
     width: 100%;
+    height: 60%;
+  }
+
+  .second-title {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    right: 0;
+    position: absolute;
+    bottom: -80px
+  }
+
+  .second-title div {
+   width: 80%;
+  }
+
+  button[type=submit] {
+    left: 50%;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (height: 720px) {
+  .image-container img {
+    position: relative;
+    width: 35%;
   }
 }

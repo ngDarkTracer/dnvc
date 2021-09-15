@@ -1,19 +1,29 @@
 <div class="main-container">
-  <div class="image-container">
-    <img src="../../assets/logo.PNG" alt="">
-    <p>2021 Ministère du commerce</p>
-  </div>
-  <div class="form-container">
-    <div class="m-4">
-      <h4 class="mb-4">Se Connecter</h4>
-      <form action="">
-        <label for="email">Email</label>
-        <input type="email" id="email" class="mb-2">
-        <label for="password">Mot de passe</label>
-        <input class="mb-3" type="password" id="password">
-        <button class="mr-4" type="submit" value="login" style="width: 100px;">login</button>
-        <span style="position: relative; bottom: -4px;">Mot de passe oublié ?</span>
-      </form>
+  <div class="content mb-4">
+    <div class="image-container">
+      <img src="../../assets/logo.PNG" alt="">
+      <p>2021 Ministère du commerce</p>
+    </div>
+    <div class="form-container">
+      <div class="m-4">
+        <h4 class="mb-4">Se Connecter</h4>
+        <form action="">
+          <label for="email">Email</label>
+          <input type="email" id="email" class="mb-2">
+          <label for="password">Mot de passe</label>
+          <input class="mb-3" type="password" id="password">
+          <div style="display: flex; flex-direction: row; flex-wrap: wrap">
+            <button class="mr-4" type="submit" value="login" style="width: 100px;">Login</button>
+            <a href="#" style="position: relative; bottom: -2px; text-decoration: none">Mot de passe oublié ?</a>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
+  <div class="second-title">
+    <div class="pr-2">About <span *ngIf="!isSmallScreen">|</span></div>
+    <div class="pr-2">Publiez une alerte <span *ngIf="!isSmallScreen">|</span></div>
+    <div>Contactez-nous</div>
+  </div>
 </div>
+

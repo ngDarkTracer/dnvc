@@ -48,6 +48,6 @@ export class NavComponent implements OnInit {
   }
 
   openAdminApp(): void {
-    window.open('//localhost:4300', '_blank');
+    window.open('//dnvc.herokuapp.com/admin/', '_blank');
   }
 }
