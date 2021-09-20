@@ -80,12 +80,12 @@
                 <ul class="jump-nav__items" [ngClass]="{'d-block':openedMenu}">
                   <h6 class="mb0 pt15 jump-nav__item-wrapper">
                     <div>
-                      <a class="jump-nav__item bold" style="cursor: pointer" (click)="filter('ALL')">Toutes les notes de veilles</a>
+                      <a class="jump-nav__item bold" style="cursor: pointer" #elt (click)="filter('ALL', elt)">Toutes les notes de veilles</a>
                     </div>
                   </h6>
                   <h6 class="mb0 pt15 jump-nav__item-wrapper" *ngFor="let item of content">
                     <div>
-                      <a class="jump-nav__item bold" style="cursor: pointer" (click)="filter(item.note)">{{ item.note }}</a>
+                      <a class="jump-nav__item bold" style="cursor: pointer" #elt (click)="filter(item.note, elt)">{{ item.note }}</a>
                     </div>
                   </h6>
                 </ul>

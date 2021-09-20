@@ -80,7 +80,10 @@ export class IndustryComponent implements OnInit {
 
 
 
-  filter(item: any): void {
+  filter(item: any, elt?: any): void {
+    document.querySelectorAll('.active-item').forEach((i) => {
+      i.classList.remove('active-item');
+    });
     this.filterValue = item.toString();
     this.totalItems = 0;
     this.filteredAlert = [];
@@ -102,6 +105,7 @@ export class IndustryComponent implements OnInit {
         }
       });
     }
+    elt.classList.add('active-item');
   }
 
   ngOnInit(): void {
