@@ -1,21 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { LbdModule } from '../../lbd/lbd.module';
-import { NguiMapModule} from '@ngui/map';
+import { FormsModule } from '@angular/forms';
 
 import { AdminLayoutRoutes } from './admin-layout.routing';
-
-import { HomeComponent } from '../../home/home.component';
-import { UserComponent } from '../../user/user.component';
-import { TablesComponent } from '../../tables/tables.component';
-import { TypographyComponent } from '../../typography/typography.component';
-import { IconsComponent } from '../../icons/icons.component';
-import { MapsComponent } from '../../maps/maps.component';
-import { NotificationsComponent } from '../../notifications/notifications.component';
-import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import {DashboardComponent} from '../../dashboard/dashboard.component';
+import {AlertsComponent} from '../../alerts/alerts.component';
+import {StructuresComponent} from '../../structures/structures.component';
+import {IndustriesComponent} from '../../industries/industries.component';
+import {MarketsComponent} from '../../markets/markets.component';
+import {MailingComponent} from '../../mailing/mailing.component';
+import {MailTemplatesComponent} from '../../mail-templates/mail-templates.component';
+import {AdminComponent} from '../../admin/admin.component';
 
 
 @NgModule({
@@ -23,18 +19,16 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
-    LbdModule,
-    NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=YOUR_KEY_HERE'})
   ],
   declarations: [
-    HomeComponent,
-    UserComponent,
-    TablesComponent,
-    TypographyComponent,
-    IconsComponent,
-    MapsComponent,
-    NotificationsComponent,
-    UpgradeComponent
+      DashboardComponent,
+      AlertsComponent,
+      StructuresComponent,
+      IndustriesComponent,
+      MarketsComponent,
+      MailingComponent,
+      MailTemplatesComponent,
+      AdminComponent
   ]
 })
 

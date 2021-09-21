@@ -1,21 +1,20 @@
 import { Routes } from '@angular/router';
-
-import { HomeComponent } from '../../home/home.component';
-import { UserComponent } from '../../user/user.component';
-import { TablesComponent } from '../../tables/tables.component';
-import { TypographyComponent } from '../../typography/typography.component';
-import { IconsComponent } from '../../icons/icons.component';
-import { MapsComponent } from '../../maps/maps.component';
-import { NotificationsComponent } from '../../notifications/notifications.component';
-import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import {AlertsComponent} from '../../alerts/alerts.component';
+import {IndustriesComponent} from '../../industries/industries.component';
+import {MailingComponent} from '../../mailing/mailing.component';
+import {MailTemplatesComponent} from '../../mail-templates/mail-templates.component';
+import {AdminComponent} from '../../admin/admin.component';
+import {DashboardComponent} from '../../dashboard/dashboard.component';
+import {StructuresComponent} from '../../structures/structures.component';
+import {MarketsComponent} from '../../markets/markets.component';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'dashboard',      component: HomeComponent },
-    { path: 'user',           component: UserComponent },
-    { path: 'table',          component: TablesComponent },
-    { path: 'typography',     component: TypographyComponent },
-    { path: 'icons',          component: IconsComponent },
-    { path: 'maps',           component: MapsComponent },
-    { path: 'notifications',  component: NotificationsComponent },
-    { path: 'upgrade',        component: UpgradeComponent },
+    {path: 'Dashboard', component: DashboardComponent},
+    {path: 'Alertes', component: AlertsComponent},
+    {path: 'Structures', component: StructuresComponent},
+    {path: 'Filières', component: IndustriesComponent},
+    {path: 'Marchés', component: MarketsComponent},
+    {path: 'mailing', component: MailingComponent},
+    {path: 'Mailing Template', component: MailTemplatesComponent},
+    {path: 'Administration', component: AdminComponent}
 ];

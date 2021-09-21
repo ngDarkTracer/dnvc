@@ -241,6 +241,9 @@
     &[data-color="red"]:after{
         @include icon-gradient($new-red, $red-color-bottom);
     }
+    &[data-color="hard-blue"]:after{
+        @include icon-gradient($sidebar-blue, $sidebar-blue-bottom);
+    }
     &[data-color="purple"]:after{
         @include icon-gradient($new-purple, $purple-color-bottom);
     }
