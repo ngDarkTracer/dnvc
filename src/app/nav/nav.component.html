@@ -20,19 +20,28 @@
         <nav aria-label="Primary Navigation" class="header-nav">
           <ul class="navigation-menu">
             <li class="navigation-menu-item subsite-nav">
-              <a routerLink="/industries" (click)="close()">Filières</a>
+              <select name="Language" #lang (change)="translate.use(lang.value)">
+                <option value="Fr">Français</option>
+                <option value="En">English</option>
+              </select>
             </li>
             <li class="navigation-menu-item subsite-nav">
-              <a routerLink="/markets" (click)="close()">Marchés</a>
+              <a routerLink="/industries" (click)="close()">{{ 'navMenu.industries' | translate }}</a>
             </li>
             <li class="navigation-menu-item subsite-nav">
-              <a routerLink="/notes" (click)="close()">Notes</a>
+              <a routerLink="/markets" (click)="close()">{{ 'navMenu.markets' | translate }}</a>
             </li>
             <li class="navigation-menu-item subsite-nav">
-              <a routerLink="/about" (click)="close()">A propos</a>
+              <a routerLink="/notes" (click)="close()">{{ 'navMenu.notes' | translate }}</a>
             </li>
             <li class="navigation-menu-item subsite-nav">
-              <a style="cursor: pointer" (click)="openAdminApp()">se connecter</a>
+              <a routerLink="/about" (click)="close()">{{ 'navMenu.about' | translate }}</a>
+            </li>
+            <li class="navigation-menu-item subsite-nav">
+              <button style="cursor: pointer"
+                      (click)="openAdminApp()" class="button button-default">
+                <span style="color: whitesmoke">{{ 'navMenu.logIn' | translate }}</span>
+              </button>
             </li>
           </ul>
         </nav>

@@ -1,0 +1,19 @@
+{
+  "navMenu": {
+    "industries": "Industries",
+    "markets": "Markets",
+    "notes": "Notes",
+    "about": "About",
+    "logIn": "LogIn"
+  },
+
+  "subnav": {
+    "description" : "En : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa dolorem dolorum et iste laudantium nihil voluptatum? Cum laborum provident quis! Doloremque fugit ipsam molestias tenetur.",
+    "title": "National market watch system"
+  },
+
+  "home": {
+    "text1": "En : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aliquid animi culpa dicta, distinctio dolores ducimus facilis in laboriosam minus modi nam neque nihil odit omnis, quo repellat repellendus voluptates voluptatibus! Animi, aperiam aspernatur at deleniti dolorum eaque eligendi enim error obcaecati porro qui quidem quod repellat similique sint?",
+    "text2": "En : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aliquid animi culpa dicta, distinctio dolores ducimus facilis in laboriosam minus modi nam neque nihil odit omnis, quo repellat repellendus voluptates voluptatibus! Animi, aperiam aspernatur at deleniti dolorum eaque eligendi enim error obcaecati porro qui quidem quod repellat similique sint?"
+  }
+}

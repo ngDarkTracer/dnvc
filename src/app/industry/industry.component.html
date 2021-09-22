@@ -78,9 +78,9 @@
                 </div>
               </div>
               <ul class="jump-nav__items" [ngClass]="{'d-block':openedMenu}">
-                <h6 class="mb0 pt15 jump-nav__item-wrapper">
+                <h6 class="mb0 pt15 jump-nav__item-wrapper" #elt id="all">
                   <div>
-                    <a class="jump-nav__item bold" style="cursor: pointer" #elt (click)="filter('ALL', elt)">Toutes les alertes</a>
+                    <a class="jump-nav__item bold" style="cursor: pointer" (click)="filter('ALL', elt)">Toutes les alertes</a>
                   </div>
                 </h6>
                 <h6 class="mb0 pt15 jump-nav__item-wrapper list-item" #elt *ngFor="let item of content">

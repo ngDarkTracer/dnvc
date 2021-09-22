@@ -1,5 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {log} from 'util';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-nav',
@@ -12,7 +13,7 @@ export class NavComponent implements OnInit {
   display = false;
   lastScrollValue = 0;
 
-  constructor() { }
+  constructor(public translate: TranslateService) { }
 
   ngOnInit(): void {
     document.body.removeAttribute('style');
@@ -48,6 +49,6 @@ export class NavComponent implements OnInit {
   }
 
   openAdminApp(): void {
-    window.open('https://dnvc.herokuapp.com/admin/', '_blank');
+    window.open('https://dnvc-backend.herokuapp.com/', '_blank');
   }
 }

@@ -1,0 +1,23 @@
+{
+  "navMenu": {
+    "industries": "Filières",
+    "markets": "Marchés",
+    "notes": "Notes",
+    "about": "A propos",
+    "logIn": "Se connecter"
+  },
+
+  "subnav": {
+    "description" : "Fr : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa dolorem dolorum et iste laudantium nihil voluptatum? Cum laborum provident quis! Doloremque fugit ipsam molestias tenetur.",
+    "title": "Dispositif national de veille commerciale"
+  },
+
+  "home": {
+    "text1": "Fr : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aliquid animi culpa dicta, distinctio dolores ducimus facilis in laboriosam minus modi nam neque nihil odit omnis, quo repellat repellendus voluptates voluptatibus! Animi, aperiam aspernatur at deleniti dolorum eaque eligendi enim error obcaecati porro qui quidem quod repellat similique sint?",
+    "text2": "Fr : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aliquid animi culpa dicta, distinctio dolores ducimus facilis in laboriosam minus modi nam neque nihil odit omnis, quo repellat repellendus voluptates voluptatibus! Animi, aperiam aspernatur at deleniti dolorum eaque eligendi enim error obcaecati porro qui quidem quod repellat similique sint?"
+  },
+  "footer": {
+    "publish": "Publier une alerte",
+    "contact": "Contactez-nous"
+  }
+}

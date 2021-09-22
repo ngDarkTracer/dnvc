@@ -58,7 +58,7 @@
   <section class="content-section-mobile background-white">
     <div class="container content_nav-container">
       <div class="row">
-        <div class="col-lg-4 col-md-12 col-sm-12 d-none d-md-block pt120 mb45">
+        <div class="col-lg-4 col-md-12 col-sm-12 d-md-block pt120 mb45">
           <div class="jump-nav">
             <div class="fade-in-section disable-fade-in is-visible">
               <div class="jump-nav__container">
@@ -78,9 +78,9 @@
                   </div>
                 </div>
                 <ul class="jump-nav__items" [ngClass]="{'d-block':openedMenu}">
-                  <h6 class="mb0 pt15 jump-nav__item-wrapper">
+                  <h6 class="mb0 pt15 jump-nav__item-wrapper" #elt id="all">
                     <div>
-                      <a class="jump-nav__item bold" style="cursor: pointer" #elt (click)="filter('ALL', elt)">Toutes les alertes</a>
+                      <a class="jump-nav__item bold" style="cursor: pointer" (click)="filter('ALL', elt)">Toutes les alertes</a>
                     </div>
                   </h6>
                   <h6 class="mb0 pt15 jump-nav__item-wrapper" #elt *ngFor="let item of content">
