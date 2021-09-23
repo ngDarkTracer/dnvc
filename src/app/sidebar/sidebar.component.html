@@ -5,6 +5,20 @@
     </a>
   </div>
   <ul class="nav responsive-nav">
+    <li>
+      <a [routerLink]="['alerts']">
+        <i class="pe-7s-attention"></i>
+        <p>Alertes</p>
+      </a>
+    </li>
+    <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}">
+      <a [routerLink]="[menuItem.path]">
+        <i class="{{menuItem.icon}}"></i>
+        <p>{{menuItem.title}}</p>
+      </a>
+    </li>
+  </ul>
+  <ul class="nav responsive-nav">
     <li *ngIf="isMobileMenu()">
       <a href="">
         <p>Account</p>
