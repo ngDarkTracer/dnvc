@@ -9,12 +9,14 @@ import {FormsModule, NgModel} from '@angular/forms';
 import { NavigationComponent } from './navigation/navigation.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { SigninComponent } from './auth/signin/signin.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     NavbarComponent,
     SidebarComponent,
+    SigninComponent,
   ],
   imports: [
     BrowserModule,

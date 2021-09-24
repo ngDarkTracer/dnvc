@@ -15,7 +15,7 @@ export const items: any[] = [
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss', '../../../node_modules/bootstrap/dist/css/bootstrap.css']
 })
 export class SidebarComponent implements OnInit {
 

@@ -24,6 +24,7 @@
     "bootstrap": "^3.3.7",
     "ngx-perfect-scrollbar": "^10.1.1",
     "pixeden-stroke-7-icon": "^1.2.3",
+    "primeflex": "^2.0.0",
     "primeicons": "^4.1.0",
     "primeng": "^11.4.5",
     "rxjs": "~6.6.0",

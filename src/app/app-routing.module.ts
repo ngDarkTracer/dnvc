@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {NavigationComponent} from './navigation/navigation.component';
+import {SigninComponent} from './auth/signin/signin.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/main/dashboard', pathMatch: 'full'},
+  { path: 'signIn', component: SigninComponent },
+  { path: '', redirectTo: '/signIn', pathMatch: 'full'},
   { path: 'main',
     component: NavigationComponent,
     children: [

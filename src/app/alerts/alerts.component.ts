@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-alerts',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./alerts.component.scss']
 })
 export class AlertsComponent implements OnInit {
+
+  filteredAlert: any[] = [];
+  selectedAlert: any;
 
   Alerts: any[] = [
     {
@@ -61,9 +64,22 @@ export class AlertsComponent implements OnInit {
       }]
     }
   ];
+
   constructor() { }
 
   ngOnInit(): void {
+    this.filter();
   }
+
+  filter(): void {
+    this.filteredAlert = [];
+    this.Alerts.forEach((element) => {
+      element.content.forEach((alert) => {
+        alert.type = element.alerte;
+        this.filteredAlert.push(alert);
+      });
+    });
+  }
+
 
 }

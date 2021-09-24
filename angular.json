@@ -52,12 +52,12 @@
             "styles": [
               "src/styles.scss",
               "node_modules/pixeden-stroke-7-icon/pe-icon-7-stroke/dist/pe-icon-7-stroke.css",
-              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
-              "node_modules/animate.css/animate.min.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/saga-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeflex/primeflex.css",
+              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+              "node_modules/animate.css/animate.min.css",
               "src/assets/sass/light-bootstrap-dashboard.scss",
               "src/assets/css/demo.css"
             ],
@@ -124,12 +124,12 @@
             "styles": [
               "src/styles.scss",
               "node_modules/pixeden-stroke-7-icon/pe-icon-7-stroke/dist/pe-icon-7-stroke.css",
-              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
-              "node_modules/animate.css/animate.min.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/primeicons/primeicons.css",
               "node_modules/primeng/resources/themes/saga-blue/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeflex/primeflex.css",
+              "node_modules/perfect-scrollbar/css/perfect-scrollbar.css",
+              "node_modules/animate.css/animate.min.css",
               "src/assets/sass/light-bootstrap-dashboard.scss",
               "src/assets/css/demo.css"
             ],
