@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {last} from 'rxjs/operators';
+import {IndustriesService} from '../services/industries.service';
 
 @Component({
   selector: 'app-industries',
@@ -45,10 +46,17 @@ export class IndustriesComponent implements OnInit {
   openedList = false;
   page = 1;
 
-  constructor() { }
+  constructor(private industriesService: IndustriesService) { }
 
   ngOnInit(): void {
     this.filter('ALL');
+    this.getSector();
+  }
+
+  getSector(): void {
+    this.industriesService.getSectorsFromServer().subscribe((data) => {
+      // this.industries = data;
+    });
   }
 
   filter(letter: any): void {
