@@ -6,7 +6,7 @@
           <a class="hero-parent-title crown-link" routerLink="/home">
             <h3 class="h1 small mb0 d-inline">Watcher</h3>
           </a>
-          <h1 class="hero-title" style="color: white">Tout les marchés</h1>
+          <h1 class="hero-title" style="color: white">{{ 'markets.title' | translate }}</h1>
         </div>
         <div class="col-12"></div>
         <div class="col-sm-12 col-md-5"></div>
@@ -21,15 +21,15 @@
       <div class="col-lg-3 col-md-12 col-sm-12">
         <div class="filter-wrapper filter-sticky">
           <div class="filter-clear">
-            <div class="label bold">{{ filteredMarkets.length }} Resultats</div>
-            <button class="link-style-button" (click)="filter('ALL')">Vider le filtre</button>
+            <div class="label bold">{{ filteredMarkets.length }} {{ 'markets.search_results' | translate }}</div>
+            <button class="link-style-button" (click)="filter('ALL')">{{ 'markets.clear_filter' | translate }}</button>
           </div>
           <div class="az-container mb30">
             <div class="az-box">
               <div class="az-filter__header fs-small pb30">
                 <div>
-                  <span class="label">Filtre</span>
-                  <div class="az-filter_mobile_display bold" *ngIf="beginLetter === 'ALL'">Tout</div>
+                  <span class="label">{{ 'markets.filter' | translate }}</span>
+                  <div class="az-filter_mobile_display bold" *ngIf="beginLetter === 'ALL'">{{ 'markets.All' | translate }}</div>
                   <div class="az-filter_mobile_display bold" *ngIf="beginLetter !== 'ALL'">{{ beginLetter }}</div>
                 </div>
                 <div class="az-filter__mobile">
@@ -61,7 +61,7 @@
                           [ngClass]="{'checked-active': beginLetter === 'ALL'}"
                           (click)="filter('ALL')"
                           aria-label="Show All - Letters" data-testid="all-letters">
-                    <h6 class="mb0">TOUT</h6>
+                    <h6 class="mb0">{{ 'markets.All' | translate | uppercase }}</h6>
                   </button>
                 </div>
               </div>
@@ -82,7 +82,7 @@
               </div>
             </div>
           </div>
-          <pagination-controls style="position: absolute; bottom: 0;" previousLabel="Précédent" nextLabel="Suivant" responsive="true" (pageChange)="page=$event"></pagination-controls>
+          <pagination-controls style="position: absolute; bottom: 0;" previousLabel="{{ 'markets.previous' | translate }}" nextLabel="{{ 'markets.next' | translate }}" responsive="true" (pageChange)="page=$event"></pagination-controls>
         </div>
       </div>
     </div>

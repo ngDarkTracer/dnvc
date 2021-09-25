@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NotesRoutingModule } from './notes-routing.module';
 import { NotesComponent } from './notes.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {TranslateModule} from "@ngx-translate/core";
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     imports: [
         CommonModule,
         NotesRoutingModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        TranslateModule
     ]
 })
 export class NotesModule { }

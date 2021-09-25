@@ -16,8 +16,51 @@
     "text1": "Fr : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aliquid animi culpa dicta, distinctio dolores ducimus facilis in laboriosam minus modi nam neque nihil odit omnis, quo repellat repellendus voluptates voluptatibus! Animi, aperiam aspernatur at deleniti dolorum eaque eligendi enim error obcaecati porro qui quidem quod repellat similique sint?",
     "text2": "Fr : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aliquid animi culpa dicta, distinctio dolores ducimus facilis in laboriosam minus modi nam neque nihil odit omnis, quo repellat repellendus voluptates voluptatibus! Animi, aperiam aspernatur at deleniti dolorum eaque eligendi enim error obcaecati porro qui quidem quod repellat similique sint?"
   },
+
+  "sectors": {
+    "title": "Toutes les filières",
+    "search_results": "Resultat(s)",
+    "clear_filter": "Vider le filtre",
+    "filter": "Filtre",
+    "All": "Tout",
+    "previous": "Précedent",
+    "next": "Suivant"
+  },
+
+  "markets": {
+    "title": "Tout les marchés",
+    "search_results": "Resultat(s)",
+    "clear_filter": "Vider le filtre",
+    "filter": "Filtre",
+    "All": "Tout",
+    "previous": "Précedent",
+    "next": "Suivant"
+  },
+
+  "notes": {
+    "title": "Toutes les notes de veille",
+    "search_results": "Resultat(s)",
+    "clear_filter": "Vider le filtre",
+    "filter": "Filtre",
+    "All": "Tout",
+    "previous": "Précedent",
+    "next": "Suivant"
+  },
+
+  "about": {
+    "title": "A propos",
+    "tools": "A propos de Watcher"
+  },
+
   "footer": {
     "publish": "Publier une alerte",
-    "contact": "Contactez-nous"
+    "contact": "Contactez-nous",
+    "connect": "Connectez vous au MINCOMMERCE",
+    "mincommerce": "Le MINCOMMERCE",
+    "plateforms": "Autres plateformes",
+    "resources": "Ressources",
+    "word_from_minister": "Mot du Ministre",
+    "cell": "Cellule des etudes et projets",
+    "monitoring": "équipe de veille"
   }
 }

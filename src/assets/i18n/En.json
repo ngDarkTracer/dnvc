@@ -1,10 +1,10 @@
 {
   "navMenu": {
-    "industries": "Industries",
+    "industries": "Sectors",
     "markets": "Markets",
     "notes": "Notes",
     "about": "About",
-    "logIn": "LogIn"
+    "logIn": "Sign In"
   },
 
   "subnav": {
@@ -15,5 +15,52 @@
   "home": {
     "text1": "En : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aliquid animi culpa dicta, distinctio dolores ducimus facilis in laboriosam minus modi nam neque nihil odit omnis, quo repellat repellendus voluptates voluptatibus! Animi, aperiam aspernatur at deleniti dolorum eaque eligendi enim error obcaecati porro qui quidem quod repellat similique sint?",
     "text2": "En : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aliquid animi culpa dicta, distinctio dolores ducimus facilis in laboriosam minus modi nam neque nihil odit omnis, quo repellat repellendus voluptates voluptatibus! Animi, aperiam aspernatur at deleniti dolorum eaque eligendi enim error obcaecati porro qui quidem quod repellat similique sint?"
+  },
+
+  "sectors": {
+    "title": "All sectors",
+    "search_results": "Result(s)",
+    "clear_filter": "Clear filter",
+    "filter": "Filter",
+    "All": "All",
+    "previous": "Previous",
+    "next": "Next"
+  },
+
+  "markets": {
+    "title": "All markets",
+    "search_results": "Result(s)",
+    "clear_filter": "Clear filter",
+    "filter": "Filter",
+    "All": "All",
+    "previous": "Previous",
+    "next": "Next"
+  },
+
+  "notes": {
+    "title": "All monitoring notes",
+    "search_results": "Result(s)",
+    "clear_filter": "Clear filter",
+    "filter": "Filter",
+    "All": "All",
+    "previous": "Previous",
+    "next": "Next"
+  },
+
+  "about": {
+    "title": "About",
+    "tools": "About this tool"
+  },
+
+  "footer": {
+    "publish": "Publish an alert",
+    "contact": "Contact us",
+    "connect": "Connect with MINCOMMERCE",
+    "mincommerce": "The MINCOMMERCE",
+    "plateforms": "Others plateforms",
+    "resources": "Resources",
+    "word_from_minister": "Word from Minister",
+    "cell": "studies and projects cell",
+    "monitoring": "monitoring team"
   }
 }
