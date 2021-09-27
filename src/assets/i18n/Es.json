@@ -1,0 +1,85 @@
+{
+	"about": {
+		"title": "Sobre nosotros",
+		"tools": "Acerca de Watcher"
+	},
+	"footer": {
+		"cell": "Unidad de Estudios y Proyectos",
+		"connect": "Conéctate a MINCOMMERCE",
+		"contact": "Contáctanos.",
+		"mincommerce": "La MINCOMMERCE",
+		"monitoring": "equipo de supervisión",
+		"plateforms": "Otras plataformas",
+		"publish": "Publicar una alerta",
+		"resources": "Recursos",
+		"word_from_minister": "Unas palabras del Ministro"
+	},
+	"home": {
+		"text1": "Es : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aliquid animi culpa dicta, distinctio dolores ducimus facilis in laboriosam minus modi nam neque nihil odit omnis, quo repellat repellendus voluptates voluptatibus! Animi, aperiam aspernatur at deleniti dolorum eaque eligendi enim error obcaecati porro qui quidem quod repellat similique sint?",
+		"text2": "Es : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci aliquid animi culpa dicta, distinctio dolores ducimus facilis in laboriosam minus modi nam neque nihil odit omnis, quo repellat repellendus voluptates voluptatibus! Animi, aperiam aspernatur at deleniti dolorum eaque eligendi enim error obcaecati porro qui quidem quod repellat similique sint?"
+	},
+	"market": {
+		"All": "Todas las alertas",
+		"alerts": "Alertas",
+		"content": "Contenido",
+		"description": "Es: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores, consequuntur culpa eius eligendi enim eos esse excepturi, fugit id itaque laboriosam molestiae nam nesciunt nisi nobis nostrum obcaecati optio pariatur provident, quasi quibusdam rem sint vero voluptate! Asperiores atque dignissimos dolore illo impedit perferendis quia quod reiciendis rerum sit.",
+		"followed_by": "Compartido por",
+		"last_update": "Última actualización",
+		"link": "Todos los mercados",
+		"market": "Mercado(s)",
+		"next": "Siguiente",
+		"previous": "Anterior",
+		"source": "Fuente"
+	},
+	"markets": {
+		"All": "todo",
+		"clear_filter": "Vaciar el filtro",
+		"filter": "filtro",
+		"next": "Siguiente",
+		"previous": "Anterior",
+		"search_results": "Resultado(s)",
+		"title": "Todos los mercados"
+	},
+	"navMenu": {
+		"about": "Sobre nosotros",
+		"industries": "ramas",
+		"logIn": "Ingresa en",
+		"markets": "Mercados",
+		"notes": "Notas"
+	},
+	"notes": {
+		"All": "todo",
+		"clear_filter": "Vaciar el filtro",
+		"filter": "filtro",
+		"next": "Siguiente",
+		"previous": "Anterior",
+		"search_results": "Resultado(s)",
+		"title": "Todas las notas del reloj"
+	},
+	"sector": {
+		"All": "Todas las alertas",
+		"alerts": "Alertas",
+		"content": "Contenido",
+		"description": "Es: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores, consequuntur culpa eius eligendi enim eos esse excepturi, fugit id itaque laboriosam molestiae nam nesciunt nisi nobis nostrum obcaecati optio pariatur provident, quasi quibusdam rem sint vero voluptate! Asperiores atque dignissimos dolore illo impedit perferendis quia quod reiciendis rerum sit.",
+		"followed_by": "Compartido por",
+		"last_update": "Última actualización",
+		"link": "Todos los sectores",
+		"market": "Mercado(s)",
+		"next": "Siguiente",
+		"previous": "Anterior",
+		"source": "Fuente"
+	},
+	"sectors": {
+		"All": "todo",
+		"clear_filter": "Vaciar el filtro",
+		"filter": "filtro",
+		"next": "Siguiente",
+		"previous": "Anterior",
+		"search_results": "Resultado(s)",
+		"title": "Todos los sectores"
+	},
+	"subnav": {
+		"description": "Es : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa dolorem dolorum et iste laudantium nihil voluptatum? Cum laborum provident quis! Doloremque fugit ipsam molestias tenetur.",
+		"title": "Sistema nacional de vigilancia del comercio"
+	}
+}

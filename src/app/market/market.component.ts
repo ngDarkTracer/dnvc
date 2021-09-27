@@ -30,7 +30,7 @@ export class MarketComponent implements OnInit {
         author: 'Ministère du commerce',
         title: 'Hausse des prix de la banane',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
-        // markets: ['CEMAC', 'ZLECAF']
+        source: 'Document/URL',
       },
         {
           color: 'red',
@@ -38,7 +38,7 @@ export class MarketComponent implements OnInit {
           author: 'Ministère de l\'agriculture',
           title: 'Mauvaises recoltes dans le secteur de la banane',
           text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
-          // markets: ['CEMAC', 'ZLECAF']
+          source: 'Document/URL',
         }]
     },
     {
@@ -49,7 +49,7 @@ export class MarketComponent implements OnInit {
         author: 'Ministère de l\'agriculture',
         title: 'Baisse des taxes sur l\'importation',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
-        // markets: ['CEMAC', 'UE']
+        source: 'Document/URL',
       }]
     },
     {
@@ -60,7 +60,7 @@ export class MarketComponent implements OnInit {
         author: 'Ministère du commerce',
         title: 'Nouvelles règles concernant l\'importation de la banane',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
-        // markets: ['CEMAC', 'ZLECAF']
+        source: 'Document/URL',
       }]
     },
     {
@@ -71,7 +71,7 @@ export class MarketComponent implements OnInit {
         author: 'Ministère du commerce',
         title: 'Le marché de la banane de plus en plus rentable',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
-        // markets: ['CEMAC', 'CEDEAO']
+        source: 'Document/URL',
       }]
     }
   ];

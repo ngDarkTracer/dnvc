@@ -4,7 +4,7 @@
       <div class="row pv90-60">
         <div class="col-sm-12 col-md-8 hero-splash">
           <a class="hero-parent-title crown-link" routerLink="/industries">
-            <h3 class="h1 small mb0 d-inline">Toutes les filieres</h3>
+            <h3 class="h1 small mb0 d-inline">{{ 'sector.link' | translate }}</h3>
           </a>
           <h1 class="hero-title" style="color: white">{{ currentIndustriy }}</h1>
         </div>
@@ -16,10 +16,10 @@
 </section>
 
 <section class="background-grid-white"><div class="container teaser-container"><div class="header-subsection-date-section d-flex">
-  <label class="header-subsection-date">Derniere mise a jour: {{ actualDate }}</label>
+  <label class="header-subsection-date">{{ 'sector.last_update' |translate }}: {{ actualDate }}</label>
 </div>
   <div class="row align-items-center justify-content-between"><div class="col-sm-12 col-md-5 teaser-context pv120-90">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores, consequuntur culpa eius eligendi enim eos esse excepturi, fugit id itaque laboriosam molestiae nam nesciunt nisi nobis nostrum obcaecati optio pariatur provident, quasi quibusdam rem sint vero voluptate! Asperiores atque dignissimos dolore illo impedit perferendis quia quod reiciendis rerum sit.
+    {{ 'sector.description' | translate }}
   </div>
     <div class="col-sm-12 col-md-5 order-first teaser-image pv120-90"><div class="fade-in-section disable-fade-in is-visible">
       <div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden; max-width: 533px; max-height: 400px;">
@@ -64,9 +64,9 @@
             <div class="jump-nav__container">
               <div class="jump-nav__header">
                 <div>
-                  <div class="label">Contenu</div>
+                  <div class="label">{{ 'sector.content' | translate }}</div>
                   <h2 class="h6 bold mb0 d-block d-md-none" *ngIf="filterValue !== 'ALL'">{{ filterValue }}</h2>
-                  <h2 class="h6 bold mb0 d-block d-md-none" *ngIf="filterValue === 'ALL'">Toutes les alertes</h2>
+                  <h2 class="h6 bold mb0 d-block d-md-none" *ngIf="filterValue === 'ALL'">{{ 'sector.All' | translate }}</h2>
                 </div>
                 <div class="jump-nav__mobile" *ngIf="isSmallScreen">
                   <button class="jump-nav__mobile-button" (click)="open()">
@@ -96,8 +96,8 @@
         <div class="col-lg-6 col-md-12 col-sm-12 border-left-black pb120-90 pt120-45 content-area-content">
           <div class="free-form-content__content wysiwyg-wrapper">
             <div>
-              <h2 class="pb100" *ngIf="filterValue === 'ALL'">Alertes [Toutes les alertes]</h2>
-              <h2 class="pb100" *ngIf="filterValue !== 'ALL'">Alertes [{{ filterValue }}]</h2>
+              <h2 class="pb100" *ngIf="filterValue === 'ALL'">{{ 'sector.alerts' | translate }} [{{ 'sector.All' | translate }}]</h2>
+              <h2 class="pb100" *ngIf="filterValue !== 'ALL'">{{ 'sector.alerts' | translate }} [{{ filterValue }}]</h2>
               <div *ngFor="let con of filteredAlert  | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalItems}">
                 <div>
                   <div>
@@ -115,7 +115,7 @@
                               <div>
                                 <div class="wfb-card__link-container">
                                   <div class="wfb-card__text col-md-4"><p style="color: darkgray; font-size: 14px">{{ con.date }}</p></div>
-                                  <div class="wfb-card__text col-md-8"><p style="color: darkgray; font-size: 14px">Partagé par: {{ con.author }}</p></div>
+                                  <div class="wfb-card__text col-md-8"><p style="color: darkgray; font-size: 14px">{{ 'sector.followed_by' | translate }}: {{ con.author }}</p></div>
                                 </div>
                               </div>
                             </div>
@@ -127,8 +127,8 @@
                             <div class="thee-link-container">
                               <div>
                                 <div class="wfb-card__link-container">
-                                  <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6"><p style="color: darkgray; font-size: 14px">Marchés: CEMAC, CEDEAO</p></div>
-                                  <div class="wfb-card__text col-xl-4 col-lg-4 col-md-4"><p style="position: absolute; right: 0; top: -12px;color: darkgray; font-size: 14px">Source: </p></div>
+                                  <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6"><p style="color: darkgray; font-size: 14px">{{ 'sector.market' | translate }}: CEMAC, CEDEAO</p></div>
+                                  <div class="wfb-card__text col-xl-4 col-lg-4 col-md-4"><p style="position: absolute; right: 0; top: -12px;color: darkgray; font-size: 14px">{{ 'sector.source' | translate }}: </p></div>
                                   <button class="wfb-card__icon pdf col-xl-2 col-lg-2 col-md-2" style="margin: 0; border: none" href="#" target="_blank">
                                     <svg class="icon" role="img" aria-labelledby="file-icon" viewBox="0 0 30 30">
                                       <title>file-icon</title>
@@ -148,8 +148,8 @@
             </div>
             <pagination-controls
               style="position: absolute; bottom: 15px"
-              previousLabel="Précédent"
-              nextLabel="Suivant"
+              previousLabel="{{ 'sector.previous' | translate }}"
+              nextLabel="{{ 'sector.next' | translate }}"
               responsive="true" (pageChange)="page=$event"
               [ngStyle]="{'position': isSmallScreen ? {'position' : 'absolute', 'bottom.px' : 0} : {}}"></pagination-controls>
           </div>

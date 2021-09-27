@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { IndustryRoutingModule } from './industry-routing.module';
 import { IndustryComponent } from './industry.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     imports: [
         CommonModule,
         IndustryRoutingModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        TranslateModule
     ]
 })
 export class IndustryModule { }

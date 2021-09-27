@@ -9,34 +9,35 @@ import {IndustriesService} from '../services/industries.service';
 })
 export class IndustriesComponent implements OnInit {
 
-  industries: any[] = [
-    {letter: 'A', industry: ['Arachides']},
-    {letter: 'B', industry: ['Banane', 'Banane-plantain']},
-    {letter: 'C', industry: ['Cacao', 'Cafe']},
-    {letter: 'D', industry: []},
-    {letter: 'E', industry: []},
-    {letter: 'F', industry: []},
-    {letter: 'G', industry: []},
-    {letter: 'H', industry: []},
-    {letter: 'I', industry: []},
-    {letter: 'J', industry: []},
-    {letter: 'K', industry: []},
-    {letter: 'L', industry: []},
-    {letter: 'M', industry: []},
-    {letter: 'N', industry: []},
-    {letter: 'O', industry: []},
-    {letter: 'P', industry: []},
-    {letter: 'Q', industry: []},
-    {letter: 'R', industry: []},
-    {letter: 'S', industry: []},
-    {letter: 'T', industry: []},
-    {letter: 'U', industry: []},
-    {letter: 'V', industry: []},
-    {letter: 'W', industry: []},
-    {letter: 'X', industry: []},
-    {letter: 'Y', industry: []},
-    {letter: 'Z', industry: []}
-  ];
+  industries: any[];
+  // industries: any[] = [
+  //   {letter: 'A', industry: ['Arachides']},
+  //   {letter: 'B', industry: ['Banane', 'Banane-plantain']},
+  //   {letter: 'C', industry: ['Cacao', 'Cafe']},
+  //   {letter: 'D', industry: []},
+  //   {letter: 'E', industry: []},
+  //   {letter: 'F', industry: []},
+  //   {letter: 'G', industry: []},
+  //   {letter: 'H', industry: []},
+  //   {letter: 'I', industry: []},
+  //   {letter: 'J', industry: []},
+  //   {letter: 'K', industry: []},
+  //   {letter: 'L', industry: []},
+  //   {letter: 'M', industry: []},
+  //   {letter: 'N', industry: []},
+  //   {letter: 'O', industry: []},
+  //   {letter: 'P', industry: []},
+  //   {letter: 'Q', industry: []},
+  //   {letter: 'R', industry: []},
+  //   {letter: 'S', industry: []},
+  //   {letter: 'T', industry: []},
+  //   {letter: 'U', industry: []},
+  //   {letter: 'V', industry: []},
+  //   {letter: 'W', industry: []},
+  //   {letter: 'X', industry: []},
+  //   {letter: 'Y', industry: []},
+  //   {letter: 'Z', industry: []}
+  // ];
 
   filteredIndustries: any[] = [];
 
@@ -49,13 +50,13 @@ export class IndustriesComponent implements OnInit {
   constructor(private industriesService: IndustriesService) { }
 
   ngOnInit(): void {
-    this.filter('ALL');
     this.getSector();
   }
 
   getSector(): void {
     this.industriesService.getSectorsFromServer().subscribe((data) => {
-      // this.industries = data;
+      this.industries = data;
+      this.filter('ALL');
     });
   }
 

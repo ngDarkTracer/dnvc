@@ -27,12 +27,40 @@
     "next": "Next"
   },
 
+  "sector": {
+    "link": "All sectors",
+    "last_update": "Last update",
+    "description": "En: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores, consequuntur culpa eius eligendi enim eos esse excepturi, fugit id itaque laboriosam molestiae nam nesciunt nisi nobis nostrum obcaecati optio pariatur provident, quasi quibusdam rem sint vero voluptate! Asperiores atque dignissimos dolore illo impedit perferendis quia quod reiciendis rerum sit.",
+    "content": "Content",
+    "All": "All alerts",
+    "alerts": "Alerts",
+    "followed_by": "Followed by",
+    "market": "Market(s)",
+    "source": "Source",
+    "previous": "Previous",
+    "next": "Next"
+  },
+
   "markets": {
     "title": "All markets",
     "search_results": "Result(s)",
     "clear_filter": "Clear filter",
     "filter": "Filter",
     "All": "All",
+    "previous": "Previous",
+    "next": "Next"
+  },
+
+  "market": {
+    "link": "All markets",
+    "last_update": "Last update",
+    "description": "En: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores, consequuntur culpa eius eligendi enim eos esse excepturi, fugit id itaque laboriosam molestiae nam nesciunt nisi nobis nostrum obcaecati optio pariatur provident, quasi quibusdam rem sint vero voluptate! Asperiores atque dignissimos dolore illo impedit perferendis quia quod reiciendis rerum sit.",
+    "content": "Content",
+    "All": "All alerts",
+    "alerts": "Alerts",
+    "followed_by": "Followed by",
+    "market": "Market(s)",
+    "source": "Source",
     "previous": "Previous",
     "next": "Next"
   },

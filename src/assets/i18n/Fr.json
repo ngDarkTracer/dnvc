@@ -27,12 +27,40 @@
     "next": "Suivant"
   },
 
+  "sector": {
+    "link": "Toutes les filières",
+    "last_update": "Dernière mise a jour",
+    "description": "Fr: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores, consequuntur culpa eius eligendi enim eos esse excepturi, fugit id itaque laboriosam molestiae nam nesciunt nisi nobis nostrum obcaecati optio pariatur provident, quasi quibusdam rem sint vero voluptate! Asperiores atque dignissimos dolore illo impedit perferendis quia quod reiciendis rerum sit.",
+    "content": "Contenu",
+    "All": "Toutes les alertes",
+    "alerts": "Alertes",
+    "followed_by": "Partagé par",
+    "market": "Marché(s)",
+    "source": "Source",
+    "previous": "Précedent",
+    "next": "Suivant"
+  },
+
   "markets": {
     "title": "Tout les marchés",
     "search_results": "Resultat(s)",
     "clear_filter": "Vider le filtre",
     "filter": "Filtre",
     "All": "Tout",
+    "previous": "Précedent",
+    "next": "Suivant"
+  },
+
+  "market": {
+    "link": "Tout les marchés",
+    "last_update": "Dernière mise a jour",
+    "description": "Fr: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores, consequuntur culpa eius eligendi enim eos esse excepturi, fugit id itaque laboriosam molestiae nam nesciunt nisi nobis nostrum obcaecati optio pariatur provident, quasi quibusdam rem sint vero voluptate! Asperiores atque dignissimos dolore illo impedit perferendis quia quod reiciendis rerum sit.",
+    "content": "Contenu",
+    "All": "Toutes les alertes",
+    "alerts": "Alertes",
+    "followed_by": "Partagé par",
+    "market": "Marché(s)",
+    "source": "Source",
     "previous": "Précedent",
     "next": "Suivant"
   },

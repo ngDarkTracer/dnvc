@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MarketRoutingModule } from './market-routing.module';
 import { MarketComponent } from './market.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     imports: [
         CommonModule,
         MarketRoutingModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        TranslateModule
     ]
 })
 export class MarketModule { }
