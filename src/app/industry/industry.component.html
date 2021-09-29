@@ -127,7 +127,11 @@
                             <div class="thee-link-container">
                               <div>
                                 <div class="wfb-card__link-container">
-                                  <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6"><p style="color: darkgray; font-size: 14px">{{ 'sector.market' | translate }}: CEMAC, CEDEAO</p></div>
+                                  <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6"><p style="color: darkgray; font-size: 14px">{{ 'sector.market' | translate }}:
+                                    <span *ngFor="let market of con.markets">{{ market.Nom }}<span *ngIf="!(market.Nom === con.markets[con.markets.length - 1].Nom)">, </span>
+                                    </span>
+                                  </p>
+                                  </div>
                                   <div class="wfb-card__text col-xl-4 col-lg-4 col-md-4"><p style="position: absolute; right: 0; top: -12px;color: darkgray; font-size: 14px">{{ 'sector.source' | translate }}: </p></div>
                                   <button class="wfb-card__icon pdf col-xl-2 col-lg-2 col-md-2" style="margin: 0; border: none" href="#" target="_blank">
                                     <svg class="icon" role="img" aria-labelledby="file-icon" viewBox="0 0 30 30">

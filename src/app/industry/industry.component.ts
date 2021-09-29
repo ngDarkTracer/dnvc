@@ -3,9 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ViewportScroller} from '@angular/common';
 import {BreakpointObserver} from '@angular/cdk/layout';
 import {IndustriesService} from '../services/industries.service';
-import {from, of} from 'rxjs';
+import {from} from 'rxjs';
 import {groupBy, mergeMap, toArray} from 'rxjs/operators';
-import {stringify} from 'querystring';
 
 @Component({
   selector: 'app-industry',
@@ -20,77 +19,24 @@ export class IndustryComponent implements OnInit {
               private industriesService: IndustriesService) { }
 
   currentIndustriy: string;
+  serverAdress = '';
+  sectorImageUrl;
   filterValue = 'ALL';
   actualDate = new Date().toLocaleDateString();
   totalItems = 0;
   page = 1;
   openedMenu = false;
   isSmallScreen = false;
+  ready = false;
+
+  severity = {
+    Threat: 'red',
+    Weak: 'green'
+  };
 
   filteredAlert: any[] = [];
-  // content: any[] = [
-  //   {
-  //     alerte: 'Prix',
-  //     content: [{
-  //       color: 'red',
-  //       date: new Date().toLocaleDateString(),
-  //       author: 'Ministère du commerce',
-  //       title: 'Hausse des prix de la banane',
-  //       text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
-  //       source: 'Document/URL',
-  //       markets: ['CEMAC', 'ZLECAF']
-  //       },
-  //       {
-  //         color: 'red',
-  //         date: new Date().toLocaleDateString(),
-  //         author: 'Ministère de l\'agriculture',
-  //         title: 'Mauvaises recoltes dans le secteur de la banane',
-  //         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
-  //         source: 'Document/URL',
-  //         markets: ['CEMAC', 'ZLECAF']
-  //       }]
-  //     },
-  //   {
-  //     alerte: 'Procédures douanières',
-  //     content: [{
-  //       color: 'green',
-  //       date: new Date().toLocaleDateString(),
-  //       author: 'Ministère de l\'agriculture',
-  //       title: 'Baisse des taxes sur l\'importation',
-  //       text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
-  //       source: 'Document/URL',
-  //       markets: ['CEMAC', 'UE']
-  //       }]
-  //     },
-  //   {
-  //     alerte: 'Règlementations',
-  //     content: [{
-  //       color: 'red',
-  //       date: new Date().toLocaleDateString(),
-  //       author: 'Ministère du commerce',
-  //       title: 'Nouvelles règles concernant l\'importation de la banane',
-  //       text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
-  //       source: 'Document/URL',
-  //       markets: ['CEMAC', 'ZLECAF']
-  //       }]
-  //     },
-  //   {
-  //     alerte: 'Débouchés',
-  //     content: [{
-  //       color: 'green',
-  //       date: new Date().toLocaleDateString(),
-  //       author: 'Ministère du commerce',
-  //       title: 'Le marché de la banane de plus en plus rentable',
-  //       text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
-  //       source: 'Document/URL',
-  //       markets: ['CEMAC', 'CEDEAO']
-  //       }]
-  //     }
-  // ];
-
-  content: any[];
-
-
+  content: any[] = [];
+  temp: any[];
 
   filter(item: any, elt?: any): void {
     document.querySelectorAll('.active-item').forEach((i) => {
@@ -124,8 +70,6 @@ export class IndustryComponent implements OnInit {
     const url = this.activatedRoute.snapshot.paramMap.get('industry');
     this.currentIndustriy = url;
     this.getSectorProperties(url);
-    const all = document.getElementById('all');
-    this.filter('ALL', all);
 
     this.breakPointObserver.observe(['(max-width: 765px)']).subscribe(result => {
       if (result.matches) {
@@ -137,13 +81,48 @@ export class IndustryComponent implements OnInit {
   }
 
   getSectorProperties(url: string): void {
+    this.ready = false;
     this.industriesService.getSingleSectorFromServer(url).subscribe((data) => {
-      this.content = data;
-      from(this.content)
+      this.temp = data;
+      from(this.temp)
         .pipe(
           groupBy(element => element.themes_de_veille.Nom),
-          mergeMap(group => group.pipe(toArray())))
-        .subscribe(val => console.log(val));
+          mergeMap(group => group.pipe(toArray()))
+        )
+        .subscribe(
+          (val) => {
+            const tempContent = [];
+            val.forEach((elt) => {
+              elt.Filieres.forEach((fil) => {
+                if (fil.Name === url) {
+                  this.sectorImageUrl = this.serverAdress + fil.Photo.formats.large.url;
+                }
+              });
+              tempContent.push(
+                {
+                  color: this.severity[elt.Type],
+                  date: elt.DatePublication,
+                  author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
+                  title: elt.Title,
+                  text: elt.Resume,
+                  source: elt.SourceUrl,
+                  markets: elt.Marches
+                }
+              );
+            });
+            this.content.push(
+              {
+                alerte: val[0].themes_de_veille.Nom,
+                content: tempContent
+              });
+            },
+          (error) => {},
+          () => {
+            this.ready = true;
+            const all = document.getElementById('all');
+            this.filter('ALL', all);
+            console.log(this.content);
+          });
     });
   }
 
