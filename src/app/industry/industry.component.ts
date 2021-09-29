@@ -22,6 +22,7 @@ export class IndustryComponent implements OnInit {
   serverAdress = '';
   sectorImageUrl = '';
   sectorIntroText = '';
+  lastUpdate = '';
   filterValue = 'ALL';
   actualDate = new Date().toLocaleDateString();
   totalItems = 0;
@@ -100,6 +101,7 @@ export class IndustryComponent implements OnInit {
                   if (elt.Filieres[i].Name === url) {
                     this.sectorImageUrl = this.serverAdress + elt.Filieres[i].Photo.formats.large.url;
                     this.sectorIntroText = elt.Filieres[i].Intro;
+                    this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
                     break;
                   }
                 }
@@ -128,7 +130,6 @@ export class IndustryComponent implements OnInit {
             this.ready = true;
             const all = document.getElementById('all');
             this.filter('ALL', all);
-            console.log(this.content);
           });
     });
   }

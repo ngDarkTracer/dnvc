@@ -16,9 +16,10 @@
 </section>
 
 <section class="background-grid-white"><div class="container teaser-container"><div class="header-subsection-date-section d-flex">
-  <label class="header-subsection-date">{{ 'sector.last_update' |translate }}: {{ actualDate }}</label>
+  <label class="header-subsection-date">{{ 'sector.last_update' |translate }}: {{ lastUpdate }}</label>
 </div>
-  <div class="row align-items-center justify-content-between"><div class="col-sm-12 col-md-5 teaser-context pv120-90">
+  <p-progressSpinner *ngIf="!ready"></p-progressSpinner>
+  <div class="row align-items-center justify-content-between" *ngIf="ready"><div class="col-sm-12 col-md-5 teaser-context pv120-90">
     {{ sectorIntroText }}
   </div>
     <div class="col-sm-12 col-md-5 order-first teaser-image pv120-90"><div class="fade-in-section disable-fade-in is-visible">
@@ -80,7 +81,7 @@
               <ul class="jump-nav__items" [ngClass]="{'d-block':openedMenu}">
                 <h6 class="mb0 pt15 jump-nav__item-wrapper" #elt id="all">
                   <div>
-                    <a class="jump-nav__item bold" style="cursor: pointer" (click)="filter('ALL', elt)">Toutes les alertes</a>
+                    <a class="jump-nav__item bold" style="cursor: pointer" (click)="filter('ALL', elt)">{{ 'sector.All' | translate }}</a>
                   </div>
                 </h6>
                 <h6 class="mb0 pt15 jump-nav__item-wrapper list-item" #elt *ngFor="let item of content">
@@ -94,7 +95,8 @@
           </div>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12 border-left-black pb120-90 pt120-45 content-area-content">
-          <div class="free-form-content__content wysiwyg-wrapper">
+          <p-progressSpinner *ngIf="!ready"></p-progressSpinner>
+          <div class="free-form-content__content wysiwyg-wrapper" *ngIf="ready">
             <div>
               <h2 class="pb100" *ngIf="filterValue === 'ALL'">{{ 'sector.alerts' | translate }} [{{ 'sector.All' | translate }}]</h2>
               <h2 class="pb100" *ngIf="filterValue !== 'ALL'">{{ 'sector.alerts' | translate }} [{{ filterValue }}]</h2>
