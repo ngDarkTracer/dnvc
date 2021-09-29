@@ -176,7 +176,9 @@
             "styles": [
               "projects/admin-app/src/styles/wfb-style.css",
               "projects/admin-app/src/styles/typography.css",
-              "projects/admin-app/src/styles.scss"
+              "projects/admin-app/src/styles.scss",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": []
           },
@@ -241,7 +243,9 @@
             "styles": [
               "projects/admin-app/src/styles/wfb-style.css",
               "projects/admin-app/src/styles/typography.css",
-              "projects/admin-app/src/styles.scss"
+              "projects/admin-app/src/styles.scss",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": []
           }

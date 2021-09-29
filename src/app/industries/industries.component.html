@@ -52,13 +52,16 @@
       </div>
     </div>
       <div class="col-lg-9 col-md-12 col-sm-12">
-        <div class="row mt45">
+        <div class="row mt60 ml-5" *ngIf="!ready">
+          <p-progressSpinner></p-progressSpinner>
+        </div>
+        <div class="row mt45" *ngIf="ready">
           <div class="col-lg-9" *ngFor="let industry of filteredIndustries | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalItems}">
             <div class="border">
               <div class="pb60">
                 <h2 class="mb0">
-                  <a class="inline-link" [routerLink]="['/industries', industry]">
-                    <span>{{ industry }}</span>
+                  <a class="inline-link" [routerLink]="['/industries', industry.Name]">
+                    <span>{{ industry.Name }}</span>
                   </a>
                 </h2>
               </div>

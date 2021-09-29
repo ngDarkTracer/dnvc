@@ -2,6 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ViewportScroller} from '@angular/common';
 import {BreakpointObserver} from '@angular/cdk/layout';
+import {IndustriesService} from '../services/industries.service';
+import {from, of} from 'rxjs';
+import {groupBy, mergeMap, toArray} from 'rxjs/operators';
+import {stringify} from 'querystring';
 
 @Component({
   selector: 'app-industry',
@@ -12,7 +16,8 @@ export class IndustryComponent implements OnInit {
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
               private scroller: ViewportScroller,
-              private breakPointObserver: BreakpointObserver) { }
+              private breakPointObserver: BreakpointObserver,
+              private industriesService: IndustriesService) { }
 
   currentIndustriy: string;
   filterValue = 'ALL';
@@ -23,65 +28,67 @@ export class IndustryComponent implements OnInit {
   isSmallScreen = false;
 
   filteredAlert: any[] = [];
-  content: any[] = [
-    {
-      alerte: 'Prix',
-      content: [{
-        color: 'red',
-        date: new Date().toLocaleDateString(),
-        author: 'Ministère du commerce',
-        title: 'Hausse des prix de la banane',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
-        source: 'Document/URL',
-        markets: ['CEMAC', 'ZLECAF']
-        },
-        {
-          color: 'red',
-          date: new Date().toLocaleDateString(),
-          author: 'Ministère de l\'agriculture',
-          title: 'Mauvaises recoltes dans le secteur de la banane',
-          text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
-          source: 'Document/URL',
-          markets: ['CEMAC', 'ZLECAF']
-        }]
-      },
-    {
-      alerte: 'Procédures douanières',
-      content: [{
-        color: 'green',
-        date: new Date().toLocaleDateString(),
-        author: 'Ministère de l\'agriculture',
-        title: 'Baisse des taxes sur l\'importation',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
-        source: 'Document/URL',
-        markets: ['CEMAC', 'UE']
-        }]
-      },
-    {
-      alerte: 'Règlementations',
-      content: [{
-        color: 'red',
-        date: new Date().toLocaleDateString(),
-        author: 'Ministère du commerce',
-        title: 'Nouvelles règles concernant l\'importation de la banane',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
-        source: 'Document/URL',
-        markets: ['CEMAC', 'ZLECAF']
-        }]
-      },
-    {
-      alerte: 'Débouchés',
-      content: [{
-        color: 'green',
-        date: new Date().toLocaleDateString(),
-        author: 'Ministère du commerce',
-        title: 'Le marché de la banane de plus en plus rentable',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
-        source: 'Document/URL',
-        markets: ['CEMAC', 'CEDEAO']
-        }]
-      }
-  ];
+  // content: any[] = [
+  //   {
+  //     alerte: 'Prix',
+  //     content: [{
+  //       color: 'red',
+  //       date: new Date().toLocaleDateString(),
+  //       author: 'Ministère du commerce',
+  //       title: 'Hausse des prix de la banane',
+  //       text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
+  //       source: 'Document/URL',
+  //       markets: ['CEMAC', 'ZLECAF']
+  //       },
+  //       {
+  //         color: 'red',
+  //         date: new Date().toLocaleDateString(),
+  //         author: 'Ministère de l\'agriculture',
+  //         title: 'Mauvaises recoltes dans le secteur de la banane',
+  //         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
+  //         source: 'Document/URL',
+  //         markets: ['CEMAC', 'ZLECAF']
+  //       }]
+  //     },
+  //   {
+  //     alerte: 'Procédures douanières',
+  //     content: [{
+  //       color: 'green',
+  //       date: new Date().toLocaleDateString(),
+  //       author: 'Ministère de l\'agriculture',
+  //       title: 'Baisse des taxes sur l\'importation',
+  //       text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
+  //       source: 'Document/URL',
+  //       markets: ['CEMAC', 'UE']
+  //       }]
+  //     },
+  //   {
+  //     alerte: 'Règlementations',
+  //     content: [{
+  //       color: 'red',
+  //       date: new Date().toLocaleDateString(),
+  //       author: 'Ministère du commerce',
+  //       title: 'Nouvelles règles concernant l\'importation de la banane',
+  //       text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
+  //       source: 'Document/URL',
+  //       markets: ['CEMAC', 'ZLECAF']
+  //       }]
+  //     },
+  //   {
+  //     alerte: 'Débouchés',
+  //     content: [{
+  //       color: 'green',
+  //       date: new Date().toLocaleDateString(),
+  //       author: 'Ministère du commerce',
+  //       title: 'Le marché de la banane de plus en plus rentable',
+  //       text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dignissimos doloribus eligendi minus molestias quia sint tempore? A, quisquam sapiente?',
+  //       source: 'Document/URL',
+  //       markets: ['CEMAC', 'CEDEAO']
+  //       }]
+  //     }
+  // ];
+
+  content: any[];
 
 
 
@@ -116,6 +123,7 @@ export class IndustryComponent implements OnInit {
   ngOnInit(): void {
     const url = this.activatedRoute.snapshot.paramMap.get('industry');
     this.currentIndustriy = url;
+    this.getSectorProperties(url);
     const all = document.getElementById('all');
     this.filter('ALL', all);
 
@@ -125,6 +133,17 @@ export class IndustryComponent implements OnInit {
       } else {
         this.isSmallScreen = false;
       }
+    });
+  }
+
+  getSectorProperties(url: string): void {
+    this.industriesService.getSingleSectorFromServer(url).subscribe((data) => {
+      this.content = data;
+      from(this.content)
+        .pipe(
+          groupBy(element => element.themes_de_veille.Nom),
+          mergeMap(group => group.pipe(toArray())))
+        .subscribe(val => console.log(val));
     });
   }
 

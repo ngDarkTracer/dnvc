@@ -5,6 +5,7 @@ import { IndustriesRoutingModule } from './industries-routing.module';
 import { IndustriesComponent } from './industries.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {TranslateModule} from "@ngx-translate/core";
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {TranslateModule} from "@ngx-translate/core";
         CommonModule,
         IndustriesRoutingModule,
         NgxPaginationModule,
-        TranslateModule
+        TranslateModule,
+        ProgressSpinnerModule
     ]
 })
 export class IndustriesModule{}

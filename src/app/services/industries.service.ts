@@ -7,9 +7,14 @@ import {Observable} from 'rxjs';
 })
 export class IndustriesService {
 
+  serverAdress = 'https://14639f6e-6b9e-4361-8143-54d2a61557d9.mock.pstmn.io/';
   constructor(private httpClient: HttpClient) { }
 
   getSectorsFromServer(): Observable<any> {
-    return this.httpClient.get<any[]>('https://8e5d5300-8a6d-43f2-ba82-a967fba656f1.mock.pstmn.io/filiere', { responseType: 'json' });
+    return this.httpClient.get<any[]>(this.serverAdress + 'filieres', { responseType: 'json' });
+  }
+
+  getSingleSectorFromServer(sector: string): Observable<any> {
+    return this.httpClient.get<any[]>(this.serverAdress + 'alertes&filiere=' + sector, { responseType: 'json' });
   }
 }
