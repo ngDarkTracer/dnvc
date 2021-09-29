@@ -20,8 +20,8 @@ export class IndustryComponent implements OnInit {
 
   currentIndustriy: string;
   serverAdress = '';
-  sectorImageUrl;
-  sectorIntroText;
+  sectorImageUrl = '';
+  sectorIntroText = '';
   filterValue = 'ALL';
   actualDate = new Date().toLocaleDateString();
   totalItems = 0;
@@ -95,12 +95,13 @@ export class IndustryComponent implements OnInit {
           (val) => {
             const tempContent = [];
             val.forEach((elt) => {
-              for (let i = 0; i < elt.Filieres.length; i++) {
-                if (elt.Filieres[i].Name === url) {
-                  this.sectorImageUrl = this.serverAdress + elt.Filieres[i].Photo.formats.large.url;
-                  this.sectorIntroText = elt.Filieres[i].Intro;
-                  console.log(this.sectorIntroText);
-                  break;
+              if (this.sectorImageUrl === '' || this.sectorIntroText === '') {
+                for (let i = 0; i < elt.Filieres.length; i++) {
+                  if (elt.Filieres[i].Name === url) {
+                    this.sectorImageUrl = this.serverAdress + elt.Filieres[i].Photo.formats.large.url;
+                    this.sectorIntroText = elt.Filieres[i].Intro;
+                    break;
+                  }
                 }
               }
               tempContent.push(
@@ -110,7 +111,8 @@ export class IndustryComponent implements OnInit {
                   author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
                   title: elt.Title,
                   text: elt.Resume,
-                  source: elt.SourceUrl,
+                  sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
+                  source: elt.SourceFile.length === 0 ? elt.sourceUrl : elt.sourceFile,
                   markets: elt.Marches
                 }
               );
