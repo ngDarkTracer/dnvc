@@ -21,6 +21,7 @@ export class IndustryComponent implements OnInit {
   currentIndustriy: string;
   serverAdress = '';
   sectorImageUrl;
+  sectorIntroText;
   filterValue = 'ALL';
   actualDate = new Date().toLocaleDateString();
   totalItems = 0;
@@ -31,7 +32,8 @@ export class IndustryComponent implements OnInit {
 
   severity = {
     Threat: 'red',
-    Weak: 'green'
+    Weak: 'green',
+    Opportunity: 'blue'
   };
 
   filteredAlert: any[] = [];
@@ -93,11 +95,14 @@ export class IndustryComponent implements OnInit {
           (val) => {
             const tempContent = [];
             val.forEach((elt) => {
-              elt.Filieres.forEach((fil) => {
-                if (fil.Name === url) {
-                  this.sectorImageUrl = this.serverAdress + fil.Photo.formats.large.url;
+              for (let i = 0; i < elt.Filieres.length; i++) {
+                if (elt.Filieres[i].Name === url) {
+                  this.sectorImageUrl = this.serverAdress + elt.Filieres[i].Photo.formats.large.url;
+                  this.sectorIntroText = elt.Filieres[i].Intro;
+                  console.log(this.sectorIntroText);
+                  break;
                 }
-              });
+              }
               tempContent.push(
                 {
                   color: this.severity[elt.Type],
