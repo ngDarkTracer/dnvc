@@ -70,13 +70,16 @@
         </div>
       </div>
       <div class="col-lg-9 col-md-12 col-sm-12">
-        <div class="row mt45">
+        <div class="row mt60 ml-5" *ngIf="!ready">
+          <p-progressSpinner></p-progressSpinner>
+        </div>
+        <div class="row mt45" *ngIf="ready">
           <div class="col-lg-9" *ngFor="let zone of filteredMarkets | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalItems}">
             <div class="border">
               <div class="pb60">
                 <h2 class="mb0">
-                  <a class="inline-link" [routerLink]="['/markets', zone]">
-                    <span>{{ zone }}</span>
+                  <a class="inline-link" [routerLink]="['/markets', zone.Nom]">
+                    <span>{{ zone.Nom }}</span>
                   </a>
                 </h2>
               </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {mark} from '@angular/compiler-cli/src/ngtsc/perf/src/clock';
+import {MarketsService} from '../services/markets.service';
 
 @Component({
   selector: 'app-markets',
@@ -8,34 +9,8 @@ import {mark} from '@angular/compiler-cli/src/ngtsc/perf/src/clock';
 })
 export class MarketsComponent implements OnInit {
 
-  markets: any[] = [
-    {letter: 'A', zone: []},
-    {letter: 'B', zone: []},
-    {letter: 'C', zone: ['CEMAC', 'CEDEAO']},
-    {letter: 'D', zone: []},
-    {letter: 'E', zone: []},
-    {letter: 'F', zone: []},
-    {letter: 'G', zone: []},
-    {letter: 'H', zone: []},
-    {letter: 'I', zone: []},
-    {letter: 'J', zone: []},
-    {letter: 'K', zone: []},
-    {letter: 'L', zone: []},
-    {letter: 'M', zone: []},
-    {letter: 'N', zone: []},
-    {letter: 'O', zone: []},
-    {letter: 'P', zone: []},
-    {letter: 'Q', zone: []},
-    {letter: 'R', zone: []},
-    {letter: 'S', zone: []},
-    {letter: 'T', zone: []},
-    {letter: 'U', zone: ['UE', 'UMEOA']},
-    {letter: 'V', zone: []},
-    {letter: 'W', zone: []},
-    {letter: 'X', zone: []},
-    {letter: 'Y', zone: []},
-    {letter: 'Z', zone: ['ZLECAF']}
-  ];
+  alphabet: any[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  markets: any[];
 
   filteredMarkets: any[] = [];
 
@@ -43,12 +18,27 @@ export class MarketsComponent implements OnInit {
   numberOfElement;
   totalItems = 0;
   openedList = false;
+  ready = false;
   page = 1;
 
-  constructor() { }
+  constructor(private marketsService: MarketsService) { }
 
   ngOnInit(): void {
-    this.filter('ALL');
+    this.getMarkets();
+  }
+
+  getMarkets(): void {
+    const markets = [];
+    this.ready = false;
+    this.marketsService.getMarketsFromServer().subscribe((data) => {
+      for (const beginLetter of this.alphabet) {
+        const marketsName = data.filter((market) => market.Nom[0] === beginLetter);
+        markets.push({letter: beginLetter, zone: marketsName});
+      }
+      this.markets = markets;
+      this.ready = true;
+      this.filter('ALL');
+    });
   }
 
   filter(letter: any): void {
@@ -70,7 +60,7 @@ export class MarketsComponent implements OnInit {
           element.zone.forEach((zone) => {
             this.filteredMarkets.push(zone);
           });
-          this.totalItems = element.industry.length;
+          this.totalItems = element.zone.length;
         }
       });
     }

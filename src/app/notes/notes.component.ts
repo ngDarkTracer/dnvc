@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {IndustriesService} from '../services/industries.service';
 
 @Component({
   selector: 'app-notes',
@@ -7,69 +8,58 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotesComponent implements OnInit {
 
-  notes: any[] = [
-    {letter: 'A', notes: ['Arachides']},
-    {letter: 'B', notes: ['Banane', 'Banane-plantain']},
-    {letter: 'C', notes: ['Cacao', 'Café']},
-    {letter: 'D', notes: []},
-    {letter: 'E', notes: []},
-    {letter: 'F', notes: []},
-    {letter: 'G', notes: []},
-    {letter: 'H', notes: []},
-    {letter: 'I', notes: []},
-    {letter: 'J', notes: []},
-    {letter: 'K', notes: []},
-    {letter: 'L', notes: []},
-    {letter: 'M', notes: []},
-    {letter: 'N', notes: []},
-    {letter: 'O', notes: []},
-    {letter: 'P', notes: []},
-    {letter: 'Q', notes: []},
-    {letter: 'R', notes: []},
-    {letter: 'S', notes: []},
-    {letter: 'T', notes: []},
-    {letter: 'U', notes: []},
-    {letter: 'V', notes: []},
-    {letter: 'W', notes: []},
-    {letter: 'X', notes: []},
-    {letter: 'Y', notes: []},
-    {letter: 'Z', notes: []}
-  ];
+  alphabet: any[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  industries: any[];
 
-  filteredNotes: any[] = [];
+  filteredIndustries: any[] = [];
 
   beginLetter = 'ALL';
   numberOfElement;
   totalItems = 0;
   openedList = false;
+  ready = false;
   page = 1;
 
-  constructor() { }
+  constructor(private industriesService: IndustriesService) { }
 
   ngOnInit(): void {
-    this.filter('ALL');
+    this.getSectors();
+  }
+
+  getSectors(): void {
+    const sectors = [];
+    this.ready = false;
+    this.industriesService.getSectorsFromServer().subscribe((data) => {
+      for (const beginLetter of this.alphabet) {
+        const sectorsName = data.filter((sect) => sect.Name[0] === beginLetter);
+        sectors.push({letter: beginLetter, industry: sectorsName});
+      }
+      this.industries = sectors;
+      this.ready = true;
+      this.filter('ALL');
+    });
   }
 
   filter(letter: any): void {
     this.numberOfElement = 0;
     this.totalItems = 0;
     this.page = 1;
-    this.filteredNotes = [];
+    this.filteredIndustries = [];
     this.beginLetter = letter;
     if (letter === 'ALL') {
-      this.notes.forEach((element) => {
-        element.notes.forEach((notes) => {
-          this.filteredNotes.push(notes);
+      this.industries.forEach((element) => {
+        element.industry.forEach((industry) => {
+          this.filteredIndustries.push(industry);
         });
-        this.totalItems += element.notes.length;
+        this.totalItems += element.industry.length;
       });
     } else {
-      this.notes.forEach((element) => {
+      this.industries.forEach((element) => {
         if (element.letter === letter) {
-          element.notes.forEach((notes) => {
-            this.filteredNotes.push(notes);
+          element.industry.forEach((industry) => {
+            this.filteredIndustries.push(industry);
           });
-          this.totalItems = element.notes.length;
+          this.totalItems = element.industry.length;
         }
       });
     }

@@ -5,6 +5,7 @@ import { NotesRoutingModule } from './notes-routing.module';
 import { NotesComponent } from './notes.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {TranslateModule} from "@ngx-translate/core";
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {TranslateModule} from "@ngx-translate/core";
         CommonModule,
         NotesRoutingModule,
         NgxPaginationModule,
-        TranslateModule
+        TranslateModule,
+        ProgressSpinnerModule
     ]
 })
 export class NotesModule { }

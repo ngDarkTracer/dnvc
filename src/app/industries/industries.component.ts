@@ -24,10 +24,10 @@ export class IndustriesComponent implements OnInit {
   constructor(private industriesService: IndustriesService) { }
 
   ngOnInit(): void {
-    this.getSector();
+    this.getSectors();
   }
 
-  getSector(): void {
+  getSectors(): void {
     const sectors = [];
     this.ready = false;
     this.industriesService.getSectorsFromServer().subscribe((data) => {
