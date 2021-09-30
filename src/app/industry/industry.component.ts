@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ViewportScroller} from '@angular/common';
 import {BreakpointObserver} from '@angular/cdk/layout';
@@ -24,9 +24,10 @@ export class IndustryComponent implements OnInit {
   sectorIntroText = '';
   lastUpdate = '';
   filterValue = 'ALL';
-  actualDate = new Date().toLocaleDateString();
   totalItems = 0;
   page = 1;
+  sticky;
+  stickyMenu = false;
   openedMenu = false;
   isSmallScreen = false;
   ready = false;
@@ -42,6 +43,9 @@ export class IndustryComponent implements OnInit {
   temp: any[];
 
   filter(item: any, elt?: any): void {
+    document.getElementById('top').scrollIntoView({
+      behavior: 'smooth'
+    });
     document.querySelectorAll('.active-item').forEach((i) => {
       i.classList.remove('active-item');
     });
@@ -71,6 +75,7 @@ export class IndustryComponent implements OnInit {
 
   ngOnInit(): void {
     const url = this.activatedRoute.snapshot.paramMap.get('industry');
+    this.sticky = document.getElementById('jump-nav');
     this.currentIndustriy = url;
     this.getSectorProperties(url);
 
@@ -132,6 +137,15 @@ export class IndustryComponent implements OnInit {
             this.filter('ALL', all);
           });
     });
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll($event): void {
+    if (window.pageYOffset >= 1130) {
+      this.stickyMenu = true;
+    } else {
+      this.stickyMenu = false;
+    }
   }
 
   open(): void {
