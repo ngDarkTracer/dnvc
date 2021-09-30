@@ -10,7 +10,7 @@ export class NotesComponent implements OnInit {
   notes: any[] = [
     {letter: 'A', notes: ['Arachides']},
     {letter: 'B', notes: ['Banane', 'Banane-plantain']},
-    {letter: 'C', notes: ['Cacao', 'Cafe']},
+    {letter: 'C', notes: ['Cacao', 'Café']},
     {letter: 'D', notes: []},
     {letter: 'E', notes: []},
     {letter: 'F', notes: []},

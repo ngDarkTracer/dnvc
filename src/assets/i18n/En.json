@@ -75,6 +75,20 @@
     "next": "Next"
   },
 
+  "note": {
+    "link": "All monitoring notes",
+    "last_update": "Last update",
+    "description": "En: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores, consequuntur culpa eius eligendi enim eos esse excepturi, fugit id itaque laboriosam molestiae nam nesciunt nisi nobis nostrum obcaecati optio pariatur provident, quasi quibusdam rem sint vero voluptate! Asperiores atque dignissimos dolore illo impedit perferendis quia quod reiciendis rerum sit.",
+    "content": "Content",
+    "All": "All monitoring notes",
+    "alerts": "Monitoring notes",
+    "followed_by": "Followed by",
+    "market": "Market(s)",
+    "source": "Source",
+    "previous": "Previous",
+    "next": "Next"
+  },
+
   "about": {
     "title": "About",
     "tools": "About this tool"

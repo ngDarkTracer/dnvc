@@ -16,10 +16,11 @@
 </section>
 
 <section class="background-grid-white"><div class="container teaser-container"><div class="header-subsection-date-section d-flex">
-  <label class="header-subsection-date">Derniere mise a jour: {{ actualDate }}</label>
+  <label class="header-subsection-date">{{ 'note.last_update' | translate }}: {{ lastUpdate }}</label>
 </div>
-  <div class="row align-items-center justify-content-between"><div class="col-sm-12 col-md-5 teaser-context pv120-90">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores, consequuntur culpa eius eligendi enim eos esse excepturi, fugit id itaque laboriosam molestiae nam nesciunt nisi nobis nostrum obcaecati optio pariatur provident, quasi quibusdam rem sint vero voluptate! Asperiores atque dignissimos dolore illo impedit perferendis quia quod reiciendis rerum sit.
+  <p-progressSpinner *ngIf="!ready"></p-progressSpinner>
+  <div class="row align-items-center justify-content-between" *ngIf="ready"><div class="col-sm-12 col-md-5 teaser-context pv120-90">
+    {{ noteIntroText }}
   </div>
     <div class="col-sm-12 col-md-5 order-first teaser-image pv120-90"><div class="fade-in-section disable-fade-in is-visible">
       <div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden; max-width: 533px; max-height: 400px;">
@@ -54,19 +55,19 @@
 </section>
 
 
-<div class="border-top-black is-visible">
+<div class="border-top-black is-visible" id="top">
   <section class="content-section-mobile background-white">
     <div class="container content_nav-container">
       <div class="row">
         <div class="col-lg-4 col-md-12 col-sm-12 d-md-block pt120 mb45">
           <div class="jump-nav">
             <div class="fade-in-section disable-fade-in is-visible">
-              <div class="jump-nav__container">
+              <div class="jump-nav__container" id="jump-nav" [ngClass]="{'sticky':stickyMenu && isSmallScreen}">
                 <div class="jump-nav__header">
                   <div>
-                    <div class="label">Contenu</div>
+                    <div class="label">{{ 'note.content' | translate }}</div>
                     <h2 class="h6 bold mb0 d-block d-md-none" *ngIf="filterValue !== 'ALL'">{{ filterValue }}</h2>
-                    <h2 class="h6 bold mb0 d-block d-md-none" *ngIf="filterValue === 'ALL'">Toutes les notes</h2>
+                    <h2 class="h6 bold mb0 d-block d-md-none" *ngIf="filterValue === 'ALL'">{{ 'note.All' | translate }}</h2>
                   </div>
                   <div class="jump-nav__mobile" *ngIf="isSmallScreen">
                     <button class="jump-nav__mobile-button" (click)="open()">
@@ -80,7 +81,7 @@
                 <ul class="jump-nav__items" [ngClass]="{'d-block':openedMenu}">
                   <h6 class="mb0 pt15 jump-nav__item-wrapper" #elt id="all">
                     <div>
-                      <a class="jump-nav__item bold" style="cursor: pointer" (click)="filter('ALL', elt)">Toutes les notes de veilles</a>
+                      <a class="jump-nav__item bold" style="cursor: pointer" (click)="filter('ALL', elt)">{{ 'note.All' | translate }}</a>
                     </div>
                   </h6>
                   <h6 class="mb0 pt15 jump-nav__item-wrapper" *ngFor="let item of content">
@@ -94,10 +95,11 @@
           </div>
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12 border-left-black pb120-90 pt120-45 content-area-content">
-          <div class="free-form-content__content wysiwyg-wrapper">
+          <p-progressSpinner *ngIf="!ready"></p-progressSpinner>
+          <div class="free-form-content__content wysiwyg-wrapper" *ngIf="ready">
             <div>
-              <h2 class="pb100" *ngIf="filterValue === 'ALL'">Notes de veille [Toutes les notes]</h2>
-              <h2 class="pb100" *ngIf="filterValue !== 'ALL'">Notes de veille [{{ filterValue }}]</h2>
+              <h2 class="pb100" *ngIf="filterValue === 'ALL'">{{ 'note.alerts' | translate }} [{{ 'note.All' | translate }}]</h2>
+              <h2 class="pb100" *ngIf="filterValue !== 'ALL'">{{ 'note.alerts' | translate }} [{{ filterValue }}]</h2>
               <div *ngFor="let con of filteredNotes  | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalItems}">
                 <div>
                   <div>
@@ -114,8 +116,8 @@
                             <div class="thee-link-container">
                               <div>
                                 <div class="wfb-card__link-container">
-                                  <div class="wfb-card__text col-md-4"><p style="color: darkgray; font-size: 14px">{{ con.date }}</p></div>
-                                  <div class="wfb-card__text col-md-8"><p style="color: darkgray; font-size: 14px">Partagé par: {{ con.author }}</p></div>
+                                  <div class="wfb-card__text col-md-4"><p style="color: darkgray; font-size: 14px">Publié le: {{ con.date }}</p></div>
+                                  <div class="wfb-card__text col-md-8"><p style="color: darkgray; font-size: 14px">{{ 'note.followed_by' | translate }}: {{ con.author }}</p></div>
                                 </div>
                               </div>
                             </div>
@@ -127,7 +129,11 @@
                             <div class="thee-link-container">
                               <div>
                                 <div class="wfb-card__link-container">
-                                  <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6"><p style="color: darkgray; font-size: 14px">Marchés: CEMAC, CEDEAO</p></div>
+                                  <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6"><p style="color: darkgray; font-size: 14px">{{ 'note.market' | translate }}:
+                                    <span *ngFor="let market of con.markets">{{ market.Nom }}<span *ngIf="!(market.Nom === con.markets[con.markets.length - 1].Nom)">, </span>
+                                    </span>
+                                  </p>
+                                  </div>
                                   <div class="wfb-card__text col-xl-4 col-lg-4 col-md-4"><p style="position: absolute; right: 0; top: -12px;color: darkgray; font-size: 14px">Source: </p></div>
                                   <button class="wfb-card__icon pdf col-xl-2 col-lg-2 col-md-2" style="margin: 0; border: none" href="#" target="_blank">
                                     <svg class="icon" role="img" aria-labelledby="file-icon" viewBox="0 0 30 30">
