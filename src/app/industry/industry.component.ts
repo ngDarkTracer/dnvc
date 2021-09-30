@@ -26,7 +26,6 @@ export class IndustryComponent implements OnInit {
   filterValue = 'ALL';
   totalItems = 0;
   page = 1;
-  sticky;
   stickyMenu = false;
   openedMenu = false;
   isSmallScreen = false;
@@ -75,7 +74,6 @@ export class IndustryComponent implements OnInit {
 
   ngOnInit(): void {
     const url = this.activatedRoute.snapshot.paramMap.get('industry');
-    this.sticky = document.getElementById('jump-nav');
     this.currentIndustriy = url;
     this.getSectorProperties(url);
 
