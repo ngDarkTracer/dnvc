@@ -15,6 +15,6 @@ export class MarketsService {
   }
 
   getSingleMarketFromServer(market: string): Observable<any> {
-    return this.httpClient.get<any[]>(this.serverAdress + 'alertes?marches=' + market, { responseType: 'json' });
+    return this.httpClient.get<any[]>(this.serverAdress + 'alertes&marches=' + market, { responseType: 'json' });
   }
 }

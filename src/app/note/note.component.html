@@ -4,7 +4,7 @@
       <div class="row pv90-60">
         <div class="col-sm-12 col-md-8 hero-splash">
           <a class="hero-parent-title crown-link" routerLink="/notes">
-            <h3 class="h1 small mb0 d-inline">Toutes les notes de veilles</h3>
+            <h3 class="h1 small mb0 d-inline">{{ 'note.All' | translate }}</h3>
           </a>
           <h1 class="hero-title" style="color: white">{{ currentNote }}</h1>
         </div>
@@ -116,7 +116,7 @@
                             <div class="thee-link-container">
                               <div>
                                 <div class="wfb-card__link-container">
-                                  <div class="wfb-card__text col-md-4"><p style="color: darkgray; font-size: 14px">Publié le: {{ con.date }}</p></div>
+                                  <div class="wfb-card__text col-md-4"><p style="color: darkgray; font-size: 14px">{{ 'note.publish' | translate }}: {{ con.date }}</p></div>
                                   <div class="wfb-card__text col-md-8"><p style="color: darkgray; font-size: 14px">{{ 'note.followed_by' | translate }}: {{ con.author }}</p></div>
                                 </div>
                               </div>

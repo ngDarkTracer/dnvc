@@ -140,7 +140,7 @@ export class NoteComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   onWindowScroll($event): void {
-    if (window.pageYOffset >= 1130) {
+    if (window.pageYOffset >= 1120) {
       this.stickyMenu = true;
     } else {
       this.stickyMenu = false;

@@ -32,7 +32,7 @@ export class MarketsComponent implements OnInit {
     this.ready = false;
     this.marketsService.getMarketsFromServer().subscribe((data) => {
       for (const beginLetter of this.alphabet) {
-        const marketsName = data.filter((market) => market.Nom[0] === beginLetter);
+        const marketsName = data.filter((market) => market.Nom[0].toUpperCase() === beginLetter);
         markets.push({letter: beginLetter, zone: marketsName});
       }
       this.markets = markets;

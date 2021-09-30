@@ -32,7 +32,7 @@ export class IndustriesComponent implements OnInit {
     this.ready = false;
     this.industriesService.getSectorsFromServer().subscribe((data) => {
       for (const beginLetter of this.alphabet) {
-        const sectorsName = data.filter((sect) => sect.Name[0] === beginLetter);
+        const sectorsName = data.filter((sect) => sect.Name[0].toUpperCase() === beginLetter);
         sectors.push({letter: beginLetter, industry: sectorsName});
       }
       this.industries = sectors;

@@ -5,6 +5,7 @@ import { MarketRoutingModule } from './market-routing.module';
 import { MarketComponent } from './market.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {TranslateModule} from '@ngx-translate/core';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {TranslateModule} from '@ngx-translate/core';
         CommonModule,
         MarketRoutingModule,
         NgxPaginationModule,
-        TranslateModule
+        TranslateModule,
+        ProgressSpinnerModule
     ]
 })
 export class MarketModule { }
