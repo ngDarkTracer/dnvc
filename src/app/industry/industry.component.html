@@ -62,7 +62,7 @@
         <div class="col-lg-4 col-md-12 col-sm-12 d-md-block pt120 mb45">
           <div class="jump-nav">
             <div class="fade-in-section disable-fade-in is-visible">
-            <div class="jump-nav__container" id="jump-nav" [ngClass]="{'sticky':stickyMenu}">
+            <div class="jump-nav__container" id="jump-nav" [ngClass]="{'sticky':stickyMenu && isSmallScreen}">
               <div class="jump-nav__header">
                 <div>
                   <div class="label">{{ 'sector.content' | translate }}</div>
