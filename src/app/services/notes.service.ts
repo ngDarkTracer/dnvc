@@ -7,10 +7,10 @@ import {Observable} from 'rxjs';
 })
 export class NotesService {
 
-  serverAdress = 'https://14639f6e-6b9e-4361-8143-54d2a61557d9.mock.pstmn.io/';
+  serverAdress = 'https://dnvc-admin.herokuapp.com/';
   constructor(private httpClient: HttpClient) { }
 
   getSingleNoteFromServer(sector: string): Observable<any> {
-    return this.httpClient.get<any[]>(this.serverAdress + 'notes&filieres=' + sector, { responseType: 'json' });
+    return this.httpClient.get<any[]>(this.serverAdress + 'notes-de-veilles?_sort=Title:ASC&_locale=en&_where[0][Filieres.Name]=' + sector, { responseType: 'json' });
   }
 }

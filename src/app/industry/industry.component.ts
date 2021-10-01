@@ -19,7 +19,7 @@ export class IndustryComponent implements OnInit {
               private industriesService: IndustriesService) { }
 
   currentIndustriy: string;
-  serverAdress = '';
+  serverAdress = 'https://dnvc-admin.herokuapp.com';
   sectorImageUrl = '';
   sectorIntroText = '';
   lastUpdate = '';
@@ -29,6 +29,7 @@ export class IndustryComponent implements OnInit {
   stickyMenu = false;
   openedMenu = false;
   isSmallScreen = false;
+  isThereAlert = true;
   ready = false;
 
   severity = {
@@ -88,7 +89,14 @@ export class IndustryComponent implements OnInit {
 
   getSectorProperties(url: string): void {
     this.ready = false;
+    this.isThereAlert = true;
     this.industriesService.getSingleSectorFromServer(url).subscribe((data) => {
+      if (data.length === 0) {
+        this.isThereAlert = false;
+      } else {
+        this.isThereAlert = true;
+      }
+
       this.temp = data;
       from(this.temp)
         .pipe(

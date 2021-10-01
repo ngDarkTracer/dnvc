@@ -18,7 +18,7 @@ export class MarketComponent implements OnInit {
               private marketsService: MarketsService) { }
 
   currentMarket: string;
-  serverAdress = '';
+  serverAdress = 'https://dnvc-admin.herokuapp.com';
   marketImageUrl = '';
   marketIntroText = '';
   lastUpdate = '';
@@ -28,6 +28,7 @@ export class MarketComponent implements OnInit {
   stickyMenu = false;
   openedMenu = false;
   isSmallScreen = false;
+  isThereAlert = true;
   ready = false;
 
   severity = {
@@ -87,7 +88,14 @@ export class MarketComponent implements OnInit {
 
   getMarketProperties(url: string): void {
     this.ready = false;
+    this.isThereAlert = true;
     this.marketsService.getSingleMarketFromServer(url).subscribe((data) => {
+      if (data.length === 0) {
+        this.isThereAlert = false;
+      } else {
+        this.isThereAlert = true;
+      }
+
       this.temp = data;
       from(this.temp)
         .pipe(
@@ -99,11 +107,11 @@ export class MarketComponent implements OnInit {
             const tempContent = [];
             val.forEach((elt) => {
               if (this.marketImageUrl === '' || this.marketIntroText === '') {
-                for (let i = 0; i < elt.Filieres.length; i++) {
-                  if (elt.Filieres[i].Name === url) {
-                    this.marketImageUrl = this.serverAdress + elt.Filieres[i].Photo.formats.large.url;
-                    this.marketIntroText = elt.Filieres[i].Intro;
-                    this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
+                for (let i = 0; i < elt.Marches.length; i++) {
+                  if (elt.Marches[i].Nom === url) {
+                    this.marketImageUrl = this.serverAdress + elt.Marches[i].Logo_Large[0].url;
+                    this.marketIntroText = elt.Marches[i].Intro;
+                    this.lastUpdate = elt.Marches[i].updated_at.split('T')[0];
                     break;
                   }
                 }

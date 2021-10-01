@@ -7,14 +7,14 @@ import {Observable} from 'rxjs';
 })
 export class IndustriesService {
 
-  serverAdress = 'https://14639f6e-6b9e-4361-8143-54d2a61557d9.mock.pstmn.io/';
+  serverAdress = 'https://dnvc-admin.herokuapp.com/';
   constructor(private httpClient: HttpClient) { }
 
   getSectorsFromServer(): Observable<any> {
-    return this.httpClient.get<any[]>(this.serverAdress + 'filieres', { responseType: 'json' });
+    return this.httpClient.get<any[]>(this.serverAdress + 'filieres?_sort=Name:ASC', { responseType: 'json' });
   }
 
   getSingleSectorFromServer(sector: string): Observable<any> {
-    return this.httpClient.get<any[]>(this.serverAdress + 'alertes&filiere=' + sector, { responseType: 'json' });
+    return this.httpClient.get<any[]>(this.serverAdress + 'alertes?_sort=Title:ASC&_locale=en&_where[0][Filieres.Name]=' + sector, { responseType: 'json' });
   }
 }

@@ -19,7 +19,7 @@ export class NoteComponent implements OnInit {
               private notesService: NotesService) { }
 
   currentNote: string;
-  serverAdress = '';
+  serverAdress = 'https://dnvc-admin.herokuapp.com';
   noteImageUrl = '';
   noteIntroText = '';
   lastUpdate = '';
@@ -29,6 +29,7 @@ export class NoteComponent implements OnInit {
   stickyMenu = false;
   openedMenu = false;
   isSmallScreen = false;
+  isThereNote = true;
   ready = false;
 
   severity = {
@@ -89,7 +90,14 @@ export class NoteComponent implements OnInit {
 
   getNoteProperties(url: string): void {
     this.ready = false;
+    this.isThereNote = true;
     this.notesService.getSingleNoteFromServer(url).subscribe((data) => {
+      if (data.length === 0) {
+        this.isThereNote = false;
+      } else {
+        this.isThereNote = true;
+      }
+
       this.temp = data;
       from(this.temp)
         .pipe(
