@@ -174,11 +174,11 @@
               "projects/admin-app/src/assets"
             ],
             "styles": [
+              "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "projects/admin-app/src/styles/wfb-style.css",
               "projects/admin-app/src/styles/typography.css",
-              "projects/admin-app/src/styles.scss",
-              "node_modules/primeng/resources/themes/saga-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css"
+              "projects/admin-app/src/styles.scss"
             ],
             "scripts": []
           },
@@ -241,11 +241,11 @@
               "projects/admin-app/src/assets"
             ],
             "styles": [
+              "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "projects/admin-app/src/styles/wfb-style.css",
               "projects/admin-app/src/styles/typography.css",
-              "projects/admin-app/src/styles.scss",
-              "node_modules/primeng/resources/themes/saga-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css"
+              "projects/admin-app/src/styles.scss"
             ],
             "scripts": []
           }

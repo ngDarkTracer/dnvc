@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SubscribeRoutingModule } from './subscribe-routing.module';
 import { SubscribeComponent } from './subscribe.component';
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,9 @@ import { SubscribeComponent } from './subscribe.component';
   ],
   imports: [
     CommonModule,
-    SubscribeRoutingModule
+    SubscribeRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class SubscribeModule { }

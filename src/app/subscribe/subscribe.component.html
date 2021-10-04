@@ -14,3 +14,33 @@
     </div>
   </div>
 </section>
+<div class="border-top-black is-visible">
+  <section class="content-section-mobile background-white pt-5" style="height: 80vh">
+    <form [formGroup]="subscriptionForm" (ngSubmit)="submit()" class="search-input-wrapper col-12 col-sm-5" style="margin: 0 auto;">
+      <label for="name" class="mb-2">Nom</label>
+      <div class="search-input white-bg mb-5" id="name">
+        <input type="text" class="search-input-field white-bg" formControlName="name">
+      </div>
+
+      <label for="surname" class="mb-2">Prenom</label>
+      <div class="search-input white-bg mb-5" id="surname">
+        <input type="text" class="search-input-field white-bg" formControlName="name">
+      </div>
+
+      <label for="email" class="mb-2">Email</label>
+      <div class="search-input white-bg mb-5" id="email">
+        <input type="email" class="search-input-field white-bg" formControlName="name">
+      </div>
+
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap">
+        <div class="search-input">
+          <select class="search-input-field white-bg" style="padding: 10px 40px" name="filiere" id="filiere">
+            <option value="Ananas">Ananas</option>
+            <option value="Banane">Banane</option>
+            <option value="Cacao">Cacao</option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </section>
+</div>

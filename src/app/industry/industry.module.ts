@@ -5,7 +5,7 @@ import { IndustryRoutingModule } from './industry-routing.module';
 import { IndustryComponent } from './industry.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {TranslateModule} from '@ngx-translate/core';
-import {ProgressSpinnerModule} from "primeng/progressspinner";
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 
 @NgModule({
