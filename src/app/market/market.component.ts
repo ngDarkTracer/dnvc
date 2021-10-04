@@ -124,7 +124,7 @@ export class MarketComponent implements OnInit {
                   title: elt.Title,
                   text: elt.Resume,
                   sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
-                  source: elt.SourceFile.length === 0 ? elt.sourceUrl : elt.sourceFile,
+                  source: elt.SourceFile.length === 0 ? elt.sourceUrl : this.serverAdress + elt.SourceFile[0].url,
                   markets: elt.Marches
                 }
               );
