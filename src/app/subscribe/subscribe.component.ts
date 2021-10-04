@@ -10,6 +10,9 @@ export class SubscribeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    document.getElementById('top').scrollIntoView({
+      behavior: 'smooth'
+    });
   }
 
 }

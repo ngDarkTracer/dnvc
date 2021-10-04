@@ -157,4 +157,8 @@ export class IndustryComponent implements OnInit {
   open(): void {
     this.openedMenu = !this.openedMenu;
   }
+
+  redirectTo(url: any): void {
+    window.open(url, '_blank');
+  }
 }

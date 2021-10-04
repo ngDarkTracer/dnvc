@@ -159,4 +159,7 @@ export class NoteComponent implements OnInit {
     this.openedMenu = !this.openedMenu;
   }
 
+  redirectTo(url: any): void {
+    window.open(url, '_blank');
+  }
 }
