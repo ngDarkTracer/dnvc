@@ -71,18 +71,26 @@
                 <div class="row">
                   <div class="col-12 col-md-3">
                     <noscript>
-                      <a href="#" class="button button-default button-stack" target="_blank" rel="noopener noreferrer">Report Information</a>
+                      <a href="#" class="button button-default button-stack" target="_blank" rel="noopener noreferrer">{{ 'footer.publish' | translate }}</a>
                     </noscript>
                     <div class="no-show">
                       <button class="button button-default button-stack noShow">{{ 'footer.publish' | translate }}</button>
                     </div>
                   </div>
-                  <div class="col-12 col-md-6">
+                  <div class="col-12 col-md-3 mb-3">
                     <noscript>
-                      <a href="#" class="button button-default button-stack" target="_blank" rel="noopener noreferrer">Contactez-nous</a>
+                      <a href="#" class="button button-default button-stack" target="_blank" rel="noopener noreferrer">{{ 'footer.contact' | translate }}</a>
                     </noscript>
                     <div class="no-show">
                       <button class="button button-default noShow">{{ 'footer.contact' | translate }}</button>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-3">
+                    <noscript>
+                      <a routerLink="/subscribe" class="button button-default button-stack" target="_blank" rel="noopener noreferrer">{{ 'footer.subscribe' | translate }}</a>
+                    </noscript>
+                    <div class="no-show">
+                      <button class="button button-default noShow" routerLink="/subscribe">{{ 'footer.subscribe' | translate }}</button>
                     </div>
                   </div>
                   <div class="col-12 col-lg-3 footer-media-links-section">

@@ -51,7 +51,6 @@
 </div>
 </section>
 
-
 <div class="border-top-black is-visible" id="top">
   <section class="content-section-mobile background-white">
     <div class="container content_nav-container">
@@ -112,9 +111,9 @@
                             </div>
                             <div class="thee-link-container">
                               <div>
-                                <div class="wfb-card__link-container">
-                                  <div class="wfb-card__text col-md-4"><p style="color: darkgray; font-size: 14px">{{ 'sector.publish' | translate }}: {{ con.date }}</p></div>
-                                  <div class="wfb-card__text col-md-8"><p style="color: darkgray; font-size: 14px">{{ 'sector.followed_by' | translate }}: {{ con.author }}</p></div>
+                                <div class="wfb-card__link-container" style="display: flex; flex-direction: row; flex-wrap: wrap">
+                                  <div class="wfb-card__text mr-5 mb-1 mt-1"><p style="color: darkgray; font-size: 14px">{{ 'sector.publish' | translate }}: {{ con.date }}</p></div>
+                                  <div class="wfb-card__text mb-1 mt-1"><p style="color: darkgray; font-size: 14px">{{ 'sector.followed_by' | translate }}: {{ con.author }}</p></div>
                                 </div>
                               </div>
                             </div>
@@ -125,25 +124,17 @@
                             </h6>
                             <div class="thee-link-container">
                               <div>
-                                <div class="wfb-card__link-container">
-                                  <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6"><p style="color: darkgray; font-size: 14px">{{ 'sector.market' | translate }}:
-                                    <span *ngFor="let market of con.markets">{{ market.Nom }}<span *ngIf="!(market.Nom === con.markets[con.markets.length - 1].Nom)">, </span>
-                                    </span>
-                                  </p>
+                                <div class="wfb-card__link-container" style="display: flex; flex-direction: row; flex-wrap: wrap">
+                                  <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6 mb-1 mt-1 mr-auto">
+                                    <p style="color: darkgray; font-size: 14px">{{ 'sector.market' | translate }}:
+                                      <span *ngFor="let market of con.markets">{{ market.Nom }}<span *ngIf="!(market.Nom === con.markets[con.markets.length - 1].Nom)">, </span></span>
+                                    </p>
                                   </div>
-                                  <div class="wfb-card__text col-xl-4 col-lg-4 col-md-4"><p style="position: absolute; right: 0; top: -12px;color: darkgray; font-size: 14px">{{ 'sector.source' | translate }}: </p></div>
-                                  <button class="wfb-card__icon pdf col-xl-2 col-lg-2 col-md-2" style="margin: 0; border: none" href="#" target="_blank">
-                                    <svg class="icon" role="img" aria-labelledby="file-icon" viewBox="0 0 30 30">
-                                      <title>file-icon</title>
-                                      <path d="M16.667,7 L9,7 L9,24 L22,24 L22,12.308 L16.667,7 Z M17,8.742 L20.273,12 L17,12 L17,8.742 Z M10,23 L10,8 L16,8 L16,13 L21,13 L21,23 L10,23 Z" fill="#161618" fill-rule="nonzero"></path>
-                                    </svg>
-                                  </button>
-<!--                                  <i class=" col-xl-2 col-lg-2 col-md-2" style="margin: 0; border: none; transform: rotate(-45deg);" target="_blank" *ngIf="con.sourceType === 'url'">-->
-<!--                                    <svg class="icon" aria-labelledby="arrow-right-icon" role="img" viewBox="0 0 30 30">-->
-<!--                                      <title>Arrow Right Icon</title>-->
-<!--                                      <polygon fill="#161618" fill-rule="nonzero" points="22.707 15.354 15.353 22.708 14.646 22.001 20.792 15.855 8 15.855 8 14.855 20.793 14.855 14.646 8.707 15.353 8"></polygon>-->
-<!--                                    </svg>-->
-<!--                                  </i>-->
+                                  <div class="wfb-card__text col-xl-4 col-lg-4 col-md-4 mb-1 mt-1">
+                                    <p style="color: darkgray; font-size: 14px">{{ 'sector.source' | translate }}:
+
+                                    </p>
+                                  </div>
                                 </div>
                               </div>
                             </div>
