@@ -15,7 +15,7 @@
   </div>
 </section>
 <div class="border-top-black is-visible">
-  <section class="content-section-mobile background-white pt-5" style="height: 80vh">
+  <section class="content-section-mobile background-white pt-5" style="height: 150vh">
     <form [formGroup]="subscriptionForm" (ngSubmit)="submit()" class="search-input-wrapper col-12 col-sm-5" style="margin: 0 auto;">
       <label for="name" class="mb-2">Nom</label>
       <div class="search-input white-bg mb-5" id="name">
@@ -32,13 +32,18 @@
         <input type="email" class="search-input-field white-bg" formControlName="name">
       </div>
 
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap">
-        <div class="search-input">
-          <select class="search-input-field white-bg" style="padding: 10px 40px" name="filiere" id="filiere">
-            <option value="Ananas">Ananas</option>
-            <option value="Banane">Banane</option>
-            <option value="Cacao">Cacao</option>
-          </select>
+      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between">
+        <div class="mb-5">
+          <label for="sectors">Filières</label>
+          <p-multiSelect id="sectors" [options]="sectors" styleClass="search-input" defaultLabel="Selectionnez vos filières" optionLabel="name" selectedItemsLabel="{0} filiières selectionnées"></p-multiSelect>
+        </div>
+        <div class="mb-5">
+          <label for="markets">Marchés</label>
+          <p-multiSelect id="markets" [options]="markets" styleClass="search-input" defaultLabel="Selectionnez vos marchés" optionLabel="name" selectedItemsLabel="{0} marchés selectionnés"></p-multiSelect>
+        </div>
+        <div>
+          <label for="themes">Types d'alertes</label>
+          <p-multiSelect id="themes" [options]="themes" styleClass="search-input" defaultLabel="Selectionnez vos alertes" optionLabel="name" selectedItemsLabel="{0} alertes selectionnés"></p-multiSelect>
         </div>
       </div>
     </form>

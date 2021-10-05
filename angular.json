@@ -50,6 +50,9 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "src/styles/wfb-style.css",
               "src/styles/typography.css",
               "src/styles.scss"
@@ -115,6 +118,9 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/bootstrap4-light-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
               "src/styles/wfb-style.css",
               "src/styles/typography.css",
               "src/styles.scss"

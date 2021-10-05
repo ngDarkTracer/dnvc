@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { SubscribeRoutingModule } from './subscribe-routing.module';
 import { SubscribeComponent } from './subscribe.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MultiSelectModule} from 'primeng/multiselect';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     CommonModule,
     SubscribeRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MultiSelectModule
   ]
 })
 export class SubscribeModule { }
