@@ -100,6 +100,23 @@
     "tools": "About this tool"
   },
 
+  "subscribe": {
+    "name": "Name",
+    "surname": "Surname",
+    "tel": "Phone",
+    "mail": "Email",
+    "sectors": "Sectors",
+    "markets": "Markets",
+    "themes": "Alerts type",
+    "sectorsSelect": "Select your sector(s)",
+    "selectedSectors": "Selected sector(s)",
+    "marketsSelect": "Select your market(s)",
+    "selectedMarkets": "Selected market(s)",
+    "themesSelect": "Select your alert(s)",
+    "selectedThemes": "Selected alert(s)",
+    "send": "Send"
+  },
+
   "footer": {
     "publish": "Publish an alert",
     "contact": "Contact us",

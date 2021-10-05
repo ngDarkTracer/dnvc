@@ -100,6 +100,23 @@
     "tools": "A propos de Watcher"
   },
 
+  "subscribe": {
+    "name": "Nom",
+    "surname": "Prenom",
+    "tel": "Téléphone",
+    "mail": "Email",
+    "sectors": "Filières",
+    "markets": "Marchés",
+    "themes": "Types d'alerte",
+    "sectorsSelect": "Selectionnez vos filières",
+    "selectedSectors": "filiières selectionnées",
+    "marketsSelect": "Selectionnez vos marchés",
+    "selectedMarkets": "marchés selectionnés",
+    "themesSelect": "Selectionnez vos alertes",
+    "selectedThemes": "alerte(s) selectionné(s)",
+    "send": "Soumettre"
+  },
+
   "footer": {
     "publish": "Publier une alerte",
     "contact": "Contactez-nous",

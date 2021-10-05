@@ -5,6 +5,8 @@ import { SubscribeRoutingModule } from './subscribe-routing.module';
 import { SubscribeComponent } from './subscribe.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MultiSelectModule} from 'primeng/multiselect';
+import {ButtonModule} from 'primeng/button';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import {MultiSelectModule} from 'primeng/multiselect';
     SubscribeRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    MultiSelectModule
+    MultiSelectModule,
+    ButtonModule,
+    TranslateModule
   ]
 })
 export class SubscribeModule { }

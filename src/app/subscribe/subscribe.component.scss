@@ -9,8 +9,27 @@ label {
   min-width: 18rem;
   max-width: 18rem;
 
-  .p-multiselect-filter-container input {
+  .p-multiselect-filter-container {
     border-radius: 0;
   }
 
+}
+
+:host ::ng-deep .p-button {
+  border-radius: 0;
+  padding: 20px 20px;
+  min-width: 18rem;
+  max-width: 18rem;
+}
+
+:host ::ng-deep .p-button:hover {
+  background-color: #e21a41;
+}
+
+.body-growth {
+  height: 190vh;
+}
+
+.body-normal {
+  height: 120vh;
 }
