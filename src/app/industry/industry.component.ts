@@ -91,6 +91,7 @@ export class IndustryComponent implements OnInit {
     this.ready = false;
     this.isThereAlert = true;
     this.industriesService.getSingleSectorFromServer(url).subscribe((data) => {
+      console.log(data);
       if (data.length === 0) {
         this.isThereAlert = false;
       } else {

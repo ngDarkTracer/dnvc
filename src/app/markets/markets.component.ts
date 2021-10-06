@@ -24,6 +24,7 @@ export class MarketsComponent implements OnInit {
   constructor(private marketsService: MarketsService) { }
 
   ngOnInit(): void {
+    document.getElementById('top').scrollTop = 0;
     this.getMarkets();
   }
 

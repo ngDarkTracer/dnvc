@@ -1,6 +1,8 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {log} from 'util';
 import {TranslateService} from '@ngx-translate/core';
+import {IndustriesService} from '../services/industries.service';
+import {MarketsService} from '../services/markets.service';
+import {NotesService} from '../services/notes.service';
 
 @Component({
   selector: 'app-nav',
@@ -13,7 +15,10 @@ export class NavComponent implements OnInit {
   display = false;
   lastScrollValue = 0;
 
-  constructor(public translate: TranslateService) { }
+  constructor(public translate: TranslateService,
+              private industriesService: IndustriesService,
+              private marketsService: MarketsService,
+              private notesService: NotesService) { }
 
   ngOnInit(): void {
     document.body.removeAttribute('style');
@@ -49,6 +54,13 @@ export class NavComponent implements OnInit {
   }
 
   openAdminApp(): void {
-    window.open('https://dnvc-backend.herokuapp.com/', '_blank');
+    window.open('https://dnvc-admin.herokuapp.com/admin/', '_blank');
+  }
+
+  trans(value: string): void {
+    this.translate.use(value);
+    // this.industriesService.lang = value;
+    // this.marketsService.lang = value;
+    // this.notesService.lang = value;
   }
 }

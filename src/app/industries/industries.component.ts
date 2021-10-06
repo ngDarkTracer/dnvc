@@ -24,6 +24,7 @@ export class IndustriesComponent implements OnInit {
   constructor(private industriesService: IndustriesService) { }
 
   ngOnInit(): void {
+    document.getElementById('top').scrollTop = 0;
     this.getSectors();
   }
 
@@ -39,6 +40,7 @@ export class IndustriesComponent implements OnInit {
       this.ready = true;
       this.filter('ALL');
     });
+    console.log(sectors);
   }
 
   filter(letter: any): void {

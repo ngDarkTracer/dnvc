@@ -10,6 +10,6 @@ export class AppComponent {
   title = 'dnvc';
 
   constructor(private translate: TranslateService) {
-    translate.setDefaultLang('Fr');
+    translate.setDefaultLang('fr');
   }
 }

@@ -29,9 +29,7 @@ export class SubscribeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    document.getElementById('top').scrollIntoView({
-      behavior: 'smooth'
-    });
+    document.getElementById('top').scrollTop = 0;
     this.initForm();
 
     this.breakpointObserver.observe(['(max-width: 765px)']).subscribe(result => {
