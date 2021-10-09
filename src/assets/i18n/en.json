@@ -117,6 +117,12 @@
     "send": "Send"
   },
 
+  "confirm": {
+    "confirmation": "A confirmation email has been sent to your email address. While waiting for confirmation, you will be redirected to the home page.",
+    "error-header": "Error",
+    "error": "Sorry, this email address is already in use."
+  },
+
   "footer": {
     "publish": "Publish an alert",
     "contact": "Contact us",

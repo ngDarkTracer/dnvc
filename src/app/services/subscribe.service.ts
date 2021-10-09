@@ -23,4 +23,8 @@ export class SubscribeService {
   getMonitoringthemesFromserver(): Observable<any> {
     return this.httpClient.get<any[]>(this.serverAdress + 'themes-de-veilles?_sort=Nom:ASC', { responseType: 'json' });
   }
+
+  getContactsFromserver(): Observable<any> {
+    return this.httpClient.get<any[]>(this.serverAdress + 'contacts?_sort=Nom:ASC', { responseType: 'json' });
+  }
 }

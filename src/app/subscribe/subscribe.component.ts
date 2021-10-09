@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SubscribeService} from '../services/subscribe.service';
 import {BreakpointObserver} from '@angular/cdk/layout';
+import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -13,18 +15,24 @@ export class SubscribeComponent implements OnInit {
 
   subscriptionForm: FormGroup;
   isSmallScreen = false;
+  processing = false;
+  alreadyExist = false;
+  displayMaximizable = false;
 
   sectors = [];
   markets = [];
   themes = [];
+  contacts: any[];
 
-  selectedSectors: any[];
-  selectedMarkets: any[];
-  selectedThemes: any[];
+  selectedSectors = [];
+  selectedMarkets = [];
+  selectedThemes = [];
+
 
   constructor(private formBuilder: FormBuilder,
               private subscribeService: SubscribeService,
-              private breakpointObserver: BreakpointObserver) {
+              private breakpointObserver: BreakpointObserver,
+              private router: Router) {
 
   }
 
@@ -42,20 +50,24 @@ export class SubscribeComponent implements OnInit {
 
     this.subscribeService.getSectorsFromServer().subscribe((data) => {
       data.forEach((sector) => {
-        this.sectors.push({ name: sector.Name, code: sector.Name.slice(0, 3).toUpperCase() });
+        this.sectors.push(sector);
       });
     });
 
     this.subscribeService.getMarketsFromServer().subscribe((data) => {
       data.forEach((market) => {
-        this.markets.push({ name: market.Nom, code: market.Nom.slice(0, 3).toUpperCase() });
+        this.markets.push(market);
       });
     });
 
     this.subscribeService.getMonitoringthemesFromserver().subscribe((data) => {
       data.forEach((theme) => {
-        this.themes.push({ name: theme.Nom, code: theme.Nom.slice(0, 3).toUpperCase() });
+        this.themes.push(theme);
       });
+    });
+
+    this.subscribeService.getContactsFromserver().subscribe((data) => {
+      this.contacts = data;
     });
   }
 
@@ -73,5 +85,62 @@ export class SubscribeComponent implements OnInit {
 
   submit(): void {
 
+    this.processing = true;
+    this.selectedSectors = [];
+    this.selectedMarkets = [];
+    this.selectedThemes = [];
+
+    this.subscriptionForm.controls.sectors.value.forEach((sector) => {
+      this.selectedSectors.push(sector.id);
+    });
+
+    this.subscriptionForm.controls.markets.value.forEach((market) => {
+      this.selectedMarkets.push(market.id);
+    });
+
+    this.subscriptionForm.controls.themes.value.forEach((theme) => {
+      this.selectedThemes.push(theme.id);
+    });
+
+    this.contacts.forEach((contact) => {
+      if (contact.Email === this.subscriptionForm.controls.email.value) {
+        this.alreadyExist = true;
+        this.processing = false;
+        console.log(this.alreadyExist);
+      }
+    });
+
+    if (!this.alreadyExist) {
+      const userInformations = {
+        Nom : this.subscriptionForm.controls.name.value,
+        Prenom : this.subscriptionForm.controls.surname.value,
+        Telephone : this.subscriptionForm.controls.tel.value,
+        Email : this.subscriptionForm.controls.email.value,
+        Etat: 'Inactif',
+        filieres : this.selectedSectors,
+        marches : this.selectedMarkets,
+        type_alerte: this.selectedThemes
+      };
+
+      fetch('https://dnvc-admin.herokuapp.com/contacts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userInformations),
+      }).then((response) => {
+        response.json();
+        this.processing = false;
+        this.displayMaximizable = true;
+      })
+        .then((data) => {
+          console.log(data);
+          this.processing = false;
+        });
+    }
+  }
+
+  redirectTo(): void {
+    this.router.navigate(['/home']);
   }
 }

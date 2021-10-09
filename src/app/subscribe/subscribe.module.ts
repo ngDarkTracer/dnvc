@@ -7,19 +7,23 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {ButtonModule} from 'primeng/button';
 import {TranslateModule} from '@ngx-translate/core';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {DialogModule} from 'primeng/dialog';
 
 @NgModule({
   declarations: [
     SubscribeComponent
   ],
-  imports: [
-    CommonModule,
-    SubscribeRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MultiSelectModule,
-    ButtonModule,
-    TranslateModule
-  ]
+    imports: [
+      CommonModule,
+      SubscribeRoutingModule,
+      ReactiveFormsModule,
+      FormsModule,
+      MultiSelectModule,
+      ButtonModule,
+      TranslateModule,
+      ProgressSpinnerModule,
+      DialogModule
+    ]
 })
 export class SubscribeModule { }

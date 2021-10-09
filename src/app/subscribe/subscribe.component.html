@@ -15,7 +15,7 @@
   </div>
 </section>
 <div class="border-top-black is-visible">
-  <section class="content-section-mobile background-white pt-5 mb-4 pb-5"  style="margin: 0 auto; top: 5%; overflow-x: auto; height: 100%;">
+  <section class="content-section-mobile background-white pt-5 mb60 pb60"  style="margin: 0 auto; top: 5%; overflow-x: auto; height: 100%;">
     <form [formGroup]="subscriptionForm" (ngSubmit)="submit()" style="position: relative; left: 50%; transform: translateX(-50%)" class="search-input-wrapper" [ngClass]="{'col-sm-5':!isSmallScreen}">
       <label for="name" class="mb-2">{{ 'subscribe.name' | translate }}: </label>
       <div class="search-input white-bg size mb-5" id="name">
@@ -43,24 +43,48 @@
           <p-multiSelect id="sectors" [options]="sectors"
                          styleClass="search-input" defaultLabel="{{ 'subscribe.sectorsSelect' | translate }}"
                          formControlName="sectors"
-                         optionLabel="name" selectedItemsLabel="{0} {{ 'subscribe.selectedSectors' | translate }}"></p-multiSelect>
+                         optionLabel="Name" selectedItemsLabel="{0} {{ 'subscribe.selectedSectors' | translate }}"></p-multiSelect>
         </div>
         <div class="mb-5">
           <label for="markets">{{ 'subscribe.markets' | translate }}: </label>
           <p-multiSelect id="markets" [options]="markets"
                          styleClass="search-input" defaultLabel="{{ 'subscribe.marketsSelect' | translate }}"
                          formControlName="markets"
-                         optionLabel="name" selectedItemsLabel="{0} {{ 'subscribe.selectedMarkets' | translate }}"></p-multiSelect>
+                         optionLabel="Nom" selectedItemsLabel="{0} {{ 'subscribe.selectedMarkets' | translate }}"></p-multiSelect>
         </div>
         <div class="mb-5">
           <label for="themes">{{ 'subscribe.themes' | translate }}: </label>
           <p-multiSelect id="themes" [options]="themes"
                          styleClass="search-input" defaultLabel="{{ 'subscribe.themesSelect' | translate }}"
                          formControlName="themes"
-                         optionLabel="name" selectedItemsLabel="{0} {{ 'subscribe.selectedThemes' | translate }}"></p-multiSelect>
+                         optionLabel="Nom" selectedItemsLabel="{0} {{ 'subscribe.selectedThemes' | translate }}"></p-multiSelect>
         </div>
       </div>
-      <button pButton type="button" label="{{ 'subscribe.send' | translate }}" icon="pi pi-arrow-right" iconPos="right" class="p-button-lg p-button-outlined p-button-secondary search-input"></button>
+      <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
+        <button pButton type="submit" [disabled]="subscriptionForm.invalid || processing"
+                label="{{ 'subscribe.send' | translate }}" icon="pi pi-arrow-right"
+                iconPos="right" class="p-button-lg p-button-outlined p-button-secondary search-input"></button>
+        <p-progressSpinner class="ml-4" [style]="{height: '60px'}" *ngIf="processing"></p-progressSpinner>
+      </div>
     </form>
+    <p-dialog header="Confirmation" [(visible)]="displayMaximizable" [modal]="true"
+              [breakpoints]="{'960px': '75vw', '640px': '95vw'}"
+              [style]="{ width: '50vw'}" [baseZIndex]="10000"
+              [draggable]="false">
+      <p>{{ 'confirm.confirmation' | translate }}</p>
+      <ng-template pTemplate="footer">
+        <p-button (click)="redirectTo()" label="Ok" styleClass="p-button-text"></p-button>
+      </ng-template>
+    </p-dialog>
+
+    <p-dialog header="{{ 'confirm.error-header' | translate }}" [(visible)]="alreadyExist" [modal]="true"
+              [breakpoints]="{'960px': '75vw', '640px': '95vw'}"
+              [style]="{ width: '50vw'}" [baseZIndex]="10000"
+              [draggable]="false">
+      <p>{{ 'confirm.error' | translate }}</p>
+      <ng-template pTemplate="footer">
+        <p-button label="Ok" styleClass="p-button-text"></p-button>
+      </ng-template>
+    </p-dialog>
   </section>
 </div>

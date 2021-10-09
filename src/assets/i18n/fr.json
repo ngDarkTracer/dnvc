@@ -109,12 +109,18 @@
     "markets": "Marchés",
     "themes": "Types d'alerte",
     "sectorsSelect": "Selectionnez vos filières",
-    "selectedSectors": "filiières selectionnées",
+    "selectedSectors": "filières selectionnées",
     "marketsSelect": "Selectionnez vos marchés",
     "selectedMarkets": "marchés selectionnés",
     "themesSelect": "Selectionnez vos alertes",
     "selectedThemes": "alerte(s) selectionné(s)",
     "send": "Soumettre"
+  },
+
+  "confirm": {
+    "confirmation": "Un mail de confirmation vous a été envoyé a votre adresse mail. En attendant confirmation, vous allez être redirigé vers la page d'acceuil.",
+    "error-header": "Erreur",
+    "error": "Désolé, Cette adresse mail est déjà utilisée."
   },
 
   "footer": {
