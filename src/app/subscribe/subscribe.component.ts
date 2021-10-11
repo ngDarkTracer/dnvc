@@ -106,7 +106,6 @@ export class SubscribeComponent implements OnInit {
       if (contact.Email === this.subscriptionForm.controls.email.value) {
         this.alreadyExist = true;
         this.processing = false;
-        console.log(this.alreadyExist);
       }
     });
 
@@ -117,9 +116,13 @@ export class SubscribeComponent implements OnInit {
         Telephone : this.subscriptionForm.controls.tel.value,
         Email : this.subscriptionForm.controls.email.value,
         Etat: 'Inactif',
-        filieres : this.selectedSectors,
-        marches : this.selectedMarkets,
-        type_alerte: this.selectedThemes
+        // filieres : this.selectedSectors,
+        // marches : this.selectedMarkets,
+        // type_alerte: this.selectedThemes
+        criteres: [{
+          marches: this.selectedMarkets,
+          filieres: this.selectedSectors
+        }]
       };
 
       fetch('https://dnvc-admin.herokuapp.com/contacts', {
@@ -129,12 +132,10 @@ export class SubscribeComponent implements OnInit {
         },
         body: JSON.stringify(userInformations),
       }).then((response) => {
-        response.json();
         this.processing = false;
         this.displayMaximizable = true;
       })
         .then((data) => {
-          console.log(data);
           this.processing = false;
         });
     }
