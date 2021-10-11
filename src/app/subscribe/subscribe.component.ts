@@ -26,7 +26,11 @@ export class SubscribeComponent implements OnInit {
 
   selectedSectors = [];
   selectedMarkets = [];
+
+
   selectedThemes = [];
+  selectedThemes2 = [];
+  selectedThemes3 = [];
 
 
   constructor(private formBuilder: FormBuilder,
@@ -88,6 +92,7 @@ export class SubscribeComponent implements OnInit {
     this.processing = true;
     this.selectedSectors = [];
     this.selectedMarkets = [];
+
     this.selectedThemes = [];
 
     this.subscriptionForm.controls.sectors.value.forEach((sector) => {
@@ -121,7 +126,8 @@ export class SubscribeComponent implements OnInit {
         // type_alerte: this.selectedThemes
         criteres: [{
           marches: this.selectedMarkets,
-          filieres: this.selectedSectors
+          filieres: this.selectedSectors,
+          themes: this.selectedThemes
         }]
       };
 

@@ -110,19 +110,19 @@
                                 <span class="col-8">{{ con.title }}</span>
                               </h5>
                             </div>
-                            <div class="thee-link-container">
-                              <div>
-                                <div class="wfb-card__link-container" style="display: flex; flex-direction: row; flex-wrap: wrap">
-                                  <div class="wfb-card__text mb-1 mt-1 mr-5"><p style="color: darkgray; font-size: 14px">{{ 'market.publish' | translate }}: {{ con.date }}</p></div>
-                                  <div class="wfb-card__text mb-1 mt-1"><p style="color: darkgray; font-size: 14px">{{ 'market.followed_by' | translate }}: {{ con.author }}</p></div>
-                                </div>
-                              </div>
-                            </div>
                             <h6 style="font-weight: normal; margin-bottom: 0">
                               <p>
                                 {{ con.text }}
                               </p>
                             </h6>
+                            <div class="thee-link-container">
+                              <div>
+                                <div class="wfb-card__link-container" style="display: flex; flex-direction: row; flex-wrap: wrap">
+                                  <div class="wfb-card__text mb-1 mt-1 mr-5 mr-auto"><p style="color: darkgray; font-size: 14px"  class="mr-5">{{ 'market.publish' | translate }}: {{ con.date }}</p></div>
+                                  <div class="wfb-card__text mb-1 mt-1"><p style="color: darkgray; font-size: 14px">{{ 'market.followed_by' | translate }}: {{ con.author }}</p></div>
+                                </div>
+                              </div>
+                            </div>
                             <div class="thee-link-container">
                               <div>
                                 <div style="display: flex; flex-direction: row; flex-wrap: nowrap">

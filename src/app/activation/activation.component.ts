@@ -18,6 +18,7 @@ export class ActivationComponent implements OnInit {
 
   ngOnInit(): void {
     this.code = this.activatedRoute.snapshot.paramMap.get('code');
+    this.activatedRoute.url = 'https://dnvc.herokuapp.com/#/activation';
 
     this.subscribeService.getSingleContactFromServer(this.code).subscribe(
       (response) => {
@@ -35,7 +36,10 @@ export class ActivationComponent implements OnInit {
           .catch((error) => {});
       },
       (error) => {
-        console.log(error);
+        console.warn();
+        console.log();
+        console.error();
+        this.router.navigate(['/home']);
       }
     );
   }

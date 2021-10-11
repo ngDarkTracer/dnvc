@@ -13,15 +13,15 @@ export class SubscribeService {
   }
 
   getSectorsFromServer(): Observable<any> {
-    return this.httpClient.get<any[]>(this.serverAdress + 'filieres?_sort=Name:ASC', { responseType: 'json' });
+    return this.httpClient.get<any[]>(this.serverAdress + 'filieres?_sort=Name:ASC&_locale=en', { responseType: 'json' });
   }
 
   getMarketsFromServer(): Observable<any> {
-    return this.httpClient.get<any[]>(this.serverAdress + 'marches?_sort=Nom:ASC', { responseType: 'json' });
+    return this.httpClient.get<any[]>(this.serverAdress + 'marches?_sort=Nom:ASC&_locale=en', { responseType: 'json' });
   }
 
   getMonitoringthemesFromserver(): Observable<any> {
-    return this.httpClient.get<any[]>(this.serverAdress + 'themes-de-veilles?_sort=Nom:ASC', { responseType: 'json' });
+    return this.httpClient.get<any[]>(this.serverAdress + 'themes-de-veilles?_sort=Nom:ASC&_locale=en', { responseType: 'json' });
   }
 
   getContactsFromserver(): Observable<any> {
