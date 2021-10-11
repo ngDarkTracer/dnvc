@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {last} from 'rxjs/operators';
 import {IndustriesService} from '../services/industries.service';
 
 @Component({
@@ -40,7 +39,6 @@ export class IndustriesComponent implements OnInit {
       this.ready = true;
       this.filter('ALL');
     });
-    console.log(sectors);
   }
 
   filter(letter: any): void {

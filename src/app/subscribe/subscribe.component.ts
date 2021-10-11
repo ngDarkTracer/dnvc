@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SubscribeService} from '../services/subscribe.service';
 import {BreakpointObserver} from '@angular/cdk/layout';
@@ -41,15 +41,17 @@ export class SubscribeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    document.getElementById('top').scrollTop = 0;
     this.initForm();
-
     this.breakpointObserver.observe(['(max-width: 765px)']).subscribe(result => {
       if (result.matches) {
         this.isSmallScreen = true;
       } else {
         this.isSmallScreen = false;
       }
+    });
+
+    document.getElementById('top').scrollIntoView({
+      behavior: 'smooth'
     });
 
     this.subscribeService.getSectorsFromServer().subscribe((data) => {

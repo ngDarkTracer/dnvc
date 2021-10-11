@@ -17,7 +17,7 @@ export class SubscribeService {
   }
 
   getMarketsFromServer(): Observable<any> {
-    return this.httpClient.get<any[]>(this.serverAdress + 'marches?_sort=Nom:ASC&_locale=en', { responseType: 'json' });
+    return this.httpClient.get<any[]>(this.serverAdress + 'marches?_sort=Nom:ASC', { responseType: 'json' });
   }
 
   getMonitoringthemesFromserver(): Observable<any> {

@@ -10,7 +10,9 @@ export class AboutComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    document.getElementById('top').scrollTop = 0;
+    document.getElementById('top').scrollIntoView({
+      behavior: 'smooth'
+    });
   }
 
 }
