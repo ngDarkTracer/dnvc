@@ -27,4 +27,8 @@ export class SubscribeService {
   getContactsFromserver(): Observable<any> {
     return this.httpClient.get<any[]>(this.serverAdress + 'contacts?_sort=Nom:ASC', { responseType: 'json' });
   }
+
+  getSingleContactFromServer(code: any): Observable<any> {
+    return this.httpClient.get<any[]>(this.serverAdress + 'contacts?_sort=Nom:ASC&_where[0][activation_code]=' + code, { responseType: 'json' });
+  }
 }

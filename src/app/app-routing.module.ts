@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'home/:detail', loadChildren: () => import('./footer-details/footer-details.module').then(m => m.FooterDetailsModule) },
   { path: 'login', loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule) },
   { path: 'subscribe', loadChildren: () => import('./subscribe/subscribe.module').then(m => m.SubscribeModule) },
+  { path: 'activation/:code', loadChildren: () => import('./activation/activation.module').then(m => m.ActivationModule) },
   { path: '**', loadChildren: () => import('./four-zero-four/four-zero-four.module').then(m => m.FourZeroFourModule) }];
 
 @NgModule({
