@@ -14,14 +14,14 @@
 <div class="border-top-black is-visible">
   <section class="content-section-mobile background-white pt-5 mb60 pb60"  style="margin: 0 auto; top: 5%; overflow-x: auto; height: 80vh;">
     <div style="margin-left: 25%; margin-top: 10%; display: flex; flex-direction: row; flex-wrap: wrap">
-      <h3 class="mt-4 mr-4">Votre abonnement est en cours de validation...</h3>
+      <h3 class="mt-4 mr-4">{{ 'activation.message' | translate }}</h3>
       <p-progressSpinner class="ml-4" [style]="{height: '100px'}" *ngIf="!done"></p-progressSpinner>
     </div>
-    <p-dialog [closable]="false" header="Succès" [(visible)]="done" [modal]="true"
+    <p-dialog [closable]="false" header="{{ 'activation.header' | translate }}" [(visible)]="done" [modal]="true"
               [breakpoints]="{'960px': '75vw', '640px': '95vw'}"
               [style]="{ width: '50vw'}" [baseZIndex]="10000"
               [draggable]="false">
-      <p>Votre souscription a été effectuée avec succès!</p>
+      <p>{{ 'activation.done' | translate }}</p>
       <ng-template pTemplate="footer">
         <p-button label="Ok" (click)="rederectTo()" styleClass="p-button-text"></p-button>
       </ng-template>

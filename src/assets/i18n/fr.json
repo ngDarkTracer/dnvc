@@ -123,6 +123,12 @@
     "error": "Désolé, Cette adresse mail est déjà utilisée."
   },
 
+  "activation": {
+    "header": "Succès",
+    "message": "Votre abonnement est en cours de validation...",
+    "done": "Votre souscription a été effectuée avec succès!"
+  },
+
   "footer": {
     "publish": "Publier une alerte",
     "contact": "Contactez-nous",

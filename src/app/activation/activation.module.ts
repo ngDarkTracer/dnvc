@@ -6,6 +6,7 @@ import { ActivationComponent } from './activation.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {DialogModule} from 'primeng/dialog';
 import {ButtonModule} from 'primeng/button';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {ButtonModule} from 'primeng/button';
     ActivationRoutingModule,
     ProgressSpinnerModule,
     DialogModule,
-    ButtonModule
+    ButtonModule,
+    TranslateModule
   ]
 })
 export class ActivationModule { }

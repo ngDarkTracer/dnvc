@@ -123,6 +123,12 @@
     "error": "Sorry, this email address is already in use."
   },
 
+  "activation": {
+    "header": "Success",
+    "message": "Your subscription is being validated...",
+    "done": "Your subscription has been successfully completed!"
+  },
+
   "footer": {
     "publish": "Publish an alert",
     "contact": "Contact us",
