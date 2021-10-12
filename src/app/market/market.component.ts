@@ -109,7 +109,7 @@ export class MarketComponent implements OnInit {
               if (this.marketImageUrl === '' || this.marketIntroText === '') {
                 for (let i = 0; i < elt.Marches.length; i++) {
                   if (elt.Marches[i].Nom === url) {
-                    this.marketImageUrl = this.serverAdress + elt.Marches[i].Logo_Large[0].url;
+                    this.marketImageUrl = elt.Marches[i].Logo_Large[0].url;
                     this.marketIntroText = elt.Marches[i].Intro;
                     this.lastUpdate = elt.Marches[i].updated_at.split('T')[0];
                     break;

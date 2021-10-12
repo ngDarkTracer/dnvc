@@ -111,7 +111,7 @@ export class NoteComponent implements OnInit {
               if (this.noteImageUrl === '' || this.noteIntroText === '') {
                 for (let i = 0; i < elt.Filieres.length; i++) {
                   if (elt.Filieres[i].Name === url) {
-                    this.noteImageUrl = this.serverAdress + elt.Filieres[i].Photo.formats.large.url;
+                    this.noteImageUrl = elt.Filieres[i].Photo.url;
                     this.noteIntroText = elt.Filieres[i].Intro;
                     this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
                     break;

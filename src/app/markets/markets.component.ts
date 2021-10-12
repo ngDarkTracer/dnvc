@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {mark} from '@angular/compiler-cli/src/ngtsc/perf/src/clock';
 import {MarketsService} from '../services/markets.service';
 
 @Component({
