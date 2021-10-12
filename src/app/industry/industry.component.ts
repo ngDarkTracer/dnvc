@@ -19,7 +19,7 @@ export class IndustryComponent implements OnInit {
               private industriesService: IndustriesService) { }
 
   currentIndustriy: string;
-  serverAdress = 'https://dnvc-admin.herokuapp.com';
+  serverAdress = 'https://dnvc-admin.herokuapp.com/';
   sectorImageUrl = '';
   sectorIntroText = '';
   lastUpdate = '';
@@ -91,7 +91,6 @@ export class IndustryComponent implements OnInit {
     this.ready = false;
     this.isThereAlert = true;
     this.industriesService.getSingleSectorFromServer(url).subscribe((data) => {
-      console.log(data);
       if (data.length === 0) {
         this.isThereAlert = false;
       } else {
@@ -111,7 +110,7 @@ export class IndustryComponent implements OnInit {
               if (this.sectorImageUrl === '' || this.sectorIntroText === '') {
                 for (let i = 0; i < elt.Filieres.length; i++) {
                   if (elt.Filieres[i].Name === url) {
-                    this.sectorImageUrl = this.serverAdress + elt.Filieres[i].Photo.formats.large.url;
+                    this.sectorImageUrl = elt.Filieres[i].Photo.url;
                     this.sectorIntroText = elt.Filieres[i].Intro;
                     this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
                     break;
@@ -126,7 +125,7 @@ export class IndustryComponent implements OnInit {
                   title: elt.Title,
                   text: elt.Resume,
                   sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
-                  source: elt.SourceFile.length === 0 ? elt.sourceUrl : this.serverAdress + elt.SourceFile[0].url,
+                  source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
                   markets: elt.Marches
                 }
               );

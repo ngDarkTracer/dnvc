@@ -19,7 +19,7 @@ export class NoteComponent implements OnInit {
               private notesService: NotesService) { }
 
   currentNote: string;
-  serverAdress = 'https://dnvc-admin.herokuapp.com';
+  serverAdress = 'https://dnvc-admin.herokuapp.com/';
   noteImageUrl = '';
   noteIntroText = '';
   lastUpdate = '';
@@ -126,7 +126,7 @@ export class NoteComponent implements OnInit {
                   title: elt.Title,
                   text: elt.Resume,
                   sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
-                  source: elt.SourceFile.length === 0 ? elt.sourceUrl : this.serverAdress + elt.SourceFile[0].url,
+                  source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
                   markets: elt.Marches
                 }
               );
