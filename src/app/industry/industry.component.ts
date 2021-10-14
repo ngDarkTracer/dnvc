@@ -76,7 +76,7 @@ export class IndustryComponent implements OnInit {
   ngOnInit(): void {
     const url = this.activatedRoute.snapshot.paramMap.get('industry');
     this.currentIndustriy = url;
-    this.getSectorProperties(url);
+    this.getSectorProperties(url.replace(/ /g, '%20'));
 
     this.breakPointObserver.observe(['(max-width: 765px)']).subscribe(result => {
       if (result.matches) {
@@ -91,6 +91,7 @@ export class IndustryComponent implements OnInit {
     this.ready = false;
     this.isThereAlert = true;
     this.industriesService.getSingleSectorFromServer(url).subscribe((data) => {
+      console.log(data);
       if (data.length === 0) {
         this.isThereAlert = false;
       } else {
@@ -109,7 +110,7 @@ export class IndustryComponent implements OnInit {
             val.forEach((elt) => {
               if (this.sectorImageUrl === '' || this.sectorIntroText === '') {
                 for (let i = 0; i < elt.Filieres.length; i++) {
-                  if (elt.Filieres[i].Name === url) {
+                  if (elt.Filieres[i].Name === url.replace(/%20/g, ' ')) {
                     this.sectorImageUrl = elt.Filieres[i].Photo.url;
                     this.sectorIntroText = elt.Filieres[i].Intro;
                     this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
