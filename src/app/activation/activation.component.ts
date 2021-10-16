@@ -13,10 +13,9 @@ export class ActivationComponent implements OnInit {
   code = '';
   id;
   done = false;
+  error = false;
   criteriaFrom: FormGroup;
-  selectedSector;
-  selectedMarket;
-  selectedTheme;
+  processing = false;
 
   sectors: any[];
   markets: any[];
@@ -43,8 +42,9 @@ export class ActivationComponent implements OnInit {
     });
 
     this.subscribeService.getSingleContactFromServer(this.code).subscribe((data) => {
-      this.id = data[0].id;
-    });
+        this.id = data[0].id;
+    },
+    (error) => {});
 
     this.initForm();
   }
@@ -74,19 +74,28 @@ export class ActivationComponent implements OnInit {
   }
 
   onSubmit(): void {
-
+    this.processing = true;
     const criteria = this.criteriaFrom.value;
+    criteria.Etat = 'Actif';
     const preferences = criteria;
-    console.log(this.criteriaFrom.controls.criteres.value);
 
-
-    fetch('http://localhost:1337/contacts/' + this.id, {
+    fetch('http://admin.dnvc-cm.org/contacts/' + this.id, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(preferences),
-    }).then((response) => {})
-      .then((data) => {});
+    }).then((response) => {
+      this.processing = false;
+      this.done = true;
+    })
+      .then((data) => {
+        this.processing = false;
+      })
+      .catch((error) => { this.error = true; });
+  }
+
+  redirectTo(): void {
+    this.router.navigate(['/home']);
   }
 }

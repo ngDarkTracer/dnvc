@@ -105,9 +105,9 @@
     "surname": "Prenom",
     "tel": "Téléphone",
     "mail": "Email",
-    "sectors": "Filières",
-    "markets": "Marchés",
-    "themes": "Types d'alerte",
+    "sectors": "Filière",
+    "markets": "Marché",
+    "themes": "Type d'alerte",
     "sectorsSelect": "Selectionnez vos filières",
     "selectedSectors": "filières selectionnées",
     "marketsSelect": "Selectionnez vos marchés",
@@ -125,8 +125,13 @@
 
   "activation": {
     "header": "Succès",
+    "header-error": "Erreur",
     "message": "Votre abonnement est en cours de validation...",
-    "done": "Votre souscription a été effectuée avec succès!"
+    "choose": "Choix des préférences",
+    "complete": "Afin de completer votre inscription, veuillez sélectionner vos préférences",
+    "error": "Une erreur est survenue lors de l'activation de votre compte",
+    "done": "Votre souscription a été effectuée avec succès!",
+    "add": "Ajouter"
   },
 
   "footer": {

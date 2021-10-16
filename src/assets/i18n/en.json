@@ -125,8 +125,13 @@
 
   "activation": {
     "header": "Success",
+    "header-error": "Error",
     "message": "Your subscription is being validated...",
-    "done": "Your subscription has been successfully completed!"
+    "choose": "Choice of preferences",
+    "complete": "In order to complete your subscription, please select your preferences",
+    "error": "An error occurred while activating your account",
+    "done": "Your subscription has been successfully completed!",
+    "add": "Add"
   },
 
   "footer": {

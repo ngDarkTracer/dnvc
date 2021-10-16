@@ -121,7 +121,7 @@ export class SubscribeComponent implements OnInit {
         // }]
       };
 
-      fetch('http://localhost:1337/contacts', {
+      fetch('http://admin.dnvc-cm.org/contacts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

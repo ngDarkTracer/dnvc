@@ -3,7 +3,7 @@
     <div class="container hero-splash-container">
       <div class="row pv90-60">
         <div class="col-sm-12 col-md-8 hero-splash">
-          <h1 class="hero-title" style="color: white">Choix des préférences</h1>
+          <h1 class="hero-title" style="color: white">{{ 'activation.choose' | translate }}</h1>
         </div>
         <div class="col-12"></div>
         <div class="col-sm-12 col-md-5"></div>
@@ -14,17 +14,21 @@
 <div class="border-top-black is-visible">
   <section class="content-section-mobile background-white pt-5 mb60 pb60"  style="margin: 0 auto; top: 5%; overflow-x: auto; height: 80vh;">
     <div class="m-5">
-      <h4 class="mb-3" style="text-align: center">Veuillez sélectionner vos préférences</h4><br>
+      <h4 class="mb-3" style="text-align: center">
+        <p>
+          {{ 'activation.complete' | translate }}
+        </p>
+      </h4><br>
       <div [formGroup]="criteriaFrom" (ngSubmit)="onSubmit()">
         <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-around;">
           <div formArrayName="criteres" style="text-align: center; width: 80vw;">
             <div *ngFor="let preference of getPreferences().controls; index as i">
               <div [formGroup]="preference" style="display: flex; flex-direction: row; border-bottom: 1px solid #787676; flex-wrap:wrap; justify-content: center" class="pb-4 mb-4">
                 <div class="mb-5 mr-3">
-                  <label for="sectors">Filière: </label><br>
+                  <label for="sectors">{{ 'subscribe.sectors' | translate }}: </label><br>
                   <p-dropdown id="sectors" [options]="sectors" optionLabel="Name"
                               [filter]="true" filterBy="Name" optionValue="id"
-                              placeholder="Filière" formControlName="filieres">
+                              placeholder="{{ 'subscribe.sectors' | translate }}" formControlName="filieres">
                     <ng-template let-sector pTemplate="item">
                       <div>{{sector.Name}}</div>
                     </ng-template>
@@ -32,10 +36,10 @@
                 </div>
 
                 <div class="mb-5 mr-3">
-                  <label for="markets">Marché: </label><br>
+                  <label for="markets">{{ 'subscribe.markets' | translate }}: </label><br>
                   <p-dropdown id="markets" [options]="markets" optionLabel="Nom"
                               [filter]="true" filterBy="Nom" optionValue="id"
-                              placeholder="Marché" formControlName="marches">
+                              placeholder="{{ 'subscribe.markets' | translate }}" formControlName="marches">
                     <ng-template let-market pTemplate="item">
                       <div>{{market.Nom}}</div>
                     </ng-template>
@@ -43,10 +47,10 @@
                 </div>
 
                 <div class="mb-5 mr-3">
-                  <label for="themes">Type d'alerte: </label><br>
+                  <label for="themes">{{ 'subscribe.themes' | translate }}: </label><br>
                   <p-dropdown id="themes" [options]="themes" optionLabel="Nom"
                               [filter]="true" filterBy="Nom" optionValue="id"
-                              placeholder="Type d'alerte" formControlName="themes">
+                              placeholder="{{ 'subscribe.themes' | translate }}" formControlName="themes">
                     <ng-template let-theme pTemplate="item">
                       <div>{{theme.Nom}}</div>
                     </ng-template>
@@ -61,7 +65,7 @@
               </div>
             </div>
             <div class="mt-5">
-              <button pButton pRipple type="button" label="Ajouter"
+              <button pButton pRipple type="button" label="{{ 'activation.add' | translate }}"
                       class="p-button-raised p-button-success add-button"
                       [style.border-radius.px]="0" (click)="addPreferences()"></button>
             </div>
@@ -70,11 +74,33 @@
                       [style.border-radius.px]="0"
                       label="{{ 'subscribe.send' | translate }}" icon="pi pi-arrow-right"
                       iconPos="right" class="p-button-lg p-button-outlined p-button-secondary search-input"></button>
-<!--              <p-progressSpinner class="ml-4" [style]="{height: '60px'}"></p-progressSpinner>-->
+              <p-progressSpinner class="ml-4" [style]="{height: '60px'}" *ngIf="processing"></p-progressSpinner>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <p-dialog header="{{ 'activation.header' | translate }}" [(visible)]="done"
+              [modal]="true" [closable]="false"
+              [breakpoints]="{'960px': '75vw', '640px': '95vw'}"
+              [style]="{ width: '50vw'}" [baseZIndex]="10000"
+              [draggable]="false">
+      <p>{{ 'activation.done' | translate }}</p>
+      <ng-template pTemplate="footer">
+        <p-button (click)="redirectTo()" label="Ok" styleClass="p-button-text"></p-button>
+      </ng-template>
+    </p-dialog>
+
+    <p-dialog header="{{ 'activation.header-error' | translate }}" [(visible)]="error"
+              [modal]="true" [closable]="false"
+              [breakpoints]="{'960px': '75vw', '640px': '95vw'}"
+              [style]="{ width: '50vw'}" [baseZIndex]="10000"
+              [draggable]="false">
+      <p>{{ 'activation.error' | translate }}</p>
+      <ng-template pTemplate="footer">
+        <p-button (click)="redirectTo()" label="Ok" styleClass="p-button-text"></p-button>
+      </ng-template>
+    </p-dialog>
   </section>
 </div>
