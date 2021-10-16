@@ -14,7 +14,7 @@
     </div>
   </div>
 </section>
-<div class="border-top-black is-visible"  id="peak">
+<div class="border-top-black is-visible" id="peak">
   <section class="content-section-mobile background-white pt-5 mb60 mb60 mb60 pb60"  style="margin: 0 auto; top: 5%; overflow-x: auto; height: 100%;">
     <form [formGroup]="subscriptionForm" (ngSubmit)="submit()" style="position: relative; left: 50%; transform: translateX(-50%)" class="search-input-wrapper" [ngClass]="{'col-sm-5':!isSmallScreen}">
       <label for="name" class="mb-2">{{ 'subscribe.name' | translate }}: </label>
@@ -37,29 +37,31 @@
         <input type="email" class="search-input-field white-bg" formControlName="email">
       </div>
 
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between;">
-        <div class="mb-5">
-          <label for="sectors">{{ 'subscribe.sectors' | translate }}: </label>
-          <p-multiSelect id="sectors" [options]="sectors"
-                         styleClass="search-input" defaultLabel="{{ 'subscribe.sectorsSelect' | translate }}"
-                         formControlName="sectors"
-                         optionLabel="Name" selectedItemsLabel="{0} {{ 'subscribe.selectedSectors' | translate }}"></p-multiSelect>
-        </div>
-        <div class="mb-5">
-          <label for="markets">{{ 'subscribe.markets' | translate }}: </label>
-          <p-multiSelect id="markets" [options]="markets"
-                         styleClass="search-input" defaultLabel="{{ 'subscribe.marketsSelect' | translate }}"
-                         formControlName="markets"
-                         optionLabel="Nom" selectedItemsLabel="{0} {{ 'subscribe.selectedMarkets' | translate }}"></p-multiSelect>
-        </div>
-        <div class="mb-5">
-          <label for="themes">{{ 'subscribe.themes' | translate }}: </label>
-          <p-multiSelect id="themes" [options]="themes"
-                         styleClass="search-input" defaultLabel="{{ 'subscribe.themesSelect' | translate }}"
-                         formControlName="themes"
-                         optionLabel="Nom" selectedItemsLabel="{0} {{ 'subscribe.selectedThemes' | translate }}"></p-multiSelect>
-        </div>
-      </div>
+<!--      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between;">-->
+<!--        <div class="mb-5">-->
+<!--          <label for="sectors">{{ 'subscribe.sectors' | translate }}: </label>-->
+<!--          <p-multiSelect id="sectors" [options]="sectors"-->
+<!--                         styleClass="search-input" defaultLabel="{{ 'subscribe.sectorsSelect' | translate }}"-->
+<!--                         formControlName="sectors"-->
+<!--                         optionLabel="Name" selectedItemsLabel="{0} {{ 'subscribe.selectedSectors' | translate }}"></p-multiSelect>-->
+<!--        </div>-->
+<!--        <div class="mb-5">-->
+<!--          <label for="markets">{{ 'subscribe.markets' | translate }}: </label>-->
+<!--          <p-multiSelect id="markets" [options]="markets"-->
+<!--                         styleClass="search-input" defaultLabel="{{ 'subscribe.marketsSelect' | translate }}"-->
+<!--                         formControlName="markets"-->
+<!--                         optionLabel="Nom" selectedItemsLabel="{0} {{ 'subscribe.selectedMarkets' | translate }}"></p-multiSelect>-->
+<!--        </div>-->
+<!--        <div class="mb-5">-->
+<!--          <label for="themes">{{ 'subscribe.themes' | translate }}: </label>-->
+<!--          <p-multiSelect id="themes" [options]="themes"-->
+<!--                         styleClass="search-input" defaultLabel="{{ 'subscribe.themesSelect' | translate }}"-->
+<!--                         formControlName="themes"-->
+<!--                         optionLabel="Nom" selectedItemsLabel="{0} {{ 'subscribe.selectedThemes' | translate }}"></p-multiSelect>-->
+<!--        </div>-->
+<!--      </div>-->
+
+
       <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
         <button pButton type="submit" [disabled]="subscriptionForm.invalid || processing"
                 label="{{ 'subscribe.send' | translate }}" icon="pi pi-arrow-right"

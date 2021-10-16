@@ -27,12 +27,6 @@ export class SubscribeComponent implements OnInit {
   selectedSectors = [];
   selectedMarkets = [];
 
-
-  selectedThemes = [];
-  selectedThemes2 = [];
-  selectedThemes3 = [];
-
-
   constructor(private formBuilder: FormBuilder,
               private subscribeService: SubscribeService,
               private breakpointObserver: BreakpointObserver,
@@ -54,23 +48,23 @@ export class SubscribeComponent implements OnInit {
       behavior: 'smooth'
     });
 
-    this.subscribeService.getSectorsFromServer().subscribe((data) => {
-      data.forEach((sector) => {
-        this.sectors.push(sector);
-      });
-    });
-
-    this.subscribeService.getMarketsFromServer().subscribe((data) => {
-      data.forEach((market) => {
-        this.markets.push(market);
-      });
-    });
-
-    this.subscribeService.getMonitoringthemesFromserver().subscribe((data) => {
-      data.forEach((theme) => {
-        this.themes.push(theme);
-      });
-    });
+    // this.subscribeService.getSectorsFromServer().subscribe((data) => {
+    //   data.forEach((sector) => {
+    //     this.sectors.push(sector);
+    //   });
+    // });
+    //
+    // this.subscribeService.getMarketsFromServer().subscribe((data) => {
+    //   data.forEach((market) => {
+    //     this.markets.push(market);
+    //   });
+    // });
+    //
+    // this.subscribeService.getMonitoringthemesFromserver().subscribe((data) => {
+    //   data.forEach((theme) => {
+    //     this.themes.push(theme);
+    //   });
+    // });
 
     this.subscribeService.getContactsFromserver().subscribe((data) => {
       this.contacts = data;
@@ -82,32 +76,29 @@ export class SubscribeComponent implements OnInit {
       name: ['', Validators.required],
       surname: ['', Validators.required],
       tel: [''],
-      email: ['', Validators.email],
-      sectors: ['', Validators.required],
-      markets: ['', Validators.required],
-      themes: ['', Validators.required]
+      email: ['', Validators.email]
     });
   }
 
   submit(): void {
 
     this.processing = true;
-    this.selectedSectors = [];
-    this.selectedMarkets = [];
-
-    this.selectedThemes = [];
-
-    this.subscriptionForm.controls.sectors.value.forEach((sector) => {
-      this.selectedSectors.push(sector.id);
-    });
-
-    this.subscriptionForm.controls.markets.value.forEach((market) => {
-      this.selectedMarkets.push(market.id);
-    });
-
-    this.subscriptionForm.controls.themes.value.forEach((theme) => {
-      this.selectedThemes.push(theme.id);
-    });
+    // this.selectedSectors = [];
+    // this.selectedMarkets = [];
+    //
+    // this.selectedThemes = [];
+    //
+    // this.subscriptionForm.controls.sectors.value.forEach((sector) => {
+    //   this.selectedSectors.push(sector.id);
+    // });
+    //
+    // this.subscriptionForm.controls.markets.value.forEach((market) => {
+    //   this.selectedMarkets.push(market.id);
+    // });
+    //
+    // this.subscriptionForm.controls.themes.value.forEach((theme) => {
+    //   this.selectedThemes.push(theme.id);
+    // });
 
     this.contacts.forEach((contact) => {
       if (contact.Email === this.subscriptionForm.controls.email.value) {
@@ -122,18 +113,15 @@ export class SubscribeComponent implements OnInit {
         Prenom : this.subscriptionForm.controls.surname.value,
         Telephone : this.subscriptionForm.controls.tel.value,
         Email : this.subscriptionForm.controls.email.value,
-        Etat: 'Inactif',
-        // filieres : this.selectedSectors,
-        // marches : this.selectedMarkets,
-        // type_alerte: this.selectedThemes
-        criteres: [{
-          marches: this.selectedMarkets,
-          filieres: this.selectedSectors,
-          themes: this.selectedThemes
-        }]
+        Etat: 'Inactif'
+        // criteres: [{
+        //   marches: this.selectedMarkets,
+        //   filieres: this.selectedSectors,
+        //   themes: this.selectedThemes
+        // }]
       };
 
-      fetch('https://dnvc-admin.herokuapp.com/contacts', {
+      fetch('http://localhost:1337/contacts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
