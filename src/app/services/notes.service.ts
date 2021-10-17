@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
 })
 export class NotesService {
 
-  serverAdress = 'http://admin.dnvc-cm.org/';
+  serverAdress = 'https://admin.dnvc-cm.org/';
   constructor(private httpClient: HttpClient) { }
 
   getSingleNoteFromServer(sector: string): Observable<any> {

@@ -3,6 +3,7 @@
     "industries": "Filières",
     "markets": "Marchés",
     "notes": "Notes",
+    "resources": "Ressources",
     "about": "A propos",
     "logIn": "Se connecter"
   },
@@ -93,6 +94,10 @@
     "source": "Source",
     "previous": "Précedent",
     "next": "Suivant"
+  },
+
+  "resources": {
+    "title": "Toutes les ressources"
   },
 
   "about": {

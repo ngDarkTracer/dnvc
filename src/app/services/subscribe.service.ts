@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
 })
 export class SubscribeService {
 
-  serverAdress = 'http://admin.dnvc-cm.org/';
+  serverAdress = 'https://admin.dnvc-cm.org/';
 
   constructor(private httpClient: HttpClient) {
   }
