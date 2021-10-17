@@ -27,3 +27,7 @@ jobs:
         npm install
         npm i -g @angular/cli
         ng build --prod
+        
+    - name: test ls
+      run: |
+        ls 
