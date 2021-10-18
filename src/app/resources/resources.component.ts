@@ -16,12 +16,8 @@ export class ResourcesComponent implements OnInit {
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private breakPointObserver: BreakpointObserver,
-              private ressourcesService: RessourcesService,
-              private subscribeService: SubscribeService) { }
+              private ressourcesService: RessourcesService) { }
 
-  serverAdress = 'https://dnvc-admin.herokuapp.com/';
-  ressourcesImageUrl = '';
-  ressourcesIntroText = '';
   lastUpdate = '';
   filterValue = 'ALL';
   totalItems = 0;
@@ -31,6 +27,7 @@ export class ResourcesComponent implements OnInit {
   isSmallScreen = false;
   isThereAlert = true;
   ready = false;
+  searching = false;
   sectors: any[];
   markets: any[];
   themes: any[];
@@ -77,15 +74,15 @@ export class ResourcesComponent implements OnInit {
   ngOnInit(): void {
     this.getRessourcesProperties();
 
-    this.subscribeService.getSectorsFromServer().subscribe((data) => {
+    this.ressourcesService.getSectorsFromServer().subscribe((data) => {
       this.sectors = data;
     });
 
-    this.subscribeService.getMarketsFromServer().subscribe((data) => {
+    this.ressourcesService.getMarketsFromServer().subscribe((data) => {
       this.markets = data;
     });
 
-    this.subscribeService.getMonitoringthemesFromserver().subscribe((data) => {
+    this.ressourcesService.getMonitoringthemesFromserver().subscribe((data) => {
       this.themes = data;
     });
 
@@ -111,7 +108,7 @@ export class ResourcesComponent implements OnInit {
       this.temp = data;
       from(this.temp)
         .pipe(
-          groupBy(element => element.themes_de_veille.Nom),
+          groupBy(element => element.theme.Nom),
           mergeMap(group => group.pipe(toArray()))
         )
         .subscribe(
@@ -124,11 +121,11 @@ export class ResourcesComponent implements OnInit {
               });
               tempContent.push(
                 {
-                  alerte: val[0].themes_de_veille.Nom,
+                  alerte: val[0].theme.Nom,
                   title: elt.titre,
                   text: elt.resume,
-                  sourceType: elt.sourceFile.length === 0 ? 'url' : 'document',
-                  source: elt.sourceFile.length === 0 ? elt.sourceUrl : elt.sourceFile[0].url,
+                  sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
+                  source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
                   sectors: elt.filieres,
                   sectorsConcatString: fobeddenString,
                   date_debut: elt.date_debut,
@@ -139,7 +136,7 @@ export class ResourcesComponent implements OnInit {
             });
             this.content.push(
               {
-                alerte: val[0].themes_de_veille.Nom,
+                alerte: val[0].theme.Nom,
                 content: tempContent
               });
           },
@@ -171,5 +168,59 @@ export class ResourcesComponent implements OnInit {
 
   onSortChange(event: any): void {
     this.filterVal = event.value;
+  }
+
+  search(sector: any, market: any, theme: any, debut: any, fin: any): void {
+    this.content = [];
+    this.ressourcesService.getSingleOrGroupOfRessourcesFromServer(sector, market, theme, debut.toLocaleDateString('en-CA'), fin.toLocaleDateString('en-CA')).subscribe(
+      (data) => {
+        if (data.length === 0) {
+          this.isThereAlert = false;
+        } else {
+          this.isThereAlert = true;
+        }
+
+        this.temp = data;
+        from(this.temp)
+          .pipe(
+            groupBy(element => element.theme.Nom),
+            mergeMap(group => group.pipe(toArray()))
+          )
+          .subscribe(
+            (val) => {
+              const tempContent = [];
+              val.forEach((elt) => {
+                let fobeddenString = '';
+                elt.filieres.forEach((sect) => {
+                  fobeddenString += sect.Name + ',';
+                });
+                tempContent.push(
+                  {
+                    alerte: val[0].theme.Nom,
+                    title: elt.titre,
+                    text: elt.resume,
+                    sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
+                    source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
+                    sectors: elt.filieres,
+                    sectorsConcatString: fobeddenString,
+                    date_debut: elt.date_debut,
+                    date_fin: elt.date_fin,
+                    market: elt.marche
+                  }
+                );
+              });
+              this.content.push(
+                {
+                  alerte: val[0].theme.Nom,
+                  content: tempContent
+                });
+            },
+            (error) => {},
+            () => {
+              this.ready = true;
+              const all = document.getElementById('all');
+              this.filter('ALL', all);
+            });
+      });
   }
 }
