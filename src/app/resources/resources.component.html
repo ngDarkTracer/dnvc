@@ -19,90 +19,78 @@
   <section class="content-section-mobile background-white">
     <div class="container content_nav-container">
       <div class="row" *ngIf="isThereAlert">
-        <div class="col-lg-4 col-md-12 col-sm-12 d-md-block pt120 mb45">
-          <div class="jump-nav">
-            <div class="fade-in-section disable-fade-in is-visible">
-              <div class="jump-nav__container" id="jump-nav" [ngClass]="{'sticky':stickyMenu && isSmallScreen}">
-                <div class="jump-nav__header">
-                  <div>
-                    <div class="label">{{ 'sector.content' | translate }}</div>
-                    <h2 class="h6 bold mb0 d-block d-md-none" *ngIf="filterValue !== 'ALL'">{{ filterValue }}</h2>
-                    <h2 class="h6 bold mb0 d-block d-md-none" *ngIf="filterValue === 'ALL'">{{ 'sector.All' | translate }}</h2>
-                  </div>
-                  <div class="jump-nav__mobile" *ngIf="isSmallScreen">
-                    <button class="jump-nav__mobile-button" (click)="open()">
-                      <svg class="icon icon-white" [ngClass]="{'rotate-180':openedMenu}" aria-labelledby="point-down-icon" role="img" viewBox="0 0 30 30">
-                        <title id="point-down-icon">Point Down Icon</title>
-                        <polygon fill-rule="nonzero" points="23.354 12.075 15.499 19.929 7.646 12.075 8.353 11.368 15.498 18.514 22.646 11.367 23.354 12.075"></polygon>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                <ul class="jump-nav__items" [ngClass]="{'d-block':openedMenu}">
-                  <h6 class="mb0 pt15 jump-nav__item-wrapper" #elt id="all">
-                    <div>
-                      <a class="jump-nav__item bold" style="cursor: pointer" (click)="filter('ALL', elt)">{{ 'sector.All' | translate }}</a>
-                    </div>
-                  </h6>
-                  <h6 class="mb0 pt15 jump-nav__item-wrapper list-item" #elt *ngFor="let item of content">
-                    <div>
-                      <a class="jump-nav__item bold" style="cursor: pointer" (click)="filter(item.alerte, elt)">{{ item.alerte }}</a>
-                    </div>
-                  </h6>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="col-lg-6 col-md-12 col-sm-12 border-left-black pb120-90 pt120-45 content-area-content">
           <p-progressSpinner *ngIf="!ready"></p-progressSpinner>
           <div class="free-form-content__content wysiwyg-wrapper" *ngIf="ready">
             <div>
-              <h2 class="pb100" *ngIf="filterValue === 'ALL'">{{ 'sector.alerts' | translate }} [{{ 'sector.All' | translate }}]</h2>
-              <h2 class="pb100" *ngIf="filterValue !== 'ALL'">{{ 'sector.alerts' | translate }} [{{ filterValue }}]</h2>
-              <div *ngFor="let con of filteredRessources  | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalItems}">
-                <div>
+              <h2 class="pb100" *ngIf="filterValue === 'ALL'">Toutes les ressources</h2>
+              <h2 class="pb100" *ngIf="filterValue !== 'ALL'">Ressources [{{ filterValue }}]</h2>
+
+              <p-dataView #dv [value]="filteredRessources" [paginator]="true" [rows]="5" [filterBy]="filterVal" layout="grid">
+                <ng-template pTemplate="header">
+                  <div class="search-input-wrapper mr-auto mb-5">
+                    <div class="search-input white-bg">
+                      <input class="search-input-field white-bg" type="search" (input)="dv.filter($event.target.value, 'contains')" placeholder="Search">
+                      <button type="submit" value="Submit" class="search-input-button white-bg">
+                        <svg class="search-input-icon" aria-labelledby="search-icon" role="img" viewBox="0 0 30 30">
+                          <title id="search-icon">Search Icon</title>
+                          <g id="Icon/ti-search" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <path d="M23.6040022,22.896 L18.4310022,17.723 C19.4060022,16.586 20.0000011,15.112 20.0000011,13.5 C20.0000011,9.916 17.0840022,7 13.5000011,7 C11.7640022,7 10.1310022,7.676 8.90200221,8.903 C7.67500221,10.131 6.99900221,11.764 7.00000111,13.5 C7.00000111,17.084 9.91600221,20 13.5000011,20 C15.1120022,20 16.5870022,19.406 17.7240022,18.431 L22.8970022,23.604 L23.6040022,22.896 Z M13.5000009,19 C10.4680022,19 8.0000009,16.533 8.0000009,13.5 C7.99900221,12.03 8.57100221,10.649 9.61000221,9.611 C10.6480022,8.572 12.0300022,8 13.5000009,8 C16.5320022,8 19.0000009,10.467 19.0000009,13.5 C19.0000009,16.532 16.5320022,19 13.5000009,19 Z" id="ic_search" fill-rule="nonzero"></path>
+                          </g>
+                        </svg>
+                      </button>
+                      <div class="suggestions"><span></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-2">
+                    <p-dropdown [options]="sortOptions" placeholder="Trier par..." (onChange)="onSortChange($event)"></p-dropdown>
+                  </div>
+                </ng-template>
+                <ng-template let-con pTemplate="gridItem">
                   <div>
-                    <div class="wfb-card-wrapper pb60">
-                      <div class="row no-gutters">
-                        <div class="col-md-12">
-                          <div class="wfb-card__body-container">
-                            <div class="wfb-card__link-container">
-                              <h5 class="mb-1">
-                                <span class="col-8">{{ con.title }}</span>
-                              </h5>
-                            </div>
-                            <h6 style="font-weight: normal; margin-bottom: 0">
-                              <p>
-                                {{ con.text }}
-                              </p>
-                            </h6>
-                            <div class="thee-link-container">
-                              <div>
-                                <div class="wfb-card__link-container" style="display: flex; flex-direction: row; flex-wrap: wrap">
-                                  <div class="wfb-card__text mr-5 mb-1 mt-1 mr-auto"><p class="mr-5" style="color: darkgray; font-size: 14px">Marché: {{ con.market.Nom }}</p></div>
-                                  <div class="wfb-card__text mb-1 mt-1"><p style="color: darkgray; font-size: 14px">Date: {{ con.date }}</p></div>
+                    <div>
+                      <div class="wfb-card-wrapper pt60">
+                        <div class="row no-gutters">
+                          <div class="col-md-12">
+                            <div class="wfb-card__body-container">
+                              <div class="wfb-card__link-container">
+                                <h5 class="mb-1">
+                                  <span class="col-8">{{ con.title }}</span>
+                                </h5>
+                              </div>
+                              <h6 style="font-weight: normal; margin-bottom: 0">
+                                <p>
+                                  {{ con.text }}
+                                </p>
+                              </h6>
+                              <div class="thee-link-container">
+                                <div>
+                                  <div class="wfb-card__link-container" style="display: flex; flex-direction: row; flex-wrap: wrap">
+                                    <div class="wfb-card__text mr-5 mb-1 mt-1 mr-auto"><p class="mr-5" style="color: darkgray; font-size: 14px">Marché: {{ con.market.Nom }}</p></div>
+                                    <div class="wfb-card__text mb-1 mt-1"><p style="color: darkgray; font-size: 14px">Date: {{ con.date }}</p></div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="thee-link-container">
-                              <div>
-                                <div class="wfb-card__link-container" style="display: flex; flex-direction: row; flex-wrap: wrap">
-                                  <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6 mb-1 mt-1 mr-auto" style="margin-top: 8px">
-                                    <p style="color: darkgray; font-size: 14px">Filières:
-                                      <span *ngFor="let sector of con.sectors">{{ sector.Name }}<span *ngIf="!(sector.Name === con.sectors[con.sectors.length - 1].Name)">, </span></span>
-                                    </p>
-                                  </div>
-                                  <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
-                                    <div class="wfb-card__text" style="margin-top: 8px">
-                                      <p style="color: darkgray; font-size: 14px; text-align: center">Source: </p>
+                              <div class="thee-link-container">
+                                <div>
+                                  <div class="wfb-card__link-container" style="display: flex; flex-direction: row; flex-wrap: wrap">
+                                    <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6 mb-1 mt-1 mr-auto" style="margin-top: 8px">
+                                      <p style="color: darkgray; font-size: 14px">Filières:
+                                        <span *ngFor="let sector of con.sectors">{{ sector.Name }}<span *ngIf="!(sector.Name === con.sectors[con.sectors.length - 1].Name)">, </span></span>
+                                      </p>
                                     </div>
-                                    <div class="wfb-card__text">
-                                      <button style="margin: 0; padding: 0; border: none;" (click)="redirectTo(con.source)">
-                                        <svg class="icon" role="img" aria-labelledby="file-icon" viewBox="0 0 30 30">
-                                          <path d="M16.667,7 L9,7 L9,24 L22,24 L22,12.308 L16.667,7 Z M17,8.742 L20.273,12 L17,12 L17,8.742 Z M10,23 L10,8 L16,8 L16,13 L21,13 L21,23 L10,23 Z" fill="#161618" fill-rule="nonzero"></path>
-                                        </svg>
-                                      </button>
+                                    <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
+                                      <div class="wfb-card__text" style="margin-top: 8px">
+                                        <p style="color: darkgray; font-size: 14px; text-align: center">Source: </p>
+                                      </div>
+                                      <div class="wfb-card__text">
+                                        <button style="margin: 0; padding: 0; border: none;" (click)="redirectTo(con.source)">
+                                          <svg class="icon" role="img" aria-labelledby="file-icon" viewBox="0 0 30 30">
+                                            <path d="M16.667,7 L9,7 L9,24 L22,24 L22,12.308 L16.667,7 Z M17,8.742 L20.273,12 L17,12 L17,8.742 Z M10,23 L10,8 L16,8 L16,13 L21,13 L21,23 L10,23 Z" fill="#161618" fill-rule="nonzero"></path>
+                                          </svg>
+                                        </button>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
@@ -113,15 +101,71 @@
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                </ng-template>
+              </p-dataView>
+
+<!--              <div *ngFor="let con of filteredRessources  | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalItems}">-->
+<!--                <div>-->
+<!--                  <div>-->
+<!--                    <div class="wfb-card-wrapper pb60">-->
+<!--                      <div class="row no-gutters">-->
+<!--                        <div class="col-md-12">-->
+<!--                          <div class="wfb-card__body-container">-->
+<!--                            <div class="wfb-card__link-container">-->
+<!--                              <h5 class="mb-1">-->
+<!--                                <span class="col-8">{{ con.title }}</span>-->
+<!--                              </h5>-->
+<!--                            </div>-->
+<!--                            <h6 style="font-weight: normal; margin-bottom: 0">-->
+<!--                              <p>-->
+<!--                                {{ con.text }}-->
+<!--                              </p>-->
+<!--                            </h6>-->
+<!--                            <div class="thee-link-container">-->
+<!--                              <div>-->
+<!--                                <div class="wfb-card__link-container" style="display: flex; flex-direction: row; flex-wrap: wrap">-->
+<!--                                  <div class="wfb-card__text mr-5 mb-1 mt-1 mr-auto"><p class="mr-5" style="color: darkgray; font-size: 14px">Marché: {{ con.market.Nom }}</p></div>-->
+<!--                                  <div class="wfb-card__text mb-1 mt-1"><p style="color: darkgray; font-size: 14px">Date: {{ con.date }}</p></div>-->
+<!--                                </div>-->
+<!--                              </div>-->
+<!--                            </div>-->
+<!--                            <div class="thee-link-container">-->
+<!--                              <div>-->
+<!--                                <div class="wfb-card__link-container" style="display: flex; flex-direction: row; flex-wrap: wrap">-->
+<!--                                  <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6 mb-1 mt-1 mr-auto" style="margin-top: 8px">-->
+<!--                                    <p style="color: darkgray; font-size: 14px">Filières:-->
+<!--                                      <span *ngFor="let sector of con.sectors">{{ sector.Name }}<span *ngIf="!(sector.Name === con.sectors[con.sectors.length - 1].Name)">, </span></span>-->
+<!--                                    </p>-->
+<!--                                  </div>-->
+<!--                                  <div style="display: flex; flex-direction: row; flex-wrap: nowrap">-->
+<!--                                    <div class="wfb-card__text" style="margin-top: 8px">-->
+<!--                                      <p style="color: darkgray; font-size: 14px; text-align: center">Source: </p>-->
+<!--                                    </div>-->
+<!--                                    <div class="wfb-card__text">-->
+<!--                                      <button style="margin: 0; padding: 0; border: none;" (click)="redirectTo(con.source)">-->
+<!--                                        <svg class="icon" role="img" aria-labelledby="file-icon" viewBox="0 0 30 30">-->
+<!--                                          <path d="M16.667,7 L9,7 L9,24 L22,24 L22,12.308 L16.667,7 Z M17,8.742 L20.273,12 L17,12 L17,8.742 Z M10,23 L10,8 L16,8 L16,13 L21,13 L21,23 L10,23 Z" fill="#161618" fill-rule="nonzero"></path>-->
+<!--                                        </svg>-->
+<!--                                      </button>-->
+<!--                                    </div>-->
+<!--                                  </div>-->
+<!--                                </div>-->
+<!--                              </div>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
             </div>
-            <pagination-controls
-              style="position: absolute; bottom: 15px"
-              previousLabel="{{ 'sector.previous' | translate }}"
-              nextLabel="{{ 'sector.next' | translate }}"
-              responsive="true" (pageChange)="page=$event"
-              [ngStyle]="{'position': isSmallScreen ? {'position' : 'absolute', 'bottom.px' : 0} : {}}"></pagination-controls>
+<!--            <pagination-controls-->
+<!--              style="position: absolute; bottom: 15px"-->
+<!--              previousLabel="{{ 'sector.previous' | translate }}"-->
+<!--              nextLabel="{{ 'sector.next' | translate }}"-->
+<!--              responsive="true" (pageChange)="page=$event"-->
+<!--              [ngStyle]="{'position': isSmallScreen ? {'position' : 'absolute', 'bottom.px' : 0} : {}}"></pagination-controls>-->
           </div>
         </div>
       </div>

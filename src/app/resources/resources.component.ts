@@ -33,13 +33,18 @@ export class ResourcesComponent implements OnInit {
   filteredRessources: any[] = [];
   content: any[] = [];
   temp: any[];
+  filterVal = 'title';
+  sortOptions = [
+    {label: 'Filières', value: 'sectorsConcatString'},
+    {label: 'Marché', value: 'market.Nom'},
+    {label: 'Thèmes', value: 'alerte'},
+    {label: 'Date debut', value: 'market.Nom'},
+    {label: 'Date fin', value: 'market.Nom'}
+  ];
 
   filter(item: any, elt?: any): void {
     document.getElementById('top').scrollIntoView({
       behavior: 'smooth'
-    });
-    document.querySelectorAll('.active-item').forEach((i) => {
-      i.classList.remove('active-item');
     });
     this.filterValue = item.toString();
     this.totalItems = 0;
@@ -62,7 +67,6 @@ export class ResourcesComponent implements OnInit {
         }
       });
     }
-    elt.classList.add('active-item');
   }
 
   ngOnInit(): void {
@@ -97,14 +101,20 @@ export class ResourcesComponent implements OnInit {
           (val) => {
             const tempContent = [];
             val.forEach((elt) => {
+              let fobeddenString = '';
+              elt.filieres.forEach((sector) => {
+                fobeddenString += sector.Name + ',';
+              });
               tempContent.push(
                 {
+                  alerte: val[0].themes_de_veille.Nom,
                   date: elt.date,
                   title: elt.titre,
                   text: elt.resume,
                   sourceType: elt.sourceFile.length === 0 ? 'url' : 'document',
                   source: elt.sourceFile.length === 0 ? elt.sourceUrl : elt.sourceFile[0].url,
                   sectors: elt.filieres,
+                  sectorsConcatString: fobeddenString,
                   market: elt.marche
                 }
               );
@@ -114,6 +124,7 @@ export class ResourcesComponent implements OnInit {
                 alerte: val[0].themes_de_veille.Nom,
                 content: tempContent
               });
+            console.log(this.content);
           },
           (error) => {},
           () => {
@@ -141,4 +152,7 @@ export class ResourcesComponent implements OnInit {
     window.open(url, '_blank');
   }
 
+  onSortChange(event: any): void {
+    this.filterVal = event.value;
+  }
 }

@@ -6,6 +6,10 @@ import { ResourcesComponent } from './resources.component';
 import {TranslateModule} from '@ngx-translate/core';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {DataViewModule} from 'primeng/dataview';
+import {InputTextModule} from 'primeng/inputtext';
+import {DropdownModule} from 'primeng/dropdown';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +21,11 @@ import {NgxPaginationModule} from 'ngx-pagination';
     ResourcesRoutingModule,
     TranslateModule,
     ProgressSpinnerModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    DataViewModule,
+    InputTextModule,
+    DropdownModule,
+    FormsModule
   ]
 })
 export class ResourcesModule { }
