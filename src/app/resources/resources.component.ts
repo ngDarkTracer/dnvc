@@ -96,6 +96,7 @@ export class ResourcesComponent implements OnInit {
   }
 
   getRessourcesProperties(): void {
+    this.content = [];
     this.ready = false;
     this.isThereAlert = true;
     this.ressourcesService.getRessourcesFromServer().subscribe((data) => {
@@ -172,6 +173,7 @@ export class ResourcesComponent implements OnInit {
 
   search(sector: any, market: any, theme: any, debut: any, fin: any): void {
     this.content = [];
+    this.searching = true;
     this.ressourcesService.getSingleOrGroupOfRessourcesFromServer(sector, market, theme, debut.toLocaleDateString('en-CA'), fin.toLocaleDateString('en-CA')).subscribe(
       (data) => {
         if (data.length === 0) {
@@ -214,10 +216,10 @@ export class ResourcesComponent implements OnInit {
                   alerte: val[0].theme.Nom,
                   content: tempContent
                 });
+              this.searching = false;
             },
             (error) => {},
             () => {
-              this.ready = true;
               const all = document.getElementById('all');
               this.filter('ALL', all);
             });

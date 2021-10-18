@@ -28,9 +28,13 @@
 
               <p-dataView #dv [value]="filteredRessources" [paginator]="true" [rows]="5" [filterBy]="filterVal" layout="grid">
                 <ng-template pTemplate="header">
-                  <div style="display: flex; flex-direction: row; flex-wrap: wrap" class="mb-2">
 
-                    <div class="mr-3 mb-3" id="filieres">
+<!--                  <div class="mb-4">-->
+<!--                    <button class="link-style-button" [style.height.px]="22">Vider le filtre</button>-->
+<!--                  </div>-->
+
+                  <div style="display: flex; flex-direction: row; flex-wrap: wrap" class="mb-2">
+                    <div class="mr-auto mb-3" id="filieres">
                       <label for="filieres">Filières:</label><br>
                       <p-dropdown #sector [showClear]="true" [options]="sectors"
                                   optionLabel="Name" placeholder="filière"
@@ -68,13 +72,14 @@
                   <div class="mb-5">
                     <button pButton (click)="search(sector.value, market.value, theme.value, debut.value, fin.value)" [style.border-radius.px]="0"
                             label="Search..." icon="pi pi-arrow-right"
+                            [disabled]="!sector.value || !market.value || !theme.value || !debut.value || !fin.value"
                             iconPos="right" class="p-button-lg p-button-outlined p-button-secondary search-input"></button>
                   </div>
                 </ng-template>
                 <ng-template let-con pTemplate="gridItem">
                   <div>
                     <div>
-                      <div class="wfb-card-wrapper pt60">
+                      <div class="wfb-card-wrapper pt60" *ngIf="!searching">
                         <div class="row no-gutters">
                           <div class="col-md-12">
                             <div class="wfb-card__body-container">
@@ -130,6 +135,7 @@
                           </div>
                         </div>
                       </div>
+                      <p-progressSpinner *ngIf="searching"></p-progressSpinner>
                     </div>
                   </div>
                 </ng-template>
