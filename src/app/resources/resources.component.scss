@@ -1,3 +1,23 @@
+:host ::ng-deep .p-calendar {
+  border-radius: 0;
+  //border: 1px solid black;
+  //padding: 5px 10px;
+  //min-width: 12rem;
+  //max-width: 12rem;
+
+  .p-inputtext {
+    border-radius: 0;
+  }
+
+  .p-datepicker{
+    border-radius: 0;
+  }
+
+  .p-button {
+    border-radius: 0;
+  }
+}
+
 :host ::ng-deep .p-dropdown {
   border-radius: 0;
   border: 1px solid black;

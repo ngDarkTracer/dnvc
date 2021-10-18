@@ -43,7 +43,7 @@
 <!--                      </div>-->
 <!--                    </div>-->
 <!--                  </div>-->
-                  <div style="display: flex; flex-direction: row; flex-wrap: wrap" class="mb-5">
+                  <div style="display: flex; flex-direction: row; flex-wrap: wrap" class="mb-2">
 
                     <div class="mr-3 mb-3" id="filieres">
                       <label for="filieres">Filières:</label><br>
@@ -59,19 +59,18 @@
                       <label for="themes">Thèmes:</label><br>
                       <p-dropdown [options]="sortOptions" placeholder="Trier par..." (onChange)="onSortChange($event)"></p-dropdown>
                     </div>
-                    <br>
-                    <br>
+                  </div>
 
+                  <div style="display: flex; flex-direction: row; flex-wrap: wrap" class="mb-5">
                     <div class="mr-3 mb-3" id="date_debut">
                       <label for="date_debut">Date de début:</label><br>
-                      <p-calendar [showIcon]="true" inputId="icon"></p-calendar>
+                      <p-calendar dateFormat="mm-dd-yy" [showIcon]="true" inputId="icon"></p-calendar>
                     </div>
 
                     <div class="mr-3 mb-3" id="date_fin">
                       <label for="date_fin">Date de fin:</label><br>
-                      <p-calendar [showIcon]="true" inputId="icon"></p-calendar>
+                      <p-calendar dateFormat="mm-dd-yy" [showIcon]="true" inputId="icon"></p-calendar>
                     </div>
-
                   </div>
                 </ng-template>
                 <ng-template let-con pTemplate="gridItem">
