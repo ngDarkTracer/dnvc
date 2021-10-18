@@ -108,13 +108,14 @@ export class ResourcesComponent implements OnInit {
               tempContent.push(
                 {
                   alerte: val[0].themes_de_veille.Nom,
-                  date: elt.date,
                   title: elt.titre,
                   text: elt.resume,
                   sourceType: elt.sourceFile.length === 0 ? 'url' : 'document',
                   source: elt.sourceFile.length === 0 ? elt.sourceUrl : elt.sourceFile[0].url,
                   sectors: elt.filieres,
                   sectorsConcatString: fobeddenString,
+                  date_debut: elt.date_debut,
+                  date_fin: elt.date_fin,
                   market: elt.marche
                 }
               );
@@ -124,7 +125,6 @@ export class ResourcesComponent implements OnInit {
                 alerte: val[0].themes_de_veille.Nom,
                 content: tempContent
               });
-            console.log(this.content);
           },
           (error) => {},
           () => {

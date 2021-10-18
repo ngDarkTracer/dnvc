@@ -28,23 +28,50 @@
 
               <p-dataView #dv [value]="filteredRessources" [paginator]="true" [rows]="5" [filterBy]="filterVal" layout="grid">
                 <ng-template pTemplate="header">
-                  <div class="search-input-wrapper mr-auto mb-5">
-                    <div class="search-input white-bg">
-                      <input class="search-input-field white-bg" type="search" (input)="dv.filter($event.target.value, 'contains')" placeholder="Search">
-                      <button type="submit" value="Submit" class="search-input-button white-bg">
-                        <svg class="search-input-icon" aria-labelledby="search-icon" role="img" viewBox="0 0 30 30">
-                          <title id="search-icon">Search Icon</title>
-                          <g id="Icon/ti-search" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <path d="M23.6040022,22.896 L18.4310022,17.723 C19.4060022,16.586 20.0000011,15.112 20.0000011,13.5 C20.0000011,9.916 17.0840022,7 13.5000011,7 C11.7640022,7 10.1310022,7.676 8.90200221,8.903 C7.67500221,10.131 6.99900221,11.764 7.00000111,13.5 C7.00000111,17.084 9.91600221,20 13.5000011,20 C15.1120022,20 16.5870022,19.406 17.7240022,18.431 L22.8970022,23.604 L23.6040022,22.896 Z M13.5000009,19 C10.4680022,19 8.0000009,16.533 8.0000009,13.5 C7.99900221,12.03 8.57100221,10.649 9.61000221,9.611 C10.6480022,8.572 12.0300022,8 13.5000009,8 C16.5320022,8 19.0000009,10.467 19.0000009,13.5 C19.0000009,16.532 16.5320022,19 13.5000009,19 Z" id="ic_search" fill-rule="nonzero"></path>
-                          </g>
-                        </svg>
-                      </button>
-                      <div class="suggestions"><span></span>
-                      </div>
+<!--                  <div class="search-input-wrapper mr-auto mb-5">-->
+<!--                    <div class="search-input white-bg">-->
+<!--                      <input class="search-input-field white-bg" type="search" (input)="dv.filter($event.target.value, 'contains')" placeholder="Search">-->
+<!--                      <button type="submit" value="Submit" class="search-input-button white-bg">-->
+<!--                        <svg class="search-input-icon" aria-labelledby="search-icon" role="img" viewBox="0 0 30 30">-->
+<!--                          <title id="search-icon">Search Icon</title>-->
+<!--                          <g id="Icon/ti-search" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">-->
+<!--                            <path d="M23.6040022,22.896 L18.4310022,17.723 C19.4060022,16.586 20.0000011,15.112 20.0000011,13.5 C20.0000011,9.916 17.0840022,7 13.5000011,7 C11.7640022,7 10.1310022,7.676 8.90200221,8.903 C7.67500221,10.131 6.99900221,11.764 7.00000111,13.5 C7.00000111,17.084 9.91600221,20 13.5000011,20 C15.1120022,20 16.5870022,19.406 17.7240022,18.431 L22.8970022,23.604 L23.6040022,22.896 Z M13.5000009,19 C10.4680022,19 8.0000009,16.533 8.0000009,13.5 C7.99900221,12.03 8.57100221,10.649 9.61000221,9.611 C10.6480022,8.572 12.0300022,8 13.5000009,8 C16.5320022,8 19.0000009,10.467 19.0000009,13.5 C19.0000009,16.532 16.5320022,19 13.5000009,19 Z" id="ic_search" fill-rule="nonzero"></path>-->
+<!--                          </g>-->
+<!--                        </svg>-->
+<!--                      </button>-->
+<!--                      <div class="suggestions"><span></span>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+                  <div style="display: flex; flex-direction: row; flex-wrap: wrap" class="mb-5">
+
+                    <div class="mr-3 mb-3" id="filieres">
+                      <label for="filieres">Filières:</label><br>
+                      <p-dropdown [options]="sortOptions" placeholder="Trier par..." (onChange)="onSortChange($event)"></p-dropdown>
                     </div>
-                  </div>
-                  <div class="mb-2">
-                    <p-dropdown [options]="sortOptions" placeholder="Trier par..." (onChange)="onSortChange($event)"></p-dropdown>
+
+                    <div class="mr-3 mb-3" id="marches">
+                      <label for="marches">Marchés:</label><br>
+                      <p-dropdown [options]="sortOptions" placeholder="Trier par..." (onChange)="onSortChange($event)"></p-dropdown>
+                    </div>
+
+                    <div class="mr-3 mb-3" id="themes">
+                      <label for="themes">Thèmes:</label><br>
+                      <p-dropdown [options]="sortOptions" placeholder="Trier par..." (onChange)="onSortChange($event)"></p-dropdown>
+                    </div>
+                    <br>
+                    <br>
+
+                    <div class="mr-3 mb-3" id="date_debut">
+                      <label for="date_debut">Date de début:</label><br>
+                      <p-calendar [showIcon]="true" inputId="icon"></p-calendar>
+                    </div>
+
+                    <div class="mr-3 mb-3" id="date_fin">
+                      <label for="date_fin">Date de fin:</label><br>
+                      <p-calendar [showIcon]="true" inputId="icon"></p-calendar>
+                    </div>
+
                   </div>
                 </ng-template>
                 <ng-template let-con pTemplate="gridItem">
@@ -67,8 +94,15 @@
                               <div class="thee-link-container">
                                 <div>
                                   <div class="wfb-card__link-container" style="display: flex; flex-direction: row; flex-wrap: wrap">
+                                    <div class="wfb-card__text mr-5 mb-1 mt-1 mr-auto"><p class="mr-5" style="color: darkgray; font-size: 14px">Date de debut: {{ con.date_debut }}</p></div>
+                                    <div class="wfb-card__text mb-1 mt-1"><p style="color: darkgray; font-size: 14px">Date de fin: {{ con.date_fin }}</p></div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="thee-link-container">
+                                <div>
+                                  <div class="wfb-card__link-container" style="display: flex; flex-direction: row; flex-wrap: wrap">
                                     <div class="wfb-card__text mr-5 mb-1 mt-1 mr-auto"><p class="mr-5" style="color: darkgray; font-size: 14px">Marché: {{ con.market.Nom }}</p></div>
-                                    <div class="wfb-card__text mb-1 mt-1"><p style="color: darkgray; font-size: 14px">Date: {{ con.date }}</p></div>
                                   </div>
                                 </div>
                               </div>

@@ -10,6 +10,7 @@ import {DataViewModule} from 'primeng/dataview';
 import {InputTextModule} from 'primeng/inputtext';
 import {DropdownModule} from 'primeng/dropdown';
 import {FormsModule} from '@angular/forms';
+import {CalendarModule} from 'primeng/calendar';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {FormsModule} from '@angular/forms';
     DataViewModule,
     InputTextModule,
     DropdownModule,
+    CalendarModule,
     FormsModule
   ]
 })
