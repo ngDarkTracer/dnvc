@@ -48,24 +48,6 @@ export class SubscribeComponent implements OnInit {
       behavior: 'smooth'
     });
 
-    // this.subscribeService.getSectorsFromServer().subscribe((data) => {
-    //   data.forEach((sector) => {
-    //     this.sectors.push(sector);
-    //   });
-    // });
-    //
-    // this.subscribeService.getMarketsFromServer().subscribe((data) => {
-    //   data.forEach((market) => {
-    //     this.markets.push(market);
-    //   });
-    // });
-    //
-    // this.subscribeService.getMonitoringthemesFromserver().subscribe((data) => {
-    //   data.forEach((theme) => {
-    //     this.themes.push(theme);
-    //   });
-    // });
-
     this.subscribeService.getContactsFromserver().subscribe((data) => {
       this.contacts = data;
     });

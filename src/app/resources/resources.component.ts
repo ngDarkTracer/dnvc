@@ -4,6 +4,7 @@ import {BreakpointObserver} from '@angular/cdk/layout';
 import {from} from 'rxjs';
 import {groupBy, mergeMap, toArray} from 'rxjs/operators';
 import {RessourcesService} from '../services/ressources.service';
+import {SubscribeService} from '../services/subscribe.service';
 
 @Component({
   selector: 'app-resources',
@@ -15,7 +16,8 @@ export class ResourcesComponent implements OnInit {
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private breakPointObserver: BreakpointObserver,
-              private ressourcesService: RessourcesService) { }
+              private ressourcesService: RessourcesService,
+              private subscribeService: SubscribeService) { }
 
   serverAdress = 'https://dnvc-admin.herokuapp.com/';
   ressourcesImageUrl = '';
@@ -29,6 +31,9 @@ export class ResourcesComponent implements OnInit {
   isSmallScreen = false;
   isThereAlert = true;
   ready = false;
+  sectors: any[];
+  markets: any[];
+  themes: any[];
 
   filteredRessources: any[] = [];
   content: any[] = [];
@@ -71,6 +76,18 @@ export class ResourcesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRessourcesProperties();
+
+    this.subscribeService.getSectorsFromServer().subscribe((data) => {
+      this.sectors = data;
+    });
+
+    this.subscribeService.getMarketsFromServer().subscribe((data) => {
+      this.markets = data;
+    });
+
+    this.subscribeService.getMonitoringthemesFromserver().subscribe((data) => {
+      this.themes = data;
+    });
 
     this.breakPointObserver.observe(['(max-width: 765px)']).subscribe(result => {
       if (result.matches) {

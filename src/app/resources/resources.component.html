@@ -47,17 +47,17 @@
 
                     <div class="mr-3 mb-3" id="filieres">
                       <label for="filieres">Filières:</label><br>
-                      <p-dropdown [options]="sortOptions" placeholder="Trier par..." (onChange)="onSortChange($event)"></p-dropdown>
+                      <p-dropdown [options]="sectors" optionLabel="Name" placeholder="filière" (onChange)="onSortChange($event)"></p-dropdown>
                     </div>
 
                     <div class="mr-3 mb-3" id="marches">
                       <label for="marches">Marchés:</label><br>
-                      <p-dropdown [options]="sortOptions" placeholder="Trier par..." (onChange)="onSortChange($event)"></p-dropdown>
+                      <p-dropdown [options]="markets" optionLabel="Nom" placeholder="marché" (onChange)="onSortChange($event)"></p-dropdown>
                     </div>
 
                     <div class="mr-3 mb-3" id="themes">
                       <label for="themes">Thèmes:</label><br>
-                      <p-dropdown [options]="sortOptions" placeholder="Trier par..." (onChange)="onSortChange($event)"></p-dropdown>
+                      <p-dropdown [options]="themes" optionLabel="Nom" placeholder="type d'alerte" (onChange)="onSortChange($event)"></p-dropdown>
                     </div>
                   </div>
 

@@ -13,4 +13,16 @@ export class RessourcesService {
   getRessourcesFromServer(): Observable<any> {
     return this.httpClient.get<any[]>(this.serverAdress + 'ressources?_sort=titre:ASC', { responseType: 'json' });
   }
+
+  getSectorsFromServer(): Observable<any> {
+    return this.httpClient.get<any[]>(this.serverAdress + 'filieres?_sort=Name:ASC&_locale=en', { responseType: 'json' });
+  }
+
+  getMarketsFromServer(): Observable<any> {
+    return this.httpClient.get<any[]>(this.serverAdress + 'marches?_sort=Nom:ASC', { responseType: 'json' });
+  }
+
+  getMonitoringthemesFromserver(): Observable<any> {
+    return this.httpClient.get<any[]>(this.serverAdress + 'themes-de-veilles?_sort=Nom:ASC&_locale=en', { responseType: 'json' });
+  }
 }
