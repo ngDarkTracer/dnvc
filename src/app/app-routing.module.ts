@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'subscribe', loadChildren: () => import('./subscribe/subscribe.module').then(m => m.SubscribeModule) },
   { path: 'activation/:code', loadChildren: () => import('./activation/activation.module').then(m => m.ActivationModule) },
   { path: 'resources', loadChildren: () => import('./resources/resources.module').then(m => m.ResourcesModule) },
+  { path: 'update/:code', loadChildren: () => import('./update-user/update-user.module').then(m => m.UpdateUserModule) },
   { path: '**', loadChildren: () => import('./four-zero-four/four-zero-four.module').then(m => m.FourZeroFourModule) }];
 
 @NgModule({
