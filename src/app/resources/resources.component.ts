@@ -36,13 +36,13 @@ export class ResourcesComponent implements OnInit {
   content: any[] = [];
   temp: any[];
   filterVal = 'title';
-  sortOptions = [
-    {label: 'Filières', value: 'sectorsConcatString'},
-    {label: 'Marché', value: 'market.Nom'},
-    {label: 'Thèmes', value: 'alerte'},
-    {label: 'Date debut', value: 'market.Nom'},
-    {label: 'Date fin', value: 'market.Nom'}
-  ];
+  // sortOptions = [
+  //   {label: 'Filières', value: 'sectorsConcatString'},
+  //   {label: 'Marché', value: 'market.Nom'},
+  //   {label: 'Thèmes', value: 'alerte'},
+  //   {label: 'Date debut', value: 'market.Nom'},
+  //   {label: 'Date fin', value: 'market.Nom'}
+  // ];
 
   filter(item: any, elt?: any): void {
     document.getElementById('top').scrollIntoView({
@@ -181,7 +181,7 @@ export class ResourcesComponent implements OnInit {
         } else {
           this.isThereAlert = true;
         }
-
+        this.searching = false;
         this.temp = data;
         from(this.temp)
           .pipe(
@@ -216,7 +216,6 @@ export class ResourcesComponent implements OnInit {
                   alerte: val[0].theme.Nom,
                   content: tempContent
                 });
-              this.searching = false;
             },
             (error) => {},
             () => {

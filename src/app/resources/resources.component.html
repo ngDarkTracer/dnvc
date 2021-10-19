@@ -1,4 +1,4 @@
-<section class="background-threads careers-threads" id="top">
+<section class="background-threads careers-threads">
   <div class="fade-in-section disable-fade-in is-visible fade-in-hero disable-transform">
     <div class="container hero-splash-container">
       <div class="row pv90-60">
@@ -15,7 +15,7 @@
   </div>
 </section>
 
-<div class="border-top-black is-visible">
+<div class="border-top-black is-visible" id="top">
   <section class="content-section-mobile background-white">
     <div class="container content_nav-container">
       <div class="row">
@@ -29,9 +29,9 @@
               <p-dataView #dv [value]="filteredRessources" [paginator]="true" [rows]="5" [filterBy]="filterVal" layout="grid">
                 <ng-template pTemplate="header">
 
-<!--                  <div class="mb-4">-->
-<!--                    <button class="link-style-button" [style.height.px]="22">Vider le filtre</button>-->
-<!--                  </div>-->
+                  <div class="mb-4">
+                    <button class="link-style-button" [style.height.px]="22" (click)="getRessourcesProperties()">Vider le filtre</button>
+                  </div>
 
                   <div style="display: flex; flex-direction: row; flex-wrap: wrap" class="mb-2">
                     <div class="mr-auto mb-3" id="filieres">
@@ -69,11 +69,12 @@
 
                   </div>
 
-                  <div class="mb-5">
+                  <div class="mb-5" style="display: flex; flex-direction: row; flex-wrap: nowrap">
                     <button pButton (click)="search(sector.value, market.value, theme.value, debut.value, fin.value)" [style.border-radius.px]="0"
                             label="Search..." icon="pi pi-arrow-right"
                             [disabled]="!sector.value || !market.value || !theme.value || !debut.value || !fin.value"
                             iconPos="right" class="p-button-lg p-button-outlined p-button-secondary search-input"></button>
+                    <p-progressSpinner class="ml-1 mt-2" [style]="{height: '40px'}" *ngIf="searching"></p-progressSpinner>
                   </div>
                 </ng-template>
                 <ng-template let-con pTemplate="gridItem">
@@ -135,7 +136,6 @@
                           </div>
                         </div>
                       </div>
-                      <p-progressSpinner *ngIf="searching"></p-progressSpinner>
                     </div>
                   </div>
                 </ng-template>
