@@ -11,6 +11,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {DropdownModule} from 'primeng/dropdown';
 import {FormsModule} from '@angular/forms';
 import {CalendarModule} from 'primeng/calendar';
+import {AccordionModule} from 'primeng/accordion';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {CalendarModule} from 'primeng/calendar';
     InputTextModule,
     DropdownModule,
     CalendarModule,
-    FormsModule
+    FormsModule,
+    AccordionModule
   ]
 })
 export class ResourcesModule { }

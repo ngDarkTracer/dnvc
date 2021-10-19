@@ -28,54 +28,58 @@
 
               <p-dataView #dv [value]="filteredRessources" [paginator]="true" [rows]="5" [filterBy]="filterVal" layout="grid">
                 <ng-template pTemplate="header">
+                  <p-accordion>
+                    <p-accordionTab header="Recherche avancée" [selected]="false">
 
-                  <div class="mb-4">
-                    <button class="link-style-button" [style.height.px]="22" (click)="getRessourcesProperties()">{{ 'resources.clear' | translate }}</button>
-                  </div>
+                      <div style="display: flex; flex-direction: column; flex-wrap: wrap" class="mb-2">
+                        <div class="mr-auto mb-3" id="filieres">
+                          <label for="filieres">{{ 'resources.sectors' | translate }}:</label><br>
+                          <p-dropdown #sector [showClear]="true" [options]="sectors"
+                                      optionLabel="Name" placeholder="{{ 'resources.sector' | translate }}"
+                                      (onChange)="onSortChange($event)" optionValue="Name"></p-dropdown>
+                        </div>
 
-                  <div style="display: flex; flex-direction: row; flex-wrap: wrap" class="mb-2">
-                    <div class="mr-auto mb-3" id="filieres">
-                      <label for="filieres">{{ 'resources.sectors' | translate }}:</label><br>
-                      <p-dropdown #sector [showClear]="true" [options]="sectors"
-                                  optionLabel="Name" placeholder="{{ 'resources.sector' | translate }}"
-                                  (onChange)="onSortChange($event)" optionValue="Name"></p-dropdown>
-                    </div>
+                        <div class="mr-3 mb-3" id="marches">
+                          <label for="marches">{{ 'resources.markets' | translate }}:</label><br>
+                          <p-dropdown #market [showClear]="true" [options]="markets"
+                                      optionLabel="Nom" placeholder="{{ 'resources.market' | translate }}"
+                                      (onChange)="onSortChange($event)" optionValue="Nom"></p-dropdown>
+                        </div>
 
-                    <div class="mr-3 mb-3" id="marches">
-                      <label for="marches">{{ 'resources.markets' | translate }}:</label><br>
-                      <p-dropdown #market [showClear]="true" [options]="markets"
-                                  optionLabel="Nom" placeholder="{{ 'resources.market' | translate }}"
-                                  (onChange)="onSortChange($event)" optionValue="Nom"></p-dropdown>
-                    </div>
+                        <div class="mr-3 mb-3" id="themes">
+                          <label for="themes">{{ 'resources.themes' | translate }}:</label><br>
+                          <p-dropdown #theme [showClear]="true" [options]="themes"
+                                      optionLabel="Nom" placeholder="{{ 'resources.theme' | translate }}"
+                                      (onChange)="onSortChange($event)" optionValue="Nom"></p-dropdown>
+                        </div>
+                      </div>
 
-                    <div class="mr-3 mb-3" id="themes">
-                      <label for="themes">{{ 'resources.themes' | translate }}:</label><br>
-                      <p-dropdown #theme [showClear]="true" [options]="themes"
-                                  optionLabel="Nom" placeholder="{{ 'resources.theme' | translate }}"
-                                  (onChange)="onSortChange($event)" optionValue="Nom"></p-dropdown>
-                    </div>
-                  </div>
+                      <div style="display: flex; flex-direction: column; flex-wrap: wrap" class="mb-2">
+                        <div class="mr-3 mb-3" id="date_debut">
+                          <label for="date_debut">{{ 'resources.begin' | translate }}:</label><br>
+                          <p-calendar #debut dateFormat="mm-dd-yy" [showIcon]="true" inputId="icon"></p-calendar>
+                        </div>
 
-                  <div style="display: flex; flex-direction: row; flex-wrap: wrap" class="mb-2">
-                    <div class="mr-3 mb-3" id="date_debut">
-                      <label for="date_debut">{{ 'resources.begin' | translate }}:</label><br>
-                      <p-calendar #debut dateFormat="mm-dd-yy" [showIcon]="true" inputId="icon"></p-calendar>
-                    </div>
+                        <div class="mr-3 mb-3" id="date_fin">
+                          <label for="date_fin">{{ 'resources.end' | translate }}:</label><br>
+                          <p-calendar #fin dateFormat="mm-dd-yy" [showIcon]="true" inputId="icon"></p-calendar>
+                        </div>
 
-                    <div class="mr-3 mb-3" id="date_fin">
-                      <label for="date_fin">{{ 'resources.end' | translate }}:</label><br>
-                      <p-calendar #fin dateFormat="mm-dd-yy" [showIcon]="true" inputId="icon"></p-calendar>
-                    </div>
+                      </div>
 
-                  </div>
-
-                  <div class="mb-5" style="display: flex; flex-direction: row; flex-wrap: nowrap">
-                    <button pButton (click)="search(sector.value, market.value, theme.value, debut.value, fin.value)" [style.border-radius.px]="0"
-                            label="{{ 'resources.search' | translate }}" icon="pi pi-arrow-right"
-                            [disabled]="!sector.value || !market.value || !theme.value || !debut.value || !fin.value"
-                            iconPos="right" class="p-button-lg p-button-outlined p-button-secondary search-input"></button>
-                    <p-progressSpinner class="ml-1 mt-2" [style]="{height: '40px'}" *ngIf="searching"></p-progressSpinner>
-                  </div>
+                      <div class="mb-5" style="display: flex; flex-direction: row; flex-wrap: nowrap">
+                        <button pButton (click)="search(sector.value, market.value, theme.value, debut.value, fin.value)" [style.border-radius.px]="0"
+                                label="{{ 'resources.search' | translate }}" icon="pi pi-arrow-right"
+                                [disabled]="!sector.value || !market.value || !theme.value || !debut.value || !fin.value"
+                                iconPos="right" class="p-button-lg p-button-outlined p-button-secondary search-input"></button>
+                        <p-progressSpinner class="ml-1 mt-2" [style]="{height: '40px'}" *ngIf="searching"></p-progressSpinner>
+                      </div>
+                      <div>
+                        <button class="link-style-button pb-3" [style.height.px]="22" (click)="getRessourcesProperties()">{{ 'resources.clear' | translate }}</button>
+                      </div>
+                      <span class="mt-3"></span>
+                    </p-accordionTab>
+                  </p-accordion>
                 </ng-template>
                 <ng-template let-con pTemplate="gridItem">
                   <div>

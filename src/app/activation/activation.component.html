@@ -18,20 +18,19 @@
 <!--              class="p-button-raised p-button-success add-button"-->
 <!--              [style.border-radius.px]="0" (click)="addPreferences()"></button>-->
 <!--    </div>-->
-    <div class="m-5">
+    <div class="m-5 mb-3">
       <h4 class="mb-3" style="text-align: center">
-        <p>
-          {{ 'activation.complete' | translate }}
-        </p>
+        {{ 'activation.complete' | translate }}
       </h4><br>
       <div [formGroup]="criteriaFrom" (ngSubmit)="onSubmit()">
         <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-around;">
           <div formArrayName="criteres" style="text-align: center; width: 80vw;">
             <div *ngFor="let preference of getPreferences().controls; index as i">
               <div [formGroup]="preference" style="display: flex; flex-direction: row;
-              border-bottom: 1px solid #787676; flex-wrap:wrap; justify-content: center" class="pb-4 mb-4">
+              flex-wrap:wrap; justify-content: center">
                 <div class="mb-1 mr-3">
-                  <label for="sectors">{{ 'subscribe.sectors' | translate }}: </label><br>
+                  <label for="sectors" *ngIf="i === 0 && !isSmallScreen" style="font-size: 18px; font-family: 'GT America Extended'">{{ 'subscribe.sectors' | translate }}(s): </label><br>
+                  <div class="mb-5" *ngIf="i === 0"></div>
                   <p-dropdown id="sectors" [options]="sectors" optionLabel="Name"
                               [filter]="true" filterBy="Name" optionValue="id"
                               placeholder="{{ 'subscribe.sectors' | translate }}" formControlName="filieres">
@@ -42,7 +41,8 @@
                 </div>
 
                 <div class="mb-1 mr-3">
-                  <label for="markets">{{ 'subscribe.markets' | translate }}: </label><br>
+                  <label for="markets" *ngIf="i === 0 && !isSmallScreen" style="font-size: 18px; font-family: 'GT America Extended'">{{ 'subscribe.markets' | translate }}(s): </label><br>
+                  <div class="mb-5" *ngIf="i === 0"></div>
                   <p-dropdown id="markets" [options]="markets" optionLabel="Nom"
                               [filter]="true" filterBy="Nom" optionValue="id"
                               placeholder="{{ 'subscribe.markets' | translate }}" formControlName="marches">
@@ -53,7 +53,8 @@
                 </div>
 
                 <div class="mb-1 mr-3">
-                  <label for="themes">{{ 'subscribe.themes' | translate }}: </label><br>
+                  <label for="themes" *ngIf="i === 0 && !isSmallScreen" style="font-size: 18px; font-family: 'GT America Extended'">{{ 'subscribe.themes' | translate }}(s): </label><br>
+                  <div class="mb-5" *ngIf="i === 0"></div>
                   <p-dropdown id="themes" [options]="themes" optionLabel="Nom"
                               [filter]="true" filterBy="Nom" optionValue="id"
                               placeholder="{{ 'subscribe.themes' | translate }}" formControlName="themes">
@@ -64,6 +65,7 @@
                 </div>
 
                 <div>
+                  <div class="mb-5" *ngIf="i === 0"></div>
                   <button pButton pRipple type="button" label="x"
                           class="p-button-raised p-button-danger" style="margin-top: 27px"
                           [style.border-radius.px]="0" (click)="deletePreferences(i)"></button>

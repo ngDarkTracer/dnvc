@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SubscribeService} from '../services/subscribe.service';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {BreakpointObserver} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-activation',
@@ -14,6 +15,7 @@ export class ActivationComponent implements OnInit {
   id;
   done = false;
   error = false;
+  isSmallScreen = false;
   criteriaFrom: FormGroup;
   processing = false;
 
@@ -24,10 +26,19 @@ export class ActivationComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
               private formBuilder: FormBuilder,
-              private subscribeService: SubscribeService) { }
+              private subscribeService: SubscribeService,
+              private breakPointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
     this.code = this.activatedRoute.snapshot.paramMap.get('code');
+
+    this.breakPointObserver.observe(['(max-width: 765px)']).subscribe(result => {
+      if (result.matches) {
+        this.isSmallScreen = true;
+      } else {
+        this.isSmallScreen = false;
+      }
+    });
 
     this.subscribeService.getSectorsFromServer().subscribe((data) => {
       this.sectors = data;
