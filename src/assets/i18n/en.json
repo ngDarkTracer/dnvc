@@ -97,6 +97,7 @@
   },
 
   "resources": {
+    "advanced": "Advanced search",
     "title": "All resources",
     "sectors": "Sectors",
     "markets": "Markets",

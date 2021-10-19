@@ -29,7 +29,7 @@
               <p-dataView #dv [value]="filteredRessources" [paginator]="true" [rows]="5" [filterBy]="filterVal" layout="grid">
                 <ng-template pTemplate="header">
                   <p-accordion>
-                    <p-accordionTab header="Recherche avancée" [selected]="false">
+                    <p-accordionTab header="{{ 'resources.advanced' | translate }}" [selected]="false">
 
                       <div style="display: flex; flex-direction: column; flex-wrap: wrap" class="mb-2">
                         <div class="mr-auto mb-3" id="filieres">

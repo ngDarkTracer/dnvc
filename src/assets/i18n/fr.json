@@ -97,6 +97,7 @@
   },
 
   "resources": {
+    "advanced": "Recherche avancée",
     "title": "Toutes les ressources",
     "sectors": "Filières",
     "markets": "Marchés",
