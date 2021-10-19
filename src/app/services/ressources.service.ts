@@ -7,7 +7,8 @@ import {Observable} from 'rxjs';
 })
 export class RessourcesService {
 
-  serverAdress = 'http://localhost:1337/';
+  serverAdress = 'https://admin.dnvc-cm.org/';
+
   constructor(private httpClient: HttpClient) { }
 
   getRessourcesFromServer(): Observable<any> {
@@ -19,7 +20,7 @@ export class RessourcesService {
   }
 
   getSectorsFromServer(): Observable<any> {
-    return this.httpClient.get<any[]>(this.serverAdress + 'filieres?_sort=Name:ASC', { responseType: 'json' });
+    return this.httpClient.get<any[]>(this.serverAdress + 'filieres?_sort=Name:ASC&_locale=en', { responseType: 'json' });
   }
 
   getMarketsFromServer(): Observable<any> {
@@ -27,6 +28,6 @@ export class RessourcesService {
   }
 
   getMonitoringthemesFromserver(): Observable<any> {
-    return this.httpClient.get<any[]>(this.serverAdress + 'themes-de-veilles?_sort=Nom:ASC', { responseType: 'json' });
+    return this.httpClient.get<any[]>(this.serverAdress + 'themes-de-veilles?_sort=Nom:ASC&_locale=en', { responseType: 'json' });
   }
 }
