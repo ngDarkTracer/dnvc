@@ -24,11 +24,16 @@
 }
 
 :host ::ng-deep .p-button {
+  font-family: 'GT America Extended';
   .add-button {
     border-radius: 0;
-    // padding: 20px 20px;
+    font-family: 'GT America Extended';
     min-width: 6rem;
     max-width: 6rem;
+  }
+
+  .p-button {
+    font-family: 'GT America Extended';
   }
 
   .submit-button {
