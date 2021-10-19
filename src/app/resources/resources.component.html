@@ -23,47 +23,47 @@
           <p-progressSpinner *ngIf="!ready"></p-progressSpinner>
           <div class="free-form-content__content wysiwyg-wrapper" *ngIf="ready">
             <div>
-              <h2 class="pb100" *ngIf="filterValue === 'ALL'">Toutes les ressources</h2>
+              <h2 class="pb100" *ngIf="filterValue === 'ALL'">{{ 'resources.title' | translate }}</h2>
               <h2 class="pb100" *ngIf="filterValue !== 'ALL'">Ressources [{{ filterValue }}]</h2>
 
               <p-dataView #dv [value]="filteredRessources" [paginator]="true" [rows]="5" [filterBy]="filterVal" layout="grid">
                 <ng-template pTemplate="header">
 
                   <div class="mb-4">
-                    <button class="link-style-button" [style.height.px]="22" (click)="getRessourcesProperties()">Vider le filtre</button>
+                    <button class="link-style-button" [style.height.px]="22" (click)="getRessourcesProperties()">{{ 'resources.clear' | translate }}</button>
                   </div>
 
                   <div style="display: flex; flex-direction: row; flex-wrap: wrap" class="mb-2">
                     <div class="mr-auto mb-3" id="filieres">
-                      <label for="filieres">Filières:</label><br>
+                      <label for="filieres">{{ 'resources.sectors' | translate }}:</label><br>
                       <p-dropdown #sector [showClear]="true" [options]="sectors"
-                                  optionLabel="Name" placeholder="filière"
+                                  optionLabel="Name" placeholder="{{ 'resources.sector' | translate }}"
                                   (onChange)="onSortChange($event)" optionValue="Name"></p-dropdown>
                     </div>
 
                     <div class="mr-3 mb-3" id="marches">
-                      <label for="marches">Marchés:</label><br>
+                      <label for="marches">{{ 'resources.markets' | translate }}:</label><br>
                       <p-dropdown #market [showClear]="true" [options]="markets"
-                                  optionLabel="Nom" placeholder="marché"
+                                  optionLabel="Nom" placeholder="{{ 'resources.market' | translate }}"
                                   (onChange)="onSortChange($event)" optionValue="Nom"></p-dropdown>
                     </div>
 
                     <div class="mr-3 mb-3" id="themes">
-                      <label for="themes">Thèmes:</label><br>
+                      <label for="themes">{{ 'resources.themes' | translate }}:</label><br>
                       <p-dropdown #theme [showClear]="true" [options]="themes"
-                                  optionLabel="Nom" placeholder="type d'alerte"
+                                  optionLabel="Nom" placeholder="{{ 'resources.theme' | translate }}"
                                   (onChange)="onSortChange($event)" optionValue="Nom"></p-dropdown>
                     </div>
                   </div>
 
                   <div style="display: flex; flex-direction: row; flex-wrap: wrap" class="mb-2">
                     <div class="mr-3 mb-3" id="date_debut">
-                      <label for="date_debut">Date de début:</label><br>
+                      <label for="date_debut">{{ 'resources.begin' | translate }}:</label><br>
                       <p-calendar #debut dateFormat="mm-dd-yy" [showIcon]="true" inputId="icon"></p-calendar>
                     </div>
 
                     <div class="mr-3 mb-3" id="date_fin">
-                      <label for="date_fin">Date de fin:</label><br>
+                      <label for="date_fin">{{ 'resources.end' | translate }}:</label><br>
                       <p-calendar #fin dateFormat="mm-dd-yy" [showIcon]="true" inputId="icon"></p-calendar>
                     </div>
 
@@ -71,7 +71,7 @@
 
                   <div class="mb-5" style="display: flex; flex-direction: row; flex-wrap: nowrap">
                     <button pButton (click)="search(sector.value, market.value, theme.value, debut.value, fin.value)" [style.border-radius.px]="0"
-                            label="Search..." icon="pi pi-arrow-right"
+                            label="{{ 'resources.search' | translate }}" icon="pi pi-arrow-right"
                             [disabled]="!sector.value || !market.value || !theme.value || !debut.value || !fin.value"
                             iconPos="right" class="p-button-lg p-button-outlined p-button-secondary search-input"></button>
                     <p-progressSpinner class="ml-1 mt-2" [style]="{height: '40px'}" *ngIf="searching"></p-progressSpinner>
@@ -97,15 +97,15 @@
                               <div class="thee-link-container">
                                 <div>
                                   <div class="wfb-card__link-container" style="display: flex; flex-direction: row; flex-wrap: wrap">
-                                    <div class="wfb-card__text mr-5 mb-1 mt-1 mr-auto"><p class="mr-5" style="color: darkgray; font-size: 14px">Date de debut: {{ con.date_debut }}</p></div>
-                                    <div class="wfb-card__text mb-1 mt-1"><p style="color: darkgray; font-size: 14px">Date de fin: {{ con.date_fin }}</p></div>
+                                    <div class="wfb-card__text mr-5 mb-1 mt-1 mr-auto"><p class="mr-5" style="color: darkgray; font-size: 14px">{{ 'resources.begin' | translate }}: {{ con.date_debut }}</p></div>
+                                    <div class="wfb-card__text mb-1 mt-1"><p style="color: darkgray; font-size: 14px">{{ 'resources.end' | translate }}: {{ con.date_fin }}</p></div>
                                   </div>
                                 </div>
                               </div>
                               <div class="thee-link-container">
                                 <div>
                                   <div class="wfb-card__link-container" style="display: flex; flex-direction: row; flex-wrap: wrap">
-                                    <div class="wfb-card__text mr-5 mb-1 mt-1 mr-auto"><p class="mr-5" style="color: darkgray; font-size: 14px">Marché: {{ con.market.Nom }}</p></div>
+                                    <div class="wfb-card__text mr-5 mb-1 mt-1 mr-auto"><p class="mr-5" style="color: darkgray; font-size: 14px">{{ 'resources.market' | translate }}: {{ con.market.Nom }}</p></div>
                                   </div>
                                 </div>
                               </div>
@@ -113,7 +113,7 @@
                                 <div>
                                   <div class="wfb-card__link-container" style="display: flex; flex-direction: row; flex-wrap: wrap">
                                     <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6 mb-1 mt-1 mr-auto" style="margin-top: 8px">
-                                      <p style="color: darkgray; font-size: 14px">Filières:
+                                      <p style="color: darkgray; font-size: 14px">{{ 'resources.sectors' | translate }}:
                                         <span *ngFor="let sector of con.sectors">{{ sector.Name }}<span *ngIf="!(sector.Name === con.sectors[con.sectors.length - 1].Name)">, </span></span>
                                       </p>
                                     </div>

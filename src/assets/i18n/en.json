@@ -97,7 +97,17 @@
   },
 
   "resources": {
-    "title": "All resources"
+    "title": "All resources",
+    "sectors": "Sectors",
+    "markets": "Markets",
+    "themes": "Type of alerts",
+    "sector": "Sector",
+    "market": "Market",
+    "theme": "Type of alert",
+    "clear": "Clear filter",
+    "begin": "Start date",
+    "end": "End date",
+    "search": "Search"
   },
 
   "about": {
