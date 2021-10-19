@@ -109,7 +109,7 @@ export class ResourcesComponent implements OnInit {
       this.temp = data;
       from(this.temp)
         .pipe(
-          groupBy(element => element.theme.Nom),
+          groupBy(element => element.themes_de_veille.Nom),
           mergeMap(group => group.pipe(toArray()))
         )
         .subscribe(
@@ -122,7 +122,7 @@ export class ResourcesComponent implements OnInit {
               });
               tempContent.push(
                 {
-                  alerte: val[0].theme.Nom,
+                  alerte: val[0].themes_de_veille.Nom,
                   title: elt.titre,
                   text: elt.resume,
                   sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
@@ -137,7 +137,7 @@ export class ResourcesComponent implements OnInit {
             });
             this.content.push(
               {
-                alerte: val[0].theme.Nom,
+                alerte: val[0].themes_de_veille.Nom,
                 content: tempContent
               });
           },
@@ -198,7 +198,7 @@ export class ResourcesComponent implements OnInit {
                 });
                 tempContent.push(
                   {
-                    alerte: val[0].theme.Nom,
+                    alerte: val[0].themes_de_veille.Nom,
                     title: elt.titre,
                     text: elt.resume,
                     sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
@@ -213,7 +213,7 @@ export class ResourcesComponent implements OnInit {
               });
               this.content.push(
                 {
-                  alerte: val[0].theme.Nom,
+                  alerte: val[0].themes_de_veille.Nom,
                   content: tempContent
                 });
             },
