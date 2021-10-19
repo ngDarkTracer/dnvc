@@ -34,21 +34,21 @@
                       <div style="display: flex; flex-direction: column; flex-wrap: wrap" class="mb-2">
                         <div class="mr-auto mb-3" id="filieres">
                           <label for="filieres">{{ 'resources.sectors' | translate }}:</label><br>
-                          <p-dropdown #sector [showClear]="true" [options]="sectors"
+                          <p-dropdown #sector [showClear]="true" [options]="sectors" [filter]="true" filterBy="Name"
                                       optionLabel="Name" placeholder="{{ 'resources.sector' | translate }}"
                                       (onChange)="onSortChange($event)" optionValue="Name"></p-dropdown>
                         </div>
 
                         <div class="mr-3 mb-3" id="marches">
                           <label for="marches">{{ 'resources.markets' | translate }}:</label><br>
-                          <p-dropdown #market [showClear]="true" [options]="markets"
+                          <p-dropdown #market [showClear]="true" [options]="markets" [filter]="true" filterBy="Nom"
                                       optionLabel="Nom" placeholder="{{ 'resources.market' | translate }}"
                                       (onChange)="onSortChange($event)" optionValue="Nom"></p-dropdown>
                         </div>
 
                         <div class="mr-3 mb-3" id="themes">
                           <label for="themes">{{ 'resources.themes' | translate }}:</label><br>
-                          <p-dropdown #theme [showClear]="true" [options]="themes"
+                          <p-dropdown #theme [showClear]="true" [options]="themes" [filter]="true" filterBy="Nom"
                                       optionLabel="Nom" placeholder="{{ 'resources.theme' | translate }}"
                                       (onChange)="onSortChange($event)" optionValue="Nom"></p-dropdown>
                         </div>
