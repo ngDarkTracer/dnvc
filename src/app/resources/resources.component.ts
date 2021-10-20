@@ -185,7 +185,7 @@ export class ResourcesComponent implements OnInit {
         this.temp = data;
         from(this.temp)
           .pipe(
-            groupBy(element => element.theme.Nom),
+            groupBy(element => element.themes_de_veille.Nom),
             mergeMap(group => group.pipe(toArray()))
           )
           .subscribe(

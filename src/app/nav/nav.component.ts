@@ -54,7 +54,7 @@ export class NavComponent implements OnInit {
   }
 
   openAdminApp(): void {
-    window.open('https://dnvc-admin.herokuapp.com/admin/', '_blank');
+    window.open('https://admin.dnvc-cm.org/admin/', '_blank');
   }
 
   trans(value: string): void {
