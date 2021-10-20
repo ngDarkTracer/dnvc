@@ -90,7 +90,7 @@ export class ActivationComponent implements OnInit {
     criteria.Etat = 'Actif';
     const preferences = criteria;
 
-    fetch('http://admin.dnvc-cm.org/contacts/' + this.id, {
+    fetch('https://admin.dnvc-cm.org/contacts/' + this.id, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -100,10 +100,10 @@ export class ActivationComponent implements OnInit {
       this.processing = false;
       this.done = true;
     })
-      .then((data) => {
+      .catch((error) => {
         this.processing = false;
-      })
-      .catch((error) => { this.error = true; });
+        this.error = true;
+      });
   }
 
   redirectTo(): void {

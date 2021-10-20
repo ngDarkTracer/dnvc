@@ -103,10 +103,10 @@ export class SubscribeComponent implements OnInit {
         // }]
       };
 
-      fetch('http://admin.dnvc-cm.org/contacts', {
+      fetch('https://admin.dnvc-cm.org/contacts', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(userInformations),
       }).then((response) => {
