@@ -77,7 +77,7 @@ export class NoteComponent implements OnInit {
   ngOnInit(): void {
     const url = this.activatedRoute.snapshot.paramMap.get('note');
     this.currentNote = url;
-    this.getNoteProperties(url);
+    this.getNoteProperties(url.replace(/ /g, '%20'));
 
     this.breakPointObserver.observe(['(max-width: 765px)']).subscribe(result => {
       if (result.matches) {
@@ -110,7 +110,7 @@ export class NoteComponent implements OnInit {
             val.forEach((elt) => {
               if (this.noteImageUrl === '' || this.noteIntroText === '') {
                 for (let i = 0; i < elt.Filieres.length; i++) {
-                  if (elt.Filieres[i].Name === url) {
+                  if (elt.Filieres[i].Name === url.replace(/%20/g, ' ')) {
                     this.noteImageUrl = elt.Filieres[i].Photo.url;
                     this.noteIntroText = elt.Filieres[i].Intro;
                     this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
