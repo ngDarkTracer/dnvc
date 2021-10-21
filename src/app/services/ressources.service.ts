@@ -16,7 +16,7 @@ export class RessourcesService {
   }
 
   getSingleOrGroupOfRessourcesFromServer(sector: any, market: any, theme: any, debut: any, fin: any): Observable<any> {
-    return this.httpClient.get<any[]>(this.serverAdress + 'ressources?_sort=titre:ASC&_where[0][filieres.Name]=' + sector + '&_where[1][marche.Nom]=' + market + '&_where[2][themes_de_veille.Nom]=' + theme + '&_where[3][date_debut_gte]=' + debut + '&_where[4][date_fin_lte]=' + fin, { responseType: 'json' });
+    return this.httpClient.get<any[]>(this.serverAdress + 'ressources?_sort=titre:ASC&_where[0][filieres.Name]=' + sector + '&_where[1][marche.Nom]=' + market + '&_where[2][theme.Nom]=' + theme + '&_where[3][date_debut_gte]=' + debut + '&_where[4][date_fin_lte]=' + fin, { responseType: 'json' });
   }
 
   getSectorsFromServer(): Observable<any> {

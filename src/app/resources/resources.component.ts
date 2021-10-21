@@ -140,8 +140,15 @@ export class ResourcesComponent implements OnInit {
                 alerte: val[0].themes_de_veille.Nom,
                 content: tempContent
               });
+            document.getElementById('top').scrollIntoView({
+              behavior: 'smooth'
+            });
           },
-          (error) => {},
+          (error) => {
+            document.getElementById('top').scrollIntoView({
+              behavior: 'smooth'
+            });
+          },
           () => {
             this.ready = true;
             const all = document.getElementById('all');
