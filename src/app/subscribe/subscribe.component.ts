@@ -14,6 +14,7 @@ import {Router} from '@angular/router';
 export class SubscribeComponent implements OnInit {
 
   subscriptionForm: FormGroup;
+  updateForm: FormGroup;
   isSmallScreen = false;
   processing = false;
   alreadyExist = false;
@@ -36,16 +37,13 @@ export class SubscribeComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.initUpdateForm();
     this.breakpointObserver.observe(['(max-width: 765px)']).subscribe(result => {
       if (result.matches) {
         this.isSmallScreen = true;
       } else {
         this.isSmallScreen = false;
       }
-    });
-
-    document.getElementById('top').scrollIntoView({
-      behavior: 'smooth'
     });
 
     this.subscribeService.getContactsFromserver().subscribe((data) => {
@@ -62,25 +60,15 @@ export class SubscribeComponent implements OnInit {
     });
   }
 
+  initUpdateForm(): void {
+    this.updateForm = this.formBuilder.group({
+      email: ['', Validators.required]
+    });
+  }
+
   submit(): void {
 
     this.processing = true;
-    // this.selectedSectors = [];
-    // this.selectedMarkets = [];
-    //
-    // this.selectedThemes = [];
-    //
-    // this.subscriptionForm.controls.sectors.value.forEach((sector) => {
-    //   this.selectedSectors.push(sector.id);
-    // });
-    //
-    // this.subscriptionForm.controls.markets.value.forEach((market) => {
-    //   this.selectedMarkets.push(market.id);
-    // });
-    //
-    // this.subscriptionForm.controls.themes.value.forEach((theme) => {
-    //   this.selectedThemes.push(theme.id);
-    // });
 
     this.contacts.forEach((contact) => {
       if (contact.Email === this.subscriptionForm.controls.email.value) {
@@ -117,6 +105,10 @@ export class SubscribeComponent implements OnInit {
           this.processing = false;
         });
     }
+  }
+
+  update(): void {
+
   }
 
   redirectTo(): void {

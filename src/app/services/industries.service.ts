@@ -14,6 +14,10 @@ export class IndustriesService {
     return this.httpClient.get<any[]>(this.serverAdress + 'filieres?_sort=Name:ASC', { responseType: 'json' });
   }
 
+  getSectorFromServer(sector: string): Observable<any> {
+    return this.httpClient.get<any[]>(this.serverAdress + 'filieres?_locale=en&_where[0][Name]=' + sector, { responseType: 'json' });
+  }
+
   getSingleSectorFromServer(sector: string): Observable<any> {
     return this.httpClient.get<any[]>(this.serverAdress + 'alertes?_sort=Title:ASC&_locale=en&_where[0][Filieres.Name]=' + sector, { responseType: 'json' });
   }

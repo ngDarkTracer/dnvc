@@ -1,24 +1,24 @@
-<section class="background-threads careers-threads" id="top">
-  <div class="fade-in-section disable-fade-in is-visible fade-in-hero disable-transform">
-    <div class="container hero-splash-container">
-      <div class="row pv90-60">
-        <div class="col-sm-12 col-md-8 hero-splash">
-          <a class="hero-parent-title crown-link" routerLink="/home">
-            <h3 class="h1 small mb0 d-inline">Watcher</h3>
-          </a>
-          <h1 class="hero-title" style="color: white">{{ 'sectors.title' | translate }}</h1>
-        </div>
-        <div class="col-12"></div>
-        <div class="col-sm-12 col-md-5"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="background-grid-short-white">
+<!--<section class="background-threads careers-threads">-->
+<!--  <div class="fade-in-section disable-fade-in is-visible fade-in-hero disable-transform">-->
+<!--    <div class="container hero-splash-container">-->
+<!--      <div class="row pv90-60">-->
+<!--        <div class="col-sm-12 col-md-8 hero-splash">-->
+<!--          <a class="hero-parent-title crown-link" routerLink="/home">-->
+<!--            <h3 class="h1 small mb0 d-inline">Watcher</h3>-->
+<!--          </a>-->
+<!--          <h1 class="hero-title" style="color: white">{{ 'sectors.title' | translate }}</h1>-->
+<!--        </div>-->
+<!--        <div class="col-12"></div>-->
+<!--        <div class="col-sm-12 col-md-5"></div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+<section class="background-grid-short-white" id="top">
   <div class="container pv120-90" id="index-content-section">
     <div class="row">
       <div class="col-lg-3 col-md-12 col-sm-12">
+        <div style="margin-bottom: 120px"></div>
       <div class="filter-wrapper filter-sticky">
         <div class="filter-clear">
           <div class="label bold">{{ this.filteredIndustries.length }} {{ 'sectors.search_results' | translate }}</div>
@@ -69,6 +69,9 @@
       </div>
     </div>
       <div class="col-lg-9 col-md-12 col-sm-12">
+        <div  style="margin-bottom: 60px">
+          <h1 class="hero-title">{{ 'sectors.title' | translate }}</h1>
+        </div>
         <div class="row mt60 ml-5" *ngIf="!ready">
           <p-progressSpinner></p-progressSpinner>
         </div>

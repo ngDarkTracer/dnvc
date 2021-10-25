@@ -1,57 +1,71 @@
-<section class="background-threads careers-threads">
-  <div class="fade-in-section disable-fade-in is-visible fade-in-hero disable-transform">
-    <div class="container hero-splash-container">
-      <div class="row pv90-60">
-        <div class="col-sm-12 col-md-8 hero-splash">
-          <a class="hero-parent-title crown-link" routerLink="/notes">
-            <h3 class="h1 small mb0 d-inline">{{ 'note.All' | translate }}</h3>
-          </a>
-          <h1 class="hero-title" style="color: white">{{ currentNote }}</h1>
+<!--<section class="background-threads careers-threads">-->
+<!--  <div class="fade-in-section disable-fade-in is-visible fade-in-hero disable-transform">-->
+<!--    <div class="container hero-splash-container">-->
+<!--      <div class="row pv90-60">-->
+<!--        <div class="col-sm-12 col-md-8 hero-splash">-->
+<!--          <a class="hero-parent-title crown-link" routerLink="/notes">-->
+<!--            <h3 class="h1 small mb0 d-inline">{{ 'note.All' | translate }}</h3>-->
+<!--          </a>-->
+<!--          <h1 class="hero-title" style="color: white">{{ currentNote }}</h1>-->
+<!--        </div>-->
+<!--        <div class="col-12"></div>-->
+<!--        <div class="col-sm-12 col-md-5"></div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+<section class="background-grid-white">
+  <div class="container teaser-container" id="top">
+    <div *ngIf="isSmallScreen" style="margin-bottom: 150px"></div>
+    <div class="row align-items-center justify-content-between" *ngIf="ready">
+      <div class="col-sm-12 col-md-5 teaser-context pv120-90">
+        <h2 class="hero-title" style="margin-bottom: 50px;">{{ currentNote }}</h2>
+        {{ noteIntroText }}
+      </div>
+      <div class="col-sm-12 col-md-5 order-first teaser-image pv120-90" *ngIf="!isThereNote">
+        <h1 style="text-align:center">
+          <p>{{ 'note.isNote' | translate }}</p>
+        </h1>
+      </div>
+      <div class="col-sm-12 col-md-5 order-first teaser-image pv120-90" *ngIf="isThereNote">
+        <div class="header-subsection-date-section d-flex ml-2 mb-5">
+          <label class="header-subsection-date">{{ 'note.last_update' | translate }}: {{ lastUpdate }}</label>
         </div>
-        <div class="col-12"></div>
-        <div class="col-sm-12 col-md-5"></div>
+        <div class="fade-in-section disable-fade-in is-visible">
+          <div class=" gatsby-image-wrapper"
+               style="position: relative; overflow: hidden; max-width: 533px; max-height: 400px;">
+            <div aria-hidden="true" style="width: 100%; padding-bottom: 75.188%;"></div>
+            <img aria-hidden="true" src="" alt=""
+                 style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition-delay: 500ms;">
+            <picture>
+              <source
+                [srcset]="noteImageUrl + ' 133w,' + noteImageUrl + ' 267w,' + noteImageUrl +' 533w,' + noteImageUrl +' 600w'"
+                sizes="(max-width: 533px) 100vw, 533px">
+              <img sizes="(max-width: 533px) 100vw, 533px"
+                   [srcset]="noteImageUrl + ' 133w,' + noteImageUrl + ' 267w,' + noteImageUrl +' 533w,' + noteImageUrl +' 600w'"
+                   [src]="noteImageUrl" [alt]="currentNote" loading="lazy"
+                   style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 500ms ease 0s;">
+            </picture>
+            <noscript>
+              <picture>
+                <source
+                  [srcset]="noteImageUrl + ' 133w,' + noteImageUrl + ' 267w,' + noteImageUrl +' 533w,' + noteImageUrl +' 600w'"
+                  sizes="(max-width: 533px) 100vw, 533px"/>
+                <img loading="lazy" sizes="(max-width: 533px) 100vw, 533px"
+                     [srcset]="noteImageUrl + ' 133w,' + noteImageUrl + ' 267w,' + noteImageUrl +' 533w,' + noteImageUrl +' 600w'"
+                     [src]="noteImageUrl" [alt]="currentNote"
+                     style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/>
+              </picture>
+            </noscript>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="background-grid-white"><div class="container teaser-container"><div class="header-subsection-date-section d-flex">
-  <label class="header-subsection-date">{{ 'note.last_update' | translate }}: {{ lastUpdate }}</label>
-</div>
-  <p-progressSpinner *ngIf="!ready"></p-progressSpinner>
-  <div class="row align-items-center justify-content-between" *ngIf="ready"><div class="col-sm-12 col-md-5 teaser-context pv120-90">
-    {{ noteIntroText }}
-  </div>
-    <div class="col-sm-12 col-md-5 order-first teaser-image pv120-90" *ngIf="!isThereNote">
-      <h1 style="text-align:center">
-        <p>{{ 'note.isNote' | translate }}</p>
-      </h1>
-    </div>
-    <div class="col-sm-12 col-md-5 order-first teaser-image pv120-90" *ngIf="isThereNote"><div class="fade-in-section disable-fade-in is-visible">
-      <div class=" gatsby-image-wrapper" style="position: relative; overflow: hidden; max-width: 533px; max-height: 400px;">
-        <div aria-hidden="true" style="width: 100%; padding-bottom: 75.188%;"></div>
-        <img aria-hidden="true" src="" alt="" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 0; transition-delay: 500ms;">
-        <picture>
-          <source [srcset]="noteImageUrl + ' 133w,' + noteImageUrl + ' 267w,' + noteImageUrl +' 533w,' + noteImageUrl +' 600w'" sizes="(max-width: 533px) 100vw, 533px">
-          <img sizes="(max-width: 533px) 100vw, 533px" [srcset]="noteImageUrl + ' 133w,' + noteImageUrl + ' 267w,' + noteImageUrl +' 533w,' + noteImageUrl +' 600w'"
-               [src]="noteImageUrl" [alt]="currentNote" loading="lazy" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 500ms ease 0s;">
-        </picture>
-        <noscript>
-          <picture>
-            <source [srcset]="noteImageUrl + ' 133w,' + noteImageUrl + ' 267w,' + noteImageUrl +' 533w,' + noteImageUrl +' 600w'" sizes="(max-width: 533px) 100vw, 533px" />
-            <img loading="lazy" sizes="(max-width: 533px) 100vw, 533px" [srcset]="noteImageUrl + ' 133w,' + noteImageUrl + ' 267w,' + noteImageUrl +' 533w,' + noteImageUrl +' 600w'"
-                 [src]="noteImageUrl" [alt]="currentNote" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/>
-          </picture>
-        </noscript>
-      </div>
-    </div>
-    </div>
-  </div>
-</div>
-</section>
 
-
-<div class="border-top-black is-visible" id="top">
+<div class="border-top-black is-visible">
   <section class="content-section-mobile background-white">
     <div class="container content_nav-container">
       <div class="row" *ngIf="isThereNote">
@@ -63,13 +77,16 @@
                   <div>
                     <div class="label">{{ 'note.content' | translate }}</div>
                     <h2 class="h6 bold mb0 d-block d-md-none" *ngIf="filterValue !== 'ALL'">{{ filterValue }}</h2>
-                    <h2 class="h6 bold mb0 d-block d-md-none" *ngIf="filterValue === 'ALL'">{{ 'note.All' | translate }}</h2>
+                    <h2 class="h6 bold mb0 d-block d-md-none"
+                        *ngIf="filterValue === 'ALL'">{{ 'note.All' | translate }}</h2>
                   </div>
                   <div class="jump-nav__mobile" *ngIf="isSmallScreen">
                     <button class="jump-nav__mobile-button" (click)="open()">
-                      <svg class="icon icon-white" [ngClass]="{'rotate-180':openedMenu}" aria-labelledby="point-down-icon" role="img" viewBox="0 0 30 30">
+                      <svg class="icon icon-white" [ngClass]="{'rotate-180':openedMenu}"
+                           aria-labelledby="point-down-icon" role="img" viewBox="0 0 30 30">
                         <title id="point-down-icon">Point Down Icon</title>
-                        <polygon fill-rule="nonzero" points="23.354 12.075 15.499 19.929 7.646 12.075 8.353 11.368 15.498 18.514 22.646 11.367 23.354 12.075"></polygon>
+                        <polygon fill-rule="nonzero"
+                                 points="23.354 12.075 15.499 19.929 7.646 12.075 8.353 11.368 15.498 18.514 22.646 11.367 23.354 12.075"></polygon>
                       </svg>
                     </button>
                   </div>
@@ -77,12 +94,14 @@
                 <ul class="jump-nav__items" [ngClass]="{'d-block':openedMenu}">
                   <h6 class="mb0 pt15 jump-nav__item-wrapper" #elt id="all">
                     <div>
-                      <a class="jump-nav__item bold" style="cursor: pointer" (click)="filter('ALL', elt)">{{ 'note.All' | translate }}</a>
+                      <a class="jump-nav__item bold" style="cursor: pointer"
+                         (click)="filter('ALL', elt)">{{ 'note.All' | translate }}</a>
                     </div>
                   </h6>
                   <h6 class="mb0 pt15 jump-nav__item-wrapper" *ngFor="let item of content">
                     <div>
-                      <a class="jump-nav__item bold" style="cursor: pointer" #elt (click)="filter(item.note, elt)">{{ item.note }}</a>
+                      <a class="jump-nav__item bold" style="cursor: pointer" #elt
+                         (click)="filter(item.note, elt)">{{ item.note }}</a>
                     </div>
                   </h6>
                 </ul>
@@ -94,9 +113,11 @@
           <p-progressSpinner *ngIf="!ready"></p-progressSpinner>
           <div class="free-form-content__content wysiwyg-wrapper" *ngIf="ready">
             <div>
-              <h2 class="pb100" *ngIf="filterValue === 'ALL'">{{ 'note.alerts' | translate }} [{{ 'note.All' | translate }}]</h2>
+              <h2 class="pb100" *ngIf="filterValue === 'ALL'">{{ 'note.alerts' | translate }}
+                [{{ 'note.All' | translate }}]</h2>
               <h2 class="pb100" *ngIf="filterValue !== 'ALL'">{{ 'note.alerts' | translate }} [{{ filterValue }}]</h2>
-              <div *ngFor="let con of filteredNotes  | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalItems}">
+              <div
+                *ngFor="let con of filteredNotes  | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalItems}">
                 <div>
                   <div>
                     <div class="wfb-card-wrapper pb60">
@@ -105,7 +126,8 @@
                           <div class="wfb-card__body-container">
                             <div class="wfb-card__link-container">
                               <h5>
-                                <span class="col-4" [ngStyle]="{'background-color':con.color}" style="padding: 2px 12px; width: 100px; margin-right: 8px;"></span>
+                                <span class="col-4" [ngStyle]="{'background-color':con.color}"
+                                      style="padding: 2px 12px; width: 100px; margin-right: 8px;"></span>
                                 <span class="col-8">{{ con.title }}</span>
                               </h5>
                             </div>
@@ -116,28 +138,41 @@
                             </h6>
                             <div class="thee-link-container">
                               <div>
-                                <div class="wfb-card__link-container" style="display: flex; flex-direction: row; flex-wrap: wrap">
-                                  <div class="wfb-card__text mr-5 mb-1 mt-1 mr-auto"><p style="color: darkgray; font-size: 14px" class="mr-5">{{ 'note.publish' | translate }}: {{ con.date }}</p></div>
-                                  <div class="wfb-card__text mb-1 mt-1"><p style="color: darkgray; font-size: 14px">{{ 'note.followed_by' | translate }}: {{ con.author }}</p></div>
+                                <div class="wfb-card__link-container"
+                                     style="display: flex; flex-direction: row; flex-wrap: wrap">
+                                  <div class="wfb-card__text mr-5 mb-1 mt-1 mr-auto"><p
+                                    style="color: darkgray; font-size: 14px"
+                                    class="mr-5">{{ 'note.publish' | translate }}: {{ con.date }}</p></div>
+                                  <div class="wfb-card__text mb-1 mt-1"><p
+                                    style="color: darkgray; font-size: 14px">{{ 'note.followed_by' | translate }}
+                                    : {{ con.author }}</p></div>
                                 </div>
                               </div>
                             </div>
                             <div class="thee-link-container">
                               <div>
-                                <div class="wfb-card__link-container" style="display: flex; flex-direction: row; flex-wrap: wrap">
-                                  <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6 mb-1 mt-1 mr-auto"><p style="color: darkgray; font-size: 14px">{{ 'note.market' | translate }}:
-                                    <span *ngFor="let market of con.markets">{{ market.Nom }}<span *ngIf="!(market.Nom === con.markets[con.markets.length - 1].Nom)">, </span>
+                                <div class="wfb-card__link-container"
+                                     style="display: flex; flex-direction: row; flex-wrap: wrap">
+                                  <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6 mb-1 mt-1 mr-auto"><p
+                                    style="color: darkgray; font-size: 14px">{{ 'note.market' | translate }}:
+                                    <span *ngFor="let market of con.markets">{{ market.Nom }}<span
+                                      *ngIf="!(market.Nom === con.markets[con.markets.length - 1].Nom)">, </span>
                                     </span>
                                   </p>
                                   </div>
                                   <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
                                     <div class="wfb-card__text" style="margin-top: 8px">
-                                      <p style="color: darkgray; font-size: 14px; text-align: center">{{ 'note.source' | translate }}: </p>
+                                      <p
+                                        style="color: darkgray; font-size: 14px; text-align: center">{{ 'note.source' | translate }}
+                                        : </p>
                                     </div>
                                     <div class="wfb-card__text">
-                                      <button style="margin: 0; padding: 0; border: none;" (click)="redirectTo(con.source)">
+                                      <button style="margin: 0; padding: 0; border: none;"
+                                              (click)="redirectTo(con.source)">
                                         <svg class="icon" role="img" aria-labelledby="file-icon" viewBox="0 0 30 30">
-                                          <path d="M16.667,7 L9,7 L9,24 L22,24 L22,12.308 L16.667,7 Z M17,8.742 L20.273,12 L17,12 L17,8.742 Z M10,23 L10,8 L16,8 L16,13 L21,13 L21,23 L10,23 Z" fill="#161618" fill-rule="nonzero"></path>
+                                          <path
+                                            d="M16.667,7 L9,7 L9,24 L22,24 L22,12.308 L16.667,7 Z M17,8.742 L20.273,12 L17,12 L17,8.742 Z M10,23 L10,8 L16,8 L16,13 L21,13 L21,23 L10,23 Z"
+                                            fill="#161618" fill-rule="nonzero"></path>
                                         </svg>
                                       </button>
                                     </div>

@@ -45,9 +45,6 @@ export class ResourcesComponent implements OnInit {
   // ];
 
   filter(item: any, elt?: any): void {
-    document.getElementById('top').scrollIntoView({
-      behavior: 'smooth'
-    });
     this.filterValue = item.toString();
     this.totalItems = 0;
     this.filteredRessources = [];
@@ -109,7 +106,7 @@ export class ResourcesComponent implements OnInit {
       this.temp = data;
       from(this.temp)
         .pipe(
-          groupBy(element => element.themes_de_veille.Nom),
+          groupBy(element => element.theme.Nom),
           mergeMap(group => group.pipe(toArray()))
         )
         .subscribe(
@@ -122,7 +119,7 @@ export class ResourcesComponent implements OnInit {
               });
               tempContent.push(
                 {
-                  alerte: val[0].themes_de_veille.Nom,
+                  alerte: val[0].theme.Nom,
                   title: elt.titre,
                   text: elt.resume,
                   sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
@@ -137,7 +134,7 @@ export class ResourcesComponent implements OnInit {
             });
             this.content.push(
               {
-                alerte: val[0].themes_de_veille.Nom,
+                alerte: val[0].theme.Nom,
                 content: tempContent
               });
             document.getElementById('top').scrollIntoView({
@@ -192,7 +189,7 @@ export class ResourcesComponent implements OnInit {
         this.temp = data;
         from(this.temp)
           .pipe(
-            groupBy(element => element.themes_de_veille.Nom),
+            groupBy(element => element.theme.Nom),
             mergeMap(group => group.pipe(toArray()))
           )
           .subscribe(
@@ -205,7 +202,7 @@ export class ResourcesComponent implements OnInit {
                 });
                 tempContent.push(
                   {
-                    alerte: val[0].themes_de_veille.Nom,
+                    alerte: val[0].theme.Nom,
                     title: elt.titre,
                     text: elt.resume,
                     sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
@@ -220,7 +217,7 @@ export class ResourcesComponent implements OnInit {
               });
               this.content.push(
                 {
-                  alerte: val[0].themes_de_veille.Nom,
+                  alerte: val[0].theme.Nom,
                   content: tempContent
                 });
             },

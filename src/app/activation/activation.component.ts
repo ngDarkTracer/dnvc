@@ -53,7 +53,11 @@ export class ActivationComponent implements OnInit {
     });
 
     this.subscribeService.getSingleContactFromServer(this.code).subscribe((data) => {
-        this.id = data[0].id;
+      if (data.length === 0) {
+        this.router.navigate(['/home']);
+      } else {
+      this.id = data[0].id;
+      }
     },
     (error) => {});
 

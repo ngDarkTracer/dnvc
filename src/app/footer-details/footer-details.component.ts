@@ -17,9 +17,6 @@ export class FooterDetailsComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(() => {
       this.activeRoute = this.activatedRoute.snapshot.paramMap.get('detail');
       this.activeRoute = this.activeRoute.replace(/_/g, ' ');
-      document.getElementById('top').scrollIntoView({
-        behavior: 'smooth'
-      });
     });
   }
 

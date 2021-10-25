@@ -9,6 +9,7 @@ import {ButtonModule} from 'primeng/button';
 import {TranslateModule} from '@ngx-translate/core';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {DialogModule} from 'primeng/dialog';
+import {TabViewModule} from 'primeng/tabview';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {DialogModule} from 'primeng/dialog';
       ButtonModule,
       TranslateModule,
       ProgressSpinnerModule,
-      DialogModule
+      DialogModule,
+      TabViewModule
     ]
 })
 export class SubscribeModule { }

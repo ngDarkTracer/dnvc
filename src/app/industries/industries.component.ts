@@ -23,7 +23,6 @@ export class IndustriesComponent implements OnInit {
   constructor(private industriesService: IndustriesService) { }
 
   ngOnInit(): void {
-    document.getElementById('top').scrollTop = 0;
     this.getSectors();
   }
 

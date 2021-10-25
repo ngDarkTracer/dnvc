@@ -16,59 +16,59 @@
 </section>
 <div class="border-top-black is-visible" id="peak">
   <section class="content-section-mobile background-white pt-5 mb60 mb60 mb60 pb60"  style="margin: 0 auto; top: 5%; overflow-x: auto; height: 100%;">
-    <form [formGroup]="subscriptionForm" (ngSubmit)="submit()" style="position: relative; left: 50%; transform: translateX(-50%)" class="search-input-wrapper" [ngClass]="{'col-sm-5':!isSmallScreen}">
-      <label for="name" class="mb-2">{{ 'subscribe.name' | translate }}: </label>
-      <div class="search-input white-bg size mb-5" id="name">
-        <input type="text" class="search-input-field white-bg" formControlName="name">
-      </div>
 
-      <label for="surname" class="mb-2">{{ 'subscribe.surname' | translate }}: </label>
-      <div class="search-input white-bg mb-5" id="surname">
-        <input type="text" class="search-input-field white-bg" formControlName="surname">
-      </div>
+    <div style="position: relative; left: 50%; transform: translateX(-50%);" class="col-xs-12 col-sm-10 col-md-10 col-lg-6">
+      <p-tabView>
+        <p-tabPanel header="s'inscrire">
+          <form [formGroup]="subscriptionForm" (ngSubmit)="submit()" class="search-input-wrapper">
+            <label for="name" class="mb-2">{{ 'subscribe.name' | translate }}: </label>
+            <div class="search-input white-bg size mb-5" id="name">
+              <input type="text" class="search-input-field white-bg" formControlName="name">
+            </div>
 
-      <label for="tel" class="mb-2">{{ 'subscribe.tel' | translate }}: </label>
-      <div class="search-input white-bg mb-5" id="tel">
-        <input type="text" class="search-input-field white-bg" formControlName="tel">
-      </div>
+            <label for="surname" class="mb-2">{{ 'subscribe.surname' | translate }}: </label>
+            <div class="search-input white-bg mb-5" id="surname">
+              <input type="text" class="search-input-field white-bg" formControlName="surname">
+            </div>
 
-      <label for="email" class="mb-2">{{ 'subscribe.mail' | translate }}: </label>
-      <div class="search-input white-bg mb-5" id="email">
-        <input type="email" class="search-input-field white-bg" formControlName="email">
-      </div>
+            <label for="tel" class="mb-2">{{ 'subscribe.tel' | translate }}: </label>
+            <div class="search-input white-bg mb-5" id="tel">
+              <input type="text" class="search-input-field white-bg" formControlName="tel">
+            </div>
 
-<!--      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between;">-->
-<!--        <div class="mb-5">-->
-<!--          <label for="sectors">{{ 'subscribe.sectors' | translate }}: </label>-->
-<!--          <p-multiSelect id="sectors" [options]="sectors"-->
-<!--                         styleClass="search-input" defaultLabel="{{ 'subscribe.sectorsSelect' | translate }}"-->
-<!--                         formControlName="sectors"-->
-<!--                         optionLabel="Name" selectedItemsLabel="{0} {{ 'subscribe.selectedSectors' | translate }}"></p-multiSelect>-->
-<!--        </div>-->
-<!--        <div class="mb-5">-->
-<!--          <label for="markets">{{ 'subscribe.markets' | translate }}: </label>-->
-<!--          <p-multiSelect id="markets" [options]="markets"-->
-<!--                         styleClass="search-input" defaultLabel="{{ 'subscribe.marketsSelect' | translate }}"-->
-<!--                         formControlName="markets"-->
-<!--                         optionLabel="Nom" selectedItemsLabel="{0} {{ 'subscribe.selectedMarkets' | translate }}"></p-multiSelect>-->
-<!--        </div>-->
-<!--        <div class="mb-5">-->
-<!--          <label for="themes">{{ 'subscribe.themes' | translate }}: </label>-->
-<!--          <p-multiSelect id="themes" [options]="themes"-->
-<!--                         styleClass="search-input" defaultLabel="{{ 'subscribe.themesSelect' | translate }}"-->
-<!--                         formControlName="themes"-->
-<!--                         optionLabel="Nom" selectedItemsLabel="{0} {{ 'subscribe.selectedThemes' | translate }}"></p-multiSelect>-->
-<!--        </div>-->
-<!--      </div>-->
+            <label for="email" class="mb-2">{{ 'subscribe.mail' | translate }}: </label>
+            <div class="search-input white-bg mb-5" id="email">
+              <input type="email" class="search-input-field white-bg" formControlName="email">
+            </div>
+            <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
+              <button pButton type="submit" [disabled]="subscriptionForm.invalid || processing"
+                      label="{{ 'subscribe.send' | translate }}" icon="pi pi-arrow-right" [loading]="processing"
+                      iconPos="right" class="p-button-lg p-button-outlined p-button-secondary search-input"></button>
+            </div>
+          </form>
+        </p-tabPanel>
+        <p-tabPanel header="Mise a jour">
+          <form [formGroup]="updateForm" (ngSubmit)="update()" class="search-input-wrapper">
 
+            <h4>
+              <p style="text-align: center">Si vous souhaitez modifier vos préférences, veuillez entrer votre adresse email dans le champs ci-dessous</p>
+            </h4>
+            <br>
+            <label for="emailmodify" class="mb-2">{{ 'subscribe.mail' | translate }}: </label>
+            <div class="search-input white-bg mb-5" id="emailmodify">
+              <input type="email" class="search-input-field white-bg" formControlName="email">
+            </div>
 
-      <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
-        <button pButton type="submit" [disabled]="subscriptionForm.invalid || processing"
-                label="{{ 'subscribe.send' | translate }}" icon="pi pi-arrow-right"
-                iconPos="right" class="p-button-lg p-button-outlined p-button-secondary search-input"></button>
-        <p-progressSpinner class="ml-4" [style]="{height: '60px'}" *ngIf="processing"></p-progressSpinner>
-      </div>
-    </form>
+            <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
+              <button pButton type="submit" [disabled]="updateForm.invalid || processing"
+                      label="{{ 'subscribe.send' | translate }}" icon="pi pi-arrow-right" [loading]="processing"
+                      iconPos="right" class="p-button-lg p-button-outlined p-button-secondary search-input"></button>
+            </div>
+          </form>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+
     <p-dialog header="Confirmation" [(visible)]="displayMaximizable"
               [modal]="true" [closable]="false"
               [breakpoints]="{'960px': '75vw', '640px': '95vw'}"

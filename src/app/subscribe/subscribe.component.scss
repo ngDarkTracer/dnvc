@@ -2,6 +2,10 @@ label {
   font-size: 15px;
 }
 
+div input {
+  font-family: "GT America Extended";
+}
+
 :host ::ng-deep .p-multiselect {
   border-radius: 0;
   border: 1px solid black;
@@ -12,18 +16,23 @@ label {
   .p-multiselect-filter-container {
     border-radius: 0;
   }
-
 }
 
 :host ::ng-deep .p-button {
+  font-family: "GT America Extended";
   border-radius: 0;
-  padding: 20px 20px;
-  min-width: 18rem;
-  max-width: 18rem;
+  padding: 15px 15px;
+  min-width: 12rem;
+  max-width: 12rem;
 }
 
-:host ::ng-deep .p-button:hover {
-  background-color: #e21a41;
+:host ::ng-deep .p-tabview {
+  .p-tabview-nav {
+    font-family: "GT America Extended";
+    background: transparent;
+    border: 1px solid #dee2e6;
+    border-width: 0 0 0 0;
+  }
 }
 
 .body-growth {
