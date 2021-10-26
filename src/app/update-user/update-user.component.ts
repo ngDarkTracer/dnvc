@@ -17,8 +17,10 @@ export class UpdateUserComponent implements OnInit {
   error = false;
   isSmallScreen = false;
   criteriaFrom: FormGroup;
+  loading = true;
   processing = false;
 
+  preferences: any[];
   sectors: any[];
   markets: any[];
   themes: any[];
@@ -54,23 +56,29 @@ export class UpdateUserComponent implements OnInit {
       this.themes = data;
     });
 
+    this.initForm();
+
     this.subscribeService.getSingleContactFromServerByHisId(this.code).subscribe(
       (data) => {
+        // this.preferences = data[0].criteres;
         data[0].criteres.forEach((critere) => {
+          console.log(critere);
           const newPreferences = this.formBuilder.group({
             filieres: [critere.filieres[0], Validators.required],
             marches: [critere.marches[0], Validators.required],
-            themes: [critere.themes[0], Validators.required]
+            themes: ['' + critere.themes[0], Validators.required]
           });
           this.getPreferences().push(newPreferences);
         });
       },
       (error) => {
         console.log(error);
+        this.loading = false;
+      },
+      () => {
+        this.loading = false;
       }
     );
-
-    this.initForm();
   }
 
   initForm(): void {
