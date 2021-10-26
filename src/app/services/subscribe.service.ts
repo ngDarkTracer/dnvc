@@ -31,4 +31,12 @@ export class SubscribeService {
   getSingleContactFromServer(code: any): Observable<any> {
     return this.httpClient.get<any[]>(this.serverAdress + 'contacts?_sort=Nom:ASC&_where[0][activation_code]=' + code, { responseType: 'json' });
   }
+
+  getSingleContactFromServerByHisId(id: any): Observable<any> {
+    return this.httpClient.get<any[]>(this.serverAdress + 'contacts?_sort=Nom:ASC&_where[0][id]=' + id, { responseType: 'json' });
+  }
+
+  getSingleContactFromServerByHisEmailAddress(email: any): Observable<any> {
+    return this.httpClient.get<any[]>(this.serverAdress + 'contacts?_sort=Nom:ASC&_where[0][Email]=' + email, { responseType: 'json' });
+  }
 }

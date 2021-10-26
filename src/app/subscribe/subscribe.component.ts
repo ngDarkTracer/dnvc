@@ -84,11 +84,6 @@ export class SubscribeComponent implements OnInit {
         Telephone : this.subscriptionForm.controls.tel.value,
         Email : this.subscriptionForm.controls.email.value,
         Etat: 'Inactif'
-        // criteres: [{
-        //   marches: this.selectedMarkets,
-        //   filieres: this.selectedSectors,
-        //   themes: this.selectedThemes
-        // }]
       };
 
       fetch('https://admin.dnvc-cm.org/contacts', {
@@ -108,7 +103,22 @@ export class SubscribeComponent implements OnInit {
   }
 
   update(): void {
-
+    this.processing = true;
+    this.subscribeService.getSingleContactFromServerByHisEmailAddress(this.updateForm.controls.email.value).subscribe(
+      (data) => {
+        if (data.length === 0){
+          this.router.navigate(['/home']);
+          this.processing = false;
+        } else {
+          this.router.navigate(['/update/' + data[0].id ]);
+          this.processing = false;
+        }
+      },
+      (error) => {
+        console.log(error);
+        this.processing = false;
+      }
+    );
   }
 
   redirectTo(): void {

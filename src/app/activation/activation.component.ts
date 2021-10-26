@@ -62,6 +62,8 @@ export class ActivationComponent implements OnInit {
     (error) => {});
 
     this.initForm();
+
+    this.addPreferences();
   }
 
   initForm(): void {

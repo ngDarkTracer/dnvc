@@ -1,0 +1,53 @@
+:host ::ng-deep .p-dropdown {
+  border-radius: 0;
+  border: 1px solid black;
+  padding: 5px 10px;
+  min-width: 14rem;
+  max-width: 14rem;
+  font-family: 'GT America Extended';
+
+  .p-dropdown {
+    border: 1px solid #6c757d;
+  }
+
+  .p-dropdown-empty-message {
+    font-family: 'GT America Extended';
+  }
+
+  .p-dropdown-label.p-placeholder {
+    font-family: 'GT America Extended';
+  }
+
+  .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    font-family: 'GT America Extended';
+  }
+
+  .p-dropdown-filter {
+    border-radius: 0;
+  }
+}
+
+:host ::ng-deep .p-button {
+  font-family: 'GT America Extended';
+  .add-button {
+    border-radius: 0;
+    font-family: 'GT America Extended';
+    min-width: 6rem;
+    max-width: 6rem;
+  }
+
+  .p-button {
+    font-family: 'GT America Extended';
+  }
+
+  .submit-button {
+    border-radius: 0;
+    padding: 20px 20px;
+    min-width: 18rem;
+    max-width: 18rem;
+  }
+
+  .submit-button:hover {
+    background-color: #e21a41;
+  }
+}

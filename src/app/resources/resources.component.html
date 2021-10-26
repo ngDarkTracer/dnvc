@@ -90,8 +90,11 @@
                   <div>
                     <div>
                       <div class="wfb-card-wrapper pt60" *ngIf="!searching">
-                        <div class="row no-gutters">
-                          <div class="col-md-12">
+                        <div class="no-gutters" [ngClass]="{ 'small':!isSmallScreen, 'row':isSmallScreen }">
+                          <div [ngStyle]="{'width': isSmallScreen ? '15rem': '40rem' }" class="mr-5 ml-3 mt-2">
+                            <img src="../../assets/gabriel.jpg" alt="">
+                          </div>
+                          <div [ngClass]="{ 'col-md-12':isSmallScreen }">
                             <div class="wfb-card__body-container">
                               <div class="wfb-card__link-container">
                                 <h5 class="mb-1">
