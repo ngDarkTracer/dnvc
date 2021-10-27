@@ -99,7 +99,7 @@ export class ResourcesComponent implements OnInit {
       this.temp = data;
       from(this.temp)
         .pipe(
-          groupBy(element => element.themes_de_veille.Nom),
+          groupBy(element => element.id),
           mergeMap(group => group.pipe(toArray()))
         )
         .subscribe(
@@ -112,22 +112,22 @@ export class ResourcesComponent implements OnInit {
               });
               tempContent.push(
                 {
-                  alerte: val[0].themes_de_veille.Nom,
+                  alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
                   title: elt.titre,
                   text: elt.resume,
                   sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
                   imageUrl: elt.photo.url,
                   source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
-                  sectors: elt.filieres,
+                  sectors: elt.filieres.length === 0 ? 'All' : elt.filieres,
                   sectorsConcatString: fobeddenString,
                   date: elt.date,
-                  market: elt.marche
+                  market: elt.marche === null ? 'All' : elt.marche
                 }
               );
             });
             this.content.push(
               {
-                alerte: val[0].themes_de_veille.Nom,
+                alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
                 content: tempContent
               });
             document.getElementById('top').scrollIntoView({
@@ -182,7 +182,7 @@ export class ResourcesComponent implements OnInit {
         this.temp = data;
         from(this.temp)
           .pipe(
-            groupBy(element => element.themes_de_veille.Nom),
+            groupBy(element => element.id),
             mergeMap(group => group.pipe(toArray()))
           )
           .subscribe(
@@ -195,22 +195,22 @@ export class ResourcesComponent implements OnInit {
                 });
                 tempContent.push(
                   {
-                    alerte: val[0].themes_de_veille.Nom,
+                    alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
                     title: elt.titre,
                     text: elt.resume,
                     sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
                     imageUrl: elt.photo.url,
                     source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
-                    sectors: elt.filieres,
+                    sectors: elt.filieres.length === 0 ? 'All' : elt.filieres,
                     sectorsConcatString: fobeddenString,
                     date: elt.date,
-                    market: elt.marche
+                    market: elt.marche === null ? 'All' : elt.marche
                   }
                 );
               });
               this.content.push(
                 {
-                  alerte: val[0].themes_de_veille.Nom,
+                  alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
                   content: tempContent
                 });
             },

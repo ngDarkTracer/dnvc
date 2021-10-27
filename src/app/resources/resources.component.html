@@ -27,66 +27,123 @@
 
               <div *ngIf="!ready">
                 <div>
-                  <p-skeleton width="20rem" height="4rem" borderRadius="0"></p-skeleton>
+                  <p-skeleton width="15rem" height="3rem" borderRadius="0"></p-skeleton>
                 </div>
-                <div>
-                  <div>
-                    <div>
-                      <div class="wfb-card-wrapper pt60">
-                        <div class="no-gutters" [ngClass]="{ 'small':!isSmallScreen, 'row':isSmallScreen }">
-                          <div [ngStyle]="{'width': isSmallScreen ? '15rem': '40rem' }" class="mr-5 ml-3 mt-2">
-                            <p-skeleton width="10rem" height="10rem" borderRadius="0"></p-skeleton>
+                <div class="wfb-card-wrapper pt60">
+                  <div class="no-gutters" [ngClass]="{ 'small':!isSmallScreen, 'row':isSmallScreen }">
+                    <div [ngStyle]="{'width': isSmallScreen ? '15rem': '6rem' }" class="mb-2">
+                      <p-skeleton width="5rem" height="5rem" borderRadius="0"></p-skeleton>
+                    </div>
+                    <div [ngClass]="{ 'col-md-12':isSmallScreen }">
+                      <div class="wfb-card__body-container">
+                        <div class="wfb-card__link-container">
+                          <h5 class="mb-1">
+                            <p-skeleton width="10rem" height="2rem" borderRadius="0"></p-skeleton>
+                          </h5>
+                        </div>
+                        <h6 style="font-weight: normal; margin-bottom: 0">
+                          <p>
+                            <p-skeleton width="15rem" height="8rem" borderRadius="0"></p-skeleton>
+                          </p>
+                        </h6>
+                        <div class="thee-link-container">
+                          <div>
+                            <div class="wfb-card__link-container"
+                                 style="display: flex; flex-direction: row; flex-wrap: wrap">
+                              <div class="wfb-card__text mb-1 mt-1"><p
+                                style="color: darkgray; font-size: 14px"><p-skeleton width="4rem" height="1rem" borderRadius="0"></p-skeleton></p></div>
+                            </div>
                           </div>
-                          <div [ngClass]="{ 'col-md-12':isSmallScreen }">
-                            <div class="wfb-card__body-container">
-                              <div class="wfb-card__link-container">
-                                <h5 class="mb-1">
-                                  <p-skeleton width="10rem" height="2rem" borderRadius="0"></p-skeleton>
-                                </h5>
-                              </div>
-                              <h6 style="font-weight: normal; margin-bottom: 0">
-                                <p>
-                                  <p-skeleton width="15rem" height="8rem" borderRadius="0"></p-skeleton>
+                        </div>
+                        <div class="thee-link-container">
+                          <div>
+                            <div class="wfb-card__link-container"
+                                 style="display: flex; flex-direction: row; flex-wrap: wrap">
+                              <div class="wfb-card__text mr-5 mb-1 mt-1 mr-auto"><p class="mr-5"
+                                                                                    style="color: darkgray; font-size: 14px"><p-skeleton width="4rem" height="1rem" borderRadius="0"></p-skeleton></p></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="thee-link-container">
+                          <div>
+                            <div class="wfb-card__link-container"
+                                 style="display: flex; flex-direction: row; flex-wrap: wrap">
+                              <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6 mb-1 mt-1 mr-auto"
+                                   style="margin-top: 8px">
+                                <p style="color: darkgray; font-size: 14px">
+                                  <p-skeleton width="5rem" height="1rem" borderRadius="0"></p-skeleton>
                                 </p>
-                              </h6>
-                              <div class="thee-link-container">
-                                <div>
-                                  <div class="wfb-card__link-container"
-                                       style="display: flex; flex-direction: row; flex-wrap: wrap">
-                                    <div class="wfb-card__text mb-1 mt-1"><p
-                                      style="color: darkgray; font-size: 14px"><p-skeleton width="4rem" height="1rem" borderRadius="0"></p-skeleton></p></div>
-                                  </div>
+                              </div>
+                              <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
+                                <div class="wfb-card__text" style="margin-top: 8px">
+                                </div>
+                                <div class="wfb-card__text">
+                                  <button style="margin: 0; padding: 0; border: none;">
+                                    <p-skeleton width="1rem" height="1rem" borderRadius="0"></p-skeleton>
+                                  </button>
                                 </div>
                               </div>
-                              <div class="thee-link-container">
-                                <div>
-                                  <div class="wfb-card__link-container"
-                                       style="display: flex; flex-direction: row; flex-wrap: wrap">
-                                    <div class="wfb-card__text mr-5 mb-1 mt-1 mr-auto"><p class="mr-5"
-                                                                                          style="color: darkgray; font-size: 14px"><p-skeleton width="4rem" height="1rem" borderRadius="0"></p-skeleton></p></div>
-                                  </div>
-                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+
+                <div class="wfb-card-wrapper pt60">
+                  <div class="no-gutters" [ngClass]="{ 'small':!isSmallScreen, 'row':isSmallScreen }">
+                    <div [ngStyle]="{'width': isSmallScreen ? '15rem': '6rem' }" class="mb-2">
+                      <p-skeleton width="5rem" height="5rem" borderRadius="0"></p-skeleton>
+                    </div>
+                    <div [ngClass]="{ 'col-md-12':isSmallScreen }">
+                      <div class="wfb-card__body-container">
+                        <div class="wfb-card__link-container">
+                          <h5 class="mb-1">
+                            <p-skeleton width="10rem" height="2rem" borderRadius="0"></p-skeleton>
+                          </h5>
+                        </div>
+                        <h6 style="font-weight: normal; margin-bottom: 0">
+                          <p>
+                            <p-skeleton width="15rem" height="8rem" borderRadius="0"></p-skeleton>
+                          </p>
+                        </h6>
+                        <div class="thee-link-container">
+                          <div>
+                            <div class="wfb-card__link-container"
+                                 style="display: flex; flex-direction: row; flex-wrap: wrap">
+                              <div class="wfb-card__text mb-1 mt-1"><p
+                                style="color: darkgray; font-size: 14px"><p-skeleton width="4rem" height="1rem" borderRadius="0"></p-skeleton></p></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="thee-link-container">
+                          <div>
+                            <div class="wfb-card__link-container"
+                                 style="display: flex; flex-direction: row; flex-wrap: wrap">
+                              <div class="wfb-card__text mr-5 mb-1 mt-1 mr-auto"><p class="mr-5"
+                                                                                    style="color: darkgray; font-size: 14px"><p-skeleton width="4rem" height="1rem" borderRadius="0"></p-skeleton></p></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="thee-link-container">
+                          <div>
+                            <div class="wfb-card__link-container"
+                                 style="display: flex; flex-direction: row; flex-wrap: wrap">
+                              <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6 mb-1 mt-1 mr-auto"
+                                   style="margin-top: 8px">
+                                <p style="color: darkgray; font-size: 14px">
+                                  <p-skeleton width="5rem" height="1rem" borderRadius="0"></p-skeleton>
+                                </p>
                               </div>
-                              <div class="thee-link-container">
-                                <div>
-                                  <div class="wfb-card__link-container"
-                                       style="display: flex; flex-direction: row; flex-wrap: wrap">
-                                    <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6 mb-1 mt-1 mr-auto"
-                                         style="margin-top: 8px">
-                                      <p style="color: darkgray; font-size: 14px">
-                                        <p-skeleton width="5rem" height="1rem" borderRadius="0"></p-skeleton>
-                                      </p>
-                                    </div>
-                                    <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
-                                      <div class="wfb-card__text" style="margin-top: 8px">
-                                      </div>
-                                      <div class="wfb-card__text">
-                                        <button style="margin: 0; padding: 0; border: none;">
-                                          <p-skeleton width="1rem" height="1rem" borderRadius="0"></p-skeleton>
-                                        </button>
-                                      </div>
-                                    </div>
-                                  </div>
+                              <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
+                                <div class="wfb-card__text" style="margin-top: 8px">
+                                </div>
+                                <div class="wfb-card__text">
+                                  <button style="margin: 0; padding: 0; border: none;">
+                                    <p-skeleton width="1rem" height="1rem" borderRadius="0"></p-skeleton>
+                                  </button>
                                 </div>
                               </div>
                             </div>
@@ -166,11 +223,9 @@
                           </div>
                           <div [ngClass]="{ 'col-md-12':isSmallScreen }">
                             <div class="wfb-card__body-container">
-                              <div class="wfb-card__link-container">
-                                <h5 class="mb-1">
-                                  <span class="col-8">{{ con.title }}</span>
-                                </h5>
-                              </div>
+                              <h5 class="mb-1">
+                                {{ con.title }}
+                              </h5>
                               <h6 style="font-weight: normal; margin-bottom: 0">
                                 <p>
                                   {{ con.text }}
@@ -180,48 +235,47 @@
                                 <div>
                                   <div class="wfb-card__link-container"
                                        style="display: flex; flex-direction: row; flex-wrap: wrap">
-                                    <div class="wfb-card__text mb-1 mt-1"><p
+                                    <div class="wfb-card__text"><p
                                       style="color: darkgray; font-size: 14px">{{ 'resources.date' | translate }}
-                                      : {{ con.date}}</p></div>
+                                      : {{ con.date }}</p></div>
                                   </div>
                                 </div>
                               </div>
-                              <div class="thee-link-container">
+                              <div class="thee-link-container" *ngIf="con.market !== 'All'">
                                 <div>
                                   <div class="wfb-card__link-container"
                                        style="display: flex; flex-direction: row; flex-wrap: wrap">
-                                    <div class="wfb-card__text mr-5 mb-1 mt-1 mr-auto"><p class="mr-5"
-                                                                                          style="color: darkgray; font-size: 14px">{{ 'resources.market' | translate }}
+                                    <div class="wfb-card__text mr-5 mr-auto"><p class="mr-5"
+                                                                                style="color: darkgray; font-size: 14px">{{ 'resources.market' | translate }}
                                       : {{ con.market.Nom }}</p></div>
                                   </div>
                                 </div>
                               </div>
+                              <div class="thee-link-container" *ngIf="con.sectors !== 'All'">
+                                <div class="wfb-card__link-container"
+                                     style="display: flex; flex-direction: row; flex-wrap: wrap">
+                                  <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6 mr-auto">
+                                    <p style="color: darkgray; font-size: 14px">{{ 'resources.sectors' | translate }}:
+                                      <span *ngFor="let sector of con.sectors">{{ sector.Name }}<span
+                                        *ngIf="!(sector.Name === con.sectors[con.sectors.length - 1].Name)">, </span></span>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
                               <div class="thee-link-container">
-                                <div>
-                                  <div class="wfb-card__link-container"
-                                       style="display: flex; flex-direction: row; flex-wrap: wrap">
-                                    <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6 mb-1 mt-1 mr-auto"
-                                         style="margin-top: 8px">
-                                      <p style="color: darkgray; font-size: 14px">{{ 'resources.sectors' | translate }}:
-                                        <span *ngFor="let sector of con.sectors">{{ sector.Name }}<span
-                                          *ngIf="!(sector.Name === con.sectors[con.sectors.length - 1].Name)">, </span></span>
-                                      </p>
-                                    </div>
-                                    <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
-                                      <div class="wfb-card__text" style="margin-top: 8px">
-                                        <p style="color: darkgray; font-size: 14px; text-align: center">Source: </p>
-                                      </div>
-                                      <div class="wfb-card__text">
-                                        <button style="margin: 0; padding: 0; border: none;"
-                                                (click)="redirectTo(con.source)">
-                                          <svg class="icon" role="img" aria-labelledby="file-icon" viewBox="0 0 30 30">
-                                            <path
-                                              d="M16.667,7 L9,7 L9,24 L22,24 L22,12.308 L16.667,7 Z M17,8.742 L20.273,12 L17,12 L17,8.742 Z M10,23 L10,8 L16,8 L16,13 L21,13 L21,23 L10,23 Z"
-                                              fill="#161618" fill-rule="nonzero"></path>
-                                          </svg>
-                                        </button>
-                                      </div>
-                                    </div>
+                                <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
+                                  <div class="wfb-card__text" style="margin-top: 8px">
+                                    <p style="color: darkgray; font-size: 14px; text-align: center">Source: </p>
+                                  </div>
+                                  <div class="wfb-card__text">
+                                    <button style="margin: 0; padding: 0; border: none;"
+                                            (click)="redirectTo(con.source)">
+                                      <svg class="icon" role="img" aria-labelledby="file-icon" viewBox="0 0 30 30">
+                                        <path
+                                          d="M16.667,7 L9,7 L9,24 L22,24 L22,12.308 L16.667,7 Z M17,8.742 L20.273,12 L17,12 L17,8.742 Z M10,23 L10,8 L16,8 L16,13 L21,13 L21,23 L10,23 Z"
+                                          fill="#161618" fill-rule="nonzero"></path>
+                                      </svg>
+                                    </button>
                                   </div>
                                 </div>
                               </div>
