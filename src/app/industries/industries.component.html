@@ -47,7 +47,7 @@
               </div>
               <div class="" [ngClass]="{'az-list':openedList === true}">
               </div>
-              <div class="row no-gutters" [ngClass]="{'az-filter__mobile_list':openedList === false}">
+              <div class="row no-gutters" *ngIf="ready" [ngClass]="{'az-filter__mobile_list':openedList === false}">
                 <div class="col-3 letter-container" *ngFor="let industry of industries">
                   <button class="az-button"
                           [disabled]="industry.industry.length === 0"
@@ -67,6 +67,26 @@
                   </button>
                 </div>
               </div>
+
+              <div class="row no-gutters" *ngIf="!ready" [ngClass]="{'az-filter__mobile_list':openedList === false}">
+                <div class="col-3 letter-container" *ngFor="let letter of alphabet">
+                  <button class="az-button"
+                          aria-label="Show Letter - A"
+                          data-testid="letter">
+                    <h6 class="mb0">
+                      <p-skeleton borderRadius="0" width="1rem" height="1rem"></p-skeleton>
+                    </h6>
+                  </button>
+                </div>
+                <div class="col-6">
+                  <button class="az-button all-button"
+                          aria-label="Show All - Letters" data-testid="all-letters">
+                    <h6 class="mb0">
+                      <p-skeleton borderRadius="0" width="5rem" height="2rem"></p-skeleton>
+                    </h6>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -75,9 +95,39 @@
         <div style="margin-bottom: 60px">
           <h1 class="hero-title">{{ 'sectors.title' | translate }}</h1>
         </div>
-        <div class="row mt60 ml-5" *ngIf="!ready">
-          <p-progressSpinner></p-progressSpinner>
+<!--        <div class="row mt60 ml-5" *ngIf="!ready">-->
+<!--          <p-progressSpinner></p-progressSpinner>-->
+<!--          <p-skeleton width="10rem" height="2rem" styleClass="p-mb-2"></p-skeleton>-->
+<!--          <p-skeleton width="10rem" height="2rem" styleClass="p-mb-2"></p-skeleton>-->
+<!--          <p-skeleton width="10rem" height="2rem" styleClass="p-mb-2"></p-skeleton>-->
+<!--          <p-skeleton width="10rem" height="2rem" styleClass="p-mb-2"></p-skeleton>-->
+<!--          <p-skeleton width="10rem" height="2rem" styleClass="p-mb-2"></p-skeleton>-->
+<!--        </div>-->
+
+        <div class="row mt45" *ngIf="!ready">
+          <div class="col-lg-9">
+            <div class="border">
+              <div class="pb60">
+                <h2 class="mb-5 mt-1">
+                  <p-skeleton borderRadius="0" width="10rem" height="3rem"></p-skeleton>
+                </h2>
+                <h2 class="mb-5">
+                  <p-skeleton borderRadius="0" width="13rem" height="3rem"></p-skeleton>
+                </h2>
+                <h2 class="mb-5">
+                  <p-skeleton borderRadius="0" width="15rem" height="3rem"></p-skeleton>
+                </h2>
+                <h2 class="mb-5">
+                  <p-skeleton borderRadius="0" width="10rem" height="3rem"></p-skeleton>
+                </h2>
+                <h2 class="mb-5">
+                  <p-skeleton borderRadius="0" width="11rem" height="3rem"></p-skeleton>
+                </h2>
+              </div>
+            </div>
+          </div>
         </div>
+
         <div class="row mt45" *ngIf="ready">
           <div class="col-lg-9"
                *ngFor="let industry of filteredIndustries | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalItems}">
