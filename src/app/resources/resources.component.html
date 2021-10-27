@@ -19,13 +19,86 @@
     <div class="container content_nav-container">
       <div class="row">
         <div class="col-lg-6 col-md-12 col-sm-12 border-left-black pb120-90 pt120-45 content-area-content">
-          <p-progressSpinner *ngIf="!ready"></p-progressSpinner>
-          <div class="free-form-content__content wysiwyg-wrapper" *ngIf="ready">
+<!--          <p-progressSpinner *ngIf="!ready"></p-progressSpinner>-->
+          <div class="free-form-content__content wysiwyg-wrapper">
             <div>
               <h2 class="pb100" *ngIf="filterValue === 'ALL'">{{ 'resources.title' | translate }}</h2>
               <h2 class="pb100" *ngIf="filterValue !== 'ALL'">Ressources [{{ filterValue }}]</h2>
 
-              <p-dataView #dv [value]="filteredRessources" [paginator]="true" [rows]="5" [filterBy]="filterVal"
+              <div *ngIf="!ready">
+                <div>
+                  <p-skeleton width="20rem" height="4rem" borderRadius="0"></p-skeleton>
+                </div>
+                <div>
+                  <div>
+                    <div>
+                      <div class="wfb-card-wrapper pt60">
+                        <div class="no-gutters" [ngClass]="{ 'small':!isSmallScreen, 'row':isSmallScreen }">
+                          <div [ngStyle]="{'width': isSmallScreen ? '15rem': '40rem' }" class="mr-5 ml-3 mt-2">
+                            <p-skeleton width="10rem" height="10rem" borderRadius="0"></p-skeleton>
+                          </div>
+                          <div [ngClass]="{ 'col-md-12':isSmallScreen }">
+                            <div class="wfb-card__body-container">
+                              <div class="wfb-card__link-container">
+                                <h5 class="mb-1">
+                                  <p-skeleton width="10rem" height="2rem" borderRadius="0"></p-skeleton>
+                                </h5>
+                              </div>
+                              <h6 style="font-weight: normal; margin-bottom: 0">
+                                <p>
+                                  <p-skeleton width="15rem" height="8rem" borderRadius="0"></p-skeleton>
+                                </p>
+                              </h6>
+                              <div class="thee-link-container">
+                                <div>
+                                  <div class="wfb-card__link-container"
+                                       style="display: flex; flex-direction: row; flex-wrap: wrap">
+                                    <div class="wfb-card__text mb-1 mt-1"><p
+                                      style="color: darkgray; font-size: 14px"><p-skeleton width="4rem" height="1rem" borderRadius="0"></p-skeleton></p></div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="thee-link-container">
+                                <div>
+                                  <div class="wfb-card__link-container"
+                                       style="display: flex; flex-direction: row; flex-wrap: wrap">
+                                    <div class="wfb-card__text mr-5 mb-1 mt-1 mr-auto"><p class="mr-5"
+                                                                                          style="color: darkgray; font-size: 14px"><p-skeleton width="4rem" height="1rem" borderRadius="0"></p-skeleton></p></div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="thee-link-container">
+                                <div>
+                                  <div class="wfb-card__link-container"
+                                       style="display: flex; flex-direction: row; flex-wrap: wrap">
+                                    <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6 mb-1 mt-1 mr-auto"
+                                         style="margin-top: 8px">
+                                      <p style="color: darkgray; font-size: 14px">
+                                        <p-skeleton width="5rem" height="1rem" borderRadius="0"></p-skeleton>
+                                      </p>
+                                    </div>
+                                    <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
+                                      <div class="wfb-card__text" style="margin-top: 8px">
+                                      </div>
+                                      <div class="wfb-card__text">
+                                        <button style="margin: 0; padding: 0; border: none;">
+                                          <p-skeleton width="1rem" height="1rem" borderRadius="0"></p-skeleton>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p-dataView *ngIf="ready" #dv [value]="filteredRessources" [paginator]="true" [rows]="5" [filterBy]="filterVal"
                           layout="grid">
                 <ng-template pTemplate="header">
                   <p-accordion>

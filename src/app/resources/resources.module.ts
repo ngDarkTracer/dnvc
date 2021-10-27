@@ -12,24 +12,26 @@ import {DropdownModule} from 'primeng/dropdown';
 import {FormsModule} from '@angular/forms';
 import {CalendarModule} from 'primeng/calendar';
 import {AccordionModule} from 'primeng/accordion';
+import {SkeletonModule} from 'primeng/skeleton';
 
 
 @NgModule({
   declarations: [
     ResourcesComponent
   ],
-  imports: [
-    CommonModule,
-    ResourcesRoutingModule,
-    TranslateModule,
-    ProgressSpinnerModule,
-    NgxPaginationModule,
-    DataViewModule,
-    InputTextModule,
-    DropdownModule,
-    CalendarModule,
-    FormsModule,
-    AccordionModule
-  ]
+    imports: [
+        CommonModule,
+        ResourcesRoutingModule,
+        TranslateModule,
+        ProgressSpinnerModule,
+        NgxPaginationModule,
+        DataViewModule,
+        InputTextModule,
+        DropdownModule,
+        CalendarModule,
+        FormsModule,
+        AccordionModule,
+        SkeletonModule
+    ]
 })
 export class ResourcesModule { }

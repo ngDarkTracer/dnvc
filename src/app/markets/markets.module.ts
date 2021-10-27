@@ -6,6 +6,7 @@ import { MarketsComponent } from './markets.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {TranslateModule} from "@ngx-translate/core";
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {SkeletonModule} from 'primeng/skeleton';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
         MarketsRoutingModule,
         NgxPaginationModule,
         TranslateModule,
-        ProgressSpinnerModule
+        ProgressSpinnerModule,
+        SkeletonModule
     ]
 })
 export class MarketsModule { }
