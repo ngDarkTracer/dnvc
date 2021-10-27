@@ -4,7 +4,6 @@ import {BreakpointObserver} from '@angular/cdk/layout';
 import {from} from 'rxjs';
 import {groupBy, mergeMap, toArray} from 'rxjs/operators';
 import {RessourcesService} from '../services/ressources.service';
-import {SubscribeService} from '../services/subscribe.service';
 
 @Component({
   selector: 'app-resources',
@@ -16,7 +15,8 @@ export class ResourcesComponent implements OnInit {
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private breakPointObserver: BreakpointObserver,
-              private ressourcesService: RessourcesService) { }
+              private ressourcesService: RessourcesService) {
+  }
 
   lastUpdate = '';
   filterValue = 'ALL';
@@ -36,13 +36,6 @@ export class ResourcesComponent implements OnInit {
   content: any[] = [];
   temp: any[];
   filterVal = 'title';
-  // sortOptions = [
-  //   {label: 'Filières', value: 'sectorsConcatString'},
-  //   {label: 'Marché', value: 'market.Nom'},
-  //   {label: 'Thèmes', value: 'alerte'},
-  //   {label: 'Date debut', value: 'market.Nom'},
-  //   {label: 'Date fin', value: 'market.Nom'}
-  // ];
 
   filter(item: any, elt?: any): void {
     this.filterValue = item.toString();
@@ -106,7 +99,7 @@ export class ResourcesComponent implements OnInit {
       this.temp = data;
       from(this.temp)
         .pipe(
-          groupBy(element => element.theme.Nom),
+          groupBy(element => element.themes_de_veille.Nom),
           mergeMap(group => group.pipe(toArray()))
         )
         .subscribe(
@@ -119,22 +112,22 @@ export class ResourcesComponent implements OnInit {
               });
               tempContent.push(
                 {
-                  alerte: val[0].theme.Nom,
+                  alerte: val[0].themes_de_veille.Nom,
                   title: elt.titre,
                   text: elt.resume,
                   sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
+                  imageUrl: elt.photo.url,
                   source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
                   sectors: elt.filieres,
                   sectorsConcatString: fobeddenString,
-                  date_debut: elt.date_debut,
-                  date_fin: elt.date_fin,
+                  date: elt.date,
                   market: elt.marche
                 }
               );
             });
             this.content.push(
               {
-                alerte: val[0].theme.Nom,
+                alerte: val[0].themes_de_veille.Nom,
                 content: tempContent
               });
             document.getElementById('top').scrollIntoView({
@@ -175,10 +168,10 @@ export class ResourcesComponent implements OnInit {
     this.filterVal = event.value;
   }
 
-  search(sector: any, market: any, theme: any, debut: any, fin: any): void {
+  search(sector?: any, market?: any, theme?: any, debut?: any, fin?: any): void {
     this.content = [];
     this.searching = true;
-    this.ressourcesService.getSingleOrGroupOfRessourcesFromServer(sector, market, theme, debut.toLocaleDateString('en-CA'), fin.toLocaleDateString('en-CA')).subscribe(
+    this.ressourcesService.getSingleOrGroupOfRessourcesFromServer(sector, market, theme, debut, fin).subscribe(
       (data) => {
         if (data.length === 0) {
           this.isThereAlert = false;
@@ -189,7 +182,7 @@ export class ResourcesComponent implements OnInit {
         this.temp = data;
         from(this.temp)
           .pipe(
-            groupBy(element => element.theme.Nom),
+            groupBy(element => element.themes_de_veille.Nom),
             mergeMap(group => group.pipe(toArray()))
           )
           .subscribe(
@@ -202,26 +195,27 @@ export class ResourcesComponent implements OnInit {
                 });
                 tempContent.push(
                   {
-                    alerte: val[0].theme.Nom,
+                    alerte: val[0].themes_de_veille.Nom,
                     title: elt.titre,
                     text: elt.resume,
                     sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
+                    imageUrl: elt.photo.url,
                     source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
                     sectors: elt.filieres,
                     sectorsConcatString: fobeddenString,
-                    date_debut: elt.date_debut,
-                    date_fin: elt.date_fin,
+                    date: elt.date,
                     market: elt.marche
                   }
                 );
               });
               this.content.push(
                 {
-                  alerte: val[0].theme.Nom,
+                  alerte: val[0].themes_de_veille.Nom,
                   content: tempContent
                 });
             },
-            (error) => {},
+            (error) => {
+            },
             () => {
               const all = document.getElementById('all');
               this.filter('ALL', all);

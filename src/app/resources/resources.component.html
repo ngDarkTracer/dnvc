@@ -70,13 +70,10 @@
                       <div class="mb-5" style="display: flex; flex-direction: row; flex-wrap: nowrap">
                         <button pButton
                                 (click)="search(sector.value, market.value, theme.value, debut.value, fin.value)"
-                                [style.border-radius.px]="0"
+                                [style.border-radius.px]="0" [loading]="searching"
                                 label="{{ 'resources.search' | translate }}" icon="pi pi-arrow-right"
-                                [disabled]="!sector.value || !market.value || !theme.value || !debut.value || !fin.value"
                                 iconPos="right"
                                 class="p-button-lg p-button-outlined p-button-secondary search-input"></button>
-                        <p-progressSpinner class="ml-1 mt-2" [style]="{height: '40px'}"
-                                           *ngIf="searching"></p-progressSpinner>
                       </div>
                       <div>
                         <button class="link-style-button pb-3" [style.height.px]="22"
@@ -92,7 +89,7 @@
                       <div class="wfb-card-wrapper pt60" *ngIf="!searching">
                         <div class="no-gutters" [ngClass]="{ 'small':!isSmallScreen, 'row':isSmallScreen }">
                           <div [ngStyle]="{'width': isSmallScreen ? '15rem': '40rem' }" class="mr-5 ml-3 mt-2">
-                            <img src="../../assets/gabriel.jpg" alt="">
+                            <img [src]="con.imageUrl" alt="">
                           </div>
                           <div [ngClass]="{ 'col-md-12':isSmallScreen }">
                             <div class="wfb-card__body-container">
@@ -110,12 +107,9 @@
                                 <div>
                                   <div class="wfb-card__link-container"
                                        style="display: flex; flex-direction: row; flex-wrap: wrap">
-                                    <div class="wfb-card__text mr-5 mb-1 mt-1 mr-auto"><p class="mr-5"
-                                                                                          style="color: darkgray; font-size: 14px">{{ 'resources.begin' | translate }}
-                                      : {{ con.date_debut }}</p></div>
                                     <div class="wfb-card__text mb-1 mt-1"><p
-                                      style="color: darkgray; font-size: 14px">{{ 'resources.end' | translate }}
-                                      : {{ con.date_fin }}</p></div>
+                                      style="color: darkgray; font-size: 14px">{{ 'resources.date' | translate }}
+                                      : {{ con.date}}</p></div>
                                   </div>
                                 </div>
                               </div>

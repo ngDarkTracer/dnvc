@@ -108,6 +108,7 @@
     "clear": "Clear filter",
     "begin": "Start date",
     "end": "End date",
+    "date": "Date",
     "search": "Search"
   },
 
