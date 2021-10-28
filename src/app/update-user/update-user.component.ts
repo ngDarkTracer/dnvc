@@ -60,17 +60,14 @@ export class UpdateUserComponent implements OnInit {
 
     this.subscribeService.getSingleContactFromServerByHisId(this.code).subscribe(
       (data) => {
-        console.log(data[0].criteres);
-        for (const dat in data[0].criteres) {
+        data[0].criteres.forEach((critere) => {
           const newPreferences = this.formBuilder.group({
-            filieres: [data[0].criteres[dat].filieres[0]],
-            marches: [data[0].criteres[dat].marches[0]],
-            themes: [data[0].criteres[dat].themes[0]]
+            filieres: [critere.filieres[0]],
+            marches: [critere.marches[0]],
+            themes: [critere.themes[0]]
           });
           this.getPreferences().push(newPreferences);
-
-          this.criteriaFrom.controls.criteres.value[data[0].criteres[dat]].setValue();
-        }
+        });
       },
       (error) => {
         this.loading = false;
