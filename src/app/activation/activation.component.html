@@ -74,10 +74,9 @@
             </div>
             <div style="display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: center" class="mt-5">
               <button pButton (click)="onSubmit()" *ngIf="!criteriaFrom.invalid && !(this.criteriaFrom.controls.criteres.value.length === 0)"
-                      [style.border-radius.px]="0"
+                      [style.border-radius.px]="0" [loading]="processing"
                       label="{{ 'subscribe.send' | translate }}" icon="pi pi-arrow-right"
                       iconPos="right" class="p-button-lg p-button-outlined p-button-secondary search-input"></button>
-              <p-progressSpinner class="ml-4" [style]="{height: '60px'}" *ngIf="processing"></p-progressSpinner>
             </div>
           </div>
         </div>

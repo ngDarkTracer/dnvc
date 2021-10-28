@@ -60,19 +60,19 @@ export class UpdateUserComponent implements OnInit {
 
     this.subscribeService.getSingleContactFromServerByHisId(this.code).subscribe(
       (data) => {
-        // this.preferences = data[0].criteres;
-        data[0].criteres.forEach((critere) => {
-          console.log(critere);
+        console.log(data[0].criteres);
+        for (const dat in data[0].criteres) {
           const newPreferences = this.formBuilder.group({
-            filieres: [critere.filieres[0], Validators.required],
-            marches: [critere.marches[0], Validators.required],
-            themes: ['' + critere.themes[0], Validators.required]
+            filieres: [data[0].criteres[dat].filieres[0]],
+            marches: [data[0].criteres[dat].marches[0]],
+            themes: [data[0].criteres[dat].themes[0]]
           });
           this.getPreferences().push(newPreferences);
-        });
+
+          this.criteriaFrom.controls.criteres.value[data[0].criteres[dat]].setValue();
+        }
       },
       (error) => {
-        console.log(error);
         this.loading = false;
       },
       () => {
@@ -127,5 +127,9 @@ export class UpdateUserComponent implements OnInit {
 
   redirectTo(): void {
     this.router.navigate(['/home']);
+  }
+
+  change($event: any): void {
+    console.log($event.value);
   }
 }

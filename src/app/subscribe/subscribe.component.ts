@@ -110,7 +110,7 @@ export class SubscribeComponent implements OnInit {
           this.router.navigate(['/home']);
           this.processing = false;
         } else {
-          this.router.navigate(['/update/' + data[0].id ], { skipLocationChange: true });
+          this.router.navigate(['/update/' + data[0].id ]);
           this.processing = false;
         }
       },

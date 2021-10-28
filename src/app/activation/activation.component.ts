@@ -78,9 +78,9 @@ export class ActivationComponent implements OnInit {
 
   addPreferences(): void {
     const newPreferences = this.formBuilder.group({
-      filieres: ['', Validators.required],
-      marches: ['', Validators.required],
-      themes: ['', Validators.required]
+      filieres: [''],
+      marches: [''],
+      themes: ['']
     });
 
     this.getPreferences().push(newPreferences);
