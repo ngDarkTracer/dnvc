@@ -15,7 +15,7 @@
 <!--  </div>-->
 <!--</section>-->
 <section class="background-grid-white">
-  <div class="container teaser-container" id="top">
+  <div class="container teaser-container">
     <div *ngIf="isSmallScreen" style="margin-bottom: 150px"></div>
     <div class="row align-items-center justify-content-between" *ngIf="ready">
       <div class="col-sm-12 col-md-5 teaser-context pv120-90">
@@ -65,7 +65,7 @@
 </section>
 
 
-<div class="border-top-black is-visible">
+<div class="border-top-black is-visible" id="top">
   <section class="content-section-mobile background-white">
     <div class="container content_nav-container">
       <div class="row" *ngIf="isThereAlert">
@@ -116,56 +116,108 @@
               <h2 class="pb100" *ngIf="filterValue === 'ALL'">{{ 'market.alerts' | translate }}
                 [{{ 'market.All' | translate }}]</h2>
               <h2 class="pb100" *ngIf="filterValue !== 'ALL'">{{ 'market.alerts' | translate }} [{{ filterValue }}]</h2>
-              <div
-                *ngFor="let con of filteredAlert  | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalItems}">
-                <div>
+
+              <p-dataView *ngIf="ready" #dv [value]="filteredAlert" [paginator]="true" [rows]="5"
+                          layout="grid">
+                <ng-template pTemplate="header">
+                  <p-accordion>
+                    <p-accordionTab header="{{ 'resources.advanced' | translate }}" [selected]="false">
+
+                      <div style="display: flex; flex-direction: column; flex-wrap: wrap" class="mb-2">
+                        <div class="mr-auto mb-3" id="filieres">
+                          <label for="filieres">{{ 'resources.sectors' | translate }}:</label><br>
+                          <p-dropdown #sector [showClear]="true" [options]="sectors" [filter]="true" filterBy="Name"
+                                      optionLabel="Name" placeholder="{{ 'resources.sector' | translate }}"
+                                      optionValue="Name"></p-dropdown>
+                        </div>
+
+                        <div class="mr-3 mb-3" id="themes">
+                          <label for="themes">{{ 'resources.themes' | translate }}:</label><br>
+                          <p-dropdown #theme [showClear]="true" [options]="themes" [filter]="true" filterBy="Nom"
+                                      optionLabel="Nom" placeholder="{{ 'resources.theme' | translate }}"
+                                      optionValue="Nom"></p-dropdown>
+                        </div>
+                      </div>
+
+                      <div style="display: flex; flex-direction: column; flex-wrap: wrap" class="mb-2">
+                        <div class="mr-3 mb-3" id="date_debut">
+                          <label for="date_debut">{{ 'resources.begin' | translate }}:</label><br>
+                          <p-calendar #debut dateFormat="mm-dd-yy" [showIcon]="true" inputId="icon"></p-calendar>
+                        </div>
+
+                        <div class="mr-3 mb-3" id="date_fin">
+                          <label for="date_fin">{{ 'resources.end' | translate }}:</label><br>
+                          <p-calendar #fin dateFormat="mm-dd-yy" [showIcon]="true" inputId="icon"></p-calendar>
+                        </div>
+
+                      </div>
+
+                      <div class="mb-5" style="display: flex; flex-direction: row; flex-wrap: nowrap">
+                        <button pButton
+                                (click)="search(sector.value, currentMarket, theme.value, debut.value, fin.value)"
+                                [style.border-radius.px]="0" [loading]="searching"
+                                label="{{ 'resources.search' | translate }}" icon="pi pi-arrow-right"
+                                iconPos="right"
+                                class="p-button-lg p-button-outlined p-button-secondary search-input"></button>
+                      </div>
+                      <div>
+                        <button class="link-style-button pb-3" [style.height.px]="22"
+                                (click)="getMarketProperties(current)">{{ 'resources.clear' | translate }}</button>
+                      </div>
+                      <span class="mt-3"></span>
+                    </p-accordionTab>
+                  </p-accordion>
+                </ng-template>
+                <ng-template let-con pTemplate="gridItem">
                   <div>
-                    <div class="wfb-card-wrapper pb60">
-                      <div class="row no-gutters">
-                        <div class="col-md-12">
-                          <div class="wfb-card__body-container">
-                            <div class="wfb-card__link-container">
-                              <h5>
+                    <div>
+                      <div class="wfb-card-wrapper pt60" *ngIf="!searching">
+                        <div class="no-gutters" [ngClass]="{ 'small':!isSmallScreen, 'row':isSmallScreen }">
+                          <div [ngClass]="{ 'col-md-12':isSmallScreen }">
+                            <div class="wfb-card__body-container">
+                              <div class="wfb-card__link-container">
+                                <h5>
                                 <span class="col-4" [ngStyle]="{'background-color':con.color}"
                                       style="padding: 2px 12px; width: 100px; margin-right: 8px;"></span>
-                                <span class="col-8">{{ con.title }}</span>
-                              </h5>
-                            </div>
-                            <h6 style="font-weight: normal; margin-bottom: 0">
-                              <p>
-                                {{ con.text }}
-                              </p>
-                            </h6>
-                            <div class="thee-link-container">
-                              <div>
-                                <div class="wfb-card__link-container"
-                                     style="display: flex; flex-direction: row; flex-wrap: wrap">
-                                  <div class="wfb-card__text mb-1 mt-1 mr-5 mr-auto"><p
-                                    style="color: darkgray; font-size: 14px"
-                                    class="mr-5">{{ 'market.publish' | translate }}: {{ con.date }}</p></div>
-                                  <div class="wfb-card__text mb-1 mt-1"><p
-                                    style="color: darkgray; font-size: 14px">{{ 'market.followed_by' | translate }}
-                                    : {{ con.author }}</p></div>
+                                  <span class="col-8">{{ con.title }}</span>
+                                </h5>
+                              </div>
+                              <h6 style="font-weight: normal; margin-bottom: 0">
+                                <p>
+                                  {{ con.text }}
+                                </p>
+                              </h6>
+                              <div class="thee-link-container">
+                                <div>
+                                  <div class="wfb-card__link-container"
+                                       style="display: flex; flex-direction: row; flex-wrap: wrap">
+                                    <div class="wfb-card__text mb-1 mt-1 mr-5 mr-auto"><p
+                                      style="color: darkgray; font-size: 14px"
+                                      class="mr-5">{{ 'market.publish' | translate }}: {{ con.date }}</p></div>
+                                    <div class="wfb-card__text mb-1 mt-1"><p
+                                      style="color: darkgray; font-size: 14px">{{ 'market.followed_by' | translate }}
+                                      : {{ con.author }}</p></div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <div class="thee-link-container">
-                              <div>
-                                <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
-                                  <div class="wfb-card__text" style="margin-top: 8px">
-                                    <p
-                                      style="color: darkgray; font-size: 14px; text-align: center">{{ 'market.source' | translate }}
-                                      : </p>
-                                  </div>
-                                  <div class="wfb-card__text">
-                                    <button style="margin: 0; padding: 0; border: none;"
-                                            (click)="redirectTo(con.source)">
-                                      <svg class="icon" role="img" aria-labelledby="file-icon" viewBox="0 0 30 30">
-                                        <path
-                                          d="M16.667,7 L9,7 L9,24 L22,24 L22,12.308 L16.667,7 Z M17,8.742 L20.273,12 L17,12 L17,8.742 Z M10,23 L10,8 L16,8 L16,13 L21,13 L21,23 L10,23 Z"
-                                          fill="#161618" fill-rule="nonzero"></path>
-                                      </svg>
-                                    </button>
+                              <div class="thee-link-container">
+                                <div>
+                                  <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
+                                    <div class="wfb-card__text" style="margin-top: 8px">
+                                      <p
+                                        style="color: darkgray; font-size: 14px; text-align: center">{{ 'market.source' | translate }}
+                                        : </p>
+                                    </div>
+                                    <div class="wfb-card__text">
+                                      <button style="margin: 0; padding: 0; border: none;"
+                                              (click)="redirectTo(con.source)">
+                                        <svg class="icon" role="img" aria-labelledby="file-icon" viewBox="0 0 30 30">
+                                          <path
+                                            d="M16.667,7 L9,7 L9,24 L22,24 L22,12.308 L16.667,7 Z M17,8.742 L20.273,12 L17,12 L17,8.742 Z M10,23 L10,8 L16,8 L16,13 L21,13 L21,23 L10,23 Z"
+                                            fill="#161618" fill-rule="nonzero"></path>
+                                        </svg>
+                                      </button>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -175,15 +227,77 @@
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                </ng-template>
+              </p-dataView>
+
+<!--              <div-->
+<!--                *ngFor="let con of filteredAlert  | paginate: { itemsPerPage: 5, currentPage: page, totalItems: totalItems}">-->
+<!--                <div>-->
+<!--                  <div>-->
+<!--                    <div class="wfb-card-wrapper pb60">-->
+<!--                      <div class="row no-gutters">-->
+<!--                        <div class="col-md-12">-->
+<!--                          <div class="wfb-card__body-container">-->
+<!--                            <div class="wfb-card__link-container">-->
+<!--                              <h5>-->
+<!--                                <span class="col-4" [ngStyle]="{'background-color':con.color}"-->
+<!--                                      style="padding: 2px 12px; width: 100px; margin-right: 8px;"></span>-->
+<!--                                <span class="col-8">{{ con.title }}</span>-->
+<!--                              </h5>-->
+<!--                            </div>-->
+<!--                            <h6 style="font-weight: normal; margin-bottom: 0">-->
+<!--                              <p>-->
+<!--                                {{ con.text }}-->
+<!--                              </p>-->
+<!--                            </h6>-->
+<!--                            <div class="thee-link-container">-->
+<!--                              <div>-->
+<!--                                <div class="wfb-card__link-container"-->
+<!--                                     style="display: flex; flex-direction: row; flex-wrap: wrap">-->
+<!--                                  <div class="wfb-card__text mb-1 mt-1 mr-5 mr-auto"><p-->
+<!--                                    style="color: darkgray; font-size: 14px"-->
+<!--                                    class="mr-5">{{ 'market.publish' | translate }}: {{ con.date }}</p></div>-->
+<!--                                  <div class="wfb-card__text mb-1 mt-1"><p-->
+<!--                                    style="color: darkgray; font-size: 14px">{{ 'market.followed_by' | translate }}-->
+<!--                                    : {{ con.author }}</p></div>-->
+<!--                                </div>-->
+<!--                              </div>-->
+<!--                            </div>-->
+<!--                            <div class="thee-link-container">-->
+<!--                              <div>-->
+<!--                                <div style="display: flex; flex-direction: row; flex-wrap: nowrap">-->
+<!--                                  <div class="wfb-card__text" style="margin-top: 8px">-->
+<!--                                    <p-->
+<!--                                      style="color: darkgray; font-size: 14px; text-align: center">{{ 'market.source' | translate }}-->
+<!--                                      : </p>-->
+<!--                                  </div>-->
+<!--                                  <div class="wfb-card__text">-->
+<!--                                    <button style="margin: 0; padding: 0; border: none;"-->
+<!--                                            (click)="redirectTo(con.source)">-->
+<!--                                      <svg class="icon" role="img" aria-labelledby="file-icon" viewBox="0 0 30 30">-->
+<!--                                        <path-->
+<!--                                          d="M16.667,7 L9,7 L9,24 L22,24 L22,12.308 L16.667,7 Z M17,8.742 L20.273,12 L17,12 L17,8.742 Z M10,23 L10,8 L16,8 L16,13 L21,13 L21,23 L10,23 Z"-->
+<!--                                          fill="#161618" fill-rule="nonzero"></path>-->
+<!--                                      </svg>-->
+<!--                                    </button>-->
+<!--                                  </div>-->
+<!--                                </div>-->
+<!--                              </div>-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                        </div>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
             </div>
-            <pagination-controls
-              style="position: absolute; bottom: 15px"
-              previousLabel="{{ 'market.previous' | translate }}"
-              nextLabel="{{ 'market.next' | translate }}"
-              responsive="true" (pageChange)="page=$event"
-              [ngStyle]="{'position': isSmallScreen ? {'position' : 'absolute', 'bottom.px' : 0} : {}}"></pagination-controls>
+<!--            <pagination-controls-->
+<!--              style="position: absolute; bottom: 15px"-->
+<!--              previousLabel="{{ 'market.previous' | translate }}"-->
+<!--              nextLabel="{{ 'market.next' | translate }}"-->
+<!--              responsive="true" (pageChange)="page=$event"-->
+<!--              [ngStyle]="{'position': isSmallScreen ? {'position' : 'absolute', 'bottom.px' : 0} : {}}"></pagination-controls>-->
           </div>
         </div>
       </div>

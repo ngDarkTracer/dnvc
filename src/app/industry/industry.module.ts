@@ -6,18 +6,26 @@ import { IndustryComponent } from './industry.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {TranslateModule} from '@ngx-translate/core';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {DataViewModule} from 'primeng/dataview';
+import {AccordionModule} from 'primeng/accordion';
+import {DropdownModule} from 'primeng/dropdown';
+import {CalendarModule} from 'primeng/calendar';
 
 
 @NgModule({
   declarations: [
     IndustryComponent
   ],
-    imports: [
-        CommonModule,
-        IndustryRoutingModule,
-        NgxPaginationModule,
-        TranslateModule,
-        ProgressSpinnerModule
-    ]
+  imports: [
+    CommonModule,
+    IndustryRoutingModule,
+    NgxPaginationModule,
+    TranslateModule,
+    ProgressSpinnerModule,
+    DataViewModule,
+    AccordionModule,
+    DropdownModule,
+    CalendarModule
+  ]
 })
 export class IndustryModule { }

@@ -5,6 +5,7 @@ import {BreakpointObserver} from '@angular/cdk/layout';
 import {from} from 'rxjs';
 import {groupBy, mergeMap, toArray} from 'rxjs/operators';
 import {NotesService} from '../services/notes.service';
+import {RessourcesService} from '../services/ressources.service';
 
 @Component({
   selector: 'app-note',
@@ -16,7 +17,9 @@ export class NoteComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
               private scroller: ViewportScroller,
               private breakPointObserver: BreakpointObserver,
-              private notesService: NotesService) { }
+              private notesService: NotesService,
+              private ressourcesService: RessourcesService) {
+  }
 
   currentNote: string;
   serverAdress = 'https://dnvc-admin.herokuapp.com/';
@@ -39,8 +42,12 @@ export class NoteComponent implements OnInit {
   };
 
   filteredNotes: any[] = [];
+  markets: any[];
+  themes: any[];
   content: any[] = [];
   temp: any[];
+  searching = false;
+  current;
 
 
   filter(item: any, elt?: any): void {
@@ -77,7 +84,16 @@ export class NoteComponent implements OnInit {
   ngOnInit(): void {
     const url = this.activatedRoute.snapshot.paramMap.get('note');
     this.currentNote = url;
+    this.current = url.replace(/ /g, '%20');
     this.getNoteProperties(url.replace(/ /g, '%20'));
+
+    this.ressourcesService.getMarketsFromServer().subscribe((data) => {
+      this.markets = data;
+    });
+
+    this.ressourcesService.getMonitoringthemesFromserver().subscribe((data) => {
+      this.themes = data;
+    });
 
     this.breakPointObserver.observe(['(max-width: 765px)']).subscribe(result => {
       if (result.matches) {
@@ -91,6 +107,7 @@ export class NoteComponent implements OnInit {
   getNoteProperties(url: string): void {
     this.ready = false;
     this.isThereNote = true;
+    this.content = [];
     this.notesService.getSingleNoteFromServer(url).subscribe((data) => {
       if (data.length === 0) {
         this.isThereNote = false;
@@ -137,13 +154,68 @@ export class NoteComponent implements OnInit {
                 content: tempContent
               });
           },
-          (error) => {},
+          (error) => {
+          },
           () => {
             this.ready = true;
             const all = document.getElementById('all');
             this.filter('ALL', all);
           });
     });
+  }
+
+  search(sector?: any, market?: any, theme?: any, debut?: any, fin?: any): void {
+    this.content = [];
+    this.searching = true;
+    this.notesService.getSingleOrGroupOfNotesFromServer(sector, market, theme, debut, fin).subscribe(
+      (data) => {
+        this.temp = data;
+        from(this.temp)
+          .pipe(
+            groupBy(element => element.themes_de_veille.Nom),
+            mergeMap(group => group.pipe(toArray()))
+          )
+          .subscribe(
+            (val) => {
+              const tempContent = [];
+              val.forEach((elt) => {
+                if (this.noteImageUrl === '' || this.noteIntroText === '') {
+                  for (let i = 0; i < elt.Filieres.length; i++) {
+                    if (elt.Filieres[i].Name === this.currentNote.replace(/%20/g, ' ')) {
+                      this.noteImageUrl = elt.Filieres[i].Photo.url;
+                      this.noteIntroText = elt.Filieres[i].Intro;
+                      this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
+                      break;
+                    }
+                  }
+                }
+                tempContent.push(
+                  {
+                    color: this.severity[elt.Type],
+                    date: elt.DatePublication,
+                    author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
+                    title: elt.Title,
+                    text: elt.Resume,
+                    sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
+                    source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
+                    markets: elt.Marches
+                  }
+                );
+              });
+              this.content.push(
+                {
+                  note: val[0].themes_de_veille.Nom,
+                  content: tempContent
+                });
+            },
+            (error) => {
+            },
+            () => {
+              this.searching = false;
+              const all = document.getElementById('all');
+              this.filter('ALL', all);
+            });
+      });
   }
 
   @HostListener('window:scroll', ['$event'])

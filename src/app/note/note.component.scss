@@ -3,3 +3,83 @@
   top: 0;
   margin-left: 16px;
 }
+
+:host ::ng-deep .p-calendar {
+  border-radius: 0;
+  min-width: 14rem;
+  max-width: 14rem;
+
+  .p-inputtext {
+    border-radius: 0;
+  }
+
+  .p-datepicker{
+    border-radius: 0;
+  }
+
+  .p-button {
+    border-radius: 0;
+  }
+}
+
+:host ::ng-deep .p-dataview {
+  border-radius: 0;
+  .p-dataview-header {
+    border-radius: 0;
+    background-color: transparent;
+    border: none;
+  }
+}
+
+:host ::ng-deep .p-accordion {
+  border-radius: 0;
+
+  .p-accordion-header {
+    border-radius: 0;
+    background-color: transparent;
+    font-family: 'GT America Extended';
+    border: none;
+  }
+
+  a:not(:disabled) {
+    background: linear-gradient(90deg, #ffffff 50%,transparent 0) right -.0625rem bottom/220% 100%;
+  }
+}
+
+:host ::ng-deep .p-dropdown{
+  border-radius: 0;
+  border: 1px solid #BEBFC1;
+  padding: 5px 10px;
+  min-width: 14rem;
+  max-width: 14rem;
+  font-family: 'GT America Extended';
+
+  .p-dropdown {
+    border: 1px solid #6c757d;
+  }
+
+  .p-dropdown-empty-message {
+    font-family: 'GT America Extended';
+  }
+
+  .p-inputtext {
+    font-family: 'GT America Extended';
+  }
+
+  .p-dropdown-label.p-placeholder {
+    font-family: 'GT America Extended';
+  }
+
+  .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+    font-family: 'GT America Extended';
+  }
+
+  .p-dropdown-filter {
+    border-radius: 0;
+  }
+}
+
+.small {
+  display: flex;
+  flex-direction: row;
+}

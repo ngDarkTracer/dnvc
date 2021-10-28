@@ -21,7 +21,7 @@
     <div style="position: relative; left: 50%; transform: translateX(-50%);"
          class="col-xs-12 col-sm-10 col-md-10 col-lg-6">
       <p-tabView>
-        <p-tabPanel header="s'inscrire">
+        <p-tabPanel header="{{ 'subscribe.signUp' | translate }}">
           <form [formGroup]="subscriptionForm" (ngSubmit)="submit()" class="search-input-wrapper">
             <label for="name" class="mb-2">{{ 'subscribe.name' | translate }}: </label>
             <div class="search-input white-bg size mb-5" id="name">
@@ -49,12 +49,11 @@
             </div>
           </form>
         </p-tabPanel>
-        <p-tabPanel header="Mise a jour">
+        <p-tabPanel header="{{ 'subscribe.update' | translate }}">
           <form [formGroup]="updateForm" (ngSubmit)="update()" class="search-input-wrapper">
 
             <h4>
-              <p style="text-align: center">Si vous souhaitez modifier vos préférences, veuillez entrer votre adresse
-                email dans le champs ci-dessous</p>
+              <p style="text-align: center">{{ 'subscribe.updateMessage' | translate }}</p>
             </h4>
             <br>
             <label for="emailmodify" class="mb-2">{{ 'subscribe.mail' | translate }}: </label>

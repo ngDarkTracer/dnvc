@@ -5,6 +5,7 @@ import {BreakpointObserver} from '@angular/cdk/layout';
 import {IndustriesService} from '../services/industries.service';
 import {from} from 'rxjs';
 import {groupBy, mergeMap, toArray} from 'rxjs/operators';
+import {RessourcesService} from '../services/ressources.service';
 
 @Component({
   selector: 'app-industry',
@@ -16,21 +17,28 @@ export class IndustryComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
               private scroller: ViewportScroller,
               private breakPointObserver: BreakpointObserver,
-              private industriesService: IndustriesService) { }
+              private industriesService: IndustriesService,
+              private ressourcesService: RessourcesService) { }
 
   currentIndustriy: string;
   serverAdress = 'https://dnvc-admin.herokuapp.com/';
   sectorImageUrl = '';
   sectorIntroText = '';
   lastUpdate = '';
+  current;
   filterValue = 'ALL';
   totalItems = 0;
   page = 1;
+  searching = false;
   stickyMenu = false;
   openedMenu = false;
   isSmallScreen = false;
   isThereAlert = true;
   ready = false;
+
+  sectors: any[];
+  markets: any[];
+  themes: any[];
 
   severity = {
     Threat: 'red',
@@ -76,7 +84,16 @@ export class IndustryComponent implements OnInit {
   ngOnInit(): void {
     const url = this.activatedRoute.snapshot.paramMap.get('industry');
     this.currentIndustriy = url;
+    this.current = url.replace(/ /g, '%20');
     this.getSectorProperties(url.replace(/ /g, '%20'));
+
+    this.ressourcesService.getMarketsFromServer().subscribe((data) => {
+      this.markets = data;
+    });
+
+    this.ressourcesService.getMonitoringthemesFromserver().subscribe((data) => {
+      this.themes = data;
+    });
 
     this.breakPointObserver.observe(['(max-width: 765px)']).subscribe(result => {
       if (result.matches) {
@@ -90,6 +107,7 @@ export class IndustryComponent implements OnInit {
   getSectorProperties(url: string): void {
     this.ready = false;
     this.isThereAlert = true;
+    this.content = [];
     this.industriesService.getSingleSectorFromServer(url).subscribe((data) => {
       if (data.length === 0) {
         this.isThereAlert = false;
@@ -143,6 +161,59 @@ export class IndustryComponent implements OnInit {
             this.filter('ALL', all);
           });
     });
+  }
+
+  search(sector: any, market?: any, theme?: any, debut?: any, fin?: any): void {
+    this.content = [];
+    this.searching = true;
+    this.industriesService.getSingleOrGroupOfSectorsFromServer(sector, market, theme, debut, fin).subscribe(
+      (data) => {
+        this.temp = data;
+        from(this.temp)
+          .pipe(
+            groupBy(element => element.themes_de_veille.Nom),
+            mergeMap(group => group.pipe(toArray()))
+          )
+          .subscribe(
+            (val) => {
+              const tempContent = [];
+              val.forEach((elt) => {
+                if (this.sectorImageUrl === '' || this.sectorIntroText === '') {
+                  for (let i = 0; i < elt.Filieres.length; i++) {
+                    if (elt.Filieres[i].Name === this.currentIndustriy.replace(/%20/g, ' ')) {
+                      this.sectorImageUrl = elt.Filieres[i].Photo.url;
+                      this.sectorIntroText = elt.Filieres[i].Intro;
+                      this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
+                      break;
+                    }
+                  }
+                }
+                tempContent.push(
+                  {
+                    color: this.severity[elt.Type],
+                    date: elt.DatePublication,
+                    author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
+                    title: elt.Title,
+                    text: elt.Resume,
+                    sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
+                    source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
+                    markets: elt.Marches
+                  }
+                );
+              });
+              this.content.push(
+                {
+                  alerte: val[0].themes_de_veille.Nom,
+                  content: tempContent
+                });
+            },
+            (error) => {},
+            () => {
+              this.searching = false;
+              const all = document.getElementById('all');
+              this.filter('ALL', all);
+            });
+      });
   }
 
   @HostListener('window:scroll', ['$event'])
