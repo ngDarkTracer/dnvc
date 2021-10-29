@@ -28,7 +28,7 @@
                   <label for="sectors" *ngIf="i === 0 && !isSmallScreen" style="font-size: 18px; font-family: 'GT America Extended'">{{ 'subscribe.sectors' | translate }}(s): </label><br>
                   <div class="mb-5" *ngIf="i === 0 && !isSmallScreen"></div>
                   <p-dropdown id="sectors" [options]="sectors" optionLabel="Name"
-                              [filter]="true" filterBy="Name" (onChange)="change($event)"
+                              [filter]="true" filterBy="Name"
                               placeholder="{{ 'subscribe.sectors' | translate }}" formControlName="filieres">
                     <ng-template let-sector pTemplate="item">
                       <div>{{sector.Name}}</div>
@@ -51,8 +51,8 @@
                 <div class="mb-1 mr-3">
                   <label for="themes" *ngIf="i === 0 && !isSmallScreen" style="font-size: 18px; font-family: 'GT America Extended'">{{ 'subscribe.themes' | translate }}(s): </label><br>
                   <div class="mb-5" *ngIf="i === 0 && !isSmallScreen"></div>
-                  <p-dropdown id="themes" [options]="themes"
-                              [filter]="true" filterBy="Nom" optionValue="id"
+                  <p-dropdown id="themes" [options]="themes" optionLabel="Nom"
+                              [filter]="true" filterBy="Nom"
                               placeholder="{{ 'subscribe.themes' | translate }}" formControlName="themes">
                     <ng-template let-theme pTemplate="item">
                       <div>{{theme.Nom}}</div>
@@ -83,12 +83,34 @@
         </div>
     </div>
     </div>
-    <p-dialog header="Success" [(visible)]="done"
+    <p-dialog header="{{ 'update.header-success' | translate }}" [(visible)]="done"
               [modal]="true" [closable]="false"
               [breakpoints]="{'960px': '75vw', '640px': '95vw'}"
               [style]="{ width: '50vw'}" [baseZIndex]="10000"
               [draggable]="false">
-      <p>Vos informations ont été modifiés avec succès</p>
+      <p>{{ 'update.success' | translate }}</p>
+      <ng-template pTemplate="footer">
+        <p-button (click)="redirectTo()" label="Ok" styleClass="p-button-text"></p-button>
+      </ng-template>
+    </p-dialog>
+
+    <p-dialog header="{{ 'update.header-error' | translate }}" [(visible)]="error"
+              [modal]="true" [closable]="false"
+              [breakpoints]="{'960px': '75vw', '640px': '95vw'}"
+              [style]="{ width: '50vw'}" [baseZIndex]="10000"
+              [draggable]="false">
+      <p>{{ 'update.loadingError' | translate }}</p>
+      <ng-template pTemplate="footer">
+        <p-button (click)="refresh()" label="Ok" styleClass="p-button-text"></p-button>
+      </ng-template>
+    </p-dialog>
+
+    <p-dialog header="{{ 'update.header-error' | translate }}" [(visible)]="modifError"
+              [modal]="true" [closable]="false"
+              [breakpoints]="{'960px': '75vw', '640px': '95vw'}"
+              [style]="{ width: '50vw'}" [baseZIndex]="10000"
+              [draggable]="false">
+      <p>{{ 'update.error' | translate }}</p>
       <ng-template pTemplate="footer">
         <p-button (click)="redirectTo()" label="Ok" styleClass="p-button-text"></p-button>
       </ng-template>

@@ -154,6 +154,14 @@
     "add": "Add"
   },
 
+  "update": {
+    "header-success": "Success",
+    "header-error": "Error",
+    "loadingError": "Loading Error",
+    "success": "Your information has been successfully modified",
+    "error": "Modification error"
+  },
+
   "footer": {
     "publish": "Publish an alert",
     "contact": "Contact us",

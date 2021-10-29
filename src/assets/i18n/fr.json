@@ -45,7 +45,7 @@
   },
 
   "markets": {
-    "title": "Tout les marchés",
+    "title": "Tous les marchés",
     "search_results": "Resultat(s)",
     "clear_filter": "Vider le filtre",
     "filter": "Filtre",
@@ -152,6 +152,14 @@
     "error": "Une erreur est survenue lors de l'activation de votre compte",
     "done": "Votre souscription a été effectuée avec succès!",
     "add": "Ajouter"
+  },
+
+  "update": {
+    "header-success": "Succès",
+    "header-error": "Erreur",
+    "loadingError": "Erreur de chargement",
+    "success": "Vos informations ont été modifiés avec succès",
+    "error": "Erreur de modification"
   },
 
   "footer": {

@@ -1,19 +1,20 @@
-<section class="background-threads careers-threads" id="top">
-  <div class="fade-in-section disable-fade-in is-visible fade-in-hero disable-transform">
-    <div class="container hero-splash-container">
-      <div class="row pv90-60">
-        <div class="col-sm-12 col-md-8 hero-splash">
-          <h1 class="hero-title" style="color: white">{{ 'activation.choose' | translate }}</h1>
-        </div>
-        <div class="col-12"></div>
-        <div class="col-sm-12 col-md-5"></div>
-      </div>
-    </div>
-  </div>
-</section>
+<!--<section class="background-threads careers-threads" id="top">-->
+<!--  <div class="fade-in-section disable-fade-in is-visible fade-in-hero disable-transform">-->
+<!--    <div class="container hero-splash-container">-->
+<!--      <div class="row pv90-60">-->
+<!--        <div class="col-sm-12 col-md-8 hero-splash">-->
+<!--          <h1 class="hero-title" style="color: white">{{ 'activation.choose' | translate }}</h1>-->
+<!--        </div>-->
+<!--        <div class="col-12"></div>-->
+<!--        <div class="col-sm-12 col-md-5"></div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
 <div class="border-top-black is-visible">
   <section class="content-section-mobile background-white pt-5 mb60 pb60"  style="margin: 0 auto; top: 5%; overflow-x: auto; height: 100vh;">
-    <div class="m-5 mb-3">
+    <div class="m-5 mb-3 pt-5">
+      <h2 class="hero-title mt-5 mb-5 mb-5 pb-5" style="text-align: center; font-family: 'GT America Extended'">{{ 'activation.choose' | translate }}</h2>
       <h4 class="mb-3" style="text-align: center">
         {{ 'activation.complete' | translate }}
       </h4><br>
@@ -25,9 +26,9 @@
               flex-wrap:wrap; justify-content: center">
                 <div class="mb-1 mr-3">
                   <label for="sectors" *ngIf="i === 0 && !isSmallScreen" style="font-size: 18px; font-family: 'GT America Extended'">{{ 'subscribe.sectors' | translate }}(s): </label><br>
-                  <div class="mb-5" *ngIf="i === 0"></div>
+                  <div class="mb-5" *ngIf="i === 0 && !isSmallScreen"></div>
                   <p-dropdown id="sectors" [options]="sectors" optionLabel="Name"
-                              [filter]="true" filterBy="Name" optionValue="id"
+                              [filter]="true" filterBy="Name"
                               placeholder="{{ 'subscribe.sectors' | translate }}" formControlName="filieres">
                     <ng-template let-sector pTemplate="item">
                       <div>{{sector.Name}}</div>
@@ -37,9 +38,9 @@
 
                 <div class="mb-1 mr-3">
                   <label for="markets" *ngIf="i === 0 && !isSmallScreen" style="font-size: 18px; font-family: 'GT America Extended'">{{ 'subscribe.markets' | translate }}(s): </label><br>
-                  <div class="mb-5" *ngIf="i === 0"></div>
+                  <div class="mb-5" *ngIf="i === 0 && !isSmallScreen"></div>
                   <p-dropdown id="markets" [options]="markets" optionLabel="Nom"
-                              [filter]="true" filterBy="Nom" optionValue="id"
+                              [filter]="true" filterBy="Nom"
                               placeholder="{{ 'subscribe.markets' | translate }}" formControlName="marches">
                     <ng-template let-market pTemplate="item">
                       <div>{{market.Nom}}</div>
@@ -49,9 +50,9 @@
 
                 <div class="mb-1 mr-3">
                   <label for="themes" *ngIf="i === 0 && !isSmallScreen" style="font-size: 18px; font-family: 'GT America Extended'">{{ 'subscribe.themes' | translate }}(s): </label><br>
-                  <div class="mb-5" *ngIf="i === 0"></div>
+                  <div class="mb-5" *ngIf="i === 0 && !isSmallScreen"></div>
                   <p-dropdown id="themes" [options]="themes" optionLabel="Nom"
-                              [filter]="true" filterBy="Nom" optionValue="id"
+                              [filter]="true" filterBy="Nom"
                               placeholder="{{ 'subscribe.themes' | translate }}" formControlName="themes">
                     <ng-template let-theme pTemplate="item">
                       <div>{{theme.Nom}}</div>
@@ -69,7 +70,7 @@
             </div>
             <div class="mt-5">
               <button pButton pRipple type="button" label="{{ 'activation.add' | translate }}"
-                      class="p-button-raised p-button-success add-button"
+                      class="p-button-raised p-button-success add-button" [disabled]="processing"
                       [style.border-radius.px]="0" (click)="addPreferences()"></button>
             </div>
             <div style="display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: center" class="mt-5">

@@ -15,16 +15,15 @@ export class UpdateUserComponent implements OnInit {
   id;
   done = false;
   error = false;
+  modifError = false;
   isSmallScreen = false;
   criteriaFrom: FormGroup;
   loading = true;
   processing = false;
 
-  preferences: any[];
   sectors: any[];
   markets: any[];
   themes: any[];
-  test;
   success = false;
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -60,17 +59,28 @@ export class UpdateUserComponent implements OnInit {
 
     this.subscribeService.getSingleContactFromServerByHisId(this.code).subscribe(
       (data) => {
-        data[0].criteres.forEach((critere) => {
-          const newPreferences = this.formBuilder.group({
-            filieres: [critere.filieres[0]],
-            marches: [critere.marches[0]],
-            themes: [critere.themes[0]]
+        if (data.length !== 0) {
+          data[0].criteres.forEach((critere) => {
+            if (critere.filieres.length !== 0) {
+              critere.filieres[0].localizations = [];
+            }
+            if (critere.themes.length !== 0) {
+              critere.themes[0].localizations = [];
+            }
+            const newPreferences = this.formBuilder.group({
+              filieres: [critere.filieres[0]],
+              marches: [critere.marches[0]],
+              themes: [critere.themes[0]]
+            });
+            this.getPreferences().push(newPreferences);
           });
-          this.getPreferences().push(newPreferences);
-        });
+        } else {
+          this.router.navigate(['/home']);
+        }
       },
       (error) => {
         this.loading = false;
+        this.error = true;
       },
       () => {
         this.loading = false;
@@ -90,9 +100,9 @@ export class UpdateUserComponent implements OnInit {
 
   addPreferences(): void {
     const newPreferences = this.formBuilder.group({
-      filieres: ['', Validators.required],
-      marches: ['', Validators.required],
-      themes: ['', Validators.required]
+      filieres: [''],
+      marches: [''],
+      themes: ['']
     });
 
     this.getPreferences().push(newPreferences);
@@ -118,7 +128,7 @@ export class UpdateUserComponent implements OnInit {
     })
       .catch((error) => {
         this.processing = false;
-        this.error = true;
+        this.modifError = true;
       });
   }
 
@@ -126,7 +136,7 @@ export class UpdateUserComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  change($event: any): void {
-    console.log($event.value);
+  refresh(): void {
+
   }
 }
