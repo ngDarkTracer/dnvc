@@ -18,7 +18,7 @@
   <div class="container pv120-90" id="index-content-section">
     <div class="row">
       <div class="col-lg-3 col-md-12 col-sm-12">
-        <div style="margin-bottom: 120px"></div>
+        <div [ngStyle]=" !isSmallScreen ? { 'margin-bottom' : '120px' } : { 'margin-bottom' : '10px' }"></div>
         <div class="filter-wrapper filter-sticky">
           <div class="filter-clear">
             <div

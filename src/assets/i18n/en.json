@@ -118,6 +118,7 @@
   },
 
   "subscribe": {
+    "title": "Subscription",
     "name": "Name",
     "surname": "Surname",
     "tel": "Phone",

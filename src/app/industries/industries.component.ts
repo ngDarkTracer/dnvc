@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {IndustriesService} from '../services/industries.service';
+import {BreakpointObserver} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-industries',
@@ -17,13 +18,21 @@ export class IndustriesComponent implements OnInit {
   numberOfElement;
   totalItems = 0;
   openedList = false;
+  isSmallScreen = false;
   ready = false;
   page = 1;
 
-  constructor(private industriesService: IndustriesService) { }
+  constructor(private industriesService: IndustriesService, private breakpointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
     this.getSectors();
+    this.breakpointObserver.observe(['(max-width: 900px)']).subscribe(result => {
+      if (result.matches) {
+        this.isSmallScreen = true;
+      } else {
+        this.isSmallScreen = false;
+      }
+    });
   }
 
   getSectors(): void {
@@ -63,6 +72,7 @@ export class IndustriesComponent implements OnInit {
         }
       });
     }
+    this.openedList = false;
   }
 
   open(): void {

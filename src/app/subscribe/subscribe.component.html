@@ -1,25 +1,26 @@
-<section class="background-threads careers-threads" id="top">
-  <div class="fade-in-section disable-fade-in is-visible fade-in-hero disable-transform">
-    <div class="container hero-splash-container">
-      <div class="row pv90-60">
-        <div class="col-sm-12 col-md-8 hero-splash">
-          <a class="hero-parent-title crown-link" routerLink="/home">
-            <h3 class="h1 small mb0 d-inline">Watcher</h3>
-          </a>
-          <h1 class="hero-title" style="color: white">Souscription</h1>
-        </div>
-        <div class="col-12"></div>
-        <div class="col-sm-12 col-md-5"></div>
-      </div>
-    </div>
-  </div>
-</section>
+<!--<section class="background-threads careers-threads" id="top">-->
+<!--  <div class="fade-in-section disable-fade-in is-visible fade-in-hero disable-transform">-->
+<!--    <div class="container hero-splash-container">-->
+<!--      <div class="row pv90-60">-->
+<!--        <div class="col-sm-12 col-md-8 hero-splash">-->
+<!--          <a class="hero-parent-title crown-link" routerLink="/home">-->
+<!--            <h3 class="h1 small mb0 d-inline">Watcher</h3>-->
+<!--          </a>-->
+<!--          <h1 class="hero-title" style="color: white">Souscription</h1>-->
+<!--        </div>-->
+<!--        <div class="col-12"></div>-->
+<!--        <div class="col-sm-12 col-md-5"></div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
 <div class="border-top-black is-visible" id="peak">
   <section class="content-section-mobile background-white pt-5 mb60 mb60 mb60 pb60"
            style="margin: 0 auto; top: 5%; overflow-x: auto; height: 100%;">
 
     <div style="position: relative; left: 50%; transform: translateX(-50%);"
-         class="col-xs-12 col-sm-10 col-md-10 col-lg-6">
+         class="col-xs-12 col-sm-10 col-md-10 col-lg-6 pt-5">
+      <h2 class="hero-title mt-5 mb-5 mb-5 pb-5" style="text-align: center; font-family: 'GT America Extended'">{{ 'subscribe.title' | translate }}</h2>
       <p-tabView>
         <p-tabPanel header="{{ 'subscribe.signUp' | translate }}">
           <form [formGroup]="subscriptionForm" (ngSubmit)="submit()" class="search-input-wrapper">

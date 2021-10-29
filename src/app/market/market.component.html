@@ -16,7 +16,7 @@
 <!--</section>-->
 <section class="background-grid-white">
   <div class="container teaser-container">
-    <div *ngIf="isSmallScreen" style="margin-bottom: 150px"></div>
+    <div *ngIf="isSmallScreen" style="margin-bottom: 80px"></div>
     <div class="row align-items-center justify-content-between" *ngIf="ready">
       <div class="col-sm-12 col-md-5 teaser-context pv120-90">
         <h2 class="hero-title" style="margin-bottom: 50px;">{{ currentMarket }}</h2>
@@ -72,7 +72,12 @@
         <div class="col-lg-4 col-md-12 col-sm-12 d-md-block pt120 mb45">
           <div class="jump-nav">
             <div class="fade-in-section disable-fade-in is-visible">
-              <div class="jump-nav__container" id="jump-nav" [ngClass]="{'sticky':stickyMenu && isSmallScreen}">
+              <div *ngIf="!ready" class="mt-5 pt-2">
+                <p>
+                  <p-skeleton width="18rem" height="7rem" borderRadius="0"></p-skeleton>
+                </p>
+              </div>
+              <div class="jump-nav__container" *ngIf="ready" id="jump-nav" [ngClass]="{'sticky':stickyMenu && isSmallScreen}">
                 <div class="jump-nav__header">
                   <div>
                     <div class="label">{{ 'market.content' | translate }}</div>
@@ -109,8 +114,82 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-6 col-md-12 col-sm-12 border-left-black pb120-90 pt120-45 content-area-content">
-          <p-progressSpinner *ngIf="!ready"></p-progressSpinner>
+        <div class="col-lg-6 col-md-12 col-sm-12 pb120-90 pt120-45 content-area-content" [ngClass]="{ 'border-left-black':!isSmallScreen }">
+<!--          <p-progressSpinner *ngIf="!ready"></p-progressSpinner>-->
+
+          <div *ngIf="!ready">
+            <div class="wfb-card-wrapper pt60">
+              <div class="no-gutters" [ngClass]="{ 'small':!isSmallScreen, 'row':isSmallScreen }">
+                <div [ngClass]="{ 'col-md-12':isSmallScreen }">
+                  <div class="wfb-card__body-container">
+                    <div class="wfb-card__link-container">
+                      <h5 class="mb-5 pb-5">
+                        <p-skeleton width="18rem" height="3rem" borderRadius="0"></p-skeleton>
+                      </h5>
+                    </div>
+
+                    <div class="wfb-card__link-container">
+                      <div class="mb-5" style="display: flex; flex-direction: row; flex-wrap: nowrap">
+                        <div class="mr-4">
+                          <p-skeleton width="2rem" height="2rem" borderRadius="0"></p-skeleton>
+                        </div>
+                        <div>
+                          <p-skeleton width="13rem" height="2rem" borderRadius="0"></p-skeleton>
+                        </div>
+                      </div>
+                    </div>
+                    <h6 style="font-weight: normal; margin-bottom: 0">
+                      <p>
+                        <p-skeleton width="18rem" height="10rem" borderRadius="0"></p-skeleton>
+                      </p>
+                    </h6>
+                    <div class="thee-link-container">
+                      <div>
+                        <div class="wfb-card__link-container"
+                             style="display: flex; flex-direction: row; flex-wrap: wrap">
+                          <div class="wfb-card__text mr-auto mb-1 mt-1">
+                            <p
+                              style="color: darkgray; font-size: 14px">
+                              <p-skeleton width="6rem" height="1rem" borderRadius="0"></p-skeleton>
+                            </p>
+                          </div>
+                          <div class="wfb-card__text mb-1 mt-1">
+                            <p
+                              style="color: darkgray; font-size: 14px">
+                              <p-skeleton width="6rem" height="1rem" borderRadius="0"></p-skeleton>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="thee-link-container">
+                      <div>
+                        <div class="wfb-card__link-container"
+                             style="display: flex; flex-direction: row; flex-wrap: wrap">
+                          <div class="wfb-card__text mr-auto mb-1 mt-1">
+                            <p
+                              style="color: darkgray; font-size: 14px">
+                              <p-skeleton width="6rem" height="1rem" borderRadius="0"></p-skeleton>
+                            </p>
+                          </div>
+                          <div class="wfb-card__text mb-1 mt-1">
+                            <p
+                              style="color: darkgray; font-size: 14px">
+                              <p-skeleton width="6rem" height="1rem" borderRadius="0"></p-skeleton>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+          </div>
+
           <div class="free-form-content__content wysiwyg-wrapper" *ngIf="ready">
             <div>
               <h2 class="pb100" *ngIf="filterValue === 'ALL'">{{ 'market.alerts' | translate }}
@@ -173,7 +252,7 @@
                     <div>
                       <div class="wfb-card-wrapper pt60" *ngIf="!searching">
                         <div class="no-gutters" [ngClass]="{ 'small':!isSmallScreen, 'row':isSmallScreen }">
-                          <div [ngClass]="{ 'col-md-12':isSmallScreen }">
+                          <div class="ml-3" [ngClass]="{ 'col-md-12':isSmallScreen }">
                             <div class="wfb-card__body-container">
                               <div class="wfb-card__link-container">
                                 <h5>

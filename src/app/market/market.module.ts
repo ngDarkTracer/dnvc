@@ -10,22 +10,24 @@ import {DataViewModule} from 'primeng/dataview';
 import {AccordionModule} from 'primeng/accordion';
 import {DropdownModule} from 'primeng/dropdown';
 import {CalendarModule} from 'primeng/calendar';
+import {SkeletonModule} from 'primeng/skeleton';
 
 
 @NgModule({
   declarations: [
     MarketComponent
   ],
-  imports: [
-    CommonModule,
-    MarketRoutingModule,
-    NgxPaginationModule,
-    TranslateModule,
-    ProgressSpinnerModule,
-    DataViewModule,
-    AccordionModule,
-    DropdownModule,
-    CalendarModule
-  ]
+    imports: [
+        CommonModule,
+        MarketRoutingModule,
+        NgxPaginationModule,
+        TranslateModule,
+        ProgressSpinnerModule,
+        DataViewModule,
+        AccordionModule,
+        DropdownModule,
+        CalendarModule,
+        SkeletonModule
+    ]
 })
 export class MarketModule { }

@@ -10,6 +10,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import {DialogModule} from 'primeng/dialog';
 import {RippleModule} from 'primeng/ripple';
+import {SkeletonModule} from 'primeng/skeleton';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {RippleModule} from 'primeng/ripple';
         ProgressSpinnerModule,
         DialogModule,
         RippleModule,
-        FormsModule
+        FormsModule,
+        SkeletonModule
     ]
 })
 export class UpdateUserModule { }

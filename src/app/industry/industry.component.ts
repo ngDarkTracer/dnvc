@@ -78,7 +78,9 @@ export class IndustryComponent implements OnInit {
         }
       });
     }
-    elt.classList.add('active-item');
+    if (elt) {
+      elt.classList.add('active-item');
+    }
   }
 
   ngOnInit(): void {

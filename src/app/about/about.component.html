@@ -18,7 +18,7 @@
   <section class="content-section-mobile background-white">
     <div class="container content_nav-container">
       <div class="row">
-        <div class="col-lg-6 col-md-12 col-sm-12 border-left-black pb120-90 pt120-45 content-area-content">
+        <div class="col-lg-6 col-md-12 col-sm-12 pb120-90 pt120-45 content-area-content"  [ngClass]="{ 'border-left-black':!isSmallScreen }">
           <h2 class="mb-5 mt-5 pt-5">{{ 'about.tools' | translate }}</h2>
           <div class="free-form-content__content wysiwyg-wrapper">
             <p>

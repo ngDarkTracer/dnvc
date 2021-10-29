@@ -18,7 +18,7 @@
   <section class="content-section-mobile background-white">
     <div class="container content_nav-container">
       <div class="row">
-        <div class="col-lg-6 col-md-12 col-sm-12 border-left-black pb120-90 pt120-45 content-area-content">
+        <div class="col-lg-6 col-md-12 col-sm-12 pb120-90 pt120-45 content-area-content" [ngClass]="{ 'border-left-black':!isSmallScreen }">
 <!--          <p-progressSpinner *ngIf="!ready"></p-progressSpinner>-->
           <div class="free-form-content__content wysiwyg-wrapper">
             <div>
@@ -221,7 +221,7 @@
                           <div [ngStyle]="{'width': isSmallScreen ? '15rem': '40rem' }" class="mr-5 ml-3 mt-2">
                             <img [src]="con.imageUrl" alt="">
                           </div>
-                          <div [ngClass]="{ 'col-md-12':isSmallScreen }">
+                          <div class="ml-3" [ngClass]="{ 'col-md-12':isSmallScreen }">
                             <div class="wfb-card__body-container">
                               <h5 class="mb-1">
                                 {{ con.title }}

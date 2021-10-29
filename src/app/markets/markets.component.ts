@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MarketsService} from '../services/markets.service';
+import {BreakpointObserver} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-markets',
@@ -16,14 +17,22 @@ export class MarketsComponent implements OnInit {
   beginLetter = 'ALL';
   numberOfElement;
   totalItems = 0;
+  isSmallScreen = false;
   openedList = false;
   ready = false;
   page = 1;
 
-  constructor(private marketsService: MarketsService) { }
+  constructor(private marketsService: MarketsService, private breakpointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
     this.getMarkets();
+    this.breakpointObserver.observe(['(max-width: 900px)']).subscribe(result => {
+      if (result.matches) {
+        this.isSmallScreen = true;
+      } else {
+        this.isSmallScreen = false;
+      }
+    });
   }
 
   getMarkets(): void {
@@ -63,6 +72,7 @@ export class MarketsComponent implements OnInit {
         }
       });
     }
+    this.openedList = false;
   }
 
   open(): void {

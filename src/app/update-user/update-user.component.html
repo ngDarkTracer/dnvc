@@ -16,12 +16,72 @@
 <!--</section>-->
 <div class="border-top-black is-visible" id="peak">
   <section class="content-section-mobile background-white pt-5 mb60 pb60"  style="margin: 0 auto; top: 5%; overflow-x: auto; height: 100vh;">
-    <div  class="m-5 mb-3 pt-5">
+    <div  class="m-5 mb-3 pt-2">
       <h2 class="hero-title mt-5 mb-5 mb-5 pb-5" style="text-align: center; font-family: 'GT America Extended'">{{ 'update.update' | translate }}</h2>
       <div [formGroup]="criteriaFrom" (ngSubmit)="onSubmit()">
         <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-around;">
           <div formArrayName="criteres" style="text-align: center; width: 80vw;">
-            <p-progressSpinner *ngIf="loading"></p-progressSpinner>
+<!--            <p-progressSpinner *ngIf="loading"></p-progressSpinner>-->
+
+            <div *ngIf="loading">
+              <div style="display: flex; flex-direction: row;
+              flex-wrap:wrap; justify-content: center">
+                <div class="mb-1 mr-3">
+                  <p-skeleton styleClass="mb-5" borderRadius="0" width="14rem" height="1rem" *ngIf="!isSmallScreen"></p-skeleton>
+                  <p-skeleton borderRadius="0" width="14rem" height="3rem"></p-skeleton>
+                </div>
+                <div class="mb-1 mr-3">
+                  <p-skeleton styleClass="mb-5" borderRadius="0" width="14rem" height="1rem" *ngIf="!isSmallScreen"></p-skeleton>
+                  <p-skeleton borderRadius="0" width="14rem" height="3rem"></p-skeleton>
+                </div>
+                <div class="mb-1 mr-3">
+                  <p-skeleton styleClass="mb-5" borderRadius="0" width="14rem" height="1rem" *ngIf="!isSmallScreen"></p-skeleton>
+                  <p-skeleton borderRadius="0" width="14rem" height="3rem"></p-skeleton>
+                </div>
+                <div>
+                  <div class="mb-5" [ngClass]="{ 'mt-3': !isSmallScreen, 'pt-5': !isSmallScreen }">
+                    <p-skeleton borderRadius="0" width="3rem" height="3rem"></p-skeleton>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: flex; flex-direction: row;
+              flex-wrap:wrap; justify-content: center">
+                <div class="mb-1 mr-3">
+                  <p-skeleton borderRadius="0" width="14rem" height="3rem"></p-skeleton>
+                </div>
+                <div class="mb-1 mr-3">
+                  <p-skeleton borderRadius="0" width="14rem" height="3rem"></p-skeleton>
+                </div>
+                <div class="mb-1 mr-3">
+                  <p-skeleton borderRadius="0" width="14rem" height="3rem"></p-skeleton>
+                </div>
+                <div>
+                  <div class="mb-5">
+                    <p-skeleton borderRadius="0" width="3rem" height="3rem"></p-skeleton>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: flex; flex-direction: row;
+              flex-wrap:wrap; justify-content: center">
+                <div class="mb-1 mr-3">
+                  <p-skeleton borderRadius="0" width="14rem" height="3rem"></p-skeleton>
+                </div>
+                <div class="mb-1 mr-3">
+                  <p-skeleton borderRadius="0" width="14rem" height="3rem"></p-skeleton>
+                </div>
+                <div class="mb-1 mr-3">
+                  <p-skeleton borderRadius="0" width="14rem" height="3rem"></p-skeleton>
+                </div>
+                <div>
+                  <div class="mb-5">
+                    <p-skeleton borderRadius="0" width="3rem" height="3rem"></p-skeleton>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div *ngFor="let preference of getPreferences().controls; index as i">
               <div [formGroup]="preference" style="display: flex; flex-direction: row;
               flex-wrap:wrap; justify-content: center">

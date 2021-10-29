@@ -77,7 +77,9 @@ export class MarketComponent implements OnInit {
         }
       });
     }
-    elt.classList.add('active-item');
+    if (elt) {
+      elt.classList.add('active-item');
+    }
   }
 
   ngOnInit(): void {
@@ -154,6 +156,7 @@ export class MarketComponent implements OnInit {
               });
           },
           (error) => {
+            console.log(error);
           },
           () => {
             this.ready = true;

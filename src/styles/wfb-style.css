@@ -4397,7 +4397,7 @@ html {
 
 @media (max-width: 991.98px) {
   .background-grid-short-white .container {
-    border-left: 1px solid #161618;
+    /*border-left: 1px solid #161618;*/
     background-image: none
   }
 }
