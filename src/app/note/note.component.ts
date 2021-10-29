@@ -36,9 +36,9 @@ export class NoteComponent implements OnInit {
   ready = false;
 
   severity = {
-    Threat: 'red',
-    Weak: 'green',
-    Opportunity: 'blue'
+    Threat: '#db6f27',
+    Weak: '#6b6b6b',
+    Opportunity: '#5cc45e'
   };
 
   filteredNotes: any[] = [];
