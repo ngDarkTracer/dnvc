@@ -159,7 +159,8 @@
     "header-error": "Error",
     "loadingError": "Loading Error",
     "success": "Your information has been successfully modified",
-    "error": "Modification error"
+    "error": "Modification error",
+    "update": "Update"
   },
 
   "footer": {

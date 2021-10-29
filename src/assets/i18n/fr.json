@@ -159,7 +159,8 @@
     "header-error": "Erreur",
     "loadingError": "Erreur de chargement",
     "success": "Vos informations ont été modifiés avec succès",
-    "error": "Erreur de modification"
+    "error": "Erreur de modification",
+    "update": "Mise à jour"
   },
 
   "footer": {
