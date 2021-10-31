@@ -1,0 +1,71 @@
+<!--<section class="background-threads careers-threads" id="top">-->
+<!--  <div class="fade-in-section disable-fade-in is-visible fade-in-hero disable-transform">-->
+<!--    <div class="container hero-splash-container">-->
+<!--      <div class="row pv90-60">-->
+<!--        <div class="col-sm-12 col-md-8 hero-splash">-->
+<!--          <h1 class="hero-title" style="color: white">{{ 'activation.choose' | translate }}</h1>-->
+<!--        </div>-->
+<!--        <div class="col-12"></div>-->
+<!--        <div class="col-sm-12 col-md-5"></div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+<div class="border-top-black is-visible">
+  <section class="content-section-mobile background-white pt-5 mb60 pb60"  style="margin: 0 auto; top: 5%; overflow-x: auto; height: 100%;">
+    <div style="margin: 0 auto">
+      <h2 class="hero-title mt-5 mb-5 mb-5 pb-5" style="text-align: center; font-family: 'GT America Extended'">
+        {{ 'contact-us.contact' | translate }}
+      </h2>
+      <h4 class="mb-3" style="text-align: center">{{ 'contact-us.info' | translate }}</h4><br>
+      <div style="margin: 0 auto;" [ngStyle]=" !isSmallScreen ? { 'width' : '60%' } : { 'width' : '100%' }">
+        <p-card [style]="{'margin': '0 auto'}">
+          <form [formGroup]="contactForm" (ngSubmit)="submit()" class="search-input-wrapper" style="display: flex; flex-direction: column; flex-wrap: nowrap; width: 100%;">
+            <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+              <div style="flex-grow: 1" [ngClass]="{ 'mr-3': !isSmallScreen }">
+                <label for="name" class="mb-2">{{ 'contact-us.name' | translate }}: </label>
+                <div class="search-input white-bg size mb-5" id="name">
+                  <input type="text" class="search-input-field white-bg" formControlName="name">
+                </div>
+              </div>
+
+              <div style="flex-grow: 1">
+                <label for="surname">{{ 'contact-us.surname' | translate }}: </label>
+                <div class="search-input white-bg mb-5" id="surname">
+                  <input type="text" class="search-input-field white-bg" formControlName="surname">
+                </div>
+              </div>
+            </div>
+
+            <label for="email" class="mb-2">{{ 'contact-us.email' | translate }}: </label>
+            <div class="search-input white-bg mb-5" id="email">
+              <input type="email" class="search-input-field white-bg" formControlName="email">
+            </div>
+
+            <label for="tel" class="mb-2">{{ 'contact-us.message' | translate }}: </label>
+            <div class="search-input white-bg mb-5" id="tel">
+              <textarea type="text" class="search-input-field white-bg" formControlName="message" cols="4" rows="15"></textarea>
+            </div>
+            <div style="display: flex; flex-direction: row; flex-wrap: nowrap">
+              <button pButton type="submit" [disabled]="contactForm.invalid"
+                      label="{{ 'subscribe.send' | translate }}" icon="pi pi-arrow-right"
+                      iconPos="right" class="p-button-lg p-button-outlined p-button-secondary search-input"></button>
+            </div>
+          </form>
+        </p-card>
+      </div>
+    </div>
+
+    <p-dialog header="{{ 'contact-us.greeting' | translate }}" [(visible)]="done"
+              [modal]="true" [closable]="false"
+              [breakpoints]="{'960px': '75vw', '640px': '95vw'}"
+              [style]="{ width: '50vw'}" [baseZIndex]="10000"
+              [draggable]="false">
+      <p>{{ 'contact-us.thanks' | translate }}</p>
+      <ng-template pTemplate="footer">
+        <p-button label="Ok" (click)="redirectTo()" styleClass="p-button-text"></p-button>
+      </ng-template>
+    </p-dialog>
+  </section>
+</div>
+

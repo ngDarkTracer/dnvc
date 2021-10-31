@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SubscribeService} from '../services/subscribe.service';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import {BreakpointObserver} from '@angular/cdk/layout';
-
 @Component({
   selector: 'app-activation',
   templateUrl: './activation.component.html',
@@ -27,7 +26,8 @@ export class ActivationComponent implements OnInit {
               private router: Router,
               private formBuilder: FormBuilder,
               private subscribeService: SubscribeService,
-              private breakPointObserver: BreakpointObserver) { }
+              private breakPointObserver: BreakpointObserver) {
+  }
 
   ngOnInit(): void {
     this.code = this.activatedRoute.snapshot.paramMap.get('code');
@@ -53,13 +53,15 @@ export class ActivationComponent implements OnInit {
     });
 
     this.subscribeService.getSingleContactFromServer(this.code).subscribe((data) => {
-      if (data.length === 0) {
+        if (data.length === 0 || data[0].Etat === 'Actif') {
+          this.router.navigate(['/home']);
+        } else {
+          this.id = data[0].id;
+        }
+      },
+      (error) => {
         this.router.navigate(['/home']);
-      } else {
-      this.id = data[0].id;
-      }
-    },
-    (error) => {});
+      });
 
     this.initForm();
 

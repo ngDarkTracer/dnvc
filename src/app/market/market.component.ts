@@ -4,7 +4,6 @@ import {BreakpointObserver} from '@angular/cdk/layout';
 import {from} from 'rxjs';
 import {groupBy, mergeMap, toArray} from 'rxjs/operators';
 import {MarketsService} from '../services/markets.service';
-import {IndustriesService} from '../services/industries.service';
 import {RessourcesService} from '../services/ressources.service';
 
 @Component({

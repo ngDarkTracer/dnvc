@@ -285,6 +285,7 @@
                                     <div class="wfb-card__link-container"
                                          style="display: flex; flex-direction: row; flex-wrap: wrap">
                                       <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6 mb-1 mt-1 mr-auto"
+                                           *ngIf="con.markets !== 'All'"
                                            style="margin-top: 8px">
                                         <p style="color: darkgray; font-size: 14px">{{ 'sector.market' | translate }}:
                                           <span *ngFor="let market of con.markets">{{ market.Nom }}<span

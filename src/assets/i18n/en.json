@@ -164,6 +164,17 @@
     "update": "Update"
   },
 
+  "contact-us": {
+    "contact": "Contact us",
+    "info": "We'd love to hear from you. Please feel free to contact us if you have any questions.",
+    "name": "Name",
+    "surname": "First name",
+    "greeting": "Thanks to you",
+    "email": "Your email address",
+    "message": "Your message",
+    "thanks": "Your request has been taken into account and we will reply shortly. Thank you for your interest!"
+  },
+
   "footer": {
     "publish": "Publish an alert",
     "contact": "Contact us",

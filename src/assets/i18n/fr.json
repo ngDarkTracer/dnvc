@@ -164,6 +164,17 @@
     "update": "Mise à jour"
   },
 
+  "contact-us": {
+    "contact": "Contactez-nous",
+    "info": "Nous aimerions avoir de vos nouvelles. N'hésitez pas à nous contacter si vous avez des questions.",
+    "name": "Nom",
+    "surname": "Prenom",
+    "greeting": "Merci a vous",
+    "email": "Votre adresse mail",
+    "message": "Votre message",
+    "thanks": "Votre demande a bien été prise en compte, nous vous répondrons sous peu. Merci !"
+  },
+
   "footer": {
     "publish": "Publier une alerte",
     "contact": "Contactez-nous",

@@ -74,7 +74,7 @@
                       <a href="#" class="button button-default button-stack" target="_blank" rel="noopener noreferrer">{{ 'footer.publish' | translate }}</a>
                     </noscript>
                     <div class="no-show">
-                      <button class="button button-default button-stack noShow">{{ 'footer.publish' | translate }}</button>
+                      <button class="button button-default button-stack noShow" (click)="openAdminApp()">{{ 'footer.publish' | translate }}</button>
                     </div>
                   </div>
                   <div class="col-12 col-md-3 mb-3">
@@ -82,7 +82,7 @@
                       <a href="#" class="button button-default button-stack" target="_blank" rel="noopener noreferrer">{{ 'footer.contact' | translate }}</a>
                     </noscript>
                     <div class="no-show">
-                      <button class="button button-default noShow">{{ 'footer.contact' | translate }}</button>
+                      <button class="button button-default noShow" routerLink="/contact-us">{{ 'footer.contact' | translate }}</button>
                     </div>
                   </div>
                   <div class="col-12 col-md-3">

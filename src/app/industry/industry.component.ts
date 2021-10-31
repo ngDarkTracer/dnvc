@@ -146,7 +146,7 @@ export class IndustryComponent implements OnInit {
                   text: elt.Resume,
                   sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
                   source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
-                  markets: elt.Marches
+                  markets: elt.Marches.length !== 0 ? elt.Marches : 'All'
                 }
               );
             });
@@ -199,7 +199,7 @@ export class IndustryComponent implements OnInit {
                     text: elt.Resume,
                     sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
                     source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
-                    markets: elt.Marches
+                    markets: elt.Marches.length !== 0 ? elt.Marches : 'All'
                   }
                 );
               });

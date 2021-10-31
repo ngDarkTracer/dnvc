@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'activation/:code', loadChildren: () => import('./activation/activation.module').then(m => m.ActivationModule) },
   { path: 'resources', loadChildren: () => import('./resources/resources.module').then(m => m.ResourcesModule) },
   { path: 'update/:id', loadChildren: () => import('./update-user/update-user.module').then(m => m.UpdateUserModule) },
+  { path: 'contact-us', loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule) },
   { path: '**', loadChildren: () => import('./four-zero-four/four-zero-four.module').then(m => m.FourZeroFourModule) }];
 
 @NgModule({
