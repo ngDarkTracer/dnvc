@@ -6,6 +6,7 @@ import {from} from 'rxjs';
 import {groupBy, mergeMap, toArray} from 'rxjs/operators';
 import {NotesService} from '../services/notes.service';
 import {RessourcesService} from '../services/ressources.service';
+import {IndustriesService} from '../services/industries.service';
 
 @Component({
   selector: 'app-note',
@@ -18,6 +19,7 @@ export class NoteComponent implements OnInit {
               private scroller: ViewportScroller,
               private breakPointObserver: BreakpointObserver,
               private notesService: NotesService,
+              private industriesService: IndustriesService,
               private ressourcesService: RessourcesService) {
   }
 
@@ -110,59 +112,67 @@ export class NoteComponent implements OnInit {
     this.ready = false;
     this.isThereNote = true;
     this.content = [];
-    this.notesService.getSingleNoteFromServer(url).subscribe((data) => {
-      if (data.length === 0) {
-        this.isThereNote = false;
-      } else {
-        this.isThereNote = true;
-      }
+    this.industriesService.getSectorFromServer(url).subscribe((result) => {
+      this.notesService.getSingleNoteFromServer(url).subscribe((data) => {
+        if (data.length === 0) {
+          this.isThereNote = false;
+        } else {
+          this.isThereNote = true;
+        }
 
-      this.temp = data;
-      from(this.temp)
-        .pipe(
-          groupBy(element => element.themes_de_veille.Nom),
-          mergeMap(group => group.pipe(toArray()))
-        )
-        .subscribe(
-          (val) => {
-            const tempContent = [];
-            val.forEach((elt) => {
-              if (this.noteImageUrl === '' || this.noteIntroText === '') {
-                for (let i = 0; i < elt.Filieres.length; i++) {
-                  if (elt.Filieres[i].Name === url.replace(/%20/g, ' ')) {
-                    this.noteImageUrl = elt.Filieres[i].Photo.url;
-                    this.noteIntroText = elt.Filieres[i].Intro;
-                    this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
-                    break;
+        this.temp = data;
+        from(this.temp)
+          .pipe(
+            groupBy(element => element.themes_de_veille.Nom),
+            mergeMap(group => group.pipe(toArray()))
+          )
+          .subscribe(
+            (val) => {
+              const tempContent = [];
+              val.forEach((elt) => {
+                if (this.noteImageUrl === '' || this.noteIntroText === '') {
+                  for (let i = 0; i < elt.Filieres.length; i++) {
+                    this.noteImageUrl = elt.Filieres[i].Photo === null ? result[0].Photo.url : elt.Filieres[i].Photo.url;
+                    this.noteIntroText = elt.Filieres[i].Intro === null ? result[0].Intro : elt.Filieres[i].Intro;
+                    this.lastUpdate = result[0].updated_at.split('T')[0];
+                    if (elt.Filieres[i].Name === url.replace(/%20/g, ' ')) {
+                      this.noteImageUrl = elt.Filieres[i].Photo === null ? result[0].Photo.url : elt.Filieres[i].Photo.url;
+                      this.noteIntroText = elt.Filieres[i].Intro === null ? result[0].Intro : elt.Filieres[i].Intro;
+                      this.lastUpdate = result[0].updated_at.split('T')[0];
+                      // this.noteImageUrl = elt.Filieres[i].Photo.url;
+                      // this.noteIntroText = elt.Filieres[i].Intro;
+                      // this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
+                      break;
+                    }
                   }
                 }
-              }
-              tempContent.push(
-                {
-                  color: this.severity[elt.Type],
-                  date: elt.DatePublication,
-                  author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
-                  title: elt.Title,
-                  text: elt.Resume,
-                  sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
-                  source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
-                  markets: elt.Marches.length !== 0 ? elt.Marches : 'All'
-                }
-              );
-            });
-            this.content.push(
-              {
-                note: val[0].themes_de_veille.Nom,
-                content: tempContent
+                tempContent.push(
+                  {
+                    color: this.severity[elt.Type],
+                    date: elt.DatePublication,
+                    author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
+                    title: elt.Title,
+                    text: elt.Resume,
+                    sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
+                    source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
+                    markets: elt.Marches.length !== 0 ? elt.Marches : 'All'
+                  }
+                );
               });
-          },
-          (error) => {
-          },
-          () => {
-            this.ready = true;
-            const all = document.getElementById('all');
-            this.filter('ALL', all);
-          });
+              this.content.push(
+                {
+                  note: val[0].themes_de_veille.Nom,
+                  content: tempContent
+                });
+            },
+            (error) => {
+            },
+            () => {
+              this.ready = true;
+              const all = document.getElementById('all');
+              this.filter('ALL', all);
+            });
+      });
     });
   }
 

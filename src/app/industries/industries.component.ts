@@ -41,6 +41,11 @@ export class IndustriesComponent implements OnInit {
     this.industriesService.getSectorsFromServer().subscribe((data) => {
       for (const beginLetter of this.alphabet) {
         const sectorsName = data.filter((sect) => sect.Name[0].toUpperCase() === beginLetter);
+        sectorsName.forEach((sect) => {
+          if (sect.Name === 'Toutes les filières') {
+            sectorsName.pop(sect);
+          }
+        });
         sectors.push({letter: beginLetter, industry: sectorsName});
       }
       this.industries = sectors;

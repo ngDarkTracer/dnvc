@@ -108,60 +108,68 @@ export class MarketComponent implements OnInit {
     this.ready = false;
     this.isThereAlert = true;
     this.content = [];
-    this.marketsService.getSingleMarketFromServer(url).subscribe((data) => {
-      if (data.length === 0) {
-        this.isThereAlert = false;
-      } else {
-        this.isThereAlert = true;
-      }
+    this.marketsService.getMarketFromServer(url).subscribe((result) => {
+      this.marketsService.getSingleMarketFromServer(url).subscribe((data) => {
+        if (data.length === 0) {
+          this.isThereAlert = false;
+        } else {
+          this.isThereAlert = true;
+        }
 
-      this.temp = data;
-      from(this.temp)
-        .pipe(
-          groupBy(element => element.themes_de_veille.Nom),
-          mergeMap(group => group.pipe(toArray()))
-        )
-        .subscribe(
-          (val) => {
-            const tempContent = [];
-            val.forEach((elt) => {
-              if (this.marketImageUrl === '' || this.marketIntroText === '') {
-                for (let i = 0; i < elt.Marches.length; i++) {
-                  if (elt.Marches[i].Nom === url.replace(/%20/g, ' ')) {
-                    this.marketImageUrl = elt.Marches[i].Logo_Large[0].url;
-                    this.marketIntroText = elt.Marches[i].Intro;
-                    this.lastUpdate = elt.Marches[i].updated_at.split('T')[0];
-                    break;
+        this.temp = data;
+        from(this.temp)
+          .pipe(
+            groupBy(element => element.id),
+            mergeMap(group => group.pipe(toArray()))
+          )
+          .subscribe(
+            (val) => {
+              const tempContent = [];
+              val.forEach((elt) => {
+                if (this.marketImageUrl === '' || this.marketIntroText === '') {
+                  for (let i = 0; i < elt.Marches.length; i++) {
+                    this.marketImageUrl = elt.Marches[i].Logo_Large.length === 0 ? result[0].Logo_Large[0].url : elt.Marches[i].Logo_Large[0].url;
+                    this.marketIntroText = elt.Marches[i].Intro === null ? result[0].Intro : elt.Marches[i].Intro;
+                    this.lastUpdate = result[0].updated_at.split('T')[0];
+                    if (elt.Marches[i].Nom === url.replace(/%20/g, ' ')) {
+                      // this.marketImageUrl = elt.Marches[i].Logo_Large[0].url;
+                      // this.marketIntroText = elt.Marches[i].Intro;
+                      // this.lastUpdate = elt.Marches[i].updated_at.split('T')[0];
+                      this.marketImageUrl = elt.Marches[i].Logo_Large.length === 0 ? result[0].Logo_Large[0].url : elt.Marches[i].Logo_Large[0].url;
+                      this.marketIntroText = elt.Marches[i].Intro === null ? result[0].Intro : elt.Marches[i].Intro;
+                      this.lastUpdate = result[0].updated_at.split('T')[0];
+                      break;
+                    }
                   }
                 }
-              }
-              tempContent.push(
-                {
-                  color: this.severity[elt.Type],
-                  date: elt.DatePublication,
-                  author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
-                  title: elt.Title,
-                  text: elt.Resume,
-                  sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
-                  source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
-                  markets: elt.Marches
-                }
-              );
-            });
-            this.content.push(
-              {
-                alerte: val[0].themes_de_veille.Nom,
-                content: tempContent
+                tempContent.push(
+                  {
+                    color: this.severity[elt.Type],
+                    date: elt.DatePublication,
+                    author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
+                    title: elt.Title,
+                    text: elt.Resume,
+                    sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
+                    source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
+                    markets: elt.Marches
+                  }
+                );
               });
-          },
-          (error) => {
-            console.log(error);
-          },
-          () => {
-            this.ready = true;
-            const all = document.getElementById('all');
-            this.filter('ALL', all);
-          });
+              this.content.push(
+                {
+                  alerte: val[0].themes_de_veille.Nom,
+                  content: tempContent
+                });
+            },
+            (error) => {
+              console.log(error);
+            },
+            () => {
+              this.ready = true;
+              const all = document.getElementById('all');
+              this.filter('ALL', all);
+            });
+      });
     });
   }
 
@@ -173,23 +181,13 @@ export class MarketComponent implements OnInit {
         this.temp = data;
         from(this.temp)
           .pipe(
-            groupBy(element => element.themes_de_veille.Nom),
+            groupBy(element => element.id),
             mergeMap(group => group.pipe(toArray()))
           )
           .subscribe(
             (val) => {
               const tempContent = [];
               val.forEach((elt) => {
-                if (this.marketImageUrl === '' || this.marketIntroText === '') {
-                  for (let i = 0; i < elt.Marches.length; i++) {
-                    if (elt.Marches[i].Nom === this.currentMarket.replace(/%20/g, ' ')) {
-                      this.marketImageUrl = elt.Marches[i].Logo_Large[0].url;
-                      this.marketIntroText = elt.Marches[i].Intro;
-                      this.lastUpdate = elt.Marches[i].updated_at.split('T')[0];
-                      break;
-                    }
-                  }
-                }
                 tempContent.push(
                   {
                     color: this.severity[elt.Type],

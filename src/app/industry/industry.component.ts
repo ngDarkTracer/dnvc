@@ -110,58 +110,65 @@ export class IndustryComponent implements OnInit {
     this.ready = false;
     this.isThereAlert = true;
     this.content = [];
-    this.industriesService.getSingleSectorFromServer(url).subscribe((data) => {
-      if (data.length === 0) {
-        this.isThereAlert = false;
-      } else {
-        this.isThereAlert = true;
-      }
-
-      this.temp = data;
-      from(this.temp)
-        .pipe(
-          groupBy(element => element.themes_de_veille.Nom),
-          mergeMap(group => group.pipe(toArray()))
-        )
-        .subscribe(
-          (val) => {
-            const tempContent = [];
-            val.forEach((elt) => {
-              if (this.sectorImageUrl === '' || this.sectorIntroText === '') {
-                for (let i = 0; i < elt.Filieres.length; i++) {
-                  if (elt.Filieres[i].Name === url.replace(/%20/g, ' ')) {
-                    this.sectorImageUrl = elt.Filieres[i].Photo.url;
-                    this.sectorIntroText = elt.Filieres[i].Intro;
-                    this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
-                    break;
+    this.industriesService.getSectorFromServer(url).subscribe((result) => {
+      this.industriesService.getSingleSectorFromServer(url).subscribe((data) => {
+        if (data.length === 0) {
+          this.isThereAlert = false;
+        } else {
+          this.isThereAlert = true;
+        }
+        this.temp = data;
+        from(this.temp)
+          .pipe(
+            groupBy(element => element.id),
+            mergeMap(group => group.pipe(toArray()))
+          )
+          .subscribe(
+            (val) => {
+              const tempContent = [];
+              val.forEach((elt) => {
+                if (this.sectorImageUrl === '' || this.sectorIntroText === '') {
+                  for (let i = 0; i < elt.Filieres.length; i++) {
+                    this.sectorImageUrl = elt.Filieres[i].Photo === null ? result[0].Photo.url : elt.Filieres[i].Photo.url;
+                    this.sectorIntroText = elt.Filieres[i].Intro === null ? result[0].Intro : elt.Filieres[i].Intro;
+                    this.lastUpdate = result[0].updated_at.split('T')[0];
+                    if (elt.Filieres[i].Name === url.replace(/%20/g, ' ')) {
+                      this.sectorImageUrl = elt.Filieres[i].Photo === null ? result[0].Photo.url : elt.Filieres[i].Photo.url;
+                      this.sectorIntroText = elt.Filieres[i].Intro === null ? result[0].Intro : elt.Filieres[i].Intro;
+                      this.lastUpdate = result[0].updated_at.split('T')[0];
+                      // this.sectorImageUrl = elt.Filieres[i].Photo.url;
+                      // this.sectorIntroText = elt.Filieres[i].Intro;
+                      // this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
+                      break;
+                    }
                   }
                 }
-              }
-              tempContent.push(
-                {
-                  color: this.severity[elt.Type],
-                  date: elt.DatePublication,
-                  author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
-                  title: elt.Title,
-                  text: elt.Resume,
-                  sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
-                  source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
-                  markets: elt.Marches.length !== 0 ? elt.Marches : 'All'
-                }
-              );
-            });
-            this.content.push(
-              {
-                alerte: val[0].themes_de_veille.Nom,
-                content: tempContent
+                tempContent.push(
+                  {
+                    color: this.severity[elt.Type],
+                    date: elt.DatePublication,
+                    author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
+                    title: elt.Title,
+                    text: elt.Resume,
+                    sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
+                    source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
+                    markets: elt.Marches.length !== 0 ? elt.Marches : 'All'
+                  }
+                );
               });
+              this.content.push(
+                {
+                  alerte: val[0].themes_de_veille.Nom,
+                  content: tempContent
+                });
             },
-          (error) => {},
-          () => {
-            this.ready = true;
-            const all = document.getElementById('all');
-            this.filter('ALL', all);
-          });
+            (error) => {},
+            () => {
+              this.ready = true;
+              const all = document.getElementById('all');
+              this.filter('ALL', all);
+            });
+      });
     });
   }
 
@@ -173,23 +180,13 @@ export class IndustryComponent implements OnInit {
         this.temp = data;
         from(this.temp)
           .pipe(
-            groupBy(element => element.themes_de_veille.Nom),
+            groupBy(element => element.id),
             mergeMap(group => group.pipe(toArray()))
           )
           .subscribe(
             (val) => {
               const tempContent = [];
               val.forEach((elt) => {
-                if (this.sectorImageUrl === '' || this.sectorIntroText === '') {
-                  for (let i = 0; i < elt.Filieres.length; i++) {
-                    if (elt.Filieres[i].Name === this.currentIndustriy.replace(/%20/g, ' ')) {
-                      this.sectorImageUrl = elt.Filieres[i].Photo.url;
-                      this.sectorIntroText = elt.Filieres[i].Intro;
-                      this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
-                      break;
-                    }
-                  }
-                }
                 tempContent.push(
                   {
                     color: this.severity[elt.Type],

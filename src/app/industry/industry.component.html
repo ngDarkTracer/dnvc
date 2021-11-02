@@ -67,55 +67,54 @@
 <div class="border-top-black is-visible">
   <section class="content-section-mobile background-white">
     <div class="container content_nav-container" id="top">
-      <div class="row" *ngIf="isThereAlert">
-        <div class="col-lg-4 col-md-12 col-sm-12 d-md-block pt120 mb45">
-          <div class="jump-nav">
-            <div class="fade-in-section disable-fade-in is-visible">
-              <div *ngIf="!ready" class="mt-5 pt-2">
-                <p>
-                  <p-skeleton width="18rem" height="7rem" borderRadius="0"></p-skeleton>
-                </p>
-              </div>
-              <div class="jump-nav__container" id="jump-nav" *ngIf="ready" [ngClass]="{'sticky':stickyMenu && isSmallScreen}">
-                <div class="jump-nav__header">
-                  <div>
-                    <div class="label">{{ 'sector.content' | translate }}</div>
-                    <h2 class="h6 bold mb0 d-block d-md-none" *ngIf="filterValue !== 'ALL'">{{ filterValue }}</h2>
-                    <h2 class="h6 bold mb0 d-block d-md-none"
-                        *ngIf="filterValue === 'ALL'">{{ 'sector.All' | translate }}</h2>
-                  </div>
-                  <div class="jump-nav__mobile" *ngIf="isSmallScreen">
-                    <button class="jump-nav__mobile-button" (click)="open()">
-                      <svg class="icon icon-white" [ngClass]="{'rotate-180':openedMenu}"
-                           aria-labelledby="point-down-icon" role="img" viewBox="0 0 30 30">
-                        <title id="point-down-icon">Point Down Icon</title>
-                        <polygon fill-rule="nonzero"
-                                 points="23.354 12.075 15.499 19.929 7.646 12.075 8.353 11.368 15.498 18.514 22.646 11.367 23.354 12.075"></polygon>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                <ul class="jump-nav__items" [ngClass]="{'d-block':openedMenu}">
-                  <h6 class="mb0 pt15 jump-nav__item-wrapper" #elt id="all">
-                    <div>
-                      <a class="jump-nav__item bold" style="cursor: pointer"
-                         (click)="filter('ALL', elt)">{{ 'sector.All' | translate }}</a>
-                    </div>
-                  </h6>
-                  <h6 class="mb0 pt15 jump-nav__item-wrapper list-item" #elt *ngFor="let item of content">
-                    <div>
-                      <a class="jump-nav__item bold" style="cursor: pointer"
-                         (click)="filter(item.alerte, elt)">{{ item.alerte }}</a>
-                    </div>
-                  </h6>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-12 col-sm-12 pb120-90 pt120-45 content-area-content"
-             [ngClass]="{ 'border-left-black':!isSmallScreen }">
-          <!--          <p-progressSpinner *ngIf="!ready"></p-progressSpinner>-->
+      <div class="row" *ngIf="isThereAlert" [ngStyle]="!isSmallScreen ? {'margin-left': '20%'} : {'margin-left': '0'}">
+<!--        <div class="col-lg-4 col-md-12 col-sm-12 d-md-block pt120 mb45">-->
+<!--          <div class="jump-nav">-->
+<!--            <div class="fade-in-section disable-fade-in is-visible">-->
+<!--              <div *ngIf="!ready" class="mt-5 pt-2">-->
+<!--                <p>-->
+<!--                  <p-skeleton width="18rem" height="7rem" borderRadius="0"></p-skeleton>-->
+<!--                </p>-->
+<!--              </div>-->
+<!--              <div class="jump-nav__container" id="jump-nav" *ngIf="ready" [ngClass]="{'sticky':stickyMenu && isSmallScreen}">-->
+<!--                <div class="jump-nav__header">-->
+<!--                  <div>-->
+<!--                    <div class="label">{{ 'sector.content' | translate }}</div>-->
+<!--                    <h2 class="h6 bold mb0 d-block d-md-none" *ngIf="filterValue !== 'ALL'">{{ filterValue }}</h2>-->
+<!--                    <h2 class="h6 bold mb0 d-block d-md-none"-->
+<!--                        *ngIf="filterValue === 'ALL'">{{ 'sector.All' | translate }}</h2>-->
+<!--                  </div>-->
+<!--                  <div class="jump-nav__mobile" *ngIf="isSmallScreen">-->
+<!--                    <button class="jump-nav__mobile-button" (click)="open()">-->
+<!--                      <svg class="icon icon-white" [ngClass]="{'rotate-180':openedMenu}"-->
+<!--                           aria-labelledby="point-down-icon" role="img" viewBox="0 0 30 30">-->
+<!--                        <title id="point-down-icon">Point Down Icon</title>-->
+<!--                        <polygon fill-rule="nonzero"-->
+<!--                                 points="23.354 12.075 15.499 19.929 7.646 12.075 8.353 11.368 15.498 18.514 22.646 11.367 23.354 12.075"></polygon>-->
+<!--                      </svg>-->
+<!--                    </button>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <ul class="jump-nav__items" [ngClass]="{'d-block':openedMenu}">-->
+<!--                  <h6 class="mb0 pt15 jump-nav__item-wrapper" #elt id="all">-->
+<!--                    <div>-->
+<!--                      <a class="jump-nav__item bold" style="cursor: pointer"-->
+<!--                         (click)="filter('ALL', elt)">{{ 'sector.All' | translate }}</a>-->
+<!--                    </div>-->
+<!--                  </h6>-->
+<!--                  <h6 class="mb0 pt15 jump-nav__item-wrapper list-item" #elt *ngFor="let item of content">-->
+<!--                    <div>-->
+<!--                      <a class="jump-nav__item bold" style="cursor: pointer"-->
+<!--                         (click)="filter(item.alerte, elt)">{{ item.alerte }}</a>-->
+<!--                    </div>-->
+<!--                  </h6>-->
+<!--                </ul>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+        <div class="col-lg-6 col-md-12 col-sm-12 pb120-90 pt120-45 content-area-content" [ngClass]="{ 'border-left-black':!isSmallScreen }">
+          <!--         <p-progressSpinner *ngIf="!ready"></p-progressSpinner>-->
           <div *ngIf="!ready">
             <div class="wfb-card-wrapper pt60">
               <div class="no-gutters" [ngClass]="{ 'small':!isSmallScreen, 'row':isSmallScreen }">
@@ -191,9 +190,9 @@
 
           <div class="free-form-content__content wysiwyg-wrapper" *ngIf="ready">
             <div>
-              <h2 class="pb100" *ngIf="filterValue === 'ALL'">{{ 'sector.alerts' | translate }}
-                [{{ 'sector.All' | translate }}]</h2>
-              <h2 class="pb100" *ngIf="filterValue !== 'ALL'">{{ 'sector.alerts' | translate }} [{{ filterValue }}]</h2>
+<!--              <h2 class="pb100" *ngIf="filterValue === 'ALL'">{{ 'sector.alerts' | translate }}[{{ 'sector.All' | translate }}]</h2>-->
+              <h2 class="pb100 ml-3" *ngIf="filterValue === 'ALL'">{{ 'sector.All' | translate }}</h2>
+<!--              <h2 class="pb100" *ngIf="filterValue !== 'ALL'">{{ 'sector.alerts' | translate }} [{{ filterValue }}]</h2>-->
 
               <p-dataView *ngIf="ready" #dv [value]="filteredAlert" [paginator]="true" [rows]="5"
                           layout="grid">

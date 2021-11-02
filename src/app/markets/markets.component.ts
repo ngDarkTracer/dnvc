@@ -41,6 +41,11 @@ export class MarketsComponent implements OnInit {
     this.marketsService.getMarketsFromServer().subscribe((data) => {
       for (const beginLetter of this.alphabet) {
         const marketsName = data.filter((market) => market.Nom[0].toUpperCase() === beginLetter);
+        marketsName.forEach((mark) => {
+          if (mark.Nom === 'Tous les marchés') {
+            marketsName.pop(mark);
+          }
+        });
         markets.push({letter: beginLetter, zone: marketsName});
       }
       this.markets = markets;

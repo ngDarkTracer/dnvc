@@ -26,24 +26,26 @@ export class RessourcesService {
     let initialReq = this.serverAdress + 'ressources?_sort=titre:ASC';
 
     if (typeof sector !== 'undefined' && sector !== null) {
-      initialReq += '&_where[0][filieres.Name]=' + sector;
+      initialReq += '&_where[filieres.Name]=' + sector + '&_where[filieres.Name]=Toutes les filières';
     }
 
     if (typeof market !== 'undefined' && market !== null) {
-      initialReq += '&_where[1][marche.Nom]=' + market;
+      initialReq += '&_where[marche.Nom]=' + market + '&_where[marche.Nom]=Tous les marchés';
     }
 
     if (typeof theme !== 'undefined' && theme !== null) {
-      initialReq += '&_where[2][themes_de_veille.Nom]=' + theme;
+      initialReq += '&_where[themes_de_veille.Nom]=' + theme + '&_where[themes_de_veille.Nom]=Tous les thèmes de veille';
     }
 
     if (typeof debut !== 'undefined' && debut !== null) {
-      initialReq += '&_where[3][date_gte]=' + debut.toLocaleDateString('en-CA');
+      initialReq += '&_where[date_gte]=' + debut.toLocaleDateString('en-CA');
     }
 
     if (typeof fin !== 'undefined' && fin !== null) {
-      initialReq += '&_where[4][date_lte]=' + fin.toLocaleDateString('en-CA');
+      initialReq += '&_where[date_lte]=' + fin.toLocaleDateString('en-CA');
     }
+
+    console.log(initialReq);
 
     return this.httpClient.get<any[]>(initialReq, {responseType: 'json'});
   }

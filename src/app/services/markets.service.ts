@@ -14,28 +14,32 @@ export class MarketsService {
     return this.httpClient.get<any[]>(this.serverAdress + 'marches?_sort=Nom:ASC', { responseType: 'json' });
   }
 
+  getMarketFromServer(market: string): Observable<any> {
+    return this.httpClient.get<any[]>(this.serverAdress + 'marches?_sort=Nom:ASC&_where[0][Nom]=' + market, { responseType: 'json' });
+  }
+
   getSingleMarketFromServer(market: string): Observable<any> {
-    return this.httpClient.get<any[]>(this.serverAdress + 'alertes?_sort=Title:ASC&_locale=en&_where[0][Marches.Nom]=' + market, { responseType: 'json' });
+    return this.httpClient.get<any[]>(this.serverAdress + 'alertes?_sort=Title:ASC&_locale=en&_where[Marches.Nom]=' + market + '&_where[Marches.Nom]=Tous les marchés', { responseType: 'json' });
   }
 
   getSingleOrGroupOfmarketsFromServer(sector?: any, market?: any, theme?: any, debut?: any, fin?: any): Observable<any> {
 
-    let initialReq = this.serverAdress + 'alertes?_sort=Title:ASC&_where[0][Marches.Nom]=' + market;
+    let initialReq = this.serverAdress + 'alertes?_sort=Title:ASC&_where[Marches.Nom]=' + market + '&_where[Marches.Nom]=Tous les marchés';
 
     if (typeof sector !== 'undefined' && sector !== null) {
-      initialReq += '&_where[1][Filieres.Name]=' + sector;
+      initialReq += '&_where[Filieres.Name]=' + sector + '&_where[Filieres.Name]=Toutes les filières';
     }
 
     if (typeof theme !== 'undefined' && theme !== null) {
-      initialReq += '&_where[2][themes_de_veille.Nom]=' + theme;
+      initialReq += '&_where[themes_de_veille.Nom]=' + theme + '&_where[themes_de_veille.Nom]=Tous les thèmes de veille';
     }
 
     if (typeof debut !== 'undefined' && debut !== null) {
-      initialReq += '&_where[3][DatePublication_gte]=' + debut.toLocaleDateString('en-CA');
+      initialReq += '&_where[DatePublication_gte]=' + debut.toLocaleDateString('en-CA');
     }
 
     if (typeof fin !== 'undefined' && fin !== null) {
-      initialReq += '&_where[4][DatePublication_lte]=' + fin.toLocaleDateString('en-CA');
+      initialReq += '&_where[DatePublication_lte]=' + fin.toLocaleDateString('en-CA');
     }
 
     return this.httpClient.get<any[]>(initialReq, {responseType: 'json'});
