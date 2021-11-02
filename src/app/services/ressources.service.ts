@@ -45,8 +45,6 @@ export class RessourcesService {
       initialReq += '&_where[date_lte]=' + fin.toLocaleDateString('en-CA');
     }
 
-    console.log(initialReq);
-
     return this.httpClient.get<any[]>(initialReq, {responseType: 'json'});
   }
 
