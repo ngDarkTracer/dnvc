@@ -4517,6 +4517,19 @@ a {
   text-decoration: none
 }
 
+.all-link {
+  background: linear-gradient(90deg, #1e3acb 50%, transparent 0) right -.0625rem bottom/220% 100%;
+  transition: background-position .4s cubic-bezier(.5, .15, .5, .85), color .2s cubic-bezier(.5, .15, .5, .85) .2s, -webkit-text-decoration .2s cubic-bezier(.5, .15, .5, .85) .2s;
+  transition: background-position .4s cubic-bezier(.5, .15, .5, .85), text-decoration .2s cubic-bezier(.5, .15, .5, .85) .2s, color .2s cubic-bezier(.5, .15, .5, .85) .2s;
+  transition: background-position .4s cubic-bezier(.5, .15, .5, .85), text-decoration .2s cubic-bezier(.5, .15, .5, .85) .2s, color .2s cubic-bezier(.5, .15, .5, .85) .2s, -webkit-text-decoration .2s cubic-bezier(.5, .15, .5, .85) .2s
+}
+
+.all-link:active, .all-link:hover {
+  background-position: 0 100%;
+  color: #fff;
+  text-decoration: none
+}
+
 .accordion-content a:not(.button):not(.card-exposed__link), .content-card-promo-main-content a:not(.button):not(.card-exposed__link), .content-card-teaser a:not(.button):not(.card-exposed__link), .footer-nav_category a:not(.button):not(.card-exposed__link), .footer-nav_policies a:not(.button):not(.card-exposed__link), .hero-special a:not(.button):not(.card-exposed__link), .hero-summary a:not(.button):not(.card-exposed__link), .hero-text a:not(.button):not(.card-exposed__link), .modal a:not(.button):not(.card-exposed__link), .overview-content a:not(.button):not(.card-exposed__link), .quote-wrapper-text a:not(.button):not(.card-exposed__link), .tag-wrapper a:not(.button):not(.card-exposed__link), .teaser-container a:not(.button):not(.card-exposed__link), .teaser-context a:not(.button):not(.card-exposed__link), .wysiwyg-wrapper a:not(.button):not(.card-exposed__link) {
   background: linear-gradient(90deg, #e21a41 50%, transparent 0) right -.0625rem bottom/220% 100%;
   transition: background-position .4s cubic-bezier(.5, .15, .5, .85), color .2s cubic-bezier(.5, .15, .5, .85) .2s, -webkit-text-decoration .2s cubic-bezier(.5, .15, .5, .85) .2s;

@@ -113,6 +113,9 @@ export class NoteComponent implements OnInit {
     this.isThereNote = true;
     this.content = [];
     this.industriesService.getSectorFromServer(url).subscribe((result) => {
+      if (result.length === 0) {
+        this.router.navigate(['/home']);
+      }
       this.notesService.getSingleNoteFromServer(url).subscribe((data) => {
         if (data.length === 0) {
           this.isThereNote = false;

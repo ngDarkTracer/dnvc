@@ -68,7 +68,7 @@
 <div class="border-top-black is-visible">
   <section class="content-section-mobile background-white">
     <div class="container content_nav-container" id="top">
-      <div class="row" *ngIf="isThereNote" [ngStyle]="!isSmallScreen ? {'margin-left': '20%'} : {'margin-left': ''}">
+      <div class="row" *ngIf="isThereNote">
 <!--        <div class="col-lg-4 col-md-12 col-sm-12 d-md-block pt120 mb45">-->
 <!--          <div class="jump-nav">-->
 <!--            <div class="fade-in-section disable-fade-in is-visible">-->
@@ -114,7 +114,7 @@
 <!--            </div>-->
 <!--          </div>-->
 <!--        </div>-->
-        <div class="col-lg-6 col-md-12 col-sm-12 pb120-90 pt120-45 content-area-content" [ngClass]="{ 'border-left-black':!isSmallScreen }">
+        <div class="col-lg-8 col-md-12 col-sm-12 pb120-90 pt120-45 content-area-content" [ngClass]="{ 'border-left-black':!isSmallScreen }">
 <!--          <p-progressSpinner *ngIf="!ready"></p-progressSpinner>-->
 
           <div *ngIf="!ready">
@@ -194,7 +194,7 @@
             <div>
 <!--              <h2 class="pb100" *ngIf="filterValue === 'ALL'">{{ 'note.alerts' | translate }}-->
 <!--                [{{ 'note.All' | translate }}]</h2>-->
-              <h2 class="pb100 ml-3" *ngIf="filterValue === 'ALL'">{{ 'note.All' | translate }}</h2>
+              <h2 class="pb-4 ml-3" *ngIf="filterValue === 'ALL'">{{ 'note.All' | translate }}</h2>
 <!--              <h2 class="pb100" *ngIf="filterValue !== 'ALL'">{{ 'note.alerts' | translate }} [{{ filterValue }}]</h2>-->
 
               <p-dataView *ngIf="ready" #dv [value]="filteredNotes" [paginator]="true" [rows]="5"

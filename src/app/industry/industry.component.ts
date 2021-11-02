@@ -111,6 +111,9 @@ export class IndustryComponent implements OnInit {
     this.isThereAlert = true;
     this.content = [];
     this.industriesService.getSectorFromServer(url).subscribe((result) => {
+      if (result.length === 0) {
+        this.router.navigate(['/home']);
+      }
       this.industriesService.getSingleSectorFromServer(url).subscribe((data) => {
         if (data.length === 0) {
           this.isThereAlert = false;

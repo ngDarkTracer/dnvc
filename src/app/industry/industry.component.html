@@ -67,8 +67,9 @@
 <div class="border-top-black is-visible">
   <section class="content-section-mobile background-white">
     <div class="container content_nav-container" id="top">
-      <div class="row" *ngIf="isThereAlert" [ngStyle]="!isSmallScreen ? {'margin-left': '20%'} : {'margin-left': ''}">
+      <div class="row" *ngIf="isThereAlert">
 <!--        <div class="col-lg-4 col-md-12 col-sm-12 d-md-block pt120 mb45">-->
+<!--        [ngStyle]="!isSmallScreen ? {'margin-left': '5%'} : {'margin-left': ''}"-->
 <!--          <div class="jump-nav">-->
 <!--            <div class="fade-in-section disable-fade-in is-visible">-->
 <!--              <div *ngIf="!ready" class="mt-5 pt-2">-->
@@ -191,7 +192,7 @@
           <div class="free-form-content__content wysiwyg-wrapper" *ngIf="ready">
             <div>
 <!--              <h2 class="pb100" *ngIf="filterValue === 'ALL'">{{ 'sector.alerts' | translate }}[{{ 'sector.All' | translate }}]</h2>-->
-              <h2 class="pb100 ml-3" *ngIf="filterValue === 'ALL'">{{ 'sector.All' | translate }}</h2>
+              <h2 class="pb-4 ml-3" *ngIf="filterValue === 'ALL'">{{ 'sector.All' | translate }}</h2>
 <!--              <h2 class="pb100" *ngIf="filterValue !== 'ALL'">{{ 'sector.alerts' | translate }} [{{ filterValue }}]</h2>-->
 
               <p-dataView *ngIf="ready" #dv [value]="filteredAlert" [paginator]="true" [rows]="5"

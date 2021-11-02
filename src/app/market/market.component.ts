@@ -109,6 +109,9 @@ export class MarketComponent implements OnInit {
     this.isThereAlert = true;
     this.content = [];
     this.marketsService.getMarketFromServer(url).subscribe((result) => {
+      if (result.length === 0) {
+        this.router.navigate(['/home']);
+      }
       this.marketsService.getSingleMarketFromServer(url).subscribe((data) => {
         if (data.length === 0) {
           this.isThereAlert = false;
