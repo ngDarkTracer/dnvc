@@ -11,7 +11,7 @@
 :host ::ng-deep .p-calendar {
   border-radius: 0;
   min-width: 14rem;
-  max-width: 14rem;
+  max-width: 12rem;
 
   .p-inputtext {
     border-radius: 0;
@@ -33,6 +33,9 @@
     background-color: transparent;
     border: none;
   }
+  .p-dataview-emptymessage {
+    font-family: "GT America Extended"
+  }
 }
 
 :host ::ng-deep .p-accordion {
@@ -43,6 +46,10 @@
     background-color: transparent;
     font-family: 'GT America Extended';
     border: none;
+  }
+
+  .p-accordion-tab {
+    max-width: 23rem;
   }
 
   a:not(:disabled) {

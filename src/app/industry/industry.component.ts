@@ -51,9 +51,9 @@ export class IndustryComponent implements OnInit {
   temp: any[];
 
   filter(item: any, elt?: any): void {
-    document.getElementById('top').scrollIntoView({
-      behavior: 'smooth'
-    });
+    // document.getElementById('top').scrollIntoView({
+    //   behavior: 'smooth'
+    // });
     document.querySelectorAll('.active-item').forEach((i) => {
       i.classList.remove('active-item');
     });

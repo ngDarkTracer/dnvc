@@ -18,12 +18,12 @@
   <section class="content-section-mobile background-white">
     <div class="container content_nav-container">
       <div class="row">
-        <div class="col-lg-6 col-md-12 col-sm-12 pb120-90 pt120-45 content-area-content" [ngClass]="{ 'border-left-black':!isSmallScreen }">
+        <div class="col-lg-8 col-md-12 col-sm-12 pb120-90 pt120-45 content-area-content" [ngClass]="{ 'border-left-black':!isSmallScreen }">
 <!--          <p-progressSpinner *ngIf="!ready"></p-progressSpinner>-->
           <div class="free-form-content__content wysiwyg-wrapper">
             <div>
-              <h2 class="pb100" *ngIf="filterValue === 'ALL'">{{ 'resources.title' | translate }}</h2>
-              <h2 class="pb100" *ngIf="filterValue !== 'ALL'">Ressources [{{ filterValue }}]</h2>
+              <h2 class="pb100 ml-2" *ngIf="filterValue === 'ALL'">{{ 'resources.title' | translate }}</h2>
+<!--              <h2 class="pb100" *ngIf="filterValue !== 'ALL'">Ressources [{{ filterValue }}]</h2>-->
 
               <div *ngIf="!ready">
                 <div>
@@ -159,7 +159,7 @@
                           layout="grid">
                 <ng-template pTemplate="header">
                   <p-accordion>
-                    <p-accordionTab header="{{ 'resources.advanced' | translate }}" [selected]="false">
+                    <p-accordionTab  [style]="{'width': '30%'}" header="{{ 'resources.advanced' | translate }}" [selected]="false">
 
                       <div style="display: flex; flex-direction: column; flex-wrap: wrap" class="mb-2">
                         <div class="mr-auto mb-3" id="filieres">
@@ -218,8 +218,8 @@
                     <div>
                       <div class="wfb-card-wrapper pt60" *ngIf="!searching">
                         <div class="no-gutters" [ngClass]="{ 'small':!isSmallScreen, 'row':isSmallScreen }">
-                          <div [ngStyle]="{'width': isSmallScreen ? '15rem': '40rem' }" class="mr-5 ml-3 mt-2">
-                            <img [src]="con.imageUrl" alt="">
+                          <div [ngStyle]="{'max-width': isSmallScreen ? '15rem': '8rem'}" class="mr-5 ml-3 mt-2">
+                            <img [ngStyle]="{'min-width': isSmallScreen ? '15rem': '8rem'}" [src]="con.imageUrl" alt="">
                           </div>
                           <div class="ml-3" [ngClass]="{ 'col-md-12':isSmallScreen }">
                             <div class="wfb-card__body-container">
@@ -241,7 +241,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="thee-link-container" *ngIf="con.market !== 'All'">
+                              <div class="thee-link-container" *ngIf="con.market !== 'All' && con.market.Nom !== 'Tous les marchés'">
                                 <div>
                                   <div class="wfb-card__link-container"
                                        style="display: flex; flex-direction: row; flex-wrap: wrap">
@@ -251,7 +251,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="thee-link-container" *ngIf="con.sectors !== 'All'">
+                              <div class="thee-link-container" *ngIf="con.sectors !== 'All' && con.sectors[0].Name !== 'Toutes les filières'">
                                 <div class="wfb-card__link-container"
                                      style="display: flex; flex-direction: row; flex-wrap: wrap">
                                   <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6 mr-auto">

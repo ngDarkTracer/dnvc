@@ -68,7 +68,7 @@
 <div class="border-top-black is-visible" id="top">
   <section class="content-section-mobile background-white">
     <div class="container content_nav-container">
-      <div class="row" *ngIf="isThereAlert" [ngStyle]="!isSmallScreen ? {'margin-left': '20%'} : {'margin-left': '0'}">
+      <div class="row" *ngIf="isThereAlert" [ngStyle]="!isSmallScreen ? {'margin-left': '20%'} : {'margin-left': ''}">
 <!--        <div class="col-lg-4 col-md-12 col-sm-12 d-md-block pt120 mb45">-->
 <!--          <div class="jump-nav">-->
 <!--            <div class="fade-in-section disable-fade-in is-visible">-->
@@ -194,7 +194,7 @@
             <div>
 <!--              <h2 class="pb100" *ngIf="filterValue === 'ALL'">{{ 'market.alerts' | translate }}-->
 <!--                [{{ 'market.All' | translate }}]</h2>-->
-              <h2 class="pb100" *ngIf="filterValue === 'ALL'">{{ 'market.All' | translate }}</h2>
+              <h2 class="pb100 ml-3" *ngIf="filterValue === 'ALL'">{{ 'market.All' | translate }}</h2>
 <!--              <h2 class="pb100" *ngIf="filterValue !== 'ALL'">{{ 'market.alerts' | translate }} [{{ filterValue }}]</h2>-->
 
               <p-dataView *ngIf="ready" #dv [value]="filteredAlert" [paginator]="true" [rows]="5"

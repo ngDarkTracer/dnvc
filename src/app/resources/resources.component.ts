@@ -130,14 +130,14 @@ export class ResourcesComponent implements OnInit {
                 alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
                 content: tempContent
               });
-            document.getElementById('top').scrollIntoView({
-              behavior: 'smooth'
-            });
+            // document.getElementById('top').scrollIntoView({
+            //   behavior: 'smooth'
+            // });
           },
           (error) => {
-            document.getElementById('top').scrollIntoView({
-              behavior: 'smooth'
-            });
+            // document.getElementById('top').scrollIntoView({
+            //   behavior: 'smooth'
+            // });
           },
           () => {
             this.ready = true;

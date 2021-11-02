@@ -67,7 +67,7 @@
 <div class="border-top-black is-visible">
   <section class="content-section-mobile background-white">
     <div class="container content_nav-container" id="top">
-      <div class="row" *ngIf="isThereAlert" [ngStyle]="!isSmallScreen ? {'margin-left': '20%'} : {'margin-left': '0'}">
+      <div class="row" *ngIf="isThereAlert" [ngStyle]="!isSmallScreen ? {'margin-left': '20%'} : {'margin-left': ''}">
 <!--        <div class="col-lg-4 col-md-12 col-sm-12 d-md-block pt120 mb45">-->
 <!--          <div class="jump-nav">-->
 <!--            <div class="fade-in-section disable-fade-in is-visible">-->
@@ -113,7 +113,7 @@
 <!--            </div>-->
 <!--          </div>-->
 <!--        </div>-->
-        <div class="col-lg-6 col-md-12 col-sm-12 pb120-90 pt120-45 content-area-content" [ngClass]="{ 'border-left-black':!isSmallScreen }">
+        <div class="col-lg-8 col-md-12 col-sm-12 pb120-90 pt120-45 content-area-content" [ngClass]="{ 'border-left-black':!isSmallScreen }">
           <!--         <p-progressSpinner *ngIf="!ready"></p-progressSpinner>-->
           <div *ngIf="!ready">
             <div class="wfb-card-wrapper pt60">
@@ -284,7 +284,7 @@
                                     <div class="wfb-card__link-container"
                                          style="display: flex; flex-direction: row; flex-wrap: wrap">
                                       <div class="wfb-card__text col-xl-6 col-lg-6 col-md-6 mb-1 mt-1 mr-auto"
-                                           *ngIf="con.markets !== 'All'"
+                                           *ngIf="con.markets !== 'All' && con.markets[0].Nom !== 'Tous les marchés'"
                                            style="margin-top: 8px">
                                         <p style="color: darkgray; font-size: 14px">{{ 'sector.market' | translate }}:
                                           <span *ngFor="let market of con.markets">{{ market.Nom }}<span
