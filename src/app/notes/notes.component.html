@@ -127,7 +127,7 @@
         <div class="row mt45" *ngIf="ready">
           <div class="col-lg-9"
                *ngFor="let industry of filteredIndustries | paginate: { itemsPerPage: 50, currentPage: page, totalItems: totalItems}">
-            <div class="border">
+            <div class="border" *ngIf="industry.Name !== 'Toutes les filières'">
               <div class="pb60">
                 <h2 class="mb0">
                   <a class="inline-link" [routerLink]="['/notes', industry.Name]">
