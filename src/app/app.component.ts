@@ -9,7 +9,7 @@ import {IndustriesService} from './services/industries.service';
 })
 export class AppComponent {
   title = 'dnvc';
-  version = '1.4.1';
+  version = '1.4.2';
 
   constructor(private translate: TranslateService) {
     translate.setDefaultLang('fr');
