@@ -53,9 +53,6 @@ export class NoteComponent implements OnInit {
 
 
   filter(item: any, elt?: any): void {
-    // document.getElementById('top').scrollIntoView({
-    //   behavior: 'smooth'
-    // });
     document.querySelectorAll('.active-item').forEach((i) => {
       i.classList.remove('active-item');
     });
@@ -134,18 +131,24 @@ export class NoteComponent implements OnInit {
               const tempContent = [];
               val.forEach((elt) => {
                 if (this.noteImageUrl === '' || this.noteIntroText === '') {
-                  for (let i = 0; i < elt.Filieres.length; i++) {
-                    this.noteImageUrl = elt.Filieres[i].Photo === null ? result[0].Photo.url : elt.Filieres[i].Photo.url;
-                    this.noteIntroText = elt.Filieres[i].Intro === null ? result[0].Intro : elt.Filieres[i].Intro;
-                    this.lastUpdate = result[0].updated_at.split('T')[0];
-                    if (elt.Filieres[i].Name === url.replace(/%20/g, ' ')) {
-                      this.noteImageUrl = elt.Filieres[i].Photo === null ? result[0].Photo.url : elt.Filieres[i].Photo.url;
-                      this.noteIntroText = elt.Filieres[i].Intro === null ? result[0].Intro : elt.Filieres[i].Intro;
-                      this.lastUpdate = result[0].updated_at.split('T')[0];
-                      // this.noteImageUrl = elt.Filieres[i].Photo.url;
-                      // this.noteIntroText = elt.Filieres[i].Intro;
-                      // this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
-                      break;
+                  if (elt.Filieres.length === 0) {
+                    elt.Filieres = result;
+                    for (let i = 0; i < elt.Filieres.length; i++) {
+                      if (elt.Filieres[i].Name === url.replace(/%20/g, ' ')) {
+                        this.noteImageUrl = elt.Filieres[i].Photo.url;
+                        this.noteIntroText = elt.Filieres[i].Intro;
+                        this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
+                        break;
+                      }
+                    }
+                  } else {
+                    for (let i = 0; i < elt.Filieres.length; i++) {
+                      if (elt.Filieres[i].Name === url.replace(/%20/g, ' ')) {
+                        this.noteImageUrl = elt.Filieres[i].Photo.url;
+                        this.noteIntroText = elt.Filieres[i].Intro;
+                        this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
+                        break;
+                      }
                     }
                   }
                 }
@@ -164,7 +167,7 @@ export class NoteComponent implements OnInit {
               });
               this.content.push(
                 {
-                  note: val[0].themes_de_veille.Nom,
+                  note: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
                   content: tempContent
                 });
             },
@@ -219,7 +222,7 @@ export class NoteComponent implements OnInit {
               });
               this.content.push(
                 {
-                  note: val[0].themes_de_veille.Nom,
+                  note: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
                   content: tempContent
                 });
             },

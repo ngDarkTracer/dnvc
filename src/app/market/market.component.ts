@@ -130,18 +130,24 @@ export class MarketComponent implements OnInit {
               const tempContent = [];
               val.forEach((elt) => {
                 if (this.marketImageUrl === '' || this.marketIntroText === '') {
-                  for (let i = 0; i < elt.Marches.length; i++) {
-                    this.marketImageUrl = elt.Marches[i].Logo_Large.length === 0 ? result[0].Logo_Large[0].url : elt.Marches[i].Logo_Large[0].url;
-                    this.marketIntroText = elt.Marches[i].Intro === null ? result[0].Intro : elt.Marches[i].Intro;
-                    this.lastUpdate = result[0].updated_at.split('T')[0];
-                    if (elt.Marches[i].Nom === url.replace(/%20/g, ' ')) {
-                      // this.marketImageUrl = elt.Marches[i].Logo_Large[0].url;
-                      // this.marketIntroText = elt.Marches[i].Intro;
-                      // this.lastUpdate = elt.Marches[i].updated_at.split('T')[0];
-                      this.marketImageUrl = elt.Marches[i].Logo_Large.length === 0 ? result[0].Logo_Large[0].url : elt.Marches[i].Logo_Large[0].url;
-                      this.marketIntroText = elt.Marches[i].Intro === null ? result[0].Intro : elt.Marches[i].Intro;
-                      this.lastUpdate = result[0].updated_at.split('T')[0];
-                      break;
+                  if (elt.Marches.length === 0) {
+                    elt.Marches = result;
+                    for (let i = 0; i < elt.Marches.length; i++) {
+                      if (elt.Marches[i].Nom === url.replace(/%20/g, ' ')) {
+                        this.marketImageUrl = elt.Marches[i].Logo_Large[0].url;
+                        this.marketIntroText = elt.Marches[i].Intro;
+                        this.lastUpdate = elt.Marches[i].updated_at.split('T')[0];
+                        break;
+                      }
+                    }
+                  } else {
+                    for (let i = 0; i < elt.Marches.length; i++) {
+                      if (elt.Marches[i].Nom === url.replace(/%20/g, ' ')) {
+                        this.marketImageUrl = elt.Marches[i].Logo_Large[0].url;
+                        this.marketIntroText = elt.Marches[i].Intro;
+                        this.lastUpdate = elt.Marches[i].updated_at.split('T')[0];
+                        break;
+                      }
                     }
                   }
                 }
@@ -160,7 +166,7 @@ export class MarketComponent implements OnInit {
               });
               this.content.push(
                 {
-                  alerte: val[0].themes_de_veille.Nom,
+                  alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
                   content: tempContent
                 });
             },
@@ -206,7 +212,7 @@ export class MarketComponent implements OnInit {
               });
               this.content.push(
                 {
-                  alerte: val[0].themes_de_veille.Nom,
+                  alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
                   content: tempContent
                 });
             },

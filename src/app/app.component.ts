@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
+import {IndustriesService} from './services/industries.service';
 
 @Component({
   selector: 'app-root',

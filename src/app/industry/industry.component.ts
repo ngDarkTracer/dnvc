@@ -51,9 +51,6 @@ export class IndustryComponent implements OnInit {
   temp: any[];
 
   filter(item: any, elt?: any): void {
-    // document.getElementById('top').scrollIntoView({
-    //   behavior: 'smooth'
-    // });
     document.querySelectorAll('.active-item').forEach((i) => {
       i.classList.remove('active-item');
     });
@@ -131,18 +128,24 @@ export class IndustryComponent implements OnInit {
               const tempContent = [];
               val.forEach((elt) => {
                 if (this.sectorImageUrl === '' || this.sectorIntroText === '') {
-                  for (let i = 0; i < elt.Filieres.length; i++) {
-                    this.sectorImageUrl = elt.Filieres[i].Photo === null ? result[0].Photo.url : elt.Filieres[i].Photo.url;
-                    this.sectorIntroText = elt.Filieres[i].Intro === null ? result[0].Intro : elt.Filieres[i].Intro;
-                    this.lastUpdate = result[0].updated_at.split('T')[0];
-                    if (elt.Filieres[i].Name === url.replace(/%20/g, ' ')) {
-                      this.sectorImageUrl = elt.Filieres[i].Photo === null ? result[0].Photo.url : elt.Filieres[i].Photo.url;
-                      this.sectorIntroText = elt.Filieres[i].Intro === null ? result[0].Intro : elt.Filieres[i].Intro;
-                      this.lastUpdate = result[0].updated_at.split('T')[0];
-                      // this.sectorImageUrl = elt.Filieres[i].Photo.url;
-                      // this.sectorIntroText = elt.Filieres[i].Intro;
-                      // this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
-                      break;
+                  if (elt.Filieres.length === 0) {
+                    elt.Filieres = result;
+                    for (let i = 0; i < elt.Filieres.length; i++) {
+                      if (elt.Filieres[i].Name === url.replace(/%20/g, ' ')) {
+                        this.sectorImageUrl = elt.Filieres[i].Photo.url;
+                        this.sectorIntroText = elt.Filieres[i].Intro;
+                        this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
+                        break;
+                      }
+                    }
+                  } else {
+                    for (let i = 0; i < elt.Filieres.length; i++) {
+                      if (elt.Filieres[i].Name === url.replace(/%20/g, ' ')) {
+                        this.sectorImageUrl = elt.Filieres[i].Photo.url;
+                        this.sectorIntroText = elt.Filieres[i].Intro;
+                        this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
+                        break;
+                      }
                     }
                   }
                 }
@@ -161,7 +164,7 @@ export class IndustryComponent implements OnInit {
               });
               this.content.push(
                 {
-                  alerte: val[0].themes_de_veille.Nom,
+                  alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
                   content: tempContent
                 });
             },
@@ -205,7 +208,7 @@ export class IndustryComponent implements OnInit {
               });
               this.content.push(
                 {
-                  alerte: val[0].themes_de_veille.Nom,
+                  alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
                   content: tempContent
                 });
             },
