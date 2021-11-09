@@ -20,12 +20,7 @@ export class MarketsService {
   }
 
   getSingleMarketFromServer(market: string): Observable<any> {
-    const req1 = this.httpClient.get<any[]>(this.serverAdress + 'alertes?_sort=Title:ASC&_locale=en&_where[Marches.Nom]=' + market, { responseType: 'json' });
-    const req2 = this.httpClient.get<any[]>(this.serverAdress + 'alertes?_sort=Title:ASC&_locale=en&_where[hasMarches]=false', { responseType: 'json' });
-
-    return combineLatest(req1, req2).pipe(
-      map(([data1, data2]) => data1.concat(data2))
-    );
+    return this.httpClient.get<any[]>(this.serverAdress + 'alertes?_sort=Title:ASC&_locale=en&_where[Marches.Nom]=' + market, { responseType: 'json' });
   }
 
   getSingleOrGroupOfmarketsFromServer(sector?: any, market?: any, theme?: any, debut?: any, fin?: any): Observable<any> {

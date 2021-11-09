@@ -12,11 +12,7 @@ export class NotesService {
   constructor(private httpClient: HttpClient) { }
 
   getSingleNoteFromServer(sector: string): Observable<any> {
-    const req1 = this.httpClient.get<any[]>(this.serverAdress + 'notes-de-veilles?_sort=Title:ASC&_locale=en&_where[Filieres.Name]=' + sector, { responseType: 'json' });
-    const req2 = this.httpClient.get<any[]>(this.serverAdress + 'notes-de-veilles?_sort=Title:ASC&_locale=en&_where[hasFilieres]=false', { responseType: 'json' });
-    return combineLatest(req1, req2).pipe(
-      map(([data1, data2]) => data1.concat(data2))
-    );
+    return this.httpClient.get<any[]>(this.serverAdress + 'notes-de-veilles?_sort=Title:ASC&_locale=en&_where[Filieres.Name]=' + sector, { responseType: 'json' });
   }
 
   getSingleOrGroupOfNotesFromServer(sector: any, market?: any, theme?: any, debut?: any, fin?: any): Observable<any> {
