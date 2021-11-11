@@ -12,18 +12,6 @@ export class IndustriesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAlertsWhichHasNoSectors(): Observable<any> {
-    return this.httpClient.get<any[]>(this.serverAdress + 'alertes?_sort=Title:ASC&_locale=en&_where[hasFilieres]=false', { responseType: 'json' });
-  }
-
-  getAlertsWhichHasNoMarkets(): Observable<any> {
-    return this.httpClient.get<any[]>(this.serverAdress + 'alertes?_sort=Title:ASC&_locale=en&_where[hasMarches]=false', { responseType: 'json' });
-  }
-
-  getAlertsWhichHasNoThemes(): Observable<any> {
-    return this.httpClient.get<any[]>(this.serverAdress + 'alertes?_sort=Title:ASC&_locale=en&_where[hasTheme]=false', { responseType: 'json' });
-  }
-
   getSectorsFromServer(): Observable<any> {
     return this.httpClient.get<any[]>(this.serverAdress + 'filieres?_sort=Name:ASC', { responseType: 'json' });
   }
@@ -31,10 +19,6 @@ export class IndustriesService {
   getSectorFromServer(sector: string): Observable<any> {
     return this.httpClient.get<any[]>(this.serverAdress + 'filieres?_locale=en&_where[0][Name]=' + sector, { responseType: 'json' });
   }
-
-  // getSingleSectorFromServer(sector: string): Observable<any> {
-  //   return this.httpClient.get<any[]>(this.serverAdress + 'alertes?_sort=Title:ASC&_locale=en&_where[0][Filieres.Name]=' + sector, { responseType: 'json' });
-  // }
 
   getSingleSectorFromServer(sector: string): Observable<any> {
     return this.httpClient.get<any[]>(this.serverAdress + 'alertes?_sort=Title:ASC&_locale=en&_where[Filieres.Name]=' + sector, { responseType: 'json' });

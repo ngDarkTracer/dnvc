@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {IndustriesService} from './services/industries.service';
+import {HasFalseService} from './services/has-false.service';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +11,11 @@ export class AppComponent {
   title = 'dnvc';
   version = '1.4.2';
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private hasFalseService: HasFalseService) {
     translate.setDefaultLang('fr');
+    hasFalseService.getAlertsWhichHasNoSectors();
+    hasFalseService.getAlertsWhichHasNoMarkets();
+    hasFalseService.getAlertsWhichHasNoThemes();
     console.log('DNVC version ' + this.version);
   }
 }

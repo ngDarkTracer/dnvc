@@ -6,6 +6,7 @@ import {IndustriesService} from '../services/industries.service';
 import {from} from 'rxjs';
 import {groupBy, mergeMap, toArray} from 'rxjs/operators';
 import {RessourcesService} from '../services/ressources.service';
+import {HasFalseService} from '../services/has-false.service';
 
 @Component({
   selector: 'app-industry',
@@ -18,7 +19,8 @@ export class IndustryComponent implements OnInit {
               private scroller: ViewportScroller,
               private breakPointObserver: BreakpointObserver,
               private industriesService: IndustriesService,
-              private ressourcesService: RessourcesService) { }
+              private ressourcesService: RessourcesService,
+              private hasFalseService: HasFalseService) { }
 
   currentIndustriy: string;
   serverAdress = 'https://dnvc-admin.herokuapp.com/';
@@ -112,12 +114,14 @@ export class IndustryComponent implements OnInit {
         this.router.navigate(['/home']);
       }
       this.industriesService.getSingleSectorFromServer(url).subscribe((data) => {
-        if (data.length === 0) {
-          this.isThereAlert = false;
-        } else {
-          this.isThereAlert = true;
-        }
-        this.temp = data;
+        console.log(this.hasFalseService.hasFilieres);
+
+        this.temp = data.concat(this.hasFalseService.hasFilieres);
+
+        this.isThereAlert = this.temp.length !== 0;
+
+        console.log(this.temp);
+
         from(this.temp)
           .pipe(
             groupBy(element => element.id),

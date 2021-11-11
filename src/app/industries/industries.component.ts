@@ -22,7 +22,8 @@ export class IndustriesComponent implements OnInit {
   ready = false;
   page = 1;
 
-  constructor(private industriesService: IndustriesService, private breakpointObserver: BreakpointObserver) { }
+  constructor(private industriesService: IndustriesService,
+              private breakpointObserver: BreakpointObserver) { }
 
   ngOnInit(): void {
     this.getSectors();
