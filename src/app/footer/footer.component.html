@@ -6,7 +6,7 @@
           <div class="col-12">
             <nav aria-label="Footer Navigation">
               <div class="row pt120-90-60">
-                <div class="col-12 col-md-3 col-lg-4 footer-nav_wrapper pb60-45">
+                <div class="col-12 col-md-6 col-lg-4 footer-nav_wrapper pb60-45">
                   <div class="fade-in-section disable-fade-in is-visible">
                     <h3 class="pb30 mb0">{{ 'footer.mincommerce' | translate }}</h3>
                     <ul class="footer-nav_category">
@@ -17,18 +17,12 @@
                         <a [routerLink]="['/home', 'Mot_du_ministre']" rel="noopener noreferrer">{{ 'footer.word_from_minister' | translate }}</a>
                       </li>
                       <li class="footer-nav_category-item pb15">
-                        <a [routerLink]="['/home', 'Cellule_des_etudes_et_projets']" rel="noopener noreferrer">{{ 'footer.cell' | translate }}</a>
-                      </li>
-                      <li class="footer-nav_category-item pb15">
                         <a [routerLink]="['/home', 'Equipe_de_veille']" rel="noopener noreferrer">{{ 'footer.monitoring' | translate }}</a>
-                      </li>
-                      <li class="footer-nav_category-item pb15">
-                        <a href="#" target="_blank" rel="noopener noreferrer">Sub-footer</a>
                       </li>
                     </ul>
                   </div>
                 </div>
-                <div class="col-12 col-md-3 footer-nav_wrapper pb60-45">
+                <div class="col-12 col-md-6 footer-nav_wrapper pb60-45">
                   <div class="fade-in-section disable-fade-in is-visible">
                     <h3 class="pb30 mb0">{{ 'footer.plateforms' | translate }}</h3>
                     <ul class="footer-nav_category">
@@ -39,29 +33,10 @@
                         <a href="http://camis.cm" target="_blank" rel="noopener noreferrer">CAMIS</a>
                       </li>
                       <li class="footer-nav_category-item pb15">
-                        <a href="#" target="_blank" rel="noopener noreferrer">DGD</a>
+                        <a href="https://www.siat.guichetunique.cm/" target="_blank" rel="noopener noreferrer">SIAT</a>
                       </li>
                       <li class="footer-nav_category-item pb15">
-                        <a href="#" target="_blank" rel="noopener noreferrer">Plateforme</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-12 col-md-3 footer-nav_wrapper pb60-45">
-                  <div class="fade-in-section disable-fade-in is-visible">
-                    <h3 class="pb30 mb0">{{ 'footer.resources' | translate }}</h3>
-                    <ul class="footer-nav_category">
-                      <li class="footer-nav_category-item pb15">
-                        <a href="#" target="_blank" rel="noopener noreferrer">FAQ</a>
-                      </li>
-                      <li class="footer-nav_category-item pb15">
-                        <a href="#" target="_blank" rel="noopener noreferrer">User Guide</a>
-                      </li>
-                      <li class="footer-nav_category-item pb15">
-                        <a href="#" target="_blank" rel="noopener noreferrer">Sub-footer</a>
-                      </li>
-                      <li class="footer-nav_category-item pb15">
-                        <a href="#" target="_blank" rel="noopener noreferrer">Sub-footer</a>
+                        <a href="https://www.guichetunique.org/webguce/" target="_blank" rel="noopener noreferrer">E-GUCE</a>
                       </li>
                     </ul>
                   </div>
@@ -69,15 +44,7 @@
               </div>
               <div class="fade-in-section disable-fade-in is-visible">
                 <div class="row">
-                  <div class="col-12 col-md-3">
-                    <noscript>
-                      <a href="#" class="button button-default button-stack" target="_blank" rel="noopener noreferrer">{{ 'footer.publish' | translate }}</a>
-                    </noscript>
-                    <div class="no-show">
-                      <button class="button button-default button-stack noShow" (click)="openAdminApp()">{{ 'footer.publish' | translate }}</button>
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-3 mb-3">
+                  <div class="col-12 col-md-3 mr-lg-5 mr-lg-5 mr-sm-auto mb-3">
                     <noscript>
                       <a href="#" class="button button-default button-stack" target="_blank" rel="noopener noreferrer">{{ 'footer.contact' | translate }}</a>
                     </noscript>
@@ -85,7 +52,7 @@
                       <button class="button button-default noShow" routerLink="/contact-us">{{ 'footer.contact' | translate }}</button>
                     </div>
                   </div>
-                  <div class="col-12 col-md-3">
+                  <div class="col-12 col-md-3 ml-lg-5 mr-auto">
                     <noscript>
                       <a routerLink="/subscribe" class="button button-default button-stack" target="_blank" rel="noopener noreferrer">{{ 'footer.subscribe' | translate }}</a>
                     </noscript>
