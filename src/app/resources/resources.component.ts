@@ -189,20 +189,14 @@ export class ResourcesComponent implements OnInit {
             (val) => {
               const tempContent = [];
               val.forEach((elt) => {
-                let fobeddenString = '';
-                elt.filieres.forEach((sect) => {
-                  fobeddenString += sect.Name + ',';
-                });
                 tempContent.push(
                   {
-                    alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
                     title: elt.titre,
                     text: elt.resume,
                     sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
                     imageUrl: elt.photo.url,
                     source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
                     sectors: elt.filieres.length === 0 ? 'All' : elt.filieres,
-                    sectorsConcatString: fobeddenString,
                     date: elt.date,
                     market: elt.marche === null ? 'All' : elt.marche
                   }
@@ -210,7 +204,7 @@ export class ResourcesComponent implements OnInit {
               });
               this.content.push(
                 {
-                  alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
+                  alerte: 'Advanced results',
                   content: tempContent
                 });
             },

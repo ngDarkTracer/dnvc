@@ -190,23 +190,13 @@ export class NoteComponent implements OnInit {
         this.temp = data;
         from(this.temp)
           .pipe(
-            groupBy(element => element.themes_de_veille.Nom),
+            groupBy(element => element.id),
             mergeMap(group => group.pipe(toArray()))
           )
           .subscribe(
             (val) => {
               const tempContent = [];
               val.forEach((elt) => {
-                if (this.noteImageUrl === '' || this.noteIntroText === '') {
-                  for (let i = 0; i < elt.Filieres.length; i++) {
-                    if (elt.Filieres[i].Name === this.currentNote.replace(/%20/g, ' ')) {
-                      this.noteImageUrl = elt.Filieres[i].Photo.url;
-                      this.noteIntroText = elt.Filieres[i].Intro;
-                      this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
-                      break;
-                    }
-                  }
-                }
                 tempContent.push(
                   {
                     color: this.severity[elt.Type],
@@ -222,7 +212,7 @@ export class NoteComponent implements OnInit {
               });
               this.content.push(
                 {
-                  note: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
+                  note: 'Advanced results',
                   content: tempContent
                 });
             },

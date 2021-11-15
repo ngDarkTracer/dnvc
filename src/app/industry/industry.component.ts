@@ -6,7 +6,7 @@ import {IndustriesService} from '../services/industries.service';
 import {from} from 'rxjs';
 import {groupBy, mergeMap, toArray} from 'rxjs/operators';
 import {RessourcesService} from '../services/ressources.service';
-import {HasFalseService} from '../services/has-false.service';
+
 
 @Component({
   selector: 'app-industry',
@@ -19,8 +19,7 @@ export class IndustryComponent implements OnInit {
               private scroller: ViewportScroller,
               private breakPointObserver: BreakpointObserver,
               private industriesService: IndustriesService,
-              private ressourcesService: RessourcesService,
-              private hasFalseService: HasFalseService) { }
+              private ressourcesService: RessourcesService) { }
 
   currentIndustriy: string;
   serverAdress = 'https://dnvc-admin.herokuapp.com/';
@@ -114,13 +113,10 @@ export class IndustryComponent implements OnInit {
         this.router.navigate(['/home']);
       }
       this.industriesService.getSingleSectorFromServer(url).subscribe((data) => {
-        console.log(this.hasFalseService.hasFilieres);
 
-        this.temp = data.concat(this.hasFalseService.hasFilieres);
+        this.temp = data;
 
         this.isThereAlert = this.temp.length !== 0;
-
-        console.log(this.temp);
 
         from(this.temp)
           .pipe(
@@ -206,13 +202,13 @@ export class IndustryComponent implements OnInit {
                     text: elt.Resume,
                     sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
                     source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
-                    markets: elt.Marches.length !== 0 ? elt.Marches : 'All'
+                    markets: (elt.Marches.length !== 0 || elt.Marches[0] !== null ) ? elt.Marches : 'All'
                   }
                 );
               });
               this.content.push(
                 {
-                  alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
+                  alerte: 'Advanced results',
                   content: tempContent
                 });
             },

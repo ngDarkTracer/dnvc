@@ -212,7 +212,7 @@ export class MarketComponent implements OnInit {
               });
               this.content.push(
                 {
-                  alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
+                  alerte: 'Advanced results',
                   content: tempContent
                 });
             },

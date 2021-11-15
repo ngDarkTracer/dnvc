@@ -8,11 +8,7 @@ import {Observable} from 'rxjs';
 export class RessourcesService {
 
   serverAdress = 'https://admin.dnvc-cm.org/';
-  sectorReq: string;
-  marketReq: string;
-  themeReq: string;
-  debutReq: string;
-  finReq: string;
+  advancedSearchServerAdress = 'https://dnvc-admin.herokuapp.com/';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -23,18 +19,18 @@ export class RessourcesService {
 
   getSingleOrGroupOfRessourcesFromServer(sector?: any, market?: any, theme?: any, debut?: any, fin?: any): Observable<any> {
 
-    let initialReq = this.serverAdress + 'ressources?_sort=titre:ASC';
+    let initialReq = this.advancedSearchServerAdress + 'ressources/adv-search?';
 
     if (typeof sector !== 'undefined' && sector !== null) {
-      initialReq += '&_where[filieres.Name]=' + sector + '&_where[filieres.Name]=Toutes les filières';
+      initialReq += '&_where[filieres.Name]=' + sector;
     }
 
     if (typeof market !== 'undefined' && market !== null) {
-      initialReq += '&_where[marche.Nom]=' + market + '&_where[marche.Nom]=Tous les marchés';
+      initialReq += '&_where[marche.Nom]=' + market;
     }
 
     if (typeof theme !== 'undefined' && theme !== null) {
-      initialReq += '&_where[themes_de_veille.Nom]=' + theme + '&_where[themes_de_veille.Nom]=Tous les thèmes de veille';
+      initialReq += '&_where[themes_de_veille.Nom]=' + theme;
     }
 
     if (typeof debut !== 'undefined' && debut !== null) {

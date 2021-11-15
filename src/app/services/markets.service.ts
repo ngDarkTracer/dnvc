@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {combineLatest, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +8,9 @@ import {map} from 'rxjs/operators';
 export class MarketsService {
 
   serverAdress = 'https://admin.dnvc-cm.org/';
+  advancedSearchServerAdress = 'https://dnvc-admin.herokuapp.com/';
+
+
   constructor(private httpClient: HttpClient) { }
 
   getMarketsFromServer(): Observable<any> {
@@ -20,12 +22,13 @@ export class MarketsService {
   }
 
   getSingleMarketFromServer(market: string): Observable<any> {
-    return this.httpClient.get<any[]>(this.serverAdress + 'alertes?_sort=Title:ASC&_locale=en&_where[Marches.Nom]=' + market, { responseType: 'json' });
+    return this.httpClient.get<any[]>(this.serverAdress +
+      'alertes?_sort=Title:ASC&_locale=en&_where[Marches.Nom]=' + market, { responseType: 'json' });
   }
 
   getSingleOrGroupOfmarketsFromServer(sector?: any, market?: any, theme?: any, debut?: any, fin?: any): Observable<any> {
 
-    let initialReq = this.serverAdress + 'alertes?_sort=Title:ASC&_where[Marches.Nom]=' + market;
+    let initialReq = this.advancedSearchServerAdress + 'alertes/adv-search?_where[Marches.Nom]=' + market;
 
     if (typeof sector !== 'undefined' && sector !== null) {
       initialReq += '&_where[Filieres.Name]=' + sector;
