@@ -19,7 +19,8 @@ export class IndustryComponent implements OnInit {
               private scroller: ViewportScroller,
               private breakPointObserver: BreakpointObserver,
               private industriesService: IndustriesService,
-              private ressourcesService: RessourcesService) { }
+              private ressourcesService: RessourcesService) {
+  }
 
   currentIndustriy: string;
   serverAdress = 'https://dnvc-admin.herokuapp.com/';
@@ -105,76 +106,56 @@ export class IndustryComponent implements OnInit {
   }
 
   getSectorProperties(url: string): void {
-    this.ready = false;
     this.isThereAlert = true;
     this.content = [];
     this.industriesService.getSectorFromServer(url).subscribe((result) => {
       if (result.length === 0) {
         this.router.navigate(['/home']);
+      } else {
+        this.sectorImageUrl = result[0].Photo.url;
+        this.sectorIntroText = result[0].Intro;
+        this.lastUpdate = result[0].updated_at.split('T')[0];
+        this.ready = true;
       }
-      this.industriesService.getSingleSectorFromServer(url).subscribe((data) => {
-
-        this.temp = data;
-
-        this.isThereAlert = this.temp.length !== 0;
-
-        from(this.temp)
-          .pipe(
-            groupBy(element => element.id),
-            mergeMap(group => group.pipe(toArray()))
-          )
-          .subscribe(
-            (val) => {
-              const tempContent = [];
-              val.forEach((elt) => {
-                if (this.sectorImageUrl === '' || this.sectorIntroText === '') {
-                  if (elt.Filieres.length === 0) {
-                    elt.Filieres = result;
-                    for (let i = 0; i < elt.Filieres.length; i++) {
-                      if (elt.Filieres[i].Name === url.replace(/%20/g, ' ')) {
-                        this.sectorImageUrl = elt.Filieres[i].Photo.url;
-                        this.sectorIntroText = elt.Filieres[i].Intro;
-                        this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
-                        break;
-                      }
-                    }
-                  } else {
-                    for (let i = 0; i < elt.Filieres.length; i++) {
-                      if (elt.Filieres[i].Name === url.replace(/%20/g, ' ')) {
-                        this.sectorImageUrl = elt.Filieres[i].Photo.url;
-                        this.sectorIntroText = elt.Filieres[i].Intro;
-                        this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
-                        break;
-                      }
-                    }
-                  }
-                }
-                tempContent.push(
-                  {
-                    color: this.severity[elt.Type],
-                    date: elt.DatePublication,
-                    author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
-                    title: elt.Title,
-                    text: elt.Resume,
-                    sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
-                    source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
-                    markets: elt.Marches.length !== 0 ? elt.Marches : 'All'
-                  }
-                );
-              });
-              this.content.push(
-                {
-                  alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
-                  content: tempContent
-                });
-            },
-            (error) => {},
-            () => {
-              this.ready = true;
-              const all = document.getElementById('all');
-              this.filter('ALL', all);
-            });
-      });
+      this.search(url, null, null, null, null);
+      // this.industriesService.getSingleSectorFromServer(url).subscribe((data) => {
+      //     this.temp = data;
+      //     from(this.temp)
+      //       .pipe(
+      //         groupBy(element => element.id),
+      //         mergeMap(group => group.pipe(toArray()))
+      //       )
+      //       .subscribe(
+      //         (val) => {
+      //           const tempContent = [];
+      //           val.forEach((elt) => {
+      //             tempContent.push(
+      //               {
+      //                 color: this.severity[elt.Type],
+      //                 date: elt.DatePublication,
+      //                 author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
+      //                 title: elt.Title,
+      //                 text: elt.Resume,
+      //                 sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
+      //                 source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
+      //                 markets: elt.Marches.length !== 0 ? elt.Marches : 'All'
+      //               }
+      //             );
+      //           });
+      //           this.content.push(
+      //             {
+      //               alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
+      //               content: tempContent
+      //             });
+      //         },
+      //         (error) => {
+      //         },
+      //         () => {
+      //           this.ready = true;
+      //           const all = document.getElementById('all');
+      //           this.filter('ALL', all);
+      //         });
+      // });
     });
   }
 
@@ -184,6 +165,7 @@ export class IndustryComponent implements OnInit {
     this.industriesService.getSingleOrGroupOfSectorsFromServer(sector, market, theme, debut, fin).subscribe(
       (data) => {
         this.temp = data;
+        // this.isThereAlert = this.temp.length !== 0;
         from(this.temp)
           .pipe(
             groupBy(element => element.id),
@@ -193,27 +175,36 @@ export class IndustryComponent implements OnInit {
             (val) => {
               const tempContent = [];
               val.forEach((elt) => {
+                elt.files.forEach((source) => {
+                  if (source.url.toLowerCase().includes('.jpg') || source.url.toLowerCase().includes('.jpeg')
+                    || source.url.toLowerCase().includes('.png') || source.url.toLowerCase().includes('.gif')) {
+                    elt.files.splice(elt.files.indexOf(source), 1);
+                  }
+                });
                 tempContent.push(
                   {
                     color: this.severity[elt.Type],
-                    date: elt.DatePublication,
-                    author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
+                    date: elt.DatePublication.split('T')[0],
+                    author: elt.emetteur[0].NomStructure,
                     title: elt.Title,
                     text: elt.Resume,
-                    sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
-                    source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
-                    markets: (elt.Marches.length !== 0 || elt.Marches[0] !== null ) ? elt.Marches : 'All'
+                    sourceType: elt.files.length === 0 ? 'url' : 'document',
+                    source: elt.files.length === 0 ? elt.SourceUrl : elt.files[0].url,
+                    markets: elt.marches.length !== 0 ? elt.marches : 'All'
                   }
                 );
               });
+              console.log(tempContent);
               this.content.push(
                 {
                   alerte: 'Advanced results',
                   content: tempContent
                 });
             },
-            (error) => {},
+            (error) => {
+            },
             () => {
+              this.ready = true;
               this.searching = false;
               const all = document.getElementById('all');
               this.filter('ALL', all);
