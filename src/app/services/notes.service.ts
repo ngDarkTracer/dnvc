@@ -8,7 +8,6 @@ import {Observable} from 'rxjs';
 export class NotesService {
 
   serverAdress = 'https://admin.dnvc-cm.org/';
-  advancedSearchServerAdress = 'https://dnvc-admin.herokuapp.com/';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -20,7 +19,7 @@ export class NotesService {
   getSingleOrGroupOfNotesFromServer(sector: any, market?: any, theme?: any, debut?: any, fin?: any): Observable<any> {
 
     sector = sector.replace(/ /g, '%20');
-    let initialReq = this.advancedSearchServerAdress + 'notes-de-veilles/adv-search?_where[Filieres.Name]=' + sector;
+    let initialReq = this.serverAdress + 'notes-de-veilles/adv-search?_where[Filieres.Name]=' + sector;
 
     if (typeof market !== 'undefined' && market !== null) {
       market = market.replace(/ /g, '%20');

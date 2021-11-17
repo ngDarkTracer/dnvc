@@ -8,7 +8,6 @@ import {Observable} from 'rxjs';
 export class RessourcesService {
 
   serverAdress = 'https://admin.dnvc-cm.org/';
-  advancedSearchServerAdress = 'https://dnvc-admin.herokuapp.com/';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -20,7 +19,7 @@ export class RessourcesService {
   getSingleOrGroupOfRessourcesFromServer(sector?: any, market?: any, theme?: any, debut?: any, fin?: any): Observable<any> {
 
     const mockDate = new Date('1970-01-01');
-    let initialReq = this.advancedSearchServerAdress + 'ressources/adv-search?';
+    let initialReq = this.serverAdress + 'ressources/adv-search?';
 
     if (typeof sector !== 'undefined' && sector !== null) {
       sector = sector.replace(/ /g, '%20');

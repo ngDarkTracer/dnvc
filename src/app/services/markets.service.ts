@@ -8,7 +8,6 @@ import {Observable} from 'rxjs';
 export class MarketsService {
 
   serverAdress = 'https://admin.dnvc-cm.org/';
-  advancedSearchServerAdress = 'https://dnvc-admin.herokuapp.com/';
 
 
   constructor(private httpClient: HttpClient) { }
@@ -29,7 +28,7 @@ export class MarketsService {
   getSingleOrGroupOfmarketsFromServer(sector?: any, market?: any, theme?: any, debut?: any, fin?: any): Observable<any> {
 
     market = market.replace(/ /g, '%20');
-    let initialReq = this.advancedSearchServerAdress + 'alertes/adv-search?_where[Marches.Nom]=' + market;
+    let initialReq = this.serverAdress + 'alertes/adv-search?_where[Marches.Nom]=' + market;
 
 
     if (typeof sector !== 'undefined' && sector !== null) {

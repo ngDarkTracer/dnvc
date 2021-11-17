@@ -8,7 +8,7 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class AppComponent {
   title = 'dnvc';
-  version = '1.5.0';
+  version = '1.5.1';
 
   constructor(private translate: TranslateService) {
     translate.setDefaultLang('fr');
