@@ -155,7 +155,7 @@
                 </div>
               </div>
 
-              <p-dataView *ngIf="ready" #dv [value]="filteredRessources" [paginator]="true" [rows]="5" [filterBy]="filterVal"
+              <p-dataView emptyMessage="{{ 'resources.isRessource' | translate }}" *ngIf="ready" #dv [value]="filteredRessources" [paginator]="true" [rows]="5" [filterBy]="filterVal"
                           layout="grid">
                 <ng-template pTemplate="header">
                   <p-accordion>

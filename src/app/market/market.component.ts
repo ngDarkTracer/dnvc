@@ -193,11 +193,9 @@ export class MarketComponent implements OnInit {
     this.marketsService.getSingleOrGroupOfmarketsFromServer(sector, market, theme, debut, fin).subscribe((data) => {
         const tempContent = [];
         data.forEach((elt) => {
-          elt.files.forEach((source) => {
-            if (source.url.toLowerCase().includes('.jpg') || source.url.toLowerCase().includes('.jpeg')
-              || source.url.toLowerCase().includes('.png') || source.url.toLowerCase().includes('.gif')) {
-              elt.files.splice(elt.files.indexOf(source), 1);
-            }
+          const tempFiles = elt.files.filter((file) => {
+            return (!file.url.toLowerCase().includes('.jpg') && !file.url.toLowerCase().includes('.jpeg')
+              && !file.url.toLowerCase().includes('.png') && !file.url.toLowerCase().includes('.gif'));
           });
           tempContent.push(
             {
@@ -207,7 +205,7 @@ export class MarketComponent implements OnInit {
               title: elt.Title,
               text: elt.Resume,
               sourceType: elt.files.length === 0 ? 'url' : 'document',
-              source: elt.files.length === 0 ? elt.SourceUrl : elt.files[0].url,
+              source: tempFiles.length === 0 ? elt.SourceUrl : tempFiles[0].url,
               markets: elt.marches.length !== 0 ? elt.marches : 'All'
             }
           );

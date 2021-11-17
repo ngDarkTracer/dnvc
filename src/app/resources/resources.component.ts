@@ -158,22 +158,26 @@ export class ResourcesComponent implements OnInit {
     this.searching = true;
     this.ressourcesService.getSingleOrGroupOfRessourcesFromServer(sector, market, theme, debut, fin).subscribe((data) => {
         const tempContent = [];
-        console.log(data);
         data.forEach((elt) => {
-          elt.files.forEach((source) => {
-            if (source.url.toLowerCase().includes('cloudinary')) {
-              elt.files.splice(elt.files.indexOf(source), 1);
-            } else {
-              elt.photo = source.url;
-            }
+
+          const tempFiles = elt.files.filter((file) => {
+            return (!file.url.toLowerCase().includes('.jpg') && !file.url.toLowerCase().includes('.jpeg')
+              && !file.url.toLowerCase().includes('.png') && !file.url.toLowerCase().includes('.gif'));
           });
+
+          const photo = elt.files.filter((file) => {
+            return !file.url.toLowerCase().includes('res.cloudinary.com');
+          });
+
+          elt.photo = photo[0].url;
+
           tempContent.push(
             {
               title: elt.titre,
               text: elt.resume,
               sourceType: elt.files.length === 0 ? 'url' : 'document',
               imageUrl: elt.photo,
-              source: elt.files.length === 0 ? elt.SourceUrl : elt.files[0].url,
+              source: tempFiles.length === 0 ? elt.SourceUrl : tempFiles[0].url,
               sectors: elt.filieres.length === 0 ? 'All' : elt.filieres,
               date: elt.date.split('T')[0],
               market: elt.marche === null ? 'All' : elt.marche
@@ -185,7 +189,7 @@ export class ResourcesComponent implements OnInit {
             alerte: 'Advanced results',
             content: tempContent
           });
-        console.log(tempContent);
+        // console.log(tempContent);
       },
       (error) => {
       },
