@@ -106,123 +106,125 @@ export class NoteComponent implements OnInit {
   }
 
   getNoteProperties(url: string): void {
-    this.ready = false;
     this.isThereNote = true;
     this.content = [];
     this.industriesService.getSectorFromServer(url).subscribe((result) => {
       if (result.length === 0) {
         this.router.navigate(['/home']);
+      } else {
+        this.noteImageUrl = result[0].Photo.url;
+        this.noteIntroText = result[0].Intro;
+        this.lastUpdate = result[0].updated_at.split('T')[0];
+        this.ready = true;
       }
-      this.notesService.getSingleNoteFromServer(url).subscribe((data) => {
-        if (data.length === 0) {
-          this.isThereNote = false;
-        } else {
-          this.isThereNote = true;
-        }
-
-        this.temp = data;
-        from(this.temp)
-          .pipe(
-            groupBy(element => element.themes_de_veille.Nom),
-            mergeMap(group => group.pipe(toArray()))
-          )
-          .subscribe(
-            (val) => {
-              const tempContent = [];
-              val.forEach((elt) => {
-                if (this.noteImageUrl === '' || this.noteIntroText === '') {
-                  if (elt.Filieres.length === 0) {
-                    elt.Filieres = result;
-                    for (let i = 0; i < elt.Filieres.length; i++) {
-                      if (elt.Filieres[i].Name === url.replace(/%20/g, ' ')) {
-                        this.noteImageUrl = elt.Filieres[i].Photo.url;
-                        this.noteIntroText = elt.Filieres[i].Intro;
-                        this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
-                        break;
-                      }
-                    }
-                  } else {
-                    for (let i = 0; i < elt.Filieres.length; i++) {
-                      if (elt.Filieres[i].Name === url.replace(/%20/g, ' ')) {
-                        this.noteImageUrl = elt.Filieres[i].Photo.url;
-                        this.noteIntroText = elt.Filieres[i].Intro;
-                        this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
-                        break;
-                      }
-                    }
-                  }
-                }
-                tempContent.push(
-                  {
-                    color: this.severity[elt.Type],
-                    date: elt.DatePublication,
-                    author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
-                    title: elt.Title,
-                    text: elt.Resume,
-                    sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
-                    source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
-                    markets: elt.Marches.length !== 0 ? elt.Marches : 'All'
-                  }
-                );
-              });
-              this.content.push(
-                {
-                  note: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
-                  content: tempContent
-                });
-            },
-            (error) => {
-            },
-            () => {
-              this.ready = true;
-              const all = document.getElementById('all');
-              this.filter('ALL', all);
-            });
-      });
+      this.search(url, null, null, null, null);
+      // this.notesService.getSingleNoteFromServer(url).subscribe((data) => {
+      //   if (data.length === 0) {
+      //     this.isThereNote = false;
+      //   } else {
+      //     this.isThereNote = true;
+      //   }
+      //
+      //   this.temp = data;
+      //   from(this.temp)
+      //     .pipe(
+      //       groupBy(element => element.themes_de_veille.Nom),
+      //       mergeMap(group => group.pipe(toArray()))
+      //     )
+      //     .subscribe(
+      //       (val) => {
+      //         const tempContent = [];
+      //         val.forEach((elt) => {
+      //           if (this.noteImageUrl === '' || this.noteIntroText === '') {
+      //             if (elt.Filieres.length === 0) {
+      //               elt.Filieres = result;
+      //               for (let i = 0; i < elt.Filieres.length; i++) {
+      //                 if (elt.Filieres[i].Name === url.replace(/%20/g, ' ')) {
+      //                   this.noteImageUrl = elt.Filieres[i].Photo.url;
+      //                   this.noteIntroText = elt.Filieres[i].Intro;
+      //                   this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
+      //                   break;
+      //                 }
+      //               }
+      //             } else {
+      //               for (let i = 0; i < elt.Filieres.length; i++) {
+      //                 if (elt.Filieres[i].Name === url.replace(/%20/g, ' ')) {
+      //                   this.noteImageUrl = elt.Filieres[i].Photo.url;
+      //                   this.noteIntroText = elt.Filieres[i].Intro;
+      //                   this.lastUpdate = elt.Filieres[i].updated_at.split('T')[0];
+      //                   break;
+      //                 }
+      //               }
+      //             }
+      //           }
+      //           tempContent.push(
+      //             {
+      //               color: this.severity[elt.Type],
+      //               date: elt.DatePublication,
+      //               author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
+      //               title: elt.Title,
+      //               text: elt.Resume,
+      //               sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
+      //               source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
+      //               markets: elt.Marches.length !== 0 ? elt.Marches : 'All'
+      //             }
+      //           );
+      //         });
+      //         this.content.push(
+      //           {
+      //             note: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
+      //             content: tempContent
+      //           });
+      //       },
+      //       (error) => {
+      //       },
+      //       () => {
+      //         this.ready = true;
+      //         const all = document.getElementById('all');
+      //         this.filter('ALL', all);
+      //       });
+      // });
     });
   }
 
   search(sector?: any, market?: any, theme?: any, debut?: any, fin?: any): void {
     this.content = [];
     this.searching = true;
-    this.notesService.getSingleOrGroupOfNotesFromServer(sector, market, theme, debut, fin).subscribe(
-      (data) => {
-        this.temp = data;
-        from(this.temp)
-          .pipe(
-            groupBy(element => element.id),
-            mergeMap(group => group.pipe(toArray()))
-          )
-          .subscribe(
-            (val) => {
-              const tempContent = [];
-              val.forEach((elt) => {
-                tempContent.push(
-                  {
-                    color: this.severity[elt.Type],
-                    date: elt.DatePublication,
-                    author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
-                    title: elt.Title,
-                    text: elt.Resume,
-                    sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
-                    source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
-                    markets: elt.Marches.length !== 0 ? elt.Marches : 'All'
-                  }
-                );
-              });
-              this.content.push(
-                {
-                  note: 'Advanced results',
-                  content: tempContent
-                });
-            },
-            (error) => {
-            },
-            () => {
-              this.searching = false;
-              const all = document.getElementById('all');
-              this.filter('ALL', all);
-            });
+    this.notesService.getSingleOrGroupOfNotesFromServer(sector, market, theme, debut, fin).subscribe((data) => {
+        const tempContent = [];
+        data.forEach((elt) => {
+          elt.files.forEach((source) => {
+            if (source.url.toLowerCase().includes('.jpg') || source.url.toLowerCase().includes('.jpeg')
+              || source.url.toLowerCase().includes('.png') || source.url.toLowerCase().includes('.gif')) {
+              elt.files.splice(elt.files.indexOf(source), 1);
+            }
+          });
+          tempContent.push(
+            {
+              color: this.severity[elt.Type],
+              date: elt.DatePublication.split('T')[0],
+              author: elt.emetteur[0].NomStructure,
+              title: elt.Title,
+              text: elt.Resume,
+              sourceType: elt.files.length === 0 ? 'url' : 'document',
+              source: elt.files.length === 0 ? elt.SourceUrl : elt.files[0].url,
+              markets: elt.marches.length !== 0 ? elt.marches : 'All'
+            }
+          );
+        });
+        this.content.push(
+          {
+            note: 'Advanced results',
+            content: tempContent
+          });
+      },
+      (error) => {
+      },
+      () => {
+        this.ready = true;
+        this.searching = false;
+        const all = document.getElementById('all');
+        this.filter('ALL', all);
       });
   }
 

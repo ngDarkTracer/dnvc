@@ -162,53 +162,42 @@ export class IndustryComponent implements OnInit {
   search(sector: any, market?: any, theme?: any, debut?: any, fin?: any): void {
     this.content = [];
     this.searching = true;
-    this.industriesService.getSingleOrGroupOfSectorsFromServer(sector, market, theme, debut, fin).subscribe(
-      (data) => {
-        this.temp = data;
-        // this.isThereAlert = this.temp.length !== 0;
-        from(this.temp)
-          .pipe(
-            groupBy(element => element.id),
-            mergeMap(group => group.pipe(toArray()))
-          )
-          .subscribe(
-            (val) => {
-              const tempContent = [];
-              val.forEach((elt) => {
-                elt.files.forEach((source) => {
-                  if (source.url.toLowerCase().includes('.jpg') || source.url.toLowerCase().includes('.jpeg')
-                    || source.url.toLowerCase().includes('.png') || source.url.toLowerCase().includes('.gif')) {
-                    elt.files.splice(elt.files.indexOf(source), 1);
-                  }
-                });
-                tempContent.push(
-                  {
-                    color: this.severity[elt.Type],
-                    date: elt.DatePublication.split('T')[0],
-                    author: elt.emetteur[0].NomStructure,
-                    title: elt.Title,
-                    text: elt.Resume,
-                    sourceType: elt.files.length === 0 ? 'url' : 'document',
-                    source: elt.files.length === 0 ? elt.SourceUrl : elt.files[0].url,
-                    markets: elt.marches.length !== 0 ? elt.marches : 'All'
-                  }
-                );
-              });
-              console.log(tempContent);
-              this.content.push(
-                {
-                  alerte: 'Advanced results',
-                  content: tempContent
-                });
-            },
-            (error) => {
-            },
-            () => {
-              this.ready = true;
-              this.searching = false;
-              const all = document.getElementById('all');
-              this.filter('ALL', all);
-            });
+    this.industriesService.getSingleOrGroupOfSectorsFromServer(sector, market, theme, debut, fin).subscribe((data) => {
+        const tempContent = [];
+        data.forEach((elt) => {
+          elt.files.forEach((source) => {
+            if (source.url.toLowerCase().includes('.jpg') || source.url.toLowerCase().includes('.jpeg')
+              || source.url.toLowerCase().includes('.png') || source.url.toLowerCase().includes('.gif')) {
+              elt.files.splice(elt.files.indexOf(source), 1);
+            }
+          });
+          tempContent.push(
+            {
+              color: this.severity[elt.Type],
+              date: elt.DatePublication.split('T')[0],
+              author: elt.emetteur[0].NomStructure,
+              title: elt.Title,
+              text: elt.Resume,
+              sourceType: elt.files.length === 0 ? 'url' : 'document',
+              source: elt.files.length === 0 ? elt.SourceUrl : elt.files[0].url,
+              markets: elt.marches.length !== 0 ? elt.marches : 'All'
+            }
+          );
+        });
+        // console.log(tempContent);
+        this.content.push(
+          {
+            alerte: 'Advanced results',
+            content: tempContent
+          });
+      },
+      (error) => {
+      },
+      () => {
+        this.ready = true;
+        this.searching = false;
+        const all = document.getElementById('all');
+        this.filter('ALL', all);
       });
   }
 

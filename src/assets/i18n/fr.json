@@ -29,7 +29,7 @@
   },
 
   "sector": {
-    "isSector": "Aucune alerte n'est disponible pour cette filière",
+    "isSector": "Aucune alerte trouvée",
     "link": "Toutes les filières",
     "last_update": "Dernière mise a jour",
     "description": "Fr: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores, consequuntur culpa eius eligendi enim eos esse excepturi, fugit id itaque laboriosam molestiae nam nesciunt nisi nobis nostrum obcaecati optio pariatur provident, quasi quibusdam rem sint vero voluptate! Asperiores atque dignissimos dolore illo impedit perferendis quia quod reiciendis rerum sit.",
@@ -55,7 +55,7 @@
   },
 
   "market": {
-    "isMarket": "Aucune alerte n'est disponible pour ce marché",
+    "isMarket": "Aucune alerte trouvée",
     "link": "Tout les marchés",
     "last_update": "Dernière mise a jour",
     "description": "Fr: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores, consequuntur culpa eius eligendi enim eos esse excepturi, fugit id itaque laboriosam molestiae nam nesciunt nisi nobis nostrum obcaecati optio pariatur provident, quasi quibusdam rem sint vero voluptate! Asperiores atque dignissimos dolore illo impedit perferendis quia quod reiciendis rerum sit.",
@@ -81,7 +81,7 @@
   },
 
   "note": {
-    "isNote": "Aucune note de veille n'est disponible pour cette filière",
+    "isNote": "Aucune note de veille trouvée",
     "link": "Toutes les notes de veille",
     "last_update": "Dernière mise a jour",
     "description": "Fr: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam asperiores, consequuntur culpa eius eligendi enim eos esse excepturi, fugit id itaque laboriosam molestiae nam nesciunt nisi nobis nostrum obcaecati optio pariatur provident, quasi quibusdam rem sint vero voluptate! Asperiores atque dignissimos dolore illo impedit perferendis quia quod reiciendis rerum sit.",

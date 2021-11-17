@@ -105,124 +105,126 @@ export class MarketComponent implements OnInit {
   }
 
   getMarketProperties(url: string): void {
-    this.ready = false;
     this.isThereAlert = true;
     this.content = [];
     this.marketsService.getMarketFromServer(url).subscribe((result) => {
       if (result.length === 0) {
         this.router.navigate(['/home']);
+      } else {
+        this.marketImageUrl = result[0].Logo_Large[0].url;
+        this.marketIntroText = result[0].Intro;
+        this.lastUpdate = result[0].updated_at.split('T')[0];
+        this.ready = true;
       }
-      this.marketsService.getSingleMarketFromServer(url).subscribe((data) => {
-        if (data.length === 0) {
-          this.isThereAlert = false;
-        } else {
-          this.isThereAlert = true;
-        }
-
-        this.temp = data;
-        from(this.temp)
-          .pipe(
-            groupBy(element => element.id),
-            mergeMap(group => group.pipe(toArray()))
-          )
-          .subscribe(
-            (val) => {
-              const tempContent = [];
-              val.forEach((elt) => {
-                if (this.marketImageUrl === '' || this.marketIntroText === '') {
-                  if (elt.Marches.length === 0) {
-                    elt.Marches = result;
-                    for (let i = 0; i < elt.Marches.length; i++) {
-                      if (elt.Marches[i].Nom === url.replace(/%20/g, ' ')) {
-                        this.marketImageUrl = elt.Marches[i].Logo_Large[0].url;
-                        this.marketIntroText = elt.Marches[i].Intro;
-                        this.lastUpdate = elt.Marches[i].updated_at.split('T')[0];
-                        break;
-                      }
-                    }
-                  } else {
-                    for (let i = 0; i < elt.Marches.length; i++) {
-                      if (elt.Marches[i].Nom === url.replace(/%20/g, ' ')) {
-                        this.marketImageUrl = elt.Marches[i].Logo_Large[0].url;
-                        this.marketIntroText = elt.Marches[i].Intro;
-                        this.lastUpdate = elt.Marches[i].updated_at.split('T')[0];
-                        break;
-                      }
-                    }
-                  }
-                }
-                tempContent.push(
-                  {
-                    color: this.severity[elt.Type],
-                    date: elt.DatePublication,
-                    author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
-                    title: elt.Title,
-                    text: elt.Resume,
-                    sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
-                    source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
-                    markets: elt.Marches
-                  }
-                );
-              });
-              this.content.push(
-                {
-                  alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
-                  content: tempContent
-                });
-            },
-            (error) => {
-              console.log(error);
-            },
-            () => {
-              this.ready = true;
-              const all = document.getElementById('all');
-              this.filter('ALL', all);
-            });
-      });
+      this.search(null, url, null, null, null);
+      // this.marketsService.getSingleMarketFromServer(url).subscribe((data) => {
+      //   if (data.length === 0) {
+      //     this.isThereAlert = false;
+      //   } else {
+      //     this.isThereAlert = true;
+      //   }
+      //
+      //   this.temp = data;
+      //   from(this.temp)
+      //     .pipe(
+      //       groupBy(element => element.id),
+      //       mergeMap(group => group.pipe(toArray()))
+      //     )
+      //     .subscribe(
+      //       (val) => {
+      //         const tempContent = [];
+      //         val.forEach((elt) => {
+      //           if (this.marketImageUrl === '' || this.marketIntroText === '') {
+      //             if (elt.Marches.length === 0) {
+      //               elt.Marches = result;
+      //               for (let i = 0; i < elt.Marches.length; i++) {
+      //                 if (elt.Marches[i].Nom === url.replace(/%20/g, ' ')) {
+      //                   this.marketImageUrl = elt.Marches[i].Logo_Large[0].url;
+      //                   this.marketIntroText = elt.Marches[i].Intro;
+      //                   this.lastUpdate = elt.Marches[i].updated_at.split('T')[0];
+      //                   break;
+      //                 }
+      //               }
+      //             } else {
+      //               for (let i = 0; i < elt.Marches.length; i++) {
+      //                 if (elt.Marches[i].Nom === url.replace(/%20/g, ' ')) {
+      //                   this.marketImageUrl = elt.Marches[i].Logo_Large[0].url;
+      //                   this.marketIntroText = elt.Marches[i].Intro;
+      //                   this.lastUpdate = elt.Marches[i].updated_at.split('T')[0];
+      //                   break;
+      //                 }
+      //               }
+      //             }
+      //           }
+      //           tempContent.push(
+      //             {
+      //               color: this.severity[elt.Type],
+      //               date: elt.DatePublication,
+      //               author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
+      //               title: elt.Title,
+      //               text: elt.Resume,
+      //               sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
+      //               source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
+      //               markets: elt.Marches
+      //             }
+      //           );
+      //         });
+      //         this.content.push(
+      //           {
+      //             alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
+      //             content: tempContent
+      //           });
+      //       },
+      //       (error) => {
+      //         console.log(error);
+      //       },
+      //       () => {
+      //         this.ready = true;
+      //         const all = document.getElementById('all');
+      //         this.filter('ALL', all);
+      //       });
+      // });
     });
   }
 
   search(sector?: any, market?: any, theme?: any, debut?: any, fin?: any): void {
     this.content = [];
     this.searching = true;
-    this.marketsService.getSingleOrGroupOfmarketsFromServer(sector, market, theme, debut, fin).subscribe(
-      (data) => {
-        this.temp = data;
-        from(this.temp)
-          .pipe(
-            groupBy(element => element.id),
-            mergeMap(group => group.pipe(toArray()))
-          )
-          .subscribe(
-            (val) => {
-              const tempContent = [];
-              val.forEach((elt) => {
-                tempContent.push(
-                  {
-                    color: this.severity[elt.Type],
-                    date: elt.DatePublication,
-                    author: elt.Emetteur !== null ? elt.Emetteur.NomStructure : elt.Emetteur,
-                    title: elt.Title,
-                    text: elt.Resume,
-                    sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
-                    source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
-                    markets: elt.Marches
-                  }
-                );
-              });
-              this.content.push(
-                {
-                  alerte: 'Advanced results',
-                  content: tempContent
-                });
-            },
-            (error) => {
-            },
-            () => {
-              this.searching = false;
-              const all = document.getElementById('all');
-              this.filter('ALL', all);
-            });
+    this.marketsService.getSingleOrGroupOfmarketsFromServer(sector, market, theme, debut, fin).subscribe((data) => {
+        const tempContent = [];
+        data.forEach((elt) => {
+          elt.files.forEach((source) => {
+            if (source.url.toLowerCase().includes('.jpg') || source.url.toLowerCase().includes('.jpeg')
+              || source.url.toLowerCase().includes('.png') || source.url.toLowerCase().includes('.gif')) {
+              elt.files.splice(elt.files.indexOf(source), 1);
+            }
+          });
+          tempContent.push(
+            {
+              color: this.severity[elt.Type],
+              date: elt.DatePublication,
+              author: elt.emetteur[0].NomStructure,
+              title: elt.Title,
+              text: elt.Resume,
+              sourceType: elt.files.length === 0 ? 'url' : 'document',
+              source: elt.files.length === 0 ? elt.SourceUrl : elt.files[0].url,
+              markets: elt.marches.length !== 0 ? elt.marches : 'All'
+            }
+          );
+        });
+        this.content.push(
+          {
+            alerte: 'Advanced results',
+            content: tempContent
+          });
+      },
+      (error) => {
+      },
+      () => {
+        this.ready = true;
+        this.searching = false;
+        const all = document.getElementById('all');
+        this.filter('ALL', all);
       });
   }
 

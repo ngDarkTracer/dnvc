@@ -200,7 +200,7 @@
               <h2 class="pb-4 ml-3" *ngIf="filterValue === 'ALL'">{{ 'market.All' | translate }}</h2>
 <!--              <h2 class="pb100" *ngIf="filterValue !== 'ALL'">{{ 'market.alerts' | translate }} [{{ filterValue }}]</h2>-->
 
-              <p-dataView *ngIf="ready" #dv [value]="filteredAlert" [paginator]="true" [rows]="5"
+              <p-dataView emptyMessage="{{ 'market.isMarket' | translate }}" *ngIf="ready" #dv [value]="filteredAlert" [paginator]="true" [rows]="5"
                           layout="grid">
                 <ng-template pTemplate="header">
                   <p-accordion>
@@ -255,7 +255,7 @@
                   <div>
                     <div>
                       <div class="wfb-card-wrapper pt60" *ngIf="!searching">
-                        <div class="no-gutters" [ngClass]="{ 'small':!isSmallScreen, 'row':isSmallScreen }">
+                        <div class="no-gutters" [ngClass]="{ 'row':isSmallScreen }">
                           <div class="ml-3" [ngClass]="{ 'col-md-12':isSmallScreen }">
                             <div class="wfb-card__body-container">
                               <div class="wfb-card__link-container">

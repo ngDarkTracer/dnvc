@@ -19,13 +19,16 @@ export class NotesService {
 
   getSingleOrGroupOfNotesFromServer(sector: any, market?: any, theme?: any, debut?: any, fin?: any): Observable<any> {
 
+    sector = sector.replace(/ /g, '%20');
     let initialReq = this.advancedSearchServerAdress + 'notes-de-veilles/adv-search?_where[Filieres.Name]=' + sector;
 
     if (typeof market !== 'undefined' && market !== null) {
+      market = market.replace(/ /g, '%20');
       initialReq += '&_where[Marches.Nom]=' + market;
     }
 
     if (typeof theme !== 'undefined' && theme !== null) {
+      theme = theme.replace(/ /g, '%20');
       initialReq += '&_where[themes_de_veille.Nom]=' + theme;
     }
 

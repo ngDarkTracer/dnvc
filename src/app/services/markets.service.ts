@@ -14,7 +14,7 @@ export class MarketsService {
   constructor(private httpClient: HttpClient) { }
 
   getMarketsFromServer(): Observable<any> {
-    return this.httpClient.get<any[]>(this.serverAdress + 'marches?_sort=Nom:ASC', { responseType: 'json' });
+    return this.httpClient.get<any[]>(this.serverAdress + 'marches/reduced', { responseType: 'json' });
   }
 
   getMarketFromServer(market: string): Observable<any> {
@@ -28,13 +28,17 @@ export class MarketsService {
 
   getSingleOrGroupOfmarketsFromServer(sector?: any, market?: any, theme?: any, debut?: any, fin?: any): Observable<any> {
 
+    market = market.replace(/ /g, '%20');
     let initialReq = this.advancedSearchServerAdress + 'alertes/adv-search?_where[Marches.Nom]=' + market;
 
+
     if (typeof sector !== 'undefined' && sector !== null) {
+      sector = sector.replace(/ /g, '%20');
       initialReq += '&_where[Filieres.Name]=' + sector;
     }
 
     if (typeof theme !== 'undefined' && theme !== null) {
+      theme = theme.replace(/ /g, '%20');
       initialReq += '&_where[themes_de_veille.Nom]=' + theme;
     }
 

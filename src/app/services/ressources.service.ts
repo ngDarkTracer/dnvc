@@ -19,22 +19,28 @@ export class RessourcesService {
 
   getSingleOrGroupOfRessourcesFromServer(sector?: any, market?: any, theme?: any, debut?: any, fin?: any): Observable<any> {
 
+    const mockDate = new Date('1970-01-01');
     let initialReq = this.advancedSearchServerAdress + 'ressources/adv-search?';
 
     if (typeof sector !== 'undefined' && sector !== null) {
+      sector = sector.replace(/ /g, '%20');
       initialReq += '&_where[filieres.Name]=' + sector;
     }
 
     if (typeof market !== 'undefined' && market !== null) {
+      market = market.replace(/ /g, '%20');
       initialReq += '&_where[marche.Nom]=' + market;
     }
 
     if (typeof theme !== 'undefined' && theme !== null) {
+      theme = theme.replace(/ /g, '%20');
       initialReq += '&_where[themes_de_veille.Nom]=' + theme;
     }
 
     if (typeof debut !== 'undefined' && debut !== null) {
       initialReq += '&_where[date_gte]=' + debut.toLocaleDateString('en-CA');
+    } else {
+      initialReq += '&_where[date_gte]=' + mockDate.toLocaleDateString('en-CA');
     }
 
     if (typeof fin !== 'undefined' && fin !== null) {

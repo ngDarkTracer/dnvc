@@ -195,7 +195,7 @@
               <h2 class="pb-4 ml-3" *ngIf="filterValue === 'ALL'">{{ 'sector.All' | translate }}</h2>
 <!--              <h2 class="pb100" *ngIf="filterValue !== 'ALL'">{{ 'sector.alerts' | translate }} [{{ filterValue }}]</h2>-->
 
-              <p-dataView *ngIf="ready" #dv [value]="filteredAlert" [paginator]="true" [rows]="5"
+              <p-dataView emptyMessage="{{ 'sector.isSector' | translate }}" *ngIf="ready" #dv [value]="filteredAlert" [paginator]="true" [rows]="5"
                           layout="grid">
                 <ng-template pTemplate="header">
                   <p-accordion>

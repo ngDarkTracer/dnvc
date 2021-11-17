@@ -89,62 +89,47 @@ export class ResourcesComponent implements OnInit {
     this.content = [];
     this.ready = false;
     this.isThereAlert = true;
-    this.ressourcesService.getRessourcesFromServer().subscribe((data) => {
-      if (data.length === 0) {
-        this.isThereAlert = false;
-      } else {
-        this.isThereAlert = true;
-      }
-
-      this.temp = data;
-      from(this.temp)
-        .pipe(
-          groupBy(element => element.id),
-          mergeMap(group => group.pipe(toArray()))
-        )
-        .subscribe(
-          (val) => {
-            const tempContent = [];
-            val.forEach((elt) => {
-              let fobeddenString = '';
-              elt.filieres.forEach((sector) => {
-                fobeddenString += sector.Name + ',';
-              });
-              tempContent.push(
-                {
-                  alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
-                  title: elt.titre,
-                  text: elt.resume,
-                  sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
-                  imageUrl: elt.photo.url,
-                  source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
-                  sectors: elt.filieres.length === 0 ? 'All' : elt.filieres,
-                  sectorsConcatString: fobeddenString,
-                  date: elt.date,
-                  market: elt.marche === null ? 'All' : elt.marche
-                }
-              );
-            });
-            this.content.push(
-              {
-                alerte: val[0].themes_de_veille === null ? 'All' : val[0].themes_de_veille.Nom,
-                content: tempContent
-              });
-            // document.getElementById('top').scrollIntoView({
-            //   behavior: 'smooth'
-            // });
-          },
-          (error) => {
-            // document.getElementById('top').scrollIntoView({
-            //   behavior: 'smooth'
-            // });
-          },
-          () => {
-            this.ready = true;
-            const all = document.getElementById('all');
-            this.filter('ALL', all);
-          });
-    });
+    const mockDate = new Date('1970-01-01');
+    this.search(null, null, null, mockDate, null);
+    // this.ressourcesService.getRessourcesFromServer().subscribe((data) => {
+    //     const tempContent = [];
+    //     data.forEach((elt) => {
+    //       elt.files.forEach((source) => {
+    //         if (source.url.toLowerCase().includes('cloudinary')) {
+    //           elt.files.splice(elt.files.indexOf(source), 1);
+    //         }
+    //         if (source.url.toLowerCase().includes('.jpg') || source.url.toLowerCase().includes('.jpeg')
+    //           || source.url.toLowerCase().includes('.png') || source.url.toLowerCase().includes('.gif')) {
+    //           elt.photo.url = source.url;
+    //           elt.files.splice(elt.files.indexOf(source), 1);
+    //         }
+    //       });
+    //       tempContent.push(
+    //         {
+    //           title: elt.titre,
+    //           text: elt.resume,
+    //           sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
+    //           imageUrl: elt.photo.url,
+    //           source: elt.files.length === 0 ? elt.SourceUrl : elt.files[0].url,
+    //           sectors: elt.filieres.length === 0 ? 'All' : elt.filieres,
+    //           date: elt.date,
+    //           market: elt.marche === null ? 'All' : elt.marche
+    //         }
+    //       );
+    //     });
+    //     this.content.push(
+    //       {
+    //         alerte: 'Advanced results',
+    //         content: tempContent
+    //       });
+    //   },
+    //   (error) => {
+    //   },
+    //   () => {
+    //     this.ready = true;
+    //     const all = document.getElementById('all');
+    //     this.filter('ALL', all);
+    //   });
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -171,49 +156,44 @@ export class ResourcesComponent implements OnInit {
   search(sector?: any, market?: any, theme?: any, debut?: any, fin?: any): void {
     this.content = [];
     this.searching = true;
-    this.ressourcesService.getSingleOrGroupOfRessourcesFromServer(sector, market, theme, debut, fin).subscribe(
-      (data) => {
-        if (data.length === 0) {
-          this.isThereAlert = false;
-        } else {
-          this.isThereAlert = true;
-        }
+    this.ressourcesService.getSingleOrGroupOfRessourcesFromServer(sector, market, theme, debut, fin).subscribe((data) => {
+        const tempContent = [];
+        console.log(data);
+        data.forEach((elt) => {
+          elt.files.forEach((source) => {
+            if (source.url.toLowerCase().includes('cloudinary')) {
+              elt.files.splice(elt.files.indexOf(source), 1);
+            } else {
+              elt.photo = source.url;
+            }
+          });
+          tempContent.push(
+            {
+              title: elt.titre,
+              text: elt.resume,
+              sourceType: elt.files.length === 0 ? 'url' : 'document',
+              imageUrl: elt.photo,
+              source: elt.files.length === 0 ? elt.SourceUrl : elt.files[0].url,
+              sectors: elt.filieres.length === 0 ? 'All' : elt.filieres,
+              date: elt.date.split('T')[0],
+              market: elt.marche === null ? 'All' : elt.marche
+            }
+          );
+        });
+        this.content.push(
+          {
+            alerte: 'Advanced results',
+            content: tempContent
+          });
+        console.log(tempContent);
+      },
+      (error) => {
+      },
+      () => {
+        this.ready = true;
         this.searching = false;
-        this.temp = data;
-        from(this.temp)
-          .pipe(
-            groupBy(element => element.id),
-            mergeMap(group => group.pipe(toArray()))
-          )
-          .subscribe(
-            (val) => {
-              const tempContent = [];
-              val.forEach((elt) => {
-                tempContent.push(
-                  {
-                    title: elt.titre,
-                    text: elt.resume,
-                    sourceType: elt.SourceFile.length === 0 ? 'url' : 'document',
-                    imageUrl: elt.photo.url,
-                    source: elt.SourceFile.length === 0 ? elt.SourceUrl : elt.SourceFile[0].url,
-                    sectors: elt.filieres.length === 0 ? 'All' : elt.filieres,
-                    date: elt.date,
-                    market: elt.marche === null ? 'All' : elt.marche
-                  }
-                );
-              });
-              this.content.push(
-                {
-                  alerte: 'Advanced results',
-                  content: tempContent
-                });
-            },
-            (error) => {
-            },
-            () => {
-              const all = document.getElementById('all');
-              this.filter('ALL', all);
-            });
+        const all = document.getElementById('all');
+        this.filter('ALL', all);
       });
   }
 }
