@@ -1,4 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
+import {InfosService} from '../services/infos.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,14 +8,15 @@ import {Component, HostListener, OnInit} from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private infosService: InfosService) { }
 
+  infos: any;
+  ready = false;
   ngOnInit(): void {
-
-  }
-
-  openAdminApp(): void {
-    window.open('https://admin.dnvc-cm.org/admin/', '_blank');
+    this.infosService.getInfosFromServer().subscribe((data) => {
+      this.infos = data;
+      this.ready = true;
+    });
   }
 
 }

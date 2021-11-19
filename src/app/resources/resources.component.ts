@@ -161,15 +161,16 @@ export class ResourcesComponent implements OnInit {
         data.forEach((elt) => {
 
           const tempFiles = elt.files.filter((file) => {
-            return (!file.url.toLowerCase().includes('.jpg') && !file.url.toLowerCase().includes('.jpeg')
-              && !file.url.toLowerCase().includes('.png') && !file.url.toLowerCase().includes('.gif'));
+            return (!file.toLowerCase().includes('.jpg') && !file.toLowerCase().includes('.jpeg')
+              && !file.toLowerCase().includes('.png') && !file.toLowerCase().includes('.gif'));
           });
 
           const photo = elt.files.filter((file) => {
-            return !file.url.toLowerCase().includes('res.cloudinary.com');
+            return (file.toLowerCase().includes('.jpg') || file.toLowerCase().includes('.jpeg')
+              || file.toLowerCase().includes('.png') || file.toLowerCase().includes('.gif'));
           });
 
-          elt.photo = photo[0].url;
+          elt.photo = photo[0];
 
           tempContent.push(
             {
@@ -177,7 +178,7 @@ export class ResourcesComponent implements OnInit {
               text: elt.resume,
               sourceType: elt.files.length === 0 ? 'url' : 'document',
               imageUrl: elt.photo,
-              source: tempFiles.length === 0 ? elt.SourceUrl : tempFiles[0].url,
+              source: tempFiles.length === 0 ? elt.SourceUrl : tempFiles[0],
               sectors: elt.filieres.length === 0 ? 'All' : elt.filieres,
               date: elt.date.split('T')[0],
               market: elt.marche === null ? 'All' : elt.marche
@@ -189,7 +190,6 @@ export class ResourcesComponent implements OnInit {
             alerte: 'Advanced results',
             content: tempContent
           });
-        // console.log(tempContent);
       },
       (error) => {
       },

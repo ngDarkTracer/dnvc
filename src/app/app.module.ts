@@ -14,6 +14,7 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgxDocViewerModule} from 'ngx-doc-viewer';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     LayoutModule,
     NgxPaginationModule,
     HttpClientModule,
+    NgxDocViewerModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

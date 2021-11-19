@@ -23,6 +23,7 @@ export class IndustryComponent implements OnInit {
   }
 
   currentIndustriy: string;
+  numberOfAlerts: number;
   serverAdress = 'https://dnvc-admin.herokuapp.com/';
   sectorImageUrl = '';
   sectorIntroText = '';
@@ -162,6 +163,7 @@ export class IndustryComponent implements OnInit {
   search(sector: any, market?: any, theme?: any, debut?: any, fin?: any): void {
     this.content = [];
     this.searching = true;
+    this.numberOfAlerts = 0;
     this.industriesService.getSingleOrGroupOfSectorsFromServer(sector, market, theme, debut, fin).subscribe((data) => {
         const tempContent = [];
         data.forEach((elt) => {
@@ -188,6 +190,7 @@ export class IndustryComponent implements OnInit {
             alerte: 'Advanced results',
             content: tempContent
           });
+        this.numberOfAlerts ++;
       },
       (error) => {
       },
