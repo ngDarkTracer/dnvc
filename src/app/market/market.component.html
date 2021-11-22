@@ -209,14 +209,14 @@
                       <div style="display: flex; flex-direction: column; flex-wrap: wrap" class="mb-2">
                         <div class="mr-auto mb-3" id="filieres">
                           <label for="filieres">{{ 'resources.sectors' | translate }}:</label><br>
-                          <p-dropdown #sector [showClear]="true" [options]="sectors" [filter]="true" filterBy="Name"
+                          <p-dropdown #sector [showClear]="true" [options]="sectors" [filter]="!isSmallScreen" filterBy="Name"
                                       optionLabel="Name" placeholder="{{ 'resources.sector' | translate }}"
                                       optionValue="Name"></p-dropdown>
                         </div>
 
                         <div class="mr-3 mb-3" id="themes">
                           <label for="themes">{{ 'resources.themes' | translate }}:</label><br>
-                          <p-dropdown #theme [showClear]="true" [options]="themes" [filter]="true" filterBy="Nom"
+                          <p-dropdown #theme [showClear]="true" [options]="themes" [filter]="!isSmallScreen" filterBy="Nom"
                                       optionLabel="Nom" placeholder="{{ 'resources.theme' | translate }}"
                                       optionValue="Nom"></p-dropdown>
                         </div>

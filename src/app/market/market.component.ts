@@ -200,7 +200,7 @@ export class MarketComponent implements OnInit {
           tempContent.push(
             {
               color: this.severity[elt.Type],
-              date: elt.DatePublication,
+              date: elt.DatePublication.split('T')[0],
               author: elt.emetteur[0].NomStructure,
               title: elt.Title,
               text: elt.Resume,

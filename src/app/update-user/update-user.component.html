@@ -89,7 +89,7 @@
                   <label for="sectors" *ngIf="i === 0 && !isSmallScreen" style="font-size: 18px; font-family: 'GT America Extended'">{{ 'subscribe.sectors' | translate }}(s): </label><br>
                   <div class="mb-5" *ngIf="i === 0 && !isSmallScreen"></div>
                   <p-dropdown id="sectors" [options]="sectors" optionLabel="Name"
-                              [filter]="true" filterBy="Name"
+                              [filter]="!isSmallScreen" filterBy="Name"
                               placeholder="{{ 'subscribe.sectors' | translate }}" formControlName="filieres">
                     <ng-template let-sector pTemplate="item">
                       <div>{{sector.Name}}</div>
@@ -101,7 +101,7 @@
                   <label for="markets" *ngIf="i === 0 && !isSmallScreen" style="font-size: 18px; font-family: 'GT America Extended'">{{ 'subscribe.markets' | translate }}(s): </label><br>
                   <div class="mb-5" *ngIf="i === 0 && !isSmallScreen"></div>
                   <p-dropdown id="markets" [options]="markets" optionLabel="Nom"
-                              [filter]="true" filterBy="Nom"
+                              [filter]="!isSmallScreen" filterBy="Nom"
                               placeholder="{{ 'subscribe.markets' | translate }}" formControlName="marches">
                     <ng-template let-market pTemplate="item">
                       <div>{{market.Nom}}</div>
@@ -113,7 +113,7 @@
                   <label for="themes" *ngIf="i === 0 && !isSmallScreen" style="font-size: 18px; font-family: 'GT America Extended'">{{ 'subscribe.themes' | translate }}(s): </label><br>
                   <div class="mb-5" *ngIf="i === 0 && !isSmallScreen"></div>
                   <p-dropdown id="themes" [options]="themes" optionLabel="Nom"
-                              [filter]="true" filterBy="Nom"
+                              [filter]="!isSmallScreen" filterBy="Nom"
                               placeholder="{{ 'subscribe.themes' | translate }}" formControlName="themes">
                     <ng-template let-theme pTemplate="item">
                       <div>{{theme.Nom}}</div>

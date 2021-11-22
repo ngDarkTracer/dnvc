@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BreakpointObserver} from '@angular/cdk/layout';
-import {HttpClient} from '@angular/common/http';
 import {InfosService} from '../services/infos.service';
 
 @Component({

@@ -207,14 +207,14 @@
 
                         <div class="mr-auto mb-3" id="marches">
                           <label for="marches">{{ 'resources.markets' | translate }}:</label><br>
-                          <p-dropdown #market [showClear]="true" [options]="markets" [filter]="true" filterBy="Nom"
+                          <p-dropdown #market [showClear]="true" [options]="markets" [filter]="!isSmallScreen" filterBy="Nom"
                                       optionLabel="Nom" placeholder="{{ 'resources.market' | translate }}"
                                       optionValue="Nom"></p-dropdown>
                         </div>
 
                         <div class="mr-3 mb-3" id="themes">
                           <label for="themes">{{ 'resources.themes' | translate }}:</label><br>
-                          <p-dropdown #theme [showClear]="true" [options]="themes" [filter]="true" filterBy="Nom"
+                          <p-dropdown #theme [showClear]="true" [options]="themes" [filter]="!isSmallScreen" filterBy="Nom"
                                       optionLabel="Nom" placeholder="{{ 'resources.theme' | translate }}"
                                       optionValue="Nom"></p-dropdown>
                         </div>
