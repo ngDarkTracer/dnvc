@@ -1,24 +1,26 @@
-.img-align {
+.img-align-1 {
   display: block;
   position: absolute;
+  z-index: -100;
   width: calc(50% - 1px) !important;
-  // width: 50%;
   height: 100%;
   top: 0;
   left: 0;
-  transition: none;
+  transition: ease-in-out .5s;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.text-align {
+.img-align-2 {
   display: block;
   position: absolute;
-  width: calc(45% - 1px) !important;
-  // width: 50%;
+  width: calc(50% - 1px) !important;
   height: 100%;
-  top: 70%;
-  transform: translateY(-50%);
-  right: 2%;
+  top: 0;
+  right: 0;
+  transition: ease-in-out .5s;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

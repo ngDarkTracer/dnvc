@@ -47,87 +47,26 @@
   <section class="background-grid-white">
     <section class="teaser-background-image teaser-background-image-left first"
              style="background-position:center;background-repeat:no-repeat;background-size:cover;position:relative;opacity:0.99;">
-      <style>
-        .teaser-background-image.teaser-background-image-left.first:before,
-        .teaser-background-image.teaser-background-image-left.first:after {
-          content: '';
-          display: block;
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-
-          transition: none;
-          background-position: center;
-          background-repeat: no-repeat;
-          background-size: cover;
-
-        }
-
-        .teaser-background-image.teaser-background-image-left.first:before {
-          z-index: -100;
-          background-image: url('../../assets/docks.jpg');
-          background-image: url(data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIDBP/EABUBAQEAAAAAAAAAAAAAAAAAAAIB/9oADAMBAAIQAxAAAAHHog8aFBD/xAAbEAACAgMBAAAAAAAAAAAAAAAAAQIDETFBQv/aAAgBAQABBQJGh15O+pydb//EABURAQEAAAAAAAAAAAAAAAAAAAEA/9oACAEDAQE/AWBv/8QAFREBAQAAAAAAAAAAAAAAAAAAEDH/2gAIAQIBAT8Bp//EABoQAAICAwAAAAAAAAAAAAAAAAABESFBQlH/2gAIAQEABj8CsnXgrEQ8EJn/xAAbEAACAwADAAAAAAAAAAAAAAAAAREhMVFhcf/aAAgBAQABPyGKtMeHagto5GDhq5diXmWIFSJtH//aAAwDAQACAAMAAAAQkz//xAAWEQEBAQAAAAAAAAAAAAAAAAABACH/2gAIAQMBAT8QwhKL/8QAGREAAgMBAAAAAAAAAAAAAAAAAAERIUFh/9oACAECAQE/EFTpK0//xAAcEAEBAAMBAAMAAAAAAAAAAAABEQAhMZFBcfH/2gAIAQEAAT8QA2RFfAL73JAgo43xv1uZMgT5G4pcZezyXnmLsKWF1r9w9nJsdrn/2Q==);
-          opacity: 0;
-        }
-
-        .teaser-background-image.teaser-background-image-left.first:after {
-          z-index: -101;
-          background-image: url('../../assets/docks.jpg');
-          opacity: 1;
-        }
-      </style>
+      <picture *ngIf="!isSmallScreen && ready">
+        <source [srcset]="imageUrl + ' 200w,' + imageUrl + ' 400w,' + imageUrl + ' 800w'"
+                sizes="(max-width: 800px) 100vw, 800px">
+        <img sizes="(max-width: 800px) 100vw, 800px"
+             [srcset]="imageUrl + ' 200w,' + imageUrl + ' 400w,' + imageUrl + ' 800w'" [src]="imageUrl" alt=""
+             loading="lazy"
+             style="position: absolute; top: 0px; left: 0px; width: calc(50% - 1px) !important; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 500ms ease 0s;">
+      </picture>
+      <noscript *ngIf="!isSmallScreen && ready">
+        <picture>
+          <source [srcset]="imageUrl + ' 200w,' + imageUrl + ' 400w,' + imageUrl + ' 800w'"
+                  sizes="(max-width: 800px) 100vw, 800px"/>
+          <img loading="lazy" sizes="(max-width: 800px) 100vw, 800px"
+               [srcset]="imageUrl + ' 200w,' + imageUrl + ' 400w,' + imageUrl + ' 800w'"
+               [src]="imageUrl" alt=""
+               style="position:absolute;top:0;left:0;opacity:1;width:calc(50% - 1px) !important;height:100%;object-fit:cover;object-position:center"/>
+        </picture>
+      </noscript>
       <div class="container teaser-container">
         <div class="row">
-<!--          <div style="display: flex; flex-direction: row; flex-wrap: nowrap; min-height: 50vh">-->
-<!--            <div *ngIf="!isSmallScreen">-->
-<!--              <img class="img-align" [src]="imageUrl" alt="home page image 1">-->
-<!--            </div>-->
-<!--            <div class="text-align">-->
-<!--              <div *ngIf="ready">-->
-<!--                <markdown [data]="infos.home_text1"></markdown>-->
-<!--              </div>-->
-<!--              <div *ngIf="!ready" style="width: 100%">-->
-<!--                <div class="mb-1">-->
-<!--                  <p-skeleton borderRadius="0" width="80%" height=".5rem"></p-skeleton>-->
-<!--                </div>-->
-<!--                <div class="mb-1">-->
-<!--                  <p-skeleton borderRadius="0" width="100%" height=".5rem"></p-skeleton>-->
-<!--                </div>-->
-<!--                <div class="mb-1">-->
-<!--                  <p-skeleton borderRadius="0" width="70%" height=".5rem"></p-skeleton>-->
-<!--                </div>-->
-<!--                <div class="mb-1">-->
-<!--                  <p-skeleton borderRadius="0" width="60%" height=".5rem"></p-skeleton>-->
-<!--                </div>-->
-<!--                <div class="mb-1">-->
-<!--                  <p-skeleton borderRadius="0" width="90%" height=".5rem"></p-skeleton>-->
-<!--                </div>-->
-<!--                <div class="mb-1">-->
-<!--                  <p-skeleton borderRadius="0" width="70%" height=".5rem"></p-skeleton>-->
-<!--                </div>-->
-<!--                <div class="mb-1">-->
-<!--                  <p-skeleton borderRadius="0" width="70%" height=".5rem"></p-skeleton>-->
-<!--                </div>-->
-<!--                <div class="mb-1">-->
-<!--                  <p-skeleton borderRadius="0" width="80%" height=".5rem"></p-skeleton>-->
-<!--                </div>-->
-<!--                <div class="mb-1">-->
-<!--                  <p-skeleton borderRadius="0" width="100%" height=".5rem"></p-skeleton>-->
-<!--                </div>-->
-<!--                <div class="mb-1">-->
-<!--                  <p-skeleton borderRadius="0" width="60%" height=".5rem"></p-skeleton>-->
-<!--                </div>-->
-<!--                <div class="mb-1">-->
-<!--                  <p-skeleton borderRadius="0" width="80%" height=".5rem"></p-skeleton>-->
-<!--                </div>-->
-<!--                <div class="mb-1">-->
-<!--                  <p-skeleton borderRadius="0" width="75%" height=".5rem"></p-skeleton>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
           <div class="col-sm-12 col-md-5 offset-md-7 order-last pv120-90 teaser-context">
             <div *ngIf="ready">
               <markdown [data]="infos.home_text1"></markdown>
@@ -191,7 +130,7 @@
                           sizes="(max-width: 800px) 100vw, 800px"/>
                   <img loading="lazy" sizes="(max-width: 800px) 100vw, 800px"
                        [srcset]="imageUrl + ' 200w,' + imageUrl + ' 400w,' + imageUrl + ' 800w'"
-                       src="../../assets/docks.jpg" alt=""
+                       [src]="imageUrl" alt=""
                        style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/>
                 </picture>
               </noscript>
@@ -208,38 +147,24 @@
   <section class="background-grid-white">
     <section class="teaser-background-image teaser-background-image-right second"
              style="background-position:center;background-repeat:no-repeat;background-size:cover;position:relative;opacity:0.99">
-      <style>
-        .teaser-background-image.teaser-background-image-right.second:before,
-        .teaser-background-image.teaser-background-image-right.second:after {
-          content: '';
-          display: block;
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-
-          transition: none;
-          background-position: center;
-          background-repeat: no-repeat;
-          background-size: cover;
-
-        }
-
-        .teaser-background-image.teaser-background-image-right.second:before {
-          z-index: -100;
-          background-image: url('../../assets/stats.jpg');
-          background-image: url(data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIDBP/EABUBAQEAAAAAAAAAAAAAAAAAAAIB/9oADAMBAAIQAxAAAAHHog8aFBD/xAAbEAACAgMBAAAAAAAAAAAAAAAAAQIDETFBQv/aAAgBAQABBQJGh15O+pydb//EABURAQEAAAAAAAAAAAAAAAAAAAEA/9oACAEDAQE/AWBv/8QAFREBAQAAAAAAAAAAAAAAAAAAEDH/2gAIAQIBAT8Bp//EABoQAAICAwAAAAAAAAAAAAAAAAABESFBQlH/2gAIAQEABj8CsnXgrEQ8EJn/xAAbEAACAwADAAAAAAAAAAAAAAAAAREhMVFhcf/aAAgBAQABPyGKtMeHagto5GDhq5diXmWIFSJtH//aAAwDAQACAAMAAAAQkz//xAAWEQEBAQAAAAAAAAAAAAAAAAABACH/2gAIAQMBAT8QwhKL/8QAGREAAgMBAAAAAAAAAAAAAAAAAAERIUFh/9oACAECAQE/EFTpK0//xAAcEAEBAAMBAAMAAAAAAAAAAAABEQAhMZFBcfH/2gAIAQEAAT8QA2RFfAL73JAgo43xv1uZMgT5G4pcZezyXnmLsKWF1r9w9nJsdrn/2Q==);
-          opacity: 0;
-        }
-
-        .teaser-background-image.teaser-background-image-right.second:after {
-          z-index: -101;
-          background-image: url('../../assets/stats.jpg');
-
-          opacity: 1;
-        }
-      </style>
+      <picture *ngIf="!isSmallScreen && ready">
+        <source [srcset]="imageUrl2 + ' 200w,' + imageUrl2 + ' 400w,' + imageUrl2 + ' 800w'"
+                sizes="(max-width: 800px) 100vw, 800px">
+        <img sizes="(max-width: 800px) 100vw, 800px"
+             [srcset]="imageUrl2 + ' 200w,' + imageUrl2 + ' 400w,' + imageUrl2 + ' 800w'" [src]="imageUrl2" alt=""
+             loading="lazy"
+             style="position: absolute; top: 0px; right: 0px; width: 50%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; transition: opacity 500ms ease 0s;">
+      </picture>
+      <noscript *ngIf="!isSmallScreen && ready">
+        <picture>
+          <source [srcset]="imageUrl2 + ' 200w,' + imageUrl2 + ' 400w,' + imageUrl2 + ' 800w'"
+                  sizes="(max-width: 800px) 100vw, 800px"/>
+          <img loading="lazy" sizes="(max-width: 800px) 100vw, 800px"
+               [srcset]="imageUrl2 + ' 200w,' + imageUrl2 + ' 400w,' + imageUrl2 + ' 800w'"
+               [src]="imageUrl2" alt=""
+               style="position:absolute;top:0;right:0;opacity:1;width:50%;height:100%;object-fit:cover;object-position:center"/>
+        </picture>
+      </noscript>
       <div class="container teaser-container">
         <div class="row">
           <div class="col-sm-12 col-md-5 offset-md-0 order-first pv120-90 teaser-context">
