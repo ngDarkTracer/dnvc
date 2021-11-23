@@ -1,0 +1,24 @@
+.img-align {
+  display: block;
+  position: absolute;
+  width: calc(50% - 1px) !important;
+  // width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transition: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.text-align {
+  display: block;
+  position: absolute;
+  width: calc(45% - 1px) !important;
+  // width: 50%;
+  height: 100%;
+  top: 70%;
+  transform: translateY(-50%);
+  right: 2%;
+}

@@ -5,6 +5,7 @@ import { AboutRoutingModule } from './about-routing.module';
 import { AboutComponent } from './about.component';
 import {TranslateModule} from "@ngx-translate/core";
 import {SkeletonModule} from 'primeng/skeleton';
+import {MarkdownModule} from 'ngx-markdown';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {SkeletonModule} from 'primeng/skeleton';
         CommonModule,
         AboutRoutingModule,
         TranslateModule,
-        SkeletonModule
+        SkeletonModule,
+        MarkdownModule
     ]
 })
 export class AboutModule { }

@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import {TranslateModule} from '@ngx-translate/core';
+import {SkeletonModule} from 'primeng/skeleton';
+import {MarkdownModule} from 'ngx-markdown';
 
 
 @NgModule({
@@ -13,7 +15,9 @@ import {TranslateModule} from '@ngx-translate/core';
     imports: [
         CommonModule,
         HomeRoutingModule,
-        TranslateModule
+        TranslateModule,
+        SkeletonModule,
+        MarkdownModule
     ]
 })
 export class HomeModule { }

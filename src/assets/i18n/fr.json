@@ -19,6 +19,7 @@
   },
 
   "sectors": {
+    "alerts": "alerte(s)",
     "title": "Toutes les filières",
     "search_results": "Resultat(s)",
     "clear_filter": "Vider le filtre",
@@ -71,6 +72,7 @@
   },
 
   "notes": {
+    "total": "note(s) de veille",
     "title": "Toutes les notes de veille",
     "search_results": "Resultat(s)",
     "clear_filter": "Vider le filtre",

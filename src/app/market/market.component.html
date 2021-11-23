@@ -19,6 +19,9 @@
     <div *ngIf="isSmallScreen" style="margin-bottom: 80px"></div>
     <div class="row align-items-center justify-content-between" *ngIf="ready">
       <div class="col-sm-12 col-md-5 teaser-context pv120-90">
+        <div class="mb-3 ml-2">
+          <b>{{ totalItems }} {{ 'sectors.alerts' | translate }}</b>
+        </div>
         <h2 class="hero-title" style="margin-bottom: 50px;">{{ currentMarket }}</h2>
         {{ marketIntroText }}
       </div>
@@ -200,7 +203,8 @@
               <h2 class="pb-4 ml-3" *ngIf="filterValue === 'ALL'">{{ 'market.All' | translate }}</h2>
 <!--              <h2 class="pb100" *ngIf="filterValue !== 'ALL'">{{ 'market.alerts' | translate }} [{{ filterValue }}]</h2>-->
 
-              <p-dataView emptyMessage="{{ 'market.isMarket' | translate }}" *ngIf="ready" #dv [value]="filteredAlert" [paginator]="true" [rows]="5"
+              <p-dataView emptyMessage="{{ 'market.isMarket' | translate }}" *ngIf="ready" #dv [value]="filteredAlert" [paginator]="true" [rows]="25"
+                          [loading]="searching"
                           layout="grid">
                 <ng-template pTemplate="header">
                   <p-accordion>

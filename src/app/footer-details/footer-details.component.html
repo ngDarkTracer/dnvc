@@ -21,8 +21,8 @@
         <div class="col-lg-6 col-md-12 col-sm-12 pb120-90 pt120-45 content-area-content" [ngClass]="{ 'border-left-black':!isSmallScreen }">
           <h2 class="mb-5 mt-5 pt-5">{{ 'footer.word_from_minister' | translate }}</h2>
           <div class="free-form-content__content wysiwyg-wrapper">
-            <div style="white-space: pre-wrap" *ngIf="ready">
-              {{ infos.mot_du_ministre }}
+            <div *ngIf="ready">
+              <markdown [data]="infos.mot_du_ministre"></markdown>
             </div>
             <div *ngIf="!ready">
               <p-skeleton width="100%" height="70vh" borderRadius="0"></p-skeleton>
@@ -58,8 +58,8 @@
         <div class="col-lg-6 col-md-12 col-sm-12 pb120-90 pt120-45 content-area-content" [ngClass]="{ 'border-left-black':!isSmallScreen }">
           <h2 class="mb-5 mt-5 pt-5">{{ 'footer.monitoring' | translate }}</h2>
           <div class="free-form-content__content wysiwyg-wrapper">
-            <div style="white-space: pre-wrap" *ngIf="ready">
-              {{ infos.equipe_de_veille }}
+            <div *ngIf="ready">
+              <markdown [data]="infos.equipe_de_veille"></markdown>
             </div>
             <div *ngIf="!ready">
               <p-skeleton width="100%" height="70vh" borderRadius="0"></p-skeleton>
